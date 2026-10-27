@@ -1,0 +1,23 @@
+{
+  "label": "gate-0.5",
+  "model": "fixtures/global_model.xlsx",
+  "conventions": "fixtures/global_model.conventions.yaml",
+  "values": {
+    "res_icer": 28270.8592726672,
+    "res_icer_ly": 18032.9770614951,
+    "res_inc_total_cost": 24745.6109727207,
+    "res_inc_qaly_disc": 0.875304522372449,
+    "res_inc_ly_disc": 1.37224213663305,
+    "res_inc_nmb": 1513.52469845276,
+    "res_int_total_cost": 60016.1058251327,
+    "res_comp_total_cost": 35270.494852412,
+    "res_int_qaly_disc": 1.66923920818585,
+    "res_comp_qaly_disc": 0.793934685813399
+  },
+  "history": [
+    {
+      "label": "gate-0",
+      "res_icer": 28321.1591578058
+    }
+  ]
+}

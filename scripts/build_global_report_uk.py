@@ -27,7 +27,8 @@ MODEL = ROOT / "fixtures" / "global_model.xlsx"
 OUT = ROOT / "fixtures" / "global_report_UK.docx"
 PROV = ROOT / "fixtures" / "global_report_UK.provenance.json"
 
-# id: (table label, short phrase for narrative, overrides, [(name, fmt, unit text)] shown as setting)
+# id: (table label, short phrase for narrative, overrides, setting shown in Table 8)
+# setting entries are (name, fmt, unit text) for traced numbers or (text, None, None) for words
 SCENARIOS = {
     "SC1": ("Lower discount rate (costs and outcomes)", "the lower discount rate",
             {"dr_costs": 0.015, "dr_outcomes": 0.015}, [("dr_costs", "pct", "")]),
@@ -35,17 +36,24 @@ SCENARIOS = {
             {"time_horizon_years": 20}, [("time_horizon_years", "int", " years")]),
     "SC3": ("Alternative utility values (PF / PD)", "the alternative utility values",
             {"u_pf": 0.72, "u_pd": 0.55}, [("u_pf", "p2", ""), ("u_pd", "p2", "")]),
-    "SC4": ("No stopping rule for Drug A (maximum treatment duration)", "removing the stopping rule for Drug A",
-            {"int_max_tx_weeks": 2088}, [("int_max_tx_weeks", "int", " weeks")]),
+    "SC4": ("No stopping rule for Drug A (maximum doses)", "removing the stopping rule for Drug A",
+            {"int_max_doses": 696}, [("int_max_doses", "int", " doses")]),
     "SC5": ("Conservative Drug A OS extrapolation (Weibull scale)", "the conservative OS extrapolation",
-            {"int_os_scale": 30}, [("int_os_scale", "p2", " months")]),
+            {"int_os_scale": 28}, [("int_os_scale", "p2", " months")]),
+    "SC6": ("No general-population mortality constraint", "removing the general-population mortality constraint",
+            {"use_gpm_cap": 0}, [("Not applied", None, None)]),
+    "SC7": ("No age adjustment of utilities", "removing the age adjustment of utilities",
+            {"use_age_util_adj": 0}, [("Not applied", None, None)]),
+    "SC8": ("Drug A time on treatment equal to PFS (Weibull shape / scale)", "setting Drug A time on treatment equal to PFS",
+            {"int_tot_shape": 0.95, "int_tot_scale": 12.0}, [("int_tot_shape", "p2", ""), ("int_tot_scale", "p2", " months")]),
 }
+NEGLIGIBLE_REL_CHANGE = 0.001   # wording rule: "negligible" if |dICER| / ICER below this
 
 # formatter: (scale, decimals, prefix, suffix)
 FMT = {
     "gbp": (1, 0, "£", ""), "qaly": (1, 3, "", ""), "ly": (1, 2, "", ""),
-    "pct": (100, 1, "", "%"), "year": (1, 0, "", ""), "m1": (1, 1, "", ""), "p2": (1, 2, "", ""),
-    "int": (1, 0, "", ""),
+    "pct": (100, 1, "", "%"), "pct2": (100, 2, "", "%"), "year": (1, 0, "", ""), "m1": (1, 1, "", ""), "p2": (1, 2, "", ""),
+    "int": (1, 0, "", ""), "kg": (1, 1, "", ""), "coef": (1, 6, "", ""),
 }
 
 
@@ -79,6 +87,11 @@ class Report:
                        "overrides": None if scenario is None else SCENARIOS[scenario][2]},
         })
         return disp
+
+    def display_of(self, name: str, fmt: str) -> str:
+        scale, dec, pre, suf = FMT[fmt]
+        x = self.base[name] * scale
+        return f"{'-' if x < 0 and round(abs(x), dec) != 0 else ''}{abs(x):,.{dec}f}"
 
     def claim(self, text: str, depends_on: list[str], kind: str):
         self.claims.append({"id": f"C{len(self.claims) + 1:02d}", "section": self.section,
@@ -133,11 +146,32 @@ def assert_static_narrative(b: dict) -> None:
     """Fixed wording in the report is only valid while these hold; fail loudly otherwise."""
     assert b["res_below_wtp"] == "Yes" and b["res_below_wtp_lower"] == "No", "threshold wording"
     assert b["check_cross_int"] == 0 and b["check_cross_comp"] == 0, "'curves did not cross'"
-    assert b["check_lifetime_ok"] == "OK" and b["check_trace_rows_ok"] == "OK", "validation wording"
-    inc = {k: b[f"res_inc_cost_{k}"] for k in ("drug", "admin", "pf_state", "pd_state", "terminal", "ae")}
-    assert max(inc, key=inc.get) == "pd_state", "'largest contributor ... progressed disease'"
-    assert inc["ae"] < 0, "'lower adverse event costs partially offset'"
+    for chk in ("check_lifetime_ok", "check_trace_rows_ok", "check_life_table_ok", "check_interval_ok",
+                "check_st_shares_ok", "check_vial_bands_ok"):
+        assert b[chk] == "OK", f"validation wording: {chk}"
+    assert b["res_inc_cost_ae"] < 0, "'lower adverse event costs partially offset'"
+    assert b["res_inc_cost_st"] < 0, "'lower subsequent therapy costs partially offset'"
     assert b["res_dominance"] == "More costly, more effective"
+
+
+COST_ROWS = [("cost_drug", "Drug acquisition"), ("cost_admin", "Administration"),
+             ("cost_pf_state", "Progression-free state"), ("cost_pd_state", "Progressed disease state"),
+             ("cost_terminal", "Terminal care"), ("cost_st", "Subsequent therapy"), ("cost_ae", "Adverse events")]
+
+
+def rounding_checks(R) -> list:
+    """Interval-check every derived figure shown in Tables 5 and 6 (incremental columns, ICER)."""
+    from tools.rounding import check_derived
+    disp = lambda name, fmt: (R.display_of(name, fmt), FMT[fmt][1])
+    checks = []
+    for key, fmt in [("total_cost", "gbp"), ("ly_disc", "ly"), ("qaly_disc", "qaly")] + [(k, "gbp") for k, _ in COST_ROWS]:
+        checks.append((f"res_inc_{key}", check_derived(
+            "difference", [disp(f"res_int_{key}", fmt), disp(f"res_comp_{key}", fmt)], disp(f"res_inc_{key}", fmt))))
+    checks.append(("res_icer", check_derived(
+        "ratio", [disp("res_inc_total_cost", "gbp"), disp("res_inc_qaly_disc", "qaly")], disp("res_icer", "gbp"))))
+    bad = [name for name, c in checks if not c.ok]
+    assert not bad, f"rounding-interval check failed for {bad}"
+    return checks
 
 
 def build(base: dict, scen: dict, refs: dict) -> Report:
@@ -157,7 +191,7 @@ def build(base: dict, scen: dict, refs: dict) -> Report:
                          "Not for clinical, reimbursement or investment decisions.")
     t3.alignment = WD_ALIGN_PARAGRAPH.CENTER
     t3.runs[0].italic = True
-    d.add_paragraph("Version 1.0 | Global HEOR | Model file: global_model.xlsx").alignment = WD_ALIGN_PARAGRAPH.CENTER
+    d.add_paragraph("Version 1.1 | Global HEOR | Model file: global_model.xlsx").alignment = WD_ALIGN_PARAGRAPH.CENTER
     d.add_page_break()
 
     # 1 Executive summary -------------------------------------------------------
@@ -212,53 +246,73 @@ def build(base: dict, scen: dict, refs: dict) -> Report:
         "patients in each state at each time point is derived directly from the parametric survival "
         "curves for progression-free survival (PFS) and overall survival (OS). The PF proportion is the "
         "lower of the PFS and OS curves, the PD proportion is the difference between OS and PF, and the "
-        "proportion dead is the complement of OS. Constraining PF by OS prevents the curves from crossing.")
+        "proportion dead is the complement of OS.")
     R.p(f"The model uses a cycle length of {n('cycle_length_days','int')} days and a time horizon of "
-        f"{n('time_horizon_years','int')} years. The mean starting age of {n('baseline_age','int')} years "
-        "means that the horizon captures virtually all survival in both arms; the modelled proportion alive "
-        f"at the end of the horizon is below {n('lifetime_check_tol','pct')} in each arm.")
-    R.p("A half-cycle correction is applied by taking the average of state membership at the start and end "
-        "of each cycle (trapezoidal method). Costs and QALYs are discounted using a discount factor evaluated "
-        f"at the mid-point of each cycle, with annual rates of {n('dr_costs','pct')} for costs and "
-        f"{n('dr_outcomes','pct')} for health outcomes, in line with the reference case.")
+        f"{n('time_horizon_years','int')} years. The modelled cohort has a mean starting age of "
+        f"{n('baseline_age','int')} years and is {n('prop_male','pct')} male. The horizon captures virtually all "
+        f"survival in both arms; the modelled proportion alive at the end of the horizon is below "
+        f"{n('lifetime_check_tol','pct')} in each arm.")
+    R.p("Modelled survival is constrained so that the risk of death is never lower than in the general "
+        "population of the same age and sex. In each cycle, the conditional probability of surviving the cycle "
+        "is taken as the lower of the value implied by the fitted curve and the value implied by national life "
+        "tables, applied separately to the PFS and OS curves. General-population survival is calculated "
+        "separately for men and women and weighted by the proportion of men at baseline.")
+    R.p("A half-cycle correction is applied to state membership by taking the average of the start and end "
+        "of each cycle (trapezoidal method); it is used for health state costs, life years and QALYs. Drug "
+        "acquisition and administration costs are incurred at the time of each dose and are not half-cycle "
+        "corrected. Costs and outcomes are discounted at annual rates of "
+        f"{n('dr_costs','pct')} and {n('dr_outcomes','pct')} respectively, in line with the reference case, using "
+        "a discount factor evaluated at the mid-point of each cycle, or at the time of administration for "
+        "dosing costs.")
 
     R.h("3.2 Survival extrapolation", 2)
-    R.p("Independent Weibull models were fitted to patient-level PFS and OS data from the pivotal trial "
-        "for each treatment arm, following the NICE Decision Support Unit guidance on survival analysis [3]. "
-        "The Weibull distribution was selected on the basis of statistical fit, visual inspection against "
-        "the Kaplan-Meier curves, and the clinical plausibility of long-term extrapolations. The survival "
-        "function is parameterised as S(t) = exp(-(t/scale)^shape), with time in months.")
-    R.table("Table 2. Weibull parameters and modelled medians", [
+    R.p("Independent Weibull models were fitted to patient-level PFS, OS and time on treatment (ToT) data "
+        "from the pivotal trial for each treatment arm, following the NICE Decision Support Unit guidance on "
+        "survival analysis [3]. The Weibull distribution was selected on the basis of statistical fit, visual "
+        "inspection against the Kaplan-Meier curves, and the clinical plausibility of long-term "
+        "extrapolations. The survival function is parameterised as S(t) = exp(-(t/scale)^shape), with time in "
+        "months. Medians in Table 2 are those of the fitted curves before the general-population constraint.")
+    R.table("Table 2. Weibull parameters and medians of the fitted curves", [
         "Arm and endpoint", "Shape", "Scale (months)", "Median (months)"], [
-        ["Drug A, PFS", n("int_pfs_shape", "p2"), n("int_pfs_scale", "p2"), n("res_int_median_pfs", "m1")],
-        ["Drug A, OS", n("int_os_shape", "p2"), n("int_os_scale", "p2"), n("res_int_median_os", "m1")],
-        ["Drug B, PFS", n("comp_pfs_shape", "p2"), n("comp_pfs_scale", "p2"), n("res_comp_median_pfs", "m1")],
-        ["Drug B, OS", n("comp_os_shape", "p2"), n("comp_os_scale", "p2"), n("res_comp_median_os", "m1")],
+        [f"{arm_label}, {ep_label}", n(f"{a}_{ep}_shape", "p2"), n(f"{a}_{ep}_scale", "p2"),
+         n(f"res_{a}_median_{ep}", "m1")]
+        for a, arm_label in (("int", "Drug A"), ("comp", "Drug B"))
+        for ep, ep_label in (("pfs", "PFS"), ("os", "OS"), ("tot", "ToT"))
     ])
-    R.p(f"Modelled median OS was {n('res_int_median_os','m1')} months with Drug A and "
-        f"{n('res_comp_median_os','m1')} months with Drug B. Modelled median PFS was "
+    R.p(f"Median OS of the fitted curves was {n('res_int_median_os','m1')} months with Drug A and "
+        f"{n('res_comp_median_os','m1')} months with Drug B. Median PFS was "
         f"{n('res_int_median_pfs','m1')} and {n('res_comp_median_pfs','m1')} months, respectively. "
-        "The modelled curves did not cross in either arm.")
+        "The fitted PFS and OS curves did not cross in either arm.")
     R.claim("Modelled PFS and OS curves do not cross", ["check_cross_int", "check_cross_comp"], "model_check")
 
-    R.h("3.3 Treatment duration", 2)
-    R.p("Treatment duration was assumed to follow PFS, so patients receive treatment while progression-free. "
-        f"Drug A is given every {n('int_admin_interval_weeks','int')} weeks until progression or for a maximum of "
-        f"{n('int_max_tx_weeks','int')} weeks, consistent with the stopping rule in the trial protocol. Drug B "
-        f"is given every {n('comp_admin_interval_weeks','int')} weeks for a maximum of "
-        f"{n('comp_max_tx_weeks','int')} weeks. Acquisition and administration costs per administration are "
-        "spread evenly over the weeks of each dosing interval.")
+    R.h("3.3 Treatment duration and dosing", 2)
+    R.p("Treatment duration is modelled with the ToT curves, constrained not to exceed OS, so patients may "
+        "continue treatment after progression as observed in the trial. Doses are given at fixed intervals "
+        "and costed only in the weeks in which a dose is due, for the proportion of patients on treatment at "
+        f"the start of that week. Drug A is given every {n('int_admin_interval_weeks','int')} weeks for a maximum "
+        f"of {n('int_max_doses','int')} doses, consistent with the stopping rule in the trial protocol. Drug B is "
+        f"given every {n('comp_admin_interval_weeks','int')} weeks for a maximum of {n('comp_max_doses','int')} doses.")
+    R.p(f"Drug A is dosed at {n('int_dose_mg','p2')} mg/kg. The expected number of vials per administration "
+        f"({n('res_int_expected_vials','p2')}) accounts for wastage, assuming no vial sharing and a lognormal "
+        f"distribution of body weight with mean {n('weight_mean_kg','kg')} kg and standard deviation "
+        f"{n('weight_sd_kg','kg')} kg. Drug B is given at a flat dose of {n('comp_dose_mg','int')} mg "
+        f"({n('res_comp_expected_vials','int')} vials). Drug acquisition costs are multiplied by the relative "
+        f"dose intensity observed in the trial ({n('int_rdi','pct')} for Drug A and {n('comp_rdi','pct')} for Drug B); "
+        "administration costs are not adjusted. Patients received an expected "
+        f"{n('res_int_n_doses','p2')} doses of Drug A and {n('res_comp_n_doses','p2')} doses of Drug B.")
 
     R.h("3.4 Costs and resource use", 2)
     R.p("Drug acquisition costs for Drug A reflect the list price net of the confidential PAS discount. "
         "The cost of Drug B was taken from the electronic market information tool (eMIT). Administration "
         "costs per intravenous infusion are based on NHS reference costs. Health state costs comprise "
         "outpatient visits, imaging, blood tests and community care, valued using PSSRU unit costs. A one-off "
-        "terminal care cost is applied at death.")
+        "terminal care cost is applied to each death.")
     R.p(f"All costs are in {n('currency_code','text')} at {n('price_year','year')} prices.")
     R.table("Table 3. Cost inputs", ["Input", "Value", "Unit"], [
-        ["Drug A net price per administration", n("int_drug_cost_per_admin", "gbp"), "per administration"],
-        ["Drug B price per administration", n("comp_drug_cost_per_admin", "gbp"), "per administration"],
+        ["Drug A net price per vial", n("int_vial_price", "gbp"), "per vial"],
+        ["Drug A drug cost per administration (expected vials)", n("res_int_drug_cost_per_admin", "gbp"), "per administration"],
+        ["Drug B price per vial", n("comp_vial_price", "gbp"), "per vial"],
+        ["Drug B drug cost per administration", n("res_comp_drug_cost_per_admin", "gbp"), "per administration"],
         ["Administration cost, Drug A", n("int_admin_cost_per_admin", "gbp"), "per administration"],
         ["Administration cost, Drug B", n("comp_admin_cost_per_admin", "gbp"), "per administration"],
         ["Progression-free health state", n("c_pf_week", "gbp"), "per week"],
@@ -267,26 +321,42 @@ def build(base: dict, scen: dict, refs: dict) -> Report:
         ["Adverse events, Drug A", n("int_ae_cost", "gbp"), "one-off"],
         ["Adverse events, Drug B", n("comp_ae_cost", "gbp"), "one-off"],
     ])
+    R.p("Subsequent therapies are costed once, at progression, as the cost of a mean treatment course "
+        "weighted by the proportion of patients receiving each therapy in the trial. Progression events "
+        "are estimated from the decline in the PF proportion, excluding the share of PFS events that were "
+        f"deaths ({n('int_p_death_first_pfs','pct')} for Drug A and {n('comp_p_death_first_pfs','pct')} for Drug B).")
+    st_labels = {1: "Docetaxel-based chemotherapy", 2: "Immunotherapy", 3: "Other targeted therapy"}
+    R.table("Table 4. Subsequent therapies", ["Therapy", "Course cost", "Share after Drug A", "Share after Drug B"], [
+        [st_labels[j], n(f"st_cost_{j}", "gbp"), n(f"int_st_share_{j}", "pct"), n(f"comp_st_share_{j}", "pct")]
+        for j in (1, 2, 3)
+    ] + [["Cost per progression", "", n("res_int_st_cost_per_progression", "gbp"), n("res_comp_st_cost_per_progression", "gbp")]])
 
     R.h("3.5 Health-related quality of life", 2)
     R.p("Health state utility values were derived from EQ-5D-3L questionnaires collected in the pivotal "
         "trial and valued using the UK time trade-off value set, consistent with the NICE reference case. "
-        "Utilities were assumed to depend on health state only and not on treatment. Quality-of-life losses "
-        "associated with severe (grade three or higher) adverse events were applied as one-off QALY decrements at the "
-        "start of the model.")
-    R.table("Table 4. Utility inputs", ["Input", "Value"], [
+        "Utilities were assumed to depend on health state only and not on treatment. To reflect declining "
+        "quality of life with age, state utilities are multiplied by the ratio of general-population utility "
+        "at the current age to that at the baseline age, using a regression on age and sex from UK population "
+        "norms. Quality-of-life losses associated with severe (grade three or higher) adverse events were "
+        "applied as one-off QALY decrements at the start of the model.")
+    R.table("Table 5. Utility inputs", ["Input", "Value"], [
         ["Progression-free", n("u_pf", "p2")],
         ["Progressed disease", n("u_pd", "p2")],
         ["AE QALY loss, Drug A", n("int_ae_qaly_loss", "qaly")],
         ["AE QALY loss, Drug B", n("comp_ae_qaly_loss", "qaly")],
+        ["Population norms: intercept", n("gpu_intercept", "p2")],
+        ["Population norms: male", n("gpu_male", "coef")],
+        ["Population norms: age", n("gpu_age", "coef")],
+        ["Population norms: age squared", n("gpu_age2", "coef")],
     ])
 
     R.h("3.6 Uncertainty", 2)
     R.p("Structural and parameter uncertainty were explored through pre-specified scenario analyses "
-        "(Table 7). Probabilistic sensitivity analysis (PSA) is specified in the model, with gamma "
-        "distributions for costs, beta distributions for utilities and correlated multivariate normal "
-        "distributions for the log-transformed Weibull parameters. PSA results are not included in this "
-        "version of the report and will be provided in an addendum.")
+        "(Table 8). Probabilistic sensitivity analysis (PSA) is specified in the model, with gamma "
+        "distributions for costs, beta distributions for utilities and proportions, Dirichlet distributions "
+        "for subsequent-therapy shares and correlated multivariate normal distributions for the "
+        "log-transformed Weibull parameters. PSA results are not included in this version of the report and "
+        "will be provided in an addendum.")
     R.claim("PSA results not reported in this version", [], "scope_statement")
 
     # 4 Results -----------------------------------------------------------------
@@ -296,36 +366,42 @@ def build(base: dict, scen: dict, refs: dict) -> Report:
         f"{n('res_inc_qaly_disc','qaly')} compared with Drug B, at an additional cost of "
         f"{n('res_inc_total_cost','gbp')}. The base-case ICER is {n('res_icer','gbp')} per QALY gained "
         f"and {n('res_icer_ly','gbp')} per life year gained.")
-    R.table("Table 5. Base-case results (discounted)", ["Outcome", "Drug A", "Drug B", "Incremental"], [
+    R.table("Table 6. Base-case results (discounted)", ["Outcome", "Drug A", "Drug B", "Incremental"], [
         ["Total costs", n("res_int_total_cost", "gbp"), n("res_comp_total_cost", "gbp"), n("res_inc_total_cost", "gbp")],
         ["Life years", n("res_int_ly_disc", "ly"), n("res_comp_ly_disc", "ly"), n("res_inc_ly_disc", "ly")],
         ["QALYs", n("res_int_qaly_disc", "qaly"), n("res_comp_qaly_disc", "qaly"), n("res_inc_qaly_disc", "qaly")],
         ["ICER (cost per QALY gained)", "", "", n("res_icer", "gbp")],
         ["Incremental NMB at upper threshold", "", "", n("res_inc_nmb", "gbp")],
     ])
+    checks = rounding_checks(R)
+    if any(c.needs_footnote for _, c in checks):
+        R.p("Note: figures in Tables 6 and 7 are rounded; incremental values and the ICER are calculated from "
+            "unrounded results and may differ slightly from values recalculated from the rounded figures shown.")
+        R.claim("Rounding footnote required", [name for name, c in checks if c.needs_footnote], "rounding_disclosure")
     R.p(f"Undiscounted, Drug A provided {n('res_int_ly_undisc','ly')} life years versus "
         f"{n('res_comp_ly_undisc','ly')} with Drug B.")
 
     R.h("4.2 Disaggregated costs", 2)
+    inc = {key: base[f"res_inc_{key}"] for key, _ in COST_ROWS}
+    top = max(inc, key=inc.get)
+    adjective = {"cost_drug": "drug acquisition", "cost_admin": "administration", "cost_pf_state": "progression-free state",
+                 "cost_pd_state": "progressed disease state", "cost_terminal": "terminal care",
+                 "cost_st": "subsequent therapy", "cost_ae": "adverse event"}
+    top_label = adjective[top]
+    offsets = [adjective[k] for k, v in sorted(inc.items(), key=lambda kv: kv[1]) if v < 0]
     R.p(f"Drug acquisition accounted for {n('res_int_drug_share','pct')} of total costs in the Drug A arm, "
         f"compared with {n('res_comp_drug_share','pct')} in the Drug B arm. The largest single contributor to "
-        f"incremental costs was the progressed disease state ({n('res_inc_cost_pd_state','gbp')}), reflecting "
-        "longer post-progression survival with Drug A. Lower adverse event costs partially offset the higher "
-        "acquisition and administration costs of Drug A.")
-    R.claim("PD state cost is the largest contributor to incremental costs",
-            ["res_inc_cost_drug", "res_inc_cost_admin", "res_inc_cost_pf_state", "res_inc_cost_pd_state",
-             "res_inc_cost_terminal", "res_inc_cost_ae"], "ranking")
-    rows = []
-    for key, label in [("cost_drug", "Drug acquisition"), ("cost_admin", "Administration"),
-                       ("cost_pf_state", "Progression-free state"), ("cost_pd_state", "Progressed disease state"),
-                       ("cost_terminal", "Terminal care"), ("cost_ae", "Adverse events"),
-                       ("total_cost", "Total")]:
-        rows.append([label, n(f"res_int_{key}", "gbp"), n(f"res_comp_{key}", "gbp"), n(f"res_inc_{key}", "gbp")])
-    R.table("Table 6. Disaggregated discounted costs (GBP)", ["Category", "Drug A", "Drug B", "Incremental"], rows)
+        f"incremental costs was {top_label} ({n('res_inc_' + top,'gbp')}). Lower "
+        f"{join_phrases(offsets)} costs with Drug A partially offset its higher costs in other categories.")
+    R.claim(f"Largest incremental cost category: {top}; offsetting categories: {[k for k in inc if inc[k] < 0]}",
+            [f"res_inc_{k}" for k in inc], "ranking")
+    rows = [[label, n(f"res_int_{key}", "gbp"), n(f"res_comp_{key}", "gbp"), n(f"res_inc_{key}", "gbp")]
+            for key, label in COST_ROWS + [("total_cost", "Total")]]
+    R.table("Table 7. Disaggregated discounted costs (GBP)", ["Category", "Drug A", "Drug B", "Incremental"], rows)
 
     R.h("4.3 Scenario analyses", 2)
     lower = [sid for sid in SCENARIOS if scen[sid]["res_icer"] < base["res_icer"]]
-    R.p(f"Table 7 presents the results of the scenario analyses. {SCENARIOS[rank[0]][1][0].upper() + SCENARIOS[rank[0]][1][1:]} had "
+    R.p(f"Table 8 presents the results of the scenario analyses. {SCENARIOS[rank[0]][1][0].upper() + SCENARIOS[rank[0]][1][1:]} had "
         f"the largest effect on the ICER, followed by {SCENARIOS[rank[1]][1]} and {SCENARIOS[rank[2]][1]}. "
         + (f"The ICER was lower than in the base case only with {join_phrases([SCENARIOS[s_][1] for s_ in lower])}."
            if lower else "No scenario reduced the ICER below the base case."))
@@ -333,10 +409,10 @@ def build(base: dict, scen: dict, refs: dict) -> Report:
             [f"res_icer@{sid}" for sid in SCENARIOS] + ["res_icer"], "sensitivity_ranking")
     srows = [["Base case", "-", n("res_inc_total_cost", "gbp"), n("res_inc_qaly_disc", "qaly"), n("res_icer", "gbp")]]
     for sid, (label, _, _, setting) in SCENARIOS.items():
-        shown = " / ".join(n(name, fmt, sid) + unit for name, fmt, unit in setting)
+        shown = " / ".join(name if fmt is None else n(name, fmt, sid) + unit for name, fmt, unit in setting)
         srows.append([label, shown, n("res_inc_total_cost", "gbp", sid), n("res_inc_qaly_disc", "qaly", sid),
                       n("res_icer", "gbp", sid)])
-    R.table("Table 7. Scenario analyses",
+    R.table("Table 8. Scenario analyses",
             ["Scenario", "Setting", "Incremental costs", "Incremental QALYs", "ICER"], srows)
     above = [sid for sid in SCENARIOS if scen[sid]["res_below_wtp"] != "Yes"]
     if above:
@@ -356,8 +432,20 @@ def build(base: dict, scen: dict, refs: dict) -> Report:
         "cycle by construction. The time horizon is sufficient for the modelled cohort, with fewer than "
         f"{n('lifetime_check_tol','pct')} of patients in either arm alive at the end of the horizon. The deterministic results were reproduced to "
         "within numerical precision by an independent implementation of the model in Python.")
+    gpm_rel = abs(scen["SC6"]["res_icer"] - base["res_icer"]) / base["res_icer"]
+    def bind_text(a, label):
+        if base[f"res_{a}_gpm_bind_cycles"] == 0:
+            return f"was not active in the {label} arm"
+        return (f"was active in {n(f'res_{a}_gpm_bind_cycles','int')} weekly cycles in the {label} arm, from age "
+                f"{n(f'res_{a}_gpm_first_bind_age','int')}, when {n(f'res_{a}_gpm_first_bind_alive','pct2')} of patients "
+                "remained alive")
+    R.p(f"The general-population mortality constraint {bind_text('int', 'Drug A')}, and {bind_text('comp', 'Drug B')}; "
+        + ("its effect on the ICER was negligible (Table 8)." if gpm_rel < NEGLIGIBLE_REL_CHANGE
+           else f"removing it changed the ICER to {n('res_icer','gbp','SC6')} (Table 8)."))
+    R.claim("GPM constraint effect on ICER is negligible" if gpm_rel < NEGLIGIBLE_REL_CHANGE else "GPM constraint changes ICER",
+            ["res_icer", "res_icer@SC6"], "magnitude_judgement")
     R.p("Face validity was assessed by comparing modelled medians with the trial Kaplan-Meier estimates. "
-        "Modelled medians were within the confidence intervals of the observed medians for all four curves.")
+        "Modelled medians were within the confidence intervals of the observed medians for all six curves.")
     R.claim("Modelled medians within trial KM CIs", [], "external_assertion_untraceable")
 
     # 6 Discussion ---------------------------------------------------------------
@@ -365,23 +453,25 @@ def build(base: dict, scen: dict, refs: dict) -> Report:
     R.p("The analysis indicates that Drug A provides substantial health gains relative to Drug B, driven "
         "mainly by longer overall survival. The additional costs arise from drug acquisition and "
         "administration during the treatment period and from health state costs accumulated over the "
-        "longer survival period.")
+        "longer survival period, partly offset by lower subsequent therapy costs.")
     R.p("Several limitations should be noted.")
     R.bullets([
         "Independent Weibull models were fitted to each arm. Alternative distributions were not explored "
         "in this version of the report, and long-term extrapolation of OS is the main source of structural "
         "uncertainty.",
-        "Treatment duration was assumed to equal PFS, capped by the stopping rule. Time-on-treatment data "
-        "would provide a more accurate estimate of drug costs.",
-        "General population mortality was not applied as a constraint on modelled survival; given the low "
-        "proportion of patients alive in the long term, the impact is expected to be small.",
-        "Utilities were not adjusted for age.",
+        "Progression events are approximated from the decline in the PF proportion using a constant share of "
+        "deaths among PFS events; this share is likely to increase at older ages.",
+        "Subsequent therapies are costed as one-off courses at progression, without their effect on survival "
+        "beyond that observed in the trial.",
+        "Vial sharing was not considered, which may overestimate drug costs for Drug A in centres that share vials.",
         "The partitioned survival structure does not explicitly model the relationship between progression and "
         "death, as discussed in NICE DSU guidance [2].",
     ])
-    R.p("The base-case ICER lies close to the upper end of the threshold range, so several plausible "
-        "scenarios move it above that threshold. The stopping rule is a key assumption and should be "
-        "reflected in the commissioning arrangements for Drug A.")
+    above = [sid for sid in SCENARIOS if scen[sid]["res_below_wtp"] != "Yes"]
+    R.p(("The base-case ICER lies close to the upper end of the threshold range, so plausible changes in "
+         "key assumptions move it above that threshold. " if above else
+         "The ICER remained below the upper end of the threshold range in all scenarios. ")
+        + "The stopping rule is a key assumption and should be reflected in the commissioning arrangements for Drug A.")
 
     # 7 Conclusion ---------------------------------------------------------------
     R.h("7. Conclusion")
