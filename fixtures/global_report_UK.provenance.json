@@ -1,0 +1,2814 @@
+{
+  "document": "fixtures/global_report_UK.docx",
+  "model": "fixtures/global_model.xlsx",
+  "note": "Answer key for synthetic fixture. Each display string is formatted from the named cell after LibreOffice recalculation (scenario overrides applied where stated).",
+  "scenarios": {
+    "SC1": {
+      "label": "Lower discount rate (costs and outcomes)",
+      "overrides": {
+        "dr_costs": 0.015,
+        "dr_outcomes": 0.015
+      }
+    },
+    "SC2": {
+      "label": "Shorter time horizon",
+      "overrides": {
+        "time_horizon_years": 20
+      }
+    },
+    "SC3": {
+      "label": "Alternative utility values (PF / PD)",
+      "overrides": {
+        "u_pf": 0.72,
+        "u_pd": 0.55
+      }
+    },
+    "SC4": {
+      "label": "No stopping rule for Drug A (maximum treatment duration)",
+      "overrides": {
+        "int_max_tx_weeks": 2088
+      }
+    },
+    "SC5": {
+      "label": "Conservative Drug A OS extrapolation (Weibull scale)",
+      "overrides": {
+        "int_os_scale": 30
+      }
+    }
+  },
+  "numbers": [
+    {
+      "id": "N001",
+      "section": "1. Executive summary",
+      "display": "40",
+      "value": 40,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "time_horizon_years",
+        "sheet": "Inputs_Settings",
+        "cell": "C10",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N002",
+      "section": "1. Executive summary",
+      "display": "3.5%",
+      "value": 0.035,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%"
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "dr_costs",
+        "sheet": "Inputs_Settings",
+        "cell": "C12",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N003",
+      "section": "1. Executive summary",
+      "display": "\u00a349,467",
+      "value": 49467.2678799878,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_int_total_cost",
+        "sheet": "Results",
+        "cell": "B11",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N004",
+      "section": "1. Executive summary",
+      "display": "1.668",
+      "value": 1.66778896529403,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_int_qaly_disc",
+        "sheet": "Results",
+        "cell": "B15",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N005",
+      "section": "1. Executive summary",
+      "display": "\u00a324,845",
+      "value": 24845.0120491066,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_comp_total_cost",
+        "sheet": "Results",
+        "cell": "C11",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N006",
+      "section": "1. Executive summary",
+      "display": "0.798",
+      "value": 0.798394612694057,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_comp_qaly_disc",
+        "sheet": "Results",
+        "cell": "C15",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N007",
+      "section": "1. Executive summary",
+      "display": "\u00a324,622",
+      "value": 24622.2558308812,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_total_cost",
+        "sheet": "Results",
+        "cell": "D11",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N008",
+      "section": "1. Executive summary",
+      "display": "0.869",
+      "value": 0.869394352599968,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_qaly_disc",
+        "sheet": "Results",
+        "cell": "D15",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N009",
+      "section": "1. Executive summary",
+      "display": "\u00a328,321",
+      "value": 28321.1591578058,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_icer",
+        "sheet": "Results",
+        "cell": "D18",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N010",
+      "section": "1. Executive summary",
+      "display": "\u00a330,000",
+      "value": 30000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "wtp_threshold",
+        "sheet": "Inputs_Settings",
+        "cell": "C14",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N011",
+      "section": "1. Executive summary",
+      "display": "\u00a31,460",
+      "value": 1459.57474711781,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_nmb",
+        "sheet": "Results",
+        "cell": "D20",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N012",
+      "section": "1. Executive summary",
+      "display": "\u00a320,000",
+      "value": 20000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "wtp_threshold_lower",
+        "sheet": "Inputs_Settings",
+        "cell": "C15",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N013",
+      "section": "2. Decision problem",
+      "display": "3",
+      "value": 3,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "int_admin_interval_weeks",
+        "sheet": "Inputs_Costs",
+        "cell": "C6",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N014",
+      "section": "2. Decision problem",
+      "display": "3",
+      "value": 3,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "int_admin_interval_weeks",
+        "sheet": "Inputs_Costs",
+        "cell": "C6",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N015",
+      "section": "2. Decision problem",
+      "display": "3",
+      "value": 3,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "comp_admin_interval_weeks",
+        "sheet": "Inputs_Costs",
+        "cell": "C11",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N016",
+      "section": "3. Methods",
+      "display": "7",
+      "value": 7,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "cycle_length_days",
+        "sheet": "Inputs_Settings",
+        "cell": "C8",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N017",
+      "section": "3. Methods",
+      "display": "40",
+      "value": 40,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "time_horizon_years",
+        "sheet": "Inputs_Settings",
+        "cell": "C10",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N018",
+      "section": "3. Methods",
+      "display": "62",
+      "value": 62,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "baseline_age",
+        "sheet": "Inputs_Settings",
+        "cell": "C11",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N019",
+      "section": "3. Methods",
+      "display": "0.1%",
+      "value": 0.001,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%"
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "lifetime_check_tol",
+        "sheet": "Inputs_Settings",
+        "cell": "C16",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N020",
+      "section": "3. Methods",
+      "display": "3.5%",
+      "value": 0.035,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%"
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "dr_costs",
+        "sheet": "Inputs_Settings",
+        "cell": "C12",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N021",
+      "section": "3. Methods",
+      "display": "3.5%",
+      "value": 0.035,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%"
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "dr_outcomes",
+        "sheet": "Inputs_Settings",
+        "cell": "C13",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N022",
+      "section": "3. Methods",
+      "display": "0.95",
+      "value": 0.95,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "int_pfs_shape",
+        "sheet": "Inputs_Clinical",
+        "cell": "C4",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N023",
+      "section": "3. Methods",
+      "display": "12.00",
+      "value": 12,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "int_pfs_scale",
+        "sheet": "Inputs_Clinical",
+        "cell": "C5",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N024",
+      "section": "3. Methods",
+      "display": "8.2",
+      "value": 8.1588528378101,
+      "format": {
+        "scale": 1,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_int_median_pfs",
+        "sheet": "Results",
+        "cell": "B27",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N025",
+      "section": "3. Methods",
+      "display": "1.05",
+      "value": 1.05,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "int_os_shape",
+        "sheet": "Inputs_Clinical",
+        "cell": "C7",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N026",
+      "section": "3. Methods",
+      "display": "34.00",
+      "value": 34,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "int_os_scale",
+        "sheet": "Inputs_Clinical",
+        "cell": "C8",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N027",
+      "section": "3. Methods",
+      "display": "24.0",
+      "value": 23.9819292842713,
+      "format": {
+        "scale": 1,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_int_median_os",
+        "sheet": "Results",
+        "cell": "B28",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N028",
+      "section": "3. Methods",
+      "display": "1.25",
+      "value": 1.25,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "comp_pfs_shape",
+        "sheet": "Inputs_Clinical",
+        "cell": "C10",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N029",
+      "section": "3. Methods",
+      "display": "7.00",
+      "value": 7,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "comp_pfs_scale",
+        "sheet": "Inputs_Clinical",
+        "cell": "C11",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N030",
+      "section": "3. Methods",
+      "display": "5.2",
+      "value": 5.22105669076932,
+      "format": {
+        "scale": 1,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_comp_median_pfs",
+        "sheet": "Results",
+        "cell": "C27",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N031",
+      "section": "3. Methods",
+      "display": "1.15",
+      "value": 1.15,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "comp_os_shape",
+        "sheet": "Inputs_Clinical",
+        "cell": "C13",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N032",
+      "section": "3. Methods",
+      "display": "16.00",
+      "value": 16,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "comp_os_scale",
+        "sheet": "Inputs_Clinical",
+        "cell": "C14",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N033",
+      "section": "3. Methods",
+      "display": "11.6",
+      "value": 11.6334181899355,
+      "format": {
+        "scale": 1,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_comp_median_os",
+        "sheet": "Results",
+        "cell": "C28",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N034",
+      "section": "3. Methods",
+      "display": "24.0",
+      "value": 23.9819292842713,
+      "format": {
+        "scale": 1,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_int_median_os",
+        "sheet": "Results",
+        "cell": "B28",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N035",
+      "section": "3. Methods",
+      "display": "11.6",
+      "value": 11.6334181899355,
+      "format": {
+        "scale": 1,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_comp_median_os",
+        "sheet": "Results",
+        "cell": "C28",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N036",
+      "section": "3. Methods",
+      "display": "8.2",
+      "value": 8.1588528378101,
+      "format": {
+        "scale": 1,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_int_median_pfs",
+        "sheet": "Results",
+        "cell": "B27",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N037",
+      "section": "3. Methods",
+      "display": "5.2",
+      "value": 5.22105669076932,
+      "format": {
+        "scale": 1,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_comp_median_pfs",
+        "sheet": "Results",
+        "cell": "C27",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N038",
+      "section": "3. Methods",
+      "display": "3",
+      "value": 3,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "int_admin_interval_weeks",
+        "sheet": "Inputs_Costs",
+        "cell": "C6",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N039",
+      "section": "3. Methods",
+      "display": "104",
+      "value": 104,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "int_max_tx_weeks",
+        "sheet": "Inputs_Costs",
+        "cell": "C7",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N040",
+      "section": "3. Methods",
+      "display": "3",
+      "value": 3,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "comp_admin_interval_weeks",
+        "sheet": "Inputs_Costs",
+        "cell": "C11",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N041",
+      "section": "3. Methods",
+      "display": "18",
+      "value": 18,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "comp_max_tx_weeks",
+        "sheet": "Inputs_Costs",
+        "cell": "C12",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N042",
+      "section": "3. Methods",
+      "display": "2025",
+      "value": 2025,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "price_year",
+        "sheet": "Inputs_Settings",
+        "cell": "C6",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N043",
+      "section": "3. Methods",
+      "display": "\u00a3780",
+      "value": 780,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "int_drug_cost_per_admin",
+        "sheet": "Inputs_Costs",
+        "cell": "C4",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N044",
+      "section": "3. Methods",
+      "display": "\u00a3480",
+      "value": 480,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "comp_drug_cost_per_admin",
+        "sheet": "Inputs_Costs",
+        "cell": "C9",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N045",
+      "section": "3. Methods",
+      "display": "\u00a3310",
+      "value": 310,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "int_admin_cost_per_admin",
+        "sheet": "Inputs_Costs",
+        "cell": "C5",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N046",
+      "section": "3. Methods",
+      "display": "\u00a3310",
+      "value": 310,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "comp_admin_cost_per_admin",
+        "sheet": "Inputs_Costs",
+        "cell": "C10",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N047",
+      "section": "3. Methods",
+      "display": "\u00a3150",
+      "value": 150,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "c_pf_week",
+        "sheet": "Inputs_Costs",
+        "cell": "C14",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N048",
+      "section": "3. Methods",
+      "display": "\u00a3230",
+      "value": 230,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "c_pd_week",
+        "sheet": "Inputs_Costs",
+        "cell": "C15",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N049",
+      "section": "3. Methods",
+      "display": "\u00a36,500",
+      "value": 6500,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "c_terminal",
+        "sheet": "Inputs_Costs",
+        "cell": "C16",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N050",
+      "section": "3. Methods",
+      "display": "\u00a31,150",
+      "value": 1150,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "int_ae_cost",
+        "sheet": "Inputs_Costs",
+        "cell": "C8",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N051",
+      "section": "3. Methods",
+      "display": "\u00a32,400",
+      "value": 2400,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "comp_ae_cost",
+        "sheet": "Inputs_Costs",
+        "cell": "C13",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N052",
+      "section": "3. Methods",
+      "display": "0.75",
+      "value": 0.75,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "u_pf",
+        "sheet": "Inputs_Utilities",
+        "cell": "C4",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N053",
+      "section": "3. Methods",
+      "display": "0.60",
+      "value": 0.6,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "u_pd",
+        "sheet": "Inputs_Utilities",
+        "cell": "C5",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N054",
+      "section": "3. Methods",
+      "display": "0.008",
+      "value": 0.008,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "int_ae_qaly_loss",
+        "sheet": "Inputs_Utilities",
+        "cell": "C6",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N055",
+      "section": "3. Methods",
+      "display": "0.015",
+      "value": 0.015,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "comp_ae_qaly_loss",
+        "sheet": "Inputs_Utilities",
+        "cell": "C7",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N056",
+      "section": "4. Results",
+      "display": "1.32",
+      "value": 1.32437897612707,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_ly_disc",
+        "sheet": "Results",
+        "cell": "D13",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N057",
+      "section": "4. Results",
+      "display": "0.869",
+      "value": 0.869394352599968,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_qaly_disc",
+        "sheet": "Results",
+        "cell": "D15",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N058",
+      "section": "4. Results",
+      "display": "\u00a324,622",
+      "value": 24622.2558308812,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_total_cost",
+        "sheet": "Results",
+        "cell": "D11",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N059",
+      "section": "4. Results",
+      "display": "\u00a328,321",
+      "value": 28321.1591578058,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_icer",
+        "sheet": "Results",
+        "cell": "D18",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N060",
+      "section": "4. Results",
+      "display": "\u00a318,592",
+      "value": 18591.5483971853,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_icer_ly",
+        "sheet": "Results",
+        "cell": "D19",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N061",
+      "section": "4. Results",
+      "display": "\u00a349,467",
+      "value": 49467.2678799878,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_int_total_cost",
+        "sheet": "Results",
+        "cell": "B11",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N062",
+      "section": "4. Results",
+      "display": "\u00a324,845",
+      "value": 24845.0120491066,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_comp_total_cost",
+        "sheet": "Results",
+        "cell": "C11",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N063",
+      "section": "4. Results",
+      "display": "\u00a324,622",
+      "value": 24622.2558308812,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_total_cost",
+        "sheet": "Results",
+        "cell": "D11",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N064",
+      "section": "4. Results",
+      "display": "2.55",
+      "value": 2.54627020301509,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_int_ly_disc",
+        "sheet": "Results",
+        "cell": "B13",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N065",
+      "section": "4. Results",
+      "display": "1.22",
+      "value": 1.22189122688802,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_comp_ly_disc",
+        "sheet": "Results",
+        "cell": "C13",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N066",
+      "section": "4. Results",
+      "display": "1.32",
+      "value": 1.32437897612707,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_ly_disc",
+        "sheet": "Results",
+        "cell": "D13",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N067",
+      "section": "4. Results",
+      "display": "1.668",
+      "value": 1.66778896529403,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_int_qaly_disc",
+        "sheet": "Results",
+        "cell": "B15",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N068",
+      "section": "4. Results",
+      "display": "0.798",
+      "value": 0.798394612694057,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_comp_qaly_disc",
+        "sheet": "Results",
+        "cell": "C15",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N069",
+      "section": "4. Results",
+      "display": "0.869",
+      "value": 0.869394352599968,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_qaly_disc",
+        "sheet": "Results",
+        "cell": "D15",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N070",
+      "section": "4. Results",
+      "display": "\u00a328,321",
+      "value": 28321.1591578058,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_icer",
+        "sheet": "Results",
+        "cell": "D18",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N071",
+      "section": "4. Results",
+      "display": "\u00a31,460",
+      "value": 1459.57474711781,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_nmb",
+        "sheet": "Results",
+        "cell": "D20",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N072",
+      "section": "4. Results",
+      "display": "2.78",
+      "value": 2.77892048997819,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_int_ly_undisc",
+        "sheet": "Results",
+        "cell": "B12",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N073",
+      "section": "4. Results",
+      "display": "1.27",
+      "value": 1.26894422557401,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_comp_ly_undisc",
+        "sheet": "Results",
+        "cell": "C12",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N074",
+      "section": "4. Results",
+      "display": "23.1%",
+      "value": 0.230705303604497,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%"
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_int_drug_share",
+        "sheet": "Results",
+        "cell": "B30",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N075",
+      "section": "4. Results",
+      "display": "9.3%",
+      "value": 0.0926310354027268,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%"
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_comp_drug_share",
+        "sheet": "Results",
+        "cell": "C30",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N076",
+      "section": "4. Results",
+      "display": "\u00a310,472",
+      "value": 10472.1252873377,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_cost_pd_state",
+        "sheet": "Results",
+        "cell": "D8",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N077",
+      "section": "4. Results",
+      "display": "\u00a311,412",
+      "value": 11412.3610547376,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_int_cost_drug",
+        "sheet": "Results",
+        "cell": "B5",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N078",
+      "section": "4. Results",
+      "display": "\u00a32,301",
+      "value": 2301.41919070196,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_comp_cost_drug",
+        "sheet": "Results",
+        "cell": "C5",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N079",
+      "section": "4. Results",
+      "display": "\u00a39,111",
+      "value": 9110.94186403562,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_cost_drug",
+        "sheet": "Results",
+        "cell": "D5",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N080",
+      "section": "4. Results",
+      "display": "\u00a34,536",
+      "value": 4535.68195765212,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_int_cost_admin",
+        "sheet": "Results",
+        "cell": "B6",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N081",
+      "section": "4. Results",
+      "display": "\u00a31,486",
+      "value": 1486.33322732835,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_comp_cost_admin",
+        "sheet": "Results",
+        "cell": "C6",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N082",
+      "section": "4. Results",
+      "display": "\u00a33,049",
+      "value": 3049.34873032377,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_cost_admin",
+        "sheet": "Results",
+        "cell": "D6",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N083",
+      "section": "4. Results",
+      "display": "\u00a37,724",
+      "value": 7723.82922612651,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_int_cost_pf_state",
+        "sheet": "Results",
+        "cell": "B7",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N084",
+      "section": "4. Results",
+      "display": "\u00a34,188",
+      "value": 4187.84570199936,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_comp_cost_pf_state",
+        "sheet": "Results",
+        "cell": "C7",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N085",
+      "section": "4. Results",
+      "display": "\u00a33,536",
+      "value": 3535.98352412716,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_cost_pf_state",
+        "sheet": "Results",
+        "cell": "D7",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N086",
+      "section": "4. Results",
+      "display": "\u00a318,715",
+      "value": 18714.7657694332,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_int_cost_pd_state",
+        "sheet": "Results",
+        "cell": "B8",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N087",
+      "section": "4. Results",
+      "display": "\u00a38,243",
+      "value": 8242.64048209553,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_comp_cost_pd_state",
+        "sheet": "Results",
+        "cell": "C8",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N088",
+      "section": "4. Results",
+      "display": "\u00a310,472",
+      "value": 10472.1252873377,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_cost_pd_state",
+        "sheet": "Results",
+        "cell": "D8",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N089",
+      "section": "4. Results",
+      "display": "\u00a35,931",
+      "value": 5930.62987203838,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_int_cost_terminal",
+        "sheet": "Results",
+        "cell": "B9",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N090",
+      "section": "4. Results",
+      "display": "\u00a36,227",
+      "value": 6226.77344698136,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_comp_cost_terminal",
+        "sheet": "Results",
+        "cell": "C9",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N091",
+      "section": "4. Results",
+      "display": "-\u00a3296",
+      "value": -296.143574942978,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_cost_terminal",
+        "sheet": "Results",
+        "cell": "D9",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N092",
+      "section": "4. Results",
+      "display": "\u00a31,150",
+      "value": 1150,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_int_cost_ae",
+        "sheet": "Results",
+        "cell": "B10",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N093",
+      "section": "4. Results",
+      "display": "\u00a32,400",
+      "value": 2400,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_comp_cost_ae",
+        "sheet": "Results",
+        "cell": "C10",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N094",
+      "section": "4. Results",
+      "display": "-\u00a31,250",
+      "value": -1250,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_cost_ae",
+        "sheet": "Results",
+        "cell": "D10",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N095",
+      "section": "4. Results",
+      "display": "\u00a349,467",
+      "value": 49467.2678799878,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_int_total_cost",
+        "sheet": "Results",
+        "cell": "B11",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N096",
+      "section": "4. Results",
+      "display": "\u00a324,845",
+      "value": 24845.0120491066,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_comp_total_cost",
+        "sheet": "Results",
+        "cell": "C11",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N097",
+      "section": "4. Results",
+      "display": "\u00a324,622",
+      "value": 24622.2558308812,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_total_cost",
+        "sheet": "Results",
+        "cell": "D11",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N098",
+      "section": "4. Results",
+      "display": "\u00a324,622",
+      "value": 24622.2558308812,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_total_cost",
+        "sheet": "Results",
+        "cell": "D11",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N099",
+      "section": "4. Results",
+      "display": "0.869",
+      "value": 0.869394352599968,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_qaly_disc",
+        "sheet": "Results",
+        "cell": "D15",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N100",
+      "section": "4. Results",
+      "display": "\u00a328,321",
+      "value": 28321.1591578058,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_icer",
+        "sheet": "Results",
+        "cell": "D18",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N101",
+      "section": "4. Results",
+      "display": "1.5%",
+      "value": 0.015,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%"
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "dr_costs",
+        "sheet": "Inputs_Settings",
+        "cell": "C12",
+        "scenario": "SC1",
+        "overrides": {
+          "dr_costs": 0.015,
+          "dr_outcomes": 0.015
+        }
+      }
+    },
+    {
+      "id": "N102",
+      "section": "4. Results",
+      "display": "\u00a326,128",
+      "value": 26128.0483180201,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_total_cost",
+        "sheet": "Results",
+        "cell": "D11",
+        "scenario": "SC1",
+        "overrides": {
+          "dr_costs": 0.015,
+          "dr_outcomes": 0.015
+        }
+      }
+    },
+    {
+      "id": "N103",
+      "section": "4. Results",
+      "display": "0.932",
+      "value": 0.932226140262571,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_qaly_disc",
+        "sheet": "Results",
+        "cell": "D15",
+        "scenario": "SC1",
+        "overrides": {
+          "dr_costs": 0.015,
+          "dr_outcomes": 0.015
+        }
+      }
+    },
+    {
+      "id": "N104",
+      "section": "4. Results",
+      "display": "\u00a328,028",
+      "value": 28027.5860003892,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_icer",
+        "sheet": "Results",
+        "cell": "D18",
+        "scenario": "SC1",
+        "overrides": {
+          "dr_costs": 0.015,
+          "dr_outcomes": 0.015
+        }
+      }
+    },
+    {
+      "id": "N105",
+      "section": "4. Results",
+      "display": "20",
+      "value": 20,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "time_horizon_years",
+        "sheet": "Inputs_Settings",
+        "cell": "C10",
+        "scenario": "SC2",
+        "overrides": {
+          "time_horizon_years": 20
+        }
+      }
+    },
+    {
+      "id": "N106",
+      "section": "4. Results",
+      "display": "\u00a324,615",
+      "value": 24615.3812317131,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_total_cost",
+        "sheet": "Results",
+        "cell": "D11",
+        "scenario": "SC2",
+        "overrides": {
+          "time_horizon_years": 20
+        }
+      }
+    },
+    {
+      "id": "N107",
+      "section": "4. Results",
+      "display": "0.869",
+      "value": 0.869113190478196,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_qaly_disc",
+        "sheet": "Results",
+        "cell": "D15",
+        "scenario": "SC2",
+        "overrides": {
+          "time_horizon_years": 20
+        }
+      }
+    },
+    {
+      "id": "N108",
+      "section": "4. Results",
+      "display": "\u00a328,322",
+      "value": 28322.4112824354,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_icer",
+        "sheet": "Results",
+        "cell": "D18",
+        "scenario": "SC2",
+        "overrides": {
+          "time_horizon_years": 20
+        }
+      }
+    },
+    {
+      "id": "N109",
+      "section": "4. Results",
+      "display": "0.72",
+      "value": 0.72,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "u_pf",
+        "sheet": "Inputs_Utilities",
+        "cell": "C4",
+        "scenario": "SC3",
+        "overrides": {
+          "u_pf": 0.72,
+          "u_pd": 0.55
+        }
+      }
+    },
+    {
+      "id": "N110",
+      "section": "4. Results",
+      "display": "0.55",
+      "value": 0.55,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "u_pd",
+        "sheet": "Inputs_Utilities",
+        "cell": "C5",
+        "scenario": "SC3",
+        "overrides": {
+          "u_pf": 0.72,
+          "u_pd": 0.55
+        }
+      }
+    },
+    {
+      "id": "N111",
+      "section": "4. Results",
+      "display": "\u00a324,622",
+      "value": 24622.2558308812,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_total_cost",
+        "sheet": "Results",
+        "cell": "D11",
+        "scenario": "SC3",
+        "overrides": {
+          "u_pf": 0.72,
+          "u_pd": 0.55
+        }
+      }
+    },
+    {
+      "id": "N112",
+      "section": "4. Results",
+      "display": "0.812",
+      "value": 0.812210999383444,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_qaly_disc",
+        "sheet": "Results",
+        "cell": "D15",
+        "scenario": "SC3",
+        "overrides": {
+          "u_pf": 0.72,
+          "u_pd": 0.55
+        }
+      }
+    },
+    {
+      "id": "N113",
+      "section": "4. Results",
+      "display": "\u00a330,315",
+      "value": 30315.0977388538,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_icer",
+        "sheet": "Results",
+        "cell": "D18",
+        "scenario": "SC3",
+        "overrides": {
+          "u_pf": 0.72,
+          "u_pd": 0.55
+        }
+      }
+    },
+    {
+      "id": "N114",
+      "section": "4. Results",
+      "display": "2,088",
+      "value": 2088,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "int_max_tx_weeks",
+        "sheet": "Inputs_Costs",
+        "cell": "C7",
+        "scenario": "SC4",
+        "overrides": {
+          "int_max_tx_weeks": 2088
+        }
+      }
+    },
+    {
+      "id": "N115",
+      "section": "4. Results",
+      "display": "\u00a327,383",
+      "value": 27383.0436106646,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_total_cost",
+        "sheet": "Results",
+        "cell": "D11",
+        "scenario": "SC4",
+        "overrides": {
+          "int_max_tx_weeks": 2088
+        }
+      }
+    },
+    {
+      "id": "N116",
+      "section": "4. Results",
+      "display": "0.869",
+      "value": 0.869394352599968,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_qaly_disc",
+        "sheet": "Results",
+        "cell": "D15",
+        "scenario": "SC4",
+        "overrides": {
+          "int_max_tx_weeks": 2088
+        }
+      }
+    },
+    {
+      "id": "N117",
+      "section": "4. Results",
+      "display": "\u00a331,497",
+      "value": 31496.6890787527,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_icer",
+        "sheet": "Results",
+        "cell": "D18",
+        "scenario": "SC4",
+        "overrides": {
+          "int_max_tx_weeks": 2088
+        }
+      }
+    },
+    {
+      "id": "N118",
+      "section": "4. Results",
+      "display": "30.00",
+      "value": 30,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "int_os_scale",
+        "sheet": "Inputs_Clinical",
+        "cell": "C8",
+        "scenario": "SC5",
+        "overrides": {
+          "int_os_scale": 30
+        }
+      }
+    },
+    {
+      "id": "N119",
+      "section": "4. Results",
+      "display": "\u00a321,358",
+      "value": 21357.8687270197,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_total_cost",
+        "sheet": "Results",
+        "cell": "D11",
+        "scenario": "SC5",
+        "overrides": {
+          "int_os_scale": 30
+        }
+      }
+    },
+    {
+      "id": "N120",
+      "section": "4. Results",
+      "display": "0.703",
+      "value": 0.703090922898025,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_inc_qaly_disc",
+        "sheet": "Results",
+        "cell": "D15",
+        "scenario": "SC5",
+        "overrides": {
+          "int_os_scale": 30
+        }
+      }
+    },
+    {
+      "id": "N121",
+      "section": "4. Results",
+      "display": "\u00a330,377",
+      "value": 30377.1077558307,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_icer",
+        "sheet": "Results",
+        "cell": "D18",
+        "scenario": "SC5",
+        "overrides": {
+          "int_os_scale": 30
+        }
+      }
+    },
+    {
+      "id": "N122",
+      "section": "4. Results",
+      "display": "\u00a330,000",
+      "value": 30000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "wtp_threshold",
+        "sheet": "Inputs_Settings",
+        "cell": "C14",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N123",
+      "section": "4. Results",
+      "display": "\u00a330,315",
+      "value": 30315.0977388538,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_icer",
+        "sheet": "Results",
+        "cell": "D18",
+        "scenario": "SC3",
+        "overrides": {
+          "u_pf": 0.72,
+          "u_pd": 0.55
+        }
+      }
+    },
+    {
+      "id": "N124",
+      "section": "4. Results",
+      "display": "\u00a331,497",
+      "value": 31496.6890787527,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_icer",
+        "sheet": "Results",
+        "cell": "D18",
+        "scenario": "SC4",
+        "overrides": {
+          "int_max_tx_weeks": 2088
+        }
+      }
+    },
+    {
+      "id": "N125",
+      "section": "4. Results",
+      "display": "\u00a330,377",
+      "value": 30377.1077558307,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_icer",
+        "sheet": "Results",
+        "cell": "D18",
+        "scenario": "SC5",
+        "overrides": {
+          "int_os_scale": 30
+        }
+      }
+    },
+    {
+      "id": "N126",
+      "section": "5. Model validation",
+      "display": "0.1%",
+      "value": 0.001,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%"
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "lifetime_check_tol",
+        "sheet": "Inputs_Settings",
+        "cell": "C16",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N127",
+      "section": "7. Conclusion",
+      "display": "\u00a328,321",
+      "value": 28321.1591578058,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "res_icer",
+        "sheet": "Results",
+        "cell": "D18",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N128",
+      "section": "7. Conclusion",
+      "display": "\u00a330,000",
+      "value": 30000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "wtp_threshold",
+        "sheet": "Inputs_Settings",
+        "cell": "C14",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N129",
+      "section": "7. Conclusion",
+      "display": "\u00a320,000",
+      "value": 20000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "wtp_threshold_lower",
+        "sheet": "Inputs_Settings",
+        "cell": "C15",
+        "scenario": null,
+        "overrides": null
+      }
+    },
+    {
+      "id": "N130",
+      "section": "7. Conclusion",
+      "display": "\u00a330,000",
+      "value": 30000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u00a3",
+        "suffix": ""
+      },
+      "source": {
+        "workbook": "fixtures/global_model.xlsx",
+        "name": "wtp_threshold",
+        "sheet": "Inputs_Settings",
+        "cell": "C14",
+        "scenario": null,
+        "overrides": null
+      }
+    }
+  ],
+  "claims": [
+    {
+      "id": "C01",
+      "section": "1. Executive summary",
+      "kind": "threshold_comparison",
+      "text": "Drug A is cost-effective at the upper NICE threshold",
+      "depends_on": [
+        "res_icer",
+        "wtp_threshold",
+        "res_below_wtp"
+      ]
+    },
+    {
+      "id": "C02",
+      "section": "1. Executive summary",
+      "kind": "threshold_comparison",
+      "text": "Drug A is not cost-effective at the lower NICE threshold",
+      "depends_on": [
+        "res_icer",
+        "wtp_threshold_lower",
+        "res_below_wtp_lower"
+      ]
+    },
+    {
+      "id": "C03",
+      "section": "1. Executive summary",
+      "kind": "sensitivity_ranking",
+      "text": "ICER most sensitive to SC4 then SC5",
+      "depends_on": [
+        "res_icer@SC1",
+        "res_icer@SC2",
+        "res_icer@SC3",
+        "res_icer@SC4",
+        "res_icer@SC5",
+        "res_icer"
+      ]
+    },
+    {
+      "id": "C04",
+      "section": "3. Methods",
+      "kind": "model_check",
+      "text": "Modelled PFS and OS curves do not cross",
+      "depends_on": [
+        "check_cross_int",
+        "check_cross_comp"
+      ]
+    },
+    {
+      "id": "C05",
+      "section": "3. Methods",
+      "kind": "scope_statement",
+      "text": "PSA results not reported in this version",
+      "depends_on": []
+    },
+    {
+      "id": "C06",
+      "section": "4. Results",
+      "kind": "ranking",
+      "text": "PD state cost is the largest contributor to incremental costs",
+      "depends_on": [
+        "res_inc_cost_drug",
+        "res_inc_cost_admin",
+        "res_inc_cost_pf_state",
+        "res_inc_cost_pd_state",
+        "res_inc_cost_terminal",
+        "res_inc_cost_ae"
+      ]
+    },
+    {
+      "id": "C07",
+      "section": "4. Results",
+      "kind": "sensitivity_ranking",
+      "text": "Scenario ranking by ICER change: ['SC4', 'SC5', 'SC3', 'SC1', 'SC2']; ICER lower than base only in ['SC1']",
+      "depends_on": [
+        "res_icer@SC1",
+        "res_icer@SC2",
+        "res_icer@SC3",
+        "res_icer@SC4",
+        "res_icer@SC5",
+        "res_icer"
+      ]
+    },
+    {
+      "id": "C08",
+      "section": "4. Results",
+      "kind": "threshold_comparison",
+      "text": "ICER above upper threshold only in ['SC3', 'SC4', 'SC5']",
+      "depends_on": [
+        "res_below_wtp@SC1",
+        "res_below_wtp@SC2",
+        "res_below_wtp@SC3",
+        "res_below_wtp@SC4",
+        "res_below_wtp@SC5",
+        "wtp_threshold"
+      ]
+    },
+    {
+      "id": "C09",
+      "section": "5. Model validation",
+      "kind": "external_assertion_untraceable",
+      "text": "Modelled medians within trial KM CIs",
+      "depends_on": []
+    },
+    {
+      "id": "C10",
+      "section": "7. Conclusion",
+      "kind": "overall_conclusion",
+      "text": "Drug A is a cost-effective use of NHS resources",
+      "depends_on": [
+        "res_icer",
+        "wtp_threshold",
+        "wtp_threshold_lower"
+      ]
+    }
+  ]
+}
