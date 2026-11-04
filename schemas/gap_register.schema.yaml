@@ -91,4 +91,5 @@ x-rules:
   - R4 status open requires resolution null
   - R5 retain_tagged and retain_flagged require retained_source
   - R6 gap_id values are unique
+  - R7 free text (description, rationale, escalation and prohibited options) contains no numerals other than identifiers
   - GATE the pipeline is blocked while any gap has handling block and status open

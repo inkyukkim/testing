@@ -65,6 +65,14 @@ def _check(node, schema, path, errors):
                 _check(item, schema["items"], f"{path}[{i}]", errors)
 
 
+_NUMERAL = re.compile(r"(?<![A-Za-z_\-])\d+(?:[.,]\d+)?(?![A-Za-z_\d])")
+_IDS = re.compile(r"\b(?:KR|GAP)-[A-Z]?\d+\b|\bE\d+\b|\bEQ-5D-[35]L\b|\b[A-Z]{1,4}\d+\b")
+
+
+def _numerals(text: str) -> bool:
+    return bool(_NUMERAL.search(_IDS.sub("", text or "")))
+
+
 def validate_rules(register: dict) -> list[str]:
     errors, seen = [], set()
     for g in register.get("gaps", []):
@@ -91,6 +99,10 @@ def validate_rules(register: dict) -> list[str]:
             errors.append(f"{gid}: R4 open gap must have resolution null")
         if handling in ("retain_tagged", "retain_flagged") and not g.get("retained_source"):
             errors.append(f"{gid}: R5 {handling} requires retained_source")
+        texts = [g.get("description"), g.get("rationale")] + [o.get("description") for o in g.get("escalation_options", [])]
+        texts += list(g.get("prohibited_options", []))
+        if any(_numerals(t) for t in texts if isinstance(t, str)):
+            errors.append(f"{gid}: R7 numeral in free text; cite the item or name instead")
     return errors
 
 

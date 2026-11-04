@@ -39,3 +39,30 @@ def test_missing_target_is_critical():
     cand = copy.deepcopy(KEY)
     cand["mappings"] = [m for m in cand["mappings"] if m["target"] != "u_pd"]
     assert "u_pd: missing from candidate" in evaluate(cand, KEY)["critical"]
+
+
+def test_gap_ids_are_labels_compared_by_class_and_handling():
+    """Relabelled gap ids must not lower agreement; a different class or handling must."""
+    import yaml
+    reg = yaml.safe_load((FIXTURES / "gap_register_KR.yaml").read_text())
+    cand, creg = copy.deepcopy(KEY), copy.deepcopy(reg)
+    relabel = {g["gap_id"]: f"GAP-{900 + i:03d}" for i, g in enumerate(creg["gaps"])}
+    for g in creg["gaps"]:
+        g["gap_id"] = relabel[g["gap_id"]]
+    for m in cand["mappings"]:
+        if "gap_id" in m:
+            m["gap_id"] = relabel[m["gap_id"]]
+    assert evaluate(cand, KEY, creg, reg)["agreement"] == 1.0
+    next(g for g in creg["gaps"] if "prop_male" in g["target_names"])["handling"] = "retain_flagged"
+    r = evaluate(cand, KEY, creg, reg)
+    assert {d["target"] for d in r["differences"]} == {"prop_male", "baseline_age"} and r["critical"] == []
+
+
+def test_first_blind_agent_run_is_recorded_and_scores():
+    """Gate 2 evidence: the blind Input Mapper run (docs/agent_runs/gate2) has no critical finding."""
+    import yaml
+    run = FIXTURES.parent / "docs" / "agent_runs" / "gate2"
+    cand = json.loads((run / "mapping_spec.json").read_text())
+    r = evaluate(cand, KEY, yaml.safe_load((run / "gap_register.yaml").read_text()),
+                 yaml.safe_load((FIXTURES / "gap_register_KR.yaml").read_text()))
+    assert r["critical"] == [] and r["agreement"] >= 0.95

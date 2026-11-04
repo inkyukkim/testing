@@ -100,3 +100,11 @@ def test_register_contains_no_numbers_in_decisions(reg):
     for g in reg["gaps"]:
         for key in ("target_names", "source_items"):
             assert all(isinstance(x, str) for x in g[key])
+
+
+def test_numerals_in_free_text_are_rejected(reg):
+    gap(reg, "GAP-001")["rationale"] = "Typical end-of-life cost is around 6500 per patient."
+    assert any("R7" in e for e in G.validate(reg))
+    reg2 = G.load(REGISTER)
+    gap(reg2, "GAP-001")["rationale"] = "See KR-C11 and GAP-004; EQ-5D-5L norms."
+    assert not any("R7" in e for e in G.validate(reg2)), "identifiers are not numerals"

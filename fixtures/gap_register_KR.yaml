@@ -23,7 +23,7 @@ gaps:
     escalation_options:
       - option_id: E1
         action: obtain_local_data
-        description: Local claims analysis of end-of-life costs (last 3 months) for the indication.
+        description: Local claims analysis of end-of-life costs over the final months of life for the indication.
       - option_id: E2
         action: cite_local_literature
         description: Published Korean estimate of end-of-life cancer care costs, inflated to the price year.
@@ -73,7 +73,7 @@ gaps:
         description: Korean EQ-5D-5L population norms by age and sex (regression or tabulated).
       - option_id: E2
         action: retain_with_scenario
-        description: Retain UK coefficients; scenario without age adjustment (use_age_util_adj = 0).
+        description: Retain UK coefficients; scenario without age adjustment (use_age_util_adj switched off).
     decided_by: {kind: agent, role: Input Mapper}
     status: open
     resolution: null
@@ -83,24 +83,24 @@ gaps:
     source_items: [KR-L01, KR-L02]
     description: >-
       Korean life table is published as central death rates (mx) and ends at an open
-      100+ band; the model needs qx for single ages 0 to 110.
+      top-age band; the model needs qx for every single age on its lt_age grid.
     class: partial
     handling: retain_flagged
     retained_source: KR-L01, KR-L02 (100+ band)
     rationale: >-
-      Ages 0 to 100 transfer after an mx-to-qx conversion (method to be declared, e.g.
-      qx = 1 - exp(-mx)). Ages 101 to 110 have no local value; applying the 100+ rate is
-      a local derivation, not a retained global value. Only a negligible share of the
+      Single ages up to the open band transfer after an mx-to-qx conversion (method to be
+      declared, exponential or actuarial). Model ages above the open band have no local
+      value; applying the open-band rate is a local derivation, not a retained global value. Only a negligible share of the
       cohort reaches these ages.
     escalation_options:
       - option_id: E1
         action: approved_method_change
-        description: Apply the 100+ band rate to ages 101 to 110 and declare the mx-to-qx conversion in conventions.
+        description: Apply the open-band rate to model ages above it and declare the mx-to-qx conversion in conventions.
       - option_id: E2
         action: obtain_local_data
-        description: Obtain single-age rates above 100 from the statistics office.
+        description: Obtain single-age rates above the open band from the statistics office.
     prohibited_options:
-      - Filling ages 101 to 110 with UK qx values.
+      - Filling model ages above the open band with UK qx values.
     decided_by: {kind: agent, role: Input Mapper}
     status: open
     resolution: null
