@@ -14,7 +14,12 @@ definitions, the mapping-spec schema, exact float writing, and a first blind Inp
 agent run scored against the answer key (`docs/gate2_agent_eval.md`). **Gate 2.1** fixes the
 tool issues that run raised (label-only confirmations, list-valued `retained_source`, YAML
 anchors R8, free-text numerals R7) and updates the answer key (D13). Decisions D01-D16 are
-in `docs/decisions.md`; GAP-001 remains open (D14).
+in `docs/decisions.md`; GAP-001 remains open (D14). **Gate 3** adds the Report Profiler and
+Claims Analyst: tools `docx_extract`, `match_numbers`, `jurisdiction_lint`, `scenario_runner`,
+`evaluate_claim` (cell-referencing claim language, no numeric literals), `claims` (register
+rules K1-K6 and a readiness gate for the Report Writer), the claims-register schema, agent
+definitions, `fixtures/scenarios_UK.yaml` and the KR claims answer key. Report Writer and
+Report Verifier (Gate 4) are not built.
 
 ## Design principle (non-negotiable)
 
@@ -69,8 +74,8 @@ the rest are specified contracts for later gates.
 
 | # | Agent | Inputs | Outputs | Deterministic tools called |
 |---|-------|--------|---------|----------------------------|
-| 5 | **Report Profiler** | global report `.docx`, `model_profile.json` | `report_profile.json`: section tree, tables, every numeric token with location, and a candidate link to a model name | `docx_extract` (paragraphs, tables, runs, numeric tokens via the verifier's regex), `match_numbers` (numeric token ↔ recalculated global cell at displayed precision) |
-| 6 | **Claims Analyst** | `report_profile.json`, recalculated global and adapted models, `mapping_spec.json` | `claims_register.json`: each claim typed (`numeric`, `threshold_comparison`, `ranking`, `jurisdiction_specific`, `external_assertion_untraceable`, `scope_statement`), its numeric dependencies, the tool-evaluated truth value under the adapted model, and an action (`rerender` / `reword` / `remove` / `human_review`) | `evaluate_claim` (comparisons, rankings and sign tests run on cell values), `scenario_runner` (`write_named` + `recalc` per scenario) |
+| 5 | **Report Profiler** (`.claude/agents/report-profiler.md`) | global report `.docx`, global model, `scenarios_*.yaml`, `model_profile.json` | `report_profile.json`: one resolved (name, context) per numeral, unresolved numerals with reasons, section tree, jurisdiction hits | `docx_extract` **(G3)** (blocks in document order, tokens with structural exemptions), `match_numbers` **(G3)** (candidates at displayed precision, base and scenarios), `jurisdiction_lint` **(G3)** (`tools/jurisdiction_terms.yaml`), `scenario_runner` **(G3)** |
+| 6 | **Claims Analyst** (`.claude/agents/claims-analyst.md`) | report profile and extract, global model and scenarios, Builder/Runner run (when built), approved mapping spec and gap register, local HTA context | `claims_register.json` (schema `schemas/claims_register.schema.yaml`): kind, cell-referencing expression, action (`rerender` / `regenerate` / `reword` / `remove` / `human_review`); truth values filled by the tool | `evaluate_claim` **(G3)**, `claims` **(G3)**: K1 true on the global model, K2 action rules by kind, K3 regenerate only for data-driven kinds, K4 no rerender of a locally false claim, K5 no numeric literals, K6 excerpt verbatim in its block; readiness gate (no pending local truth, no open review) |
 | 7 | **Report Writer** | `claims_register.json`, `report_profile.json`, local HTA context (agency, threshold wording) | `report_template.docx` with `{{name|fmt}}` placeholders and no literal numerals; final `report_KR.docx` + `report_KR.provenance.json` | `render_report` (fills placeholders from recalculated cells, writes provenance) |
 | 8 | **Report Verifier** | `report_KR.docx`, provenance, recalculated adapted model, `claims_register.json` | `report_verification.json` | `trace_numbers` (numerals match provenance **in document order** and each matches its cell at displayed precision; logic in `tests/test_fixtures_report_and_kr.py`), `rounding.check_derived` **(G0.5)** on every displayed difference and ratio (footnote required on `pass_with_footnote`), `evaluate_claim` re-run on the final text, `jurisdiction_lint` (residual UK terms: NICE, NHS, PSS, PAS, eMIT, PSSRU, £), retained-input tags present for every `retain_tagged` gap |
 
@@ -122,8 +127,12 @@ pipeline can run where only one of them is available.
 | `build_run` **(G2)** | `build_run(spec, out_dir, scenarios) -> run_log`; CLI exit 0 built / 1 invalid / 2 blocked | `tools/build_run.py` | same steps via `openxlsx2` + `system2(soffice)` | write names, `CalculateFull`, `SaveCopyAs` |
 | `verify_model` **(G2)** | `verify(run_dir, spec) -> model_verification.json`; CLI exit 0/1 | `tools/verify_model.py` (+ `parity.py`, `invariants.py`) | same checks | formula-by-formula compare of two workbooks; parity needs the engine |
 | `eval_mapping` **(G1)** | candidate spec vs answer key → agreement, critical findings (filled gap, wrongly mapped retained input, missing input) | `tools/eval_mapping.py` | n/a | n/a |
-| `trace_numbers` | docx + provenance → list of untraced or mismatched numerals | logic in tests (G0); to be extracted | `officer::docx_summary` + regex | `Document.Range.Find` with wildcards |
-| `evaluate_claim` | claim JSON + values → bool / ranking | planned | planned | planned |
+| `docx_extract` **(G3)** | `extract(docx) -> {blocks, tokens}`; defines the structural-numeral exemption | `tools/docx_extract.py` | `officer::docx_summary` + regex | `Document.Range` walk |
+| `match_numbers` **(G3)** | tokens + base and scenario values → candidates per numeral (unique / ambiguous / unmatched) | `tools/match_numbers.py` | same comparison | same comparison |
+| `jurisdiction_lint` **(G3)** | blocks → hits from `tools/jurisdiction_terms.yaml` | `tools/jurisdiction_lint.py` | `stringr` | `InStr` loop |
+| `scenario_runner` **(G3)** | model + scenarios YAML → values per scenario | `tools/scenario_runner.py` | as `build_run` | as `build_run` |
+| `evaluate_claim` / `claims` **(G3)** | expression + contexts → true / false / pending / not_evaluable; register validation K1-K6 and readiness | `tools/evaluate_claim.py`, `tools/claims.py` | same language | same language |
+| `trace_numbers` | docx + provenance → list of untraced or mismatched numerals | token extraction in `docx_extract` (G3); matching logic in tests | `officer::docx_summary` + regex | `Document.Range.Find` with wildcards |
 | `render_report` | template.docx + values + format map → docx + provenance | planned (pattern in `scripts/build_global_report_uk.py`) | `officer` | Word mail-merge style field replace |
 
 ## Convention declarations
@@ -219,12 +228,18 @@ tools/ (Gate 1-2)
   build_run.py, verify_model.py, parity.py, invariants.py
 schemas/mapping_spec.schema.yaml
   constants_registry.yaml       versioned unit constants and unit dimensions
-.claude/agents/                 model-profiler.md, input-mapper.md, builder-runner.md, model-verifier.md
+.claude/agents/                 model-profiler.md, input-mapper.md, builder-runner.md, model-verifier.md,
+                                report-profiler.md, claims-analyst.md
+tools/ (Gate 3)                 docx_extract.py, match_numbers.py, jurisdiction_lint.py (+ jurisdiction_terms.yaml),
+                                scenario_runner.py, evaluate_claim.py, claims.py
+schemas/claims_register.schema.yaml
 docs/decisions.md               decision log (provisional defaults flagged)
 fixtures/
   global_model.xlsx, global_model.conventions.yaml   Fixture A
   global_model_B.xlsx, global_model_B.conventions.yaml   Fixture B (annual-step)
   mapping_spec_KR.json          expected Input Mapper output (answer key)
+  scenarios_UK.yaml             global scenario definitions (read by report builder and scenario_runner)
+  claims_register_KR.json       expected Claims Analyst output (answer key; truths filled by tools/claims.py)
   adaptation_input_KR.xlsx, gap_register_KR.yaml     KR inputs and expected gap register
   global_report_UK.docx, global_report_UK.provenance.json
   baseline.json                 recorded base case and history
@@ -246,6 +261,9 @@ python -m tools.apply_mapping fixtures/mapping_spec_KR.json  # dry run; exit 2: 
 python -m tools.eval_mapping <candidate.json> fixtures/mapping_spec_KR.json
 python -m tools.build_run fixtures/mapping_spec_KR.json runs/kr   # exit 2: blocked by GAP-001, nothing built
 python -m tools.verify_model <run_dir> <spec.json>
+python -m tools.docx_extract fixtures/global_report_UK.docx
+python -m tools.jurisdiction_lint fixtures/global_report_UK.docx
+python -m tools.claims fixtures/claims_register_KR.json fixtures/global_report_UK.docx fixtures/global_model.xlsx --global-scenarios fixtures/scenarios_UK.yaml   # exit 2: not ready (KR model pending, reviews open)
 python -m pytest -q                      # ~3-4 min; recalcs via LibreOffice
 ```
 
@@ -272,6 +290,12 @@ when the change is intended, and say so in the PR.
   one deliberately untraceable external assertion (medians within KM CIs), one scope
   statement (PSA not reported), one magnitude judgement (cap effect negligible) and one
   rounding disclosure.
+- `claims_register_KR.json` holds 22 claims: 10 evaluable (all true on the global model, a
+  check on the UK report itself), 12 jurisdiction-specific, scope, rounding or untraceable.
+  On a test-only KR build the lower-bound claim becomes false (removed under D09) and the
+  conclusion stays true against the KR reference value. Scenario claims stay pending until a
+  local scenario set exists. `match_numbers` finds every report numeral's true cell among
+  its candidates (86 unique, 98 ambiguous of 184; the agent resolves ambiguity from context).
 - `PSA_Placeholder` documents the intended VBA macro (seed, distributions, Cholesky on
   log-Weibull parameters, output table). It is empty, and the workbook contains no macros.
 

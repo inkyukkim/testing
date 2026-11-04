@@ -13,11 +13,9 @@ from tools.workbook_io import list_names, read_named, write_named
 
 PROV = json.loads((FIXTURES / "global_report_UK.provenance.json").read_text())
 DOC = Document(FIXTURES / "global_report_UK.docx")
-NUM = re.compile(r"(?<![A-Za-z0-9.\-])-?£?\d(?:[\d,]*\d)?(?:\.\d+)?%?(?![A-Za-z0-9])")
+from tools.docx_extract import CAPTION, NUM, STRUCTURAL, extract  # single definition
 
 
-CAPTION = re.compile(r"^(Table|Figure) \d+\. ")
-STRUCTURAL = re.compile(r"\[\d+\]|\b(?:Sections?|Tables?|Figures?) \d+(?:\.\d+)*(?: and \d+(?:\.\d+)*)?")
 
 
 def body_chunks():
@@ -157,3 +155,12 @@ def test_kr_life_table_is_mx_with_open_last_band(kr):
         mx = [r[col] for r in rows]
         assert all(isinstance(x, float) and x > 0 for x in mx)
         assert all(b >= a for a, b in zip(mx[1:], mx[2:])), "adult mx increases with age"
+
+
+def test_docx_extract_tokens_equal_provenance_sequence():
+    x = extract(FIXTURES / "global_report_UK.docx")
+    assert [t["token"] for t in x["tokens"]] == [n["display"] for n in PROV["numbers"]]
+    by_kind = {b["kind"] for b in x["blocks"]}
+    assert {"heading", "paragraph", "table_cell", "caption", "title", "reference"} <= by_kind
+    t = next(t for t in x["tokens"] if t["token"] == "£28,271")
+    assert (t["value"], t["decimals"], t["kind"]) == (28271.0, 0, "currency") and t["section"] == "1. Executive summary"

@@ -14,6 +14,7 @@ import sys
 import tempfile
 from pathlib import Path
 
+import yaml
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Pt
@@ -27,27 +28,22 @@ MODEL = ROOT / "fixtures" / "global_model.xlsx"
 OUT = ROOT / "fixtures" / "global_report_UK.docx"
 PROV = ROOT / "fixtures" / "global_report_UK.provenance.json"
 
-# id: (table label, short phrase for narrative, overrides, setting shown in Table 8)
-# setting entries are (name, fmt, unit text) for traced numbers or (text, None, None) for words
-SCENARIOS = {
-    "SC1": ("Lower discount rate (costs and outcomes)", "the lower discount rate",
-            {"dr_costs": 0.015, "dr_outcomes": 0.015}, [("dr_costs", "pct", "")]),
-    "SC2": ("Shorter time horizon", "the shorter time horizon",
-            {"time_horizon_years": 20}, [("time_horizon_years", "int", " years")]),
-    "SC3": ("Alternative utility values (PF / PD)", "the alternative utility values",
-            {"u_pf": 0.72, "u_pd": 0.55}, [("u_pf", "p2", ""), ("u_pd", "p2", "")]),
-    "SC4": ("No stopping rule for Drug A (maximum doses)", "removing the stopping rule for Drug A",
-            {"int_max_doses": 696}, [("int_max_doses", "int", " doses")]),
-    "SC5": ("Conservative Drug A OS extrapolation (Weibull scale)", "the conservative OS extrapolation",
-            {"int_os_scale": 28}, [("int_os_scale", "p2", " months")]),
-    "SC6": ("No general-population mortality constraint", "removing the general-population mortality constraint",
-            {"use_gpm_cap": 0}, [("Not applied", None, None)]),
-    "SC7": ("No age adjustment of utilities", "removing the age adjustment of utilities",
-            {"use_age_util_adj": 0}, [("Not applied", None, None)]),
-    "SC8": ("Drug A time on treatment equal to PFS (Weibull shape / scale)", "setting Drug A time on treatment equal to PFS",
-            {"int_tot_shape": 0.95, "int_tot_scale": 12.0}, [("int_tot_shape", "p2", ""), ("int_tot_scale", "p2", " months")]),
-}
-NEGLIGIBLE_REL_CHANGE = 0.001   # wording rule: "negligible" if |dICER| / ICER below this
+SCENARIO_FILE = ROOT / "fixtures" / "scenarios_UK.yaml"
+REGISTRY = yaml.safe_load((ROOT / "tools" / "constants_registry.yaml").read_text())
+
+
+def _load_scenarios():
+    """id: (table label, narrative phrase, overrides, setting shown in Table 8)."""
+    out = {}
+    for sc in yaml.safe_load(SCENARIO_FILE.read_text())["scenarios"]:
+        setting = [(d["text"], None, None) if "text" in d else (d["name"], d["format"], d["unit"])
+                   for d in sc["setting_display"]]
+        out[sc["id"]] = (sc["label"], sc["phrase"], sc["overrides"], setting)
+    return out
+
+
+SCENARIOS = _load_scenarios()
+NEGLIGIBLE_REL_CHANGE = REGISTRY["constants"]["negligible_rel_change"]
 
 # formatter: (scale, decimals, prefix, suffix)
 FMT = {
@@ -125,12 +121,8 @@ class Report:
 
 
 def scenario_values(tmp: Path) -> dict:
-    out = {}
-    for sid, (_, _, overrides, _) in SCENARIOS.items():
-        src = tmp / f"model_{sid}.xlsx"
-        write_named(MODEL, src, overrides)
-        out[sid] = read_named(recalc(src, tmp / f"rc_{sid}"))
-    return out
+    from tools.scenario_runner import run_scenarios
+    return run_scenarios(MODEL, SCENARIO_FILE, tmp)
 
 
 def scenario_ranking(base: dict, scen: dict) -> list[str]:
