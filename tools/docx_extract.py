@@ -22,7 +22,8 @@ from docx import Document
 from docx.table import Table
 from docx.text.paragraph import Paragraph
 
-NUM = re.compile(r"(?<![A-Za-z0-9.\-])-?£?\d(?:[\d,]*\d)?(?:\.\d+)?%?(?![A-Za-z0-9])")
+CURRENCY_SYMBOLS = "£₩"
+NUM = re.compile(r"(?<![A-Za-z0-9.\-])-?[" + CURRENCY_SYMBOLS + r"]?\d(?:[\d,]*\d)?(?:\.\d+)?%?(?![A-Za-z0-9])")
 CAPTION = re.compile(r"^(Table|Figure) \d+\. ")
 STRUCTURAL = re.compile(r"\[\d+\]|\b(?:Sections?|Tables?|Figures?) \d+(?:\.\d+)*(?: and \d+(?:\.\d+)*)?")
 END_HEADING = "References"
@@ -33,8 +34,10 @@ def _blank_structural(text: str) -> str:
 
 
 def parse_token(tok: str) -> dict:
-    kind = "currency" if "£" in tok else "percent" if tok.endswith("%") else "plain"
-    body = tok.replace("£", "").replace("%", "").replace(",", "")
+    kind = "currency" if any(c in tok for c in CURRENCY_SYMBOLS) else "percent" if tok.endswith("%") else "plain"
+    body = tok.replace("%", "").replace(",", "")
+    for c in CURRENCY_SYMBOLS:
+        body = body.replace(c, "")
     decimals = len(body.split(".")[1]) if "." in body else 0
     return {"value": float(body), "decimals": decimals, "kind": kind}
 

@@ -61,3 +61,18 @@ def perturbed_values(perturbed_model) -> dict:
 
 def engine_inputs(values: dict) -> dict:
     return {k: values[k] for k in REQUIRED_INPUTS}
+
+
+SLOW_FIXTURES = {"recalculated_model", "model_values", "perturbed_model", "perturbed_values", "built",
+                 "kr_contexts", "global_contexts", "scenario_values", "values_b", "kr_render"}
+SLOW_CALLS = ("recalc(", "build_run(", "run_scenarios(")
+
+
+def pytest_collection_modifyitems(config, items):
+    """Mark LibreOffice-dependent tests 'slow' so `pytest -m "not slow"` is a fast lane."""
+    import inspect
+    for item in items:
+        fn = getattr(item, "function", None)
+        src = inspect.getsource(fn) if fn else ""
+        if SLOW_FIXTURES & set(getattr(item, "fixturenames", ())) or any(c in src for c in SLOW_CALLS):
+            item.add_marker(pytest.mark.slow)

@@ -18,8 +18,13 @@ in `docs/decisions.md`; GAP-001 remains open (D14). **Gate 3** adds the Report P
 Claims Analyst: tools `docx_extract`, `match_numbers`, `jurisdiction_lint`, `scenario_runner`,
 `evaluate_claim` (cell-referencing claim language, no numeric literals), `claims` (register
 rules K1-K6 and a readiness gate for the Report Writer), the claims-register schema, agent
-definitions, `fixtures/scenarios_UK.yaml` and the KR claims answer key. Report Writer and
-Report Verifier (Gate 4) are not built.
+definitions, `fixtures/scenarios_UK.yaml` and the KR claims answer key. **Gate 4** adds the
+Report Writer (`render_report`: directive templates, no numerals, truth-driven wording,
+provenance; final render refused until the claims register is ready, otherwise a disclosed
+DRAFT) and the Report Verifier (`verify_report`, checks R01-R07), `tools/formats.yaml`
+(currency-aware formats), agent definitions, the KR template answer key, a `slow` test
+marker with a fast lane, and CI (`.github/workflows/tests.yml`). The KR report exists only
+as a draft against a test-only build: GAP-001 and six human reviews remain open.
 
 ## Design principle (non-negotiable)
 
@@ -76,8 +81,8 @@ the rest are specified contracts for later gates.
 |---|-------|--------|---------|----------------------------|
 | 5 | **Report Profiler** (`.claude/agents/report-profiler.md`) | global report `.docx`, global model, `scenarios_*.yaml`, `model_profile.json` | `report_profile.json`: one resolved (name, context) per numeral, unresolved numerals with reasons, section tree, jurisdiction hits | `docx_extract` **(G3)** (blocks in document order, tokens with structural exemptions), `match_numbers` **(G3)** (candidates at displayed precision, base and scenarios), `jurisdiction_lint` **(G3)** (`tools/jurisdiction_terms.yaml`), `scenario_runner` **(G3)** |
 | 6 | **Claims Analyst** (`.claude/agents/claims-analyst.md`) | report profile and extract, global model and scenarios, Builder/Runner run (when built), approved mapping spec and gap register, local HTA context | `claims_register.json` (schema `schemas/claims_register.schema.yaml`): kind, cell-referencing expression, action (`rerender` / `regenerate` / `reword` / `remove` / `human_review`); truth values filled by the tool | `evaluate_claim` **(G3)**, `claims` **(G3)**: K1 true on the global model, K2 action rules by kind, K3 regenerate only for data-driven kinds, K4 no rerender of a locally false claim, K5 no numeric literals, K6 excerpt verbatim in its block; readiness gate (no pending local truth, no open review) |
-| 7 | **Report Writer** | `claims_register.json`, `report_profile.json`, local HTA context (agency, threshold wording) | `report_template.docx` with `{{name|fmt}}` placeholders and no literal numerals; final `report_KR.docx` + `report_KR.provenance.json` | `render_report` (fills placeholders from recalculated cells, writes provenance) |
-| 8 | **Report Verifier** | `report_KR.docx`, provenance, recalculated adapted model, `claims_register.json` | `report_verification.json` | `trace_numbers` (numerals match provenance **in document order** and each matches its cell at displayed precision; logic in `tests/test_fixtures_report_and_kr.py`), `rounding.check_derived` **(G0.5)** on every displayed difference and ratio (footnote required on `pass_with_footnote`), `evaluate_claim` re-run on the final text, `jurisdiction_lint` (residual UK terms: NICE, NHS, PSS, PAS, eMIT, PSSRU, £), retained-input tags present for every `retain_tagged` gap |
+| 7 | **Report Writer** (`.claude/agents/report-writer.md`) | approved claims register and gap register, report profile, Builder/Runner run, local HTA context | `report_template_<country>.docx` (directives, no numerals) + sidecar (labels); rendered `report_<country>.docx` + `.provenance.json` (numbers, claims used, rounding footnote, draft flag) | `render_report` **(G4)**: refuses literal numerals in the template, a final render while the claims register is not ready, and `{{review}}` in a final; drafts carry a banner with open items and every gap resolution |
+| 8 | **Report Verifier** (`.claude/agents/report-verifier.md`) | rendered report + provenance, run directory, claims register, gap register | `<report>_verification.json` | `verify_report` **(G4)**: R01 trace in document order and against current cells, R02 rounding intervals and footnote, R03 claim choices re-evaluated / rerender-regenerate coverage / no removed claim, R04 no source-jurisdiction terms outside References, R05 every retained/flagged gap target listed, R06 draft/final status, R07 local currency symbol |
 
 Human sign-off points: approve `mapping_spec.json` and `gap_register.yaml` (after agent 2),
 resolve every open `block` gap (only a human can), accept `model_verification.json` (after
@@ -132,8 +137,8 @@ pipeline can run where only one of them is available.
 | `jurisdiction_lint` **(G3)** | blocks → hits from `tools/jurisdiction_terms.yaml` | `tools/jurisdiction_lint.py` | `stringr` | `InStr` loop |
 | `scenario_runner` **(G3)** | model + scenarios YAML → values per scenario | `tools/scenario_runner.py` | as `build_run` | as `build_run` |
 | `evaluate_claim` / `claims` **(G3)** | expression + contexts → true / false / pending / not_evaluable; register validation K1-K6 and readiness | `tools/evaluate_claim.py`, `tools/claims.py` | same language | same language |
-| `trace_numbers` | docx + provenance → list of untraced or mismatched numerals | token extraction in `docx_extract` (G3); matching logic in tests | `officer::docx_summary` + regex | `Document.Range.Find` with wildcards |
-| `render_report` | template.docx + values + format map → docx + provenance | planned (pattern in `scripts/build_global_report_uk.py`) | `officer` | Word mail-merge style field replace |
+| `render_report` **(G4)** | template + sidecar + run + claims + gap register → docx + provenance; CLI exit 0 / 1 invalid / 2 not ready | `tools/render_report.py` (+ `tools/formats.yaml`) | `officer` | Word field replace |
+| `verify_report` **(G4)** | report + provenance + run + registers → R01-R07; CLI exit 0/1 | `tools/verify_report.py` | same checks | same checks |
 
 ## Convention declarations
 
@@ -229,7 +234,8 @@ tools/ (Gate 1-2)
 schemas/mapping_spec.schema.yaml
   constants_registry.yaml       versioned unit constants and unit dimensions
 .claude/agents/                 model-profiler.md, input-mapper.md, builder-runner.md, model-verifier.md,
-                                report-profiler.md, claims-analyst.md
+                                report-profiler.md, claims-analyst.md, report-writer.md, report-verifier.md
+tools/ (Gate 4)                 render_report.py, verify_report.py, formats.yaml
 tools/ (Gate 3)                 docx_extract.py, match_numbers.py, jurisdiction_lint.py (+ jurisdiction_terms.yaml),
                                 scenario_runner.py, evaluate_claim.py, claims.py
 schemas/claims_register.schema.yaml
@@ -240,6 +246,7 @@ fixtures/
   mapping_spec_KR.json          expected Input Mapper output (answer key)
   scenarios_UK.yaml             global scenario definitions (read by report builder and scenario_runner)
   claims_register_KR.json       expected Claims Analyst output (answer key; truths filled by tools/claims.py)
+  report_template_KR.docx (+ .sidecar.yaml)   expected Report Writer output (scripts/build_report_template_kr.py)
   adaptation_input_KR.xlsx, gap_register_KR.yaml     KR inputs and expected gap register
   global_report_UK.docx, global_report_UK.provenance.json
   baseline.json                 recorded base case and history
@@ -264,7 +271,11 @@ python -m tools.verify_model <run_dir> <spec.json>
 python -m tools.docx_extract fixtures/global_report_UK.docx
 python -m tools.jurisdiction_lint fixtures/global_report_UK.docx
 python -m tools.claims fixtures/claims_register_KR.json fixtures/global_report_UK.docx fixtures/global_model.xlsx --global-scenarios fixtures/scenarios_UK.yaml   # exit 2: not ready (KR model pending, reviews open)
-python -m pytest -q                      # ~3-4 min; recalcs via LibreOffice
+python scripts/build_report_template_kr.py
+python -m tools.render_report fixtures/report_template_KR.docx fixtures/report_template_KR.sidecar.yaml <run_dir> fixtures/claims_register_KR.json <gap_register> out/report_KR.docx [--draft]
+python -m tools.verify_report out/report_KR.docx <run_dir> fixtures/claims_register_KR.json <gap_register>
+python -m pytest -q -m "not slow"        # fast lane, no LibreOffice (~1 min)
+python -m pytest -q -n auto              # full suite in parallel (pytest-xdist, requirements-dev.txt)
 ```
 
 Regenerate the report whenever the model generator changes; the provenance tests fail if

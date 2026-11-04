@@ -1,6 +1,7 @@
 """Deterministic tool: evaluate and validate a claims register (Claims Analyst, Report Writer gate).
 
     evaluate_register(register, global_contexts, local_contexts=None) -> register with truths filled
+        (global_contexts None: local truth only)
     validate(register, blocks) -> errors (schema + rules K1-K6)
     ready(register) -> blockers before the Report Writer may start
 CLI: python -m tools.claims <register.json> <report.docx> <global_model.xlsx>
@@ -27,8 +28,10 @@ REGEN_KINDS = {"ranking", "sensitivity_ranking", "threshold_comparison", "magnit
 def evaluate_register(register, global_contexts, local_contexts=None) -> dict:
     reg = copy.deepcopy(register)
     for c in reg["claims"]:
-        g = evaluate(c["expression"], global_contexts)
-        c["truth_global"] = g["truth"]
+        if global_contexts is None:
+            c.pop("truth_global", None)          # local-only evaluation (renderer, report verifier)
+        else:
+            c["truth_global"] = evaluate(c["expression"], global_contexts)["truth"]
         if local_contexts is None:
             c["truth_local"] = "pending" if c["expression"] else "not_evaluable"
             c["evidence_local"] = {}
