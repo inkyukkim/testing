@@ -186,7 +186,7 @@
         "method": "exponential",
         "open_band": "carry_last_rate"
       },
-      "rationale": "KOSIS-style table publishes mx; converted to qx, 100+ rate carried to ages 101-110.",
+      "rationale": "KOSIS-style table publishes mx; converted to qx, with the open top-age band rate carried to the oldest model ages.",
       "gap_id": "GAP-004"
     },
     {

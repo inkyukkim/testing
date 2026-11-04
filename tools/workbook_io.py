@@ -12,9 +12,11 @@ from __future__ import annotations
 
 import json
 import re
+from contextlib import contextmanager
 from pathlib import Path
 
 import openpyxl
+import openpyxl.cell._writer as _cell_writer
 
 _REF = re.compile(r"^'?(?P<sheet>[^'!]+)'?!\$?(?P<c1>[A-Z]+)\$?(?P<r1>\d+)(?::\$?(?P<c2>[A-Z]+)\$?(?P<r2>\d+))?$")
 
@@ -52,6 +54,23 @@ def read_named(xlsx: str | Path, names=None, data_only: bool = True) -> dict[str
     return out
 
 
+@contextmanager
+def exact_floats():
+    """openpyxl serialises floats with '%.16g', dropping the 17th significant digit (one ULP),
+    so a written value can differ from the computed one. Write floats with repr (shortest
+    exact round-trip) while saving, then restore the library default."""
+    original = _cell_writer.safe_string
+
+    def safe_string(value):
+        return repr(value) if isinstance(value, float) else original(value)
+
+    _cell_writer.safe_string = safe_string
+    try:
+        yield
+    finally:
+        _cell_writer.safe_string = original
+
+
 def write_named(src: str | Path, dst: str | Path, overrides: dict[str, object]) -> Path:
     """Write constants into named cells or vectors. Refuses to overwrite a formula cell."""
     refs = list_names(src)
@@ -67,7 +86,8 @@ def write_named(src: str | Path, dst: str | Path, overrides: dict[str, object]) 
             if isinstance(cell.value, str) and cell.value.startswith("="):
                 raise ValueError(f"{name} is a calculated cell; inputs only")
             cell.value = v
-    wb.save(dst)
+    with exact_floats():
+        wb.save(dst)
     return Path(dst)
 
 

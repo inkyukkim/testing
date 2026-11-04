@@ -8,8 +8,11 @@ Status: **Gate 1** = Gate 0.5 (realistic Fixture A, conventions, gap register, r
 verifier, parity tests) plus Fixture B (annual-step discounting), the Model Profiler and
 Input Mapper deterministic tools (`profile_workbook`, `read_local_inputs`, `apply_mapping`,
 `eval_mapping`), their agent definitions in `.claude/agents/`, and KR answer keys
-(`mapping_spec_KR.json`, `gap_register_KR.yaml`). Builder/Runner onward (Gate 2+) not built.
-Provisional modelling decisions are logged in `docs/decisions.md`.
+(`mapping_spec_KR.json`, `gap_register_KR.yaml`). **Gate 2** adds the Builder/Runner
+(`build_run`) and Model Verifier (`verify_model`, checks V01-V10) tools and agent
+definitions, the mapping-spec schema, exact float writing, and a first blind Input Mapper
+agent run scored against the answer key (`docs/gate2_agent_eval.md`). Stage 2 (report
+agents) is not built. Modelling decisions D01-D12 are accepted (`docs/decisions.md`).
 
 ## Design principle (non-negotiable)
 
@@ -57,8 +60,8 @@ the rest are specified contracts for later gates.
 |---|-------|--------|---------|----------------------------|
 | 1 | **Model Profiler** (`.claude/agents/model-profiler.md`) | global model `.xlsx`, `<model>.conventions.yaml` | `model_profile.json`: formula regions, defined names with structural role (input / derived / output), input metadata (label, unit, PSA), input dependencies of every formula name, parallel arm layouts, hardcoding findings, detected conventions and mismatches with the declaration; `model_profile_review.md` (agent's reading of it) | `profile_workbook` **(G1)**, `partsa_engine.load_conventions` **(G0.5)** |
 | 2 | **Input Mapper** (`.claude/agents/input-mapper.md`) | `model_profile.json`, `<model>.conventions.yaml`, local input `.xlsx` (e.g. `adaptation_input_KR.xlsx`) | `mapping_spec.json`: one entry per model input with `target_name`, `source` (`item_id` / model name / `retain_global`), whitelisted `operation`, rationale, and `status` (`mapped` / `retained` / `gap` / `rejected`); `gap_register.yaml` (every `gap` and `retained` entry classified, see below) | `read_local_inputs` **(G1)**, `apply_mapping` dry run **(G1)** (coverage of every input, every local item accounted for, gap references, unit dimensions via `tools/constants_registry.yaml`, text confirmations, currency mixing; exposes no values), `gap_register.validate` **(G0.5)**; scored offline by `eval_mapping` **(G1)** |
-| 3 | **Builder/Runner** | global model, approved `mapping_spec.json`, approved `gap_register.yaml`, scenario list | `adapted_model.xlsx` (constants written into named input cells only), recalculated copy, `run_log.json` (tool versions, file hashes, overrides) | `gap_register.gate` **(G0.5)** first (exit 2 = stop), then `apply_mapping` → `workbook_io.write_named` **(G0)**, `recalc.recalc` **(G0)** |
-| 4 | **Model Verifier** | global and adapted workbooks (recalculated), `mapping_spec.json`, conventions | `model_verification.json`: pass/fail per check | `partsa_engine.run_model` **(G0.5)** parity (tol 1e-6) with `check_conventions`, convention ↔ formula checks (pattern in `tests/test_conventions.py`), invariants (pattern in `tests/test_invariants.py`), `diff_workbooks` (only mapped input cells changed; formulas byte-identical), model checks (`check_*` cells), mapping round-trip |
+| 3 | **Builder/Runner** (`.claude/agents/builder-runner.md`) | global model, approved `mapping_spec.json`, approved `gap_register.yaml`, scenario list (references only) | `adapted_model.xlsx` (constants written into named input cells only), recalculated copy, `overrides.json` (values + provenance), scenario results, `run_log.json` (status built/blocked/invalid, input/output hashes, tool versions, git commit and dirty flag) | `build_run` **(G2)**: `gap_register.gate` first (exit 2 = stop, nothing built), `apply_mapping`, `workbook_io.write_named` (exact floats), `recalc` |
+| 4 | **Model Verifier** (`.claude/agents/model-verifier.md`) | Builder/Runner run directory, approved `mapping_spec.json` | `model_verification.json` (V01-V10 pass/fail with details), `model_verification_review.md` | `verify_model` **(G2)**: V01 structure, V02 formulas byte-identical, V03 only mapped inputs changed and written exactly, V04 mapping round-trip, V05 no error values, V06 model checks, V07 engine parity (`tools/parity.py`), V08 detected conventions and no hardcoding (`profile_workbook`), V09 trace invariants (`tools/invariants.py`), V10 every currency input mapped from a local source |
 
 ### Stage 2: report regeneration
 
@@ -112,6 +115,8 @@ pipeline can run where only one of them is available.
 | `profile_workbook` **(G1)** | `profile(xlsx, conventions) -> model_profile.json` | `tools/profile_workbook.py` (R1C1 region compression; no recalculation) | `tidyxl` cells + formulas | walk `UsedRange.FormulaR1C1` |
 | `read_local_inputs` **(G1)** | `read_local_inputs(xlsx) -> {item_id: value, unit, sheet, cell}` incl. vector items | `tools/read_local_inputs.py` | `readxl` | loop `UsedRange` |
 | `apply_mapping` **(G1)** | `mapping_spec.json` + local inputs + gap register → errors (dry run) or overrides + provenance; whitelist `copy`, `per_period_to_per_week`, `duration_to_doses` (rule declared), `mx_to_qx` (method and open band declared), `retain_global` (gap_id or basis); CLI exit 0/1/2 | `tools/apply_mapping.py` (exact `Fraction` arithmetic; constants from `tools/constants_registry.yaml` or model cells) | same operations | same operations |
+| `build_run` **(G2)** | `build_run(spec, out_dir, scenarios) -> run_log`; CLI exit 0 built / 1 invalid / 2 blocked | `tools/build_run.py` | same steps via `openxlsx2` + `system2(soffice)` | write names, `CalculateFull`, `SaveCopyAs` |
+| `verify_model` **(G2)** | `verify(run_dir, spec) -> model_verification.json`; CLI exit 0/1 | `tools/verify_model.py` (+ `parity.py`, `invariants.py`) | same checks | formula-by-formula compare of two workbooks; parity needs the engine |
 | `eval_mapping` **(G1)** | candidate spec vs answer key → agreement, critical findings (filled gap, wrongly mapped retained input, missing input) | `tools/eval_mapping.py` | n/a | n/a |
 | `trace_numbers` | docx + provenance → list of untraced or mismatched numerals | logic in tests (G0); to be extracted | `officer::docx_summary` + regex | `Document.Range.Find` with wildcards |
 | `evaluate_claim` | claim JSON + values → bool / ranking | planned | planned | planned |
@@ -179,6 +184,12 @@ declared way. Base-case ICER: A £28,270.86, B £28,278.66 per QALY.
   floor puts the cycle that starts exactly at year 28 in year 27 (LibreOffice's `INT` snaps
   it to 28, Python's `floor` does not). Compute model years as `INT(cycle*days/days_per_year)`
   (multiply before divide); both sides then agree exactly.
+- **openpyxl drops the 17th significant digit** (`'%.16g'`), so 241478.43942505133 was written
+  as 241478.4394250513 and the written model differed from the computed override by one ULP.
+  `write_named` saves with exact `repr` floats (`workbook_io.exact_floats`); V03 compares exactly.
+- **Answer keys leak through context.** An agent definition that points at an answer key, or a
+  CLAUDE.md that lists fixture traps, invalidates an evaluation. Agent runs for scoring use a
+  blind workspace without answer keys, decision logs, fixture generators or tests.
 - The traceability check matches numerals to provenance in document order; matching as a set
   let a stray numeral hide behind an identical traced one (found in Gate 0.5).
 
@@ -199,10 +210,12 @@ scripts/                        fixture generators (deterministic, re-runnable)
   build_adaptation_input_kr.py  -> fixtures/adaptation_input_KR.xlsx
   build_global_report_uk.py     -> fixtures/global_report_UK.docx + .provenance.json
   rebaseline.py                 -> fixtures/baseline.json (run deliberately)
-tools/ (Gate 1)
+tools/ (Gate 1-2)
   profile_workbook.py, read_local_inputs.py, apply_mapping.py, eval_mapping.py
+  build_run.py, verify_model.py, parity.py, invariants.py
+schemas/mapping_spec.schema.yaml
   constants_registry.yaml       versioned unit constants and unit dimensions
-.claude/agents/                 model-profiler.md, input-mapper.md (agent definitions)
+.claude/agents/                 model-profiler.md, input-mapper.md, builder-runner.md, model-verifier.md
 docs/decisions.md               decision log (provisional defaults flagged)
 fixtures/
   global_model.xlsx, global_model.conventions.yaml   Fixture A
@@ -227,6 +240,8 @@ python -m tools.gap_register fixtures/gap_register_KR.yaml   # exit 2: GAP-001 b
 python -m tools.profile_workbook fixtures/global_model.xlsx --conventions fixtures/global_model.conventions.yaml
 python -m tools.apply_mapping fixtures/mapping_spec_KR.json  # dry run; exit 2: blocked by GAP-001
 python -m tools.eval_mapping <candidate.json> fixtures/mapping_spec_KR.json
+python -m tools.build_run fixtures/mapping_spec_KR.json runs/kr   # exit 2: blocked by GAP-001, nothing built
+python -m tools.verify_model <run_dir> <spec.json>
 python -m pytest -q                      # ~3-4 min; recalcs via LibreOffice
 ```
 

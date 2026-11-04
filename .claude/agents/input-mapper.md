@@ -16,7 +16,8 @@ arithmetic. Read CLAUDE.md first; its design principle is binding.
 
 ## Outputs
 - mapping_spec.json: one entry for **every** model input (role input in the profile). Format:
-  see fixtures/mapping_spec_KR.json for the shape (do not copy its decisions for another country).
+  the shape is defined by schemas/mapping_spec.schema.yaml. Never read files under
+  fixtures/ named mapping_spec_* or gap_register_*: they are evaluation answer keys.
   - status mapped: operation one of copy, per_period_to_per_week, duration_to_doses, mx_to_qx;
     args reference item_ids, model names and registry keys only.
   - status retained: operation retain_global with either a gap_id (retain_tagged/retain_flagged

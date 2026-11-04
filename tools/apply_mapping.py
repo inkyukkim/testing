@@ -72,8 +72,24 @@ def _fmt_value(v) -> str:
     return str(int(v)) if isinstance(v, (int, float)) and float(v).is_integer() else str(v)
 
 
+SPEC_SCHEMA = Path(__file__).resolve().parents[1] / "schemas" / "mapping_spec.schema.yaml"
+ROOT = Path(__file__).resolve().parents[1]
+_NUMBER_IN_TEXT = re.compile(r"(?<![A-Za-z_\-])\d+(?:[.,]\d+)?(?![A-Za-z_\d])")
+
+
+def schema_errors(spec: dict) -> list[str]:
+    errors: list[str] = []
+    gap_register._check(spec, yaml.safe_load(SPEC_SCHEMA.read_text()), "$", errors)
+    for m in spec.get("mappings", []):
+        for field in ("rationale",):
+            text = re.sub(r"\b(?:KR|GAP)-[A-Z]?\d+\b|\bE[0-9]+\b|\bEQ-5D-[35]L\b|\b[A-Z]{1,4}\d+\b", "", m.get(field, ""))
+            if _NUMBER_IN_TEXT.search(text):
+                errors.append(f"{m.get('target')}: numeral in {field}; cite the item or name instead")
+    return errors
+
+
 def validate_spec(spec: dict, model: dict, local: dict, register: dict) -> list[str]:
-    errors = []
+    errors = schema_errors(spec)
     gaps = {g["gap_id"]: g for g in register.get("gaps", [])}
     targets = [m.get("target") for m in spec.get("mappings", [])]
     for t in set(targets):
@@ -268,8 +284,7 @@ def apply_mapping(spec, model, local, register, dry_run=False) -> dict:
 
 def load_all(spec_path):
     spec = json.loads(Path(spec_path).read_text())
-    root = Path(spec_path).resolve().parents[1]
-    resolve = lambda p: (root / p) if not Path(p).is_absolute() else Path(p)
+    resolve = lambda p: (ROOT / p) if not Path(p).is_absolute() else Path(p)
     model = model_inputs(resolve(spec["model"]))
     local = read_local_inputs(resolve(spec["local_inputs"]))
     register = gap_register.load(resolve(spec["gap_register"]))

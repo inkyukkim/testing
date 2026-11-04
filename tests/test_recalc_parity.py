@@ -13,30 +13,11 @@ TOL = 1e-6
 ERRORS = ("#NUM!", "#VALUE!", "#NAME?", "#REF!", "#DIV/0!", "#N/A", "#NULL!", "Err:")
 
 
-def assert_close(name, sheet_value, engine_value):
-    assert isinstance(sheet_value, (int, float)), f"{name}: no numeric cached value ({sheet_value!r})"
-    diff = abs(sheet_value - engine_value)
-    rel = diff / max(abs(engine_value), 1e-300)
-    assert diff <= TOL or engine_value == 0, f"{name}: abs diff {diff:.3e} > {TOL}"
-    assert rel <= TOL or engine_value == 0, f"{name}: rel diff {rel:.3e} > {TOL}"
-
-
-def compare_all(values: dict, conventions: dict) -> dict:
-    r = run_model(engine_inputs(values), conventions)
-    for key, eng in (("res_icer", r["icer"]), ("res_icer_ly", r["icer_ly"]), ("res_inc_nmb", r["inc_nmb"]),
-                     ("res_inc_total_cost", r["inc_cost"]), ("res_inc_qaly_disc", r["inc_qaly"])):
-        assert_close(key, values[key], eng)
-    for arm in ("int", "comp"):
-        a = r[arm]
-        assert_close(f"res_{arm}_total_cost", values[f"res_{arm}_total_cost"], a.total_cost)
-        assert set(a.costs) == {"drug", "admin", "pf_state", "pd_state", "terminal", "st", "ae"}
-        for k, v in a.costs.items():
-            assert_close(f"res_{arm}_cost_{k}", values[f"res_{arm}_cost_{k}"], v)
-        for k in ("ly_undisc", "ly_disc", "qaly_undisc", "qaly_disc", "n_doses", "expected_vials",
-                  "drug_cost_per_admin", "st_cost_per_progression"):
-            assert_close(f"res_{arm}_{k}", values[f"res_{arm}_{k}"], getattr(a, k))
-        assert_close(f"res_{arm}_s_os_horizon", values[f"res_{arm}_s_os_horizon"], a.s_os_horizon)
-    return r
+def compare_all(values: dict, conventions: dict) -> None:
+    """Thin wrapper over tools.parity so tests and the Model Verifier share one implementation."""
+    from tools.parity import parity
+    mismatches = parity(values, conventions, TOL)
+    assert not mismatches, mismatches
 
 
 def test_recalc_populates_values_without_errors(recalculated_model):
@@ -55,7 +36,8 @@ def test_source_fixture_has_no_cached_values():
 
 
 def test_base_case_icer_parity(model_values, conventions):
-    r = compare_all(model_values, conventions)
+    compare_all(model_values, conventions)
+    r = run_model(engine_inputs(model_values), conventions)
     print(f"\nICER workbook={model_values['res_icer']!r} engine={r['icer']!r} "
           f"abs diff={abs(model_values['res_icer'] - r['icer']):.3e}")
 
@@ -118,3 +100,11 @@ def test_zero_weight_variance_edge_case(tmp_path, conventions):
     v = read_named(recalc(write_named(MODEL, tmp_path / "sd0.xlsx", {"weight_sd_kg": 0}), tmp_path / "rc"))
     assert v["check_vial_bands_ok"] == "OK"
     compare_all(v, conventions)
+
+
+def test_write_named_preserves_full_float_precision(tmp_path):
+    """openpyxl's default '%.16g' would lose the last digit of 241478.43942505133."""
+    v = 241478.43942505133
+    out = write_named(MODEL, tmp_path / "p.xlsx", {"c_pd_week": v, "lt_qx_male": [0.00042291054811316453] * 111})
+    back = read_named(out, ["c_pd_week", "lt_qx_male"], data_only=False)
+    assert back["c_pd_week"] == v and back["lt_qx_male"][0] == 0.00042291054811316453
