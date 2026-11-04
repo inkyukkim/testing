@@ -126,3 +126,21 @@ def test_stage1_smoke_adapted_model_recalculates_and_matches_engine(parts, tmp_p
     assert v["currency_code"] == "KRW" and v["res_int_total_cost"] > 1e7, "costs now in KRW"
     (tmp_path / "kr_result.json").write_text(json.dumps({k: v[k] for k in ("res_icer", "res_inc_total_cost", "res_inc_qaly_disc")}))
     print(f"\nKR smoke ICER (terminal care from test value): {v['res_icer']:,.0f} KRW/QALY")
+
+
+def test_label_only_confirmation_rejected_for_numbers_and_listed_for_switches(parts):
+    spec, model, local, register = parts
+    e = entry(spec, "time_horizon_years")
+    e.update(basis="confirmed_by_local_text", confirm_in_source={"item": "KR-S08", "field": "value", "pattern": "Lifetime"})
+    spec["unused_local_items"] = [u for u in spec["unused_local_items"] if u["item"] != "KR-S08"]
+    assert any("label-only confirmation" in x for x in validate_spec(spec, model, local, register))
+    spec2, *_ = load_all(SPEC)
+    res = apply_mapping(spec2, model, local, register, dry_run=True)
+    assert "int_dose_weight_based: confirmed by a label in KR-C02, not by its value" in res["review"]
+    assert any(r.startswith("cycle_length_days: retained as a structural setting") for r in res["review"])
+
+
+def test_retained_source_references_must_exist(parts):
+    spec, model, local, register = parts
+    next(g for g in register["gaps"] if g["gap_id"] == "GAP-003")["retained_source"] = ["gpu_intercept", "uk_norms_2014"]
+    assert any("retained_source 'uk_norms_2014'" in x for x in validate_spec(spec, model, local, register))

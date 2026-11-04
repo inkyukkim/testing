@@ -41,12 +41,14 @@ gaps:
     target_names: [int_ae_qaly_loss, comp_ae_qaly_loss]
     source_items: [KR-U03]
     description: No local estimate of adverse-event disutility.
-    class: transferable
-    handling: retain_tagged
-    retained_source: int_ae_qaly_loss, comp_ae_qaly_loss (global model)
+    class: partial
+    handling: retain_flagged
+    retained_source: [int_ae_qaly_loss, comp_ae_qaly_loss]
     rationale: >-
-      Disutility per AE episode is derived from trial data; the QALY loss is small and
-      not expected to differ by setting beyond value-set effects.
+      AE incidence comes from the trial and transfers, but the disutilities were valued
+      with the UK EQ-5D-3L value set while the Korean state utilities (KR-U01, KR-U02)
+      use the Korean EQ-5D-5L value set. Mixing value sets is a methodological
+      inconsistency; the QALY loss is small, so it is flagged rather than blocked (D13).
     escalation_options:
       - option_id: E1
         action: retain_with_scenario
@@ -61,7 +63,7 @@ gaps:
     description: Korean general-population utility norms not supplied; age-adjustment multiplier uses UK norms.
     class: partial
     handling: retain_flagged
-    retained_source: gpu_intercept, gpu_male, gpu_age, gpu_age2 (global model)
+    retained_source: [gpu_intercept, gpu_male, gpu_age, gpu_age2]
     rationale: >-
       Only the ratio gpu(age)/gpu(baseline) enters the model, so the age gradient partly
       transfers, but Korean norms (EQ-5D-5L, Korean value set) have a different gradient
@@ -86,7 +88,7 @@ gaps:
       top-age band; the model needs qx for every single age on its lt_age grid.
     class: partial
     handling: retain_flagged
-    retained_source: KR-L01, KR-L02 (100+ band)
+    retained_source: [KR-L01, KR-L02]
     rationale: >-
       Single ages up to the open band transfer after an mx-to-qx conversion (method to be
       declared, exponential or actuarial). Model ages above the open band have no local
@@ -110,12 +112,13 @@ gaps:
     source_items: [KR-P03]
     description: Proportion male and baseline age not supplied; trial population retained.
     class: transferable
-    handling: retain_tagged
-    retained_source: prop_male, baseline_age (global model)
+    handling: retain_flagged
+    retained_source: [prop_male, baseline_age]
     rationale: >-
       Population characteristics of the trial cohort from which efficacy is taken. Both drive
       the general-population mortality cap and the utility age multiplier, so a Korean
       incident population that is older or differently composed would change results.
+      Flagged rather than tagged because both now weight Korean-specific inputs (D13).
     escalation_options:
       - option_id: E1
         action: obtain_local_data
@@ -133,7 +136,7 @@ gaps:
     description: Clinical efficacy and treatment-exposure inputs retained from the global trial by design.
     class: transferable
     handling: retain_tagged
-    retained_source: global model Inputs_Clinical
+    retained_source: [int_pfs_shape, int_pfs_scale, int_os_shape, int_os_scale, int_tot_shape, int_tot_scale, comp_pfs_shape, comp_pfs_scale, comp_os_shape, comp_os_scale, comp_tot_shape, comp_tot_scale, int_pfs_corr, int_os_corr, int_tot_corr, comp_pfs_corr, comp_os_corr, comp_tot_corr, int_p_death_first_pfs, comp_p_death_first_pfs, int_rdi, comp_rdi]
     rationale: >-
       The local affiliate states that clinical inputs are not supplied (Overview). Efficacy
       is assumed transferable; general-population mortality is localised through the

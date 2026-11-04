@@ -44,8 +44,11 @@ properties:
             retain_tagged: keep the global value; the Report Writer tags it as a retained global input
             retain_flagged: keep the global value; flagged for human review and listed as a limitation
         retained_source:
-          type: [string, "null"]
-          description: defined name (global model) or item_id whose value is retained; required for retain_* handling
+          type: [array, "null"]
+          items: {type: string}
+          description: >-
+            defined names (global model) or item_ids whose values are retained or derived;
+            required for retain_* handling; every entry must exist (checked by apply_mapping)
         rationale: {type: string}
         escalation_options:
           type: array
@@ -91,5 +94,6 @@ x-rules:
   - R4 status open requires resolution null
   - R5 retain_tagged and retain_flagged require retained_source
   - R6 gap_id values are unique
+  - R8 YAML anchors and aliases are not allowed (each entry must be readable on its own)
   - R7 free text (description, rationale, escalation and prohibited options) contains no numerals other than identifiers
   - GATE the pipeline is blocked while any gap has handling block and status open

@@ -39,9 +39,18 @@ def _gap_view(m, register):
     return (g["class"], g["handling"]) if g else ("missing", gid)
 
 
+RETAIN = {"retain_tagged", "retain_flagged"}
+
+
+def _retain_only(k, c) -> bool:
+    """Same gap class, both retained, differing only tagged vs flagged: a minor difference (D13)."""
+    return (isinstance(k, (list, tuple)) and isinstance(c, (list, tuple)) and k[0] == c[0]
+            and k[1] in RETAIN and c[1] in RETAIN)
+
+
 def evaluate(candidate: dict, key: dict, cand_register: dict | None = None, key_register: dict | None = None) -> dict:
     cand, ref = _index(candidate), _index(key)
-    critical, diffs, agree = [], [], 0
+    critical, diffs, minor_diffs, agree = [], [], [], 0
     for t, k in ref.items():
         c = cand.get(t)
         if c is None:
@@ -53,7 +62,10 @@ def evaluate(candidate: dict, key: dict, cand_register: dict | None = None, key_
         fields = [(f, k.get(f), c.get(f)) for f in COMPARED if f != "gap_id"]
         fields.append(("gap", _gap_view(k, key_register), _gap_view(c, cand_register)))
         fields += [(f"args.{a}", k.get("args", {}).get(a), c.get("args", {}).get(a)) for a in ARG_KEYS]
-        bad = [(f, kv, cv) for f, kv, cv in fields if kv != cv]
+        minor = [(f, kv, cv) for f, kv, cv in fields if f == "gap" and kv != cv and _retain_only(kv, cv)]
+        bad = [(f, kv, cv) for f, kv, cv in fields if kv != cv and (f, kv, cv) not in minor]
+        if minor:
+            minor_diffs.append({"target": t, "fields": [{"field": f, "key": kv, "candidate": cv} for f, kv, cv in minor]})
         if k["status"] == "retained" and c["status"] == "mapped":
             critical.append(f"{t}: key retains the global value, candidate maps it from {c.get('args', {}).get('source')}")
         if bad:
@@ -66,7 +78,8 @@ def evaluate(candidate: dict, key: dict, cand_register: dict | None = None, key_
     cu = {u["item"] for u in candidate.get("unused_local_items", [])}
     if ku != cu:
         diffs.append({"target": "unused_local_items", "fields": [{"field": "items", "key": sorted(ku), "candidate": sorted(cu)}]})
-    return {"agreement": agree / len(ref), "n_targets": len(ref), "critical": critical, "differences": diffs}
+    return {"agreement": agree / len(ref), "n_targets": len(ref), "critical": critical, "differences": diffs,
+            "minor_differences": minor_diffs}
 
 
 def main() -> int:

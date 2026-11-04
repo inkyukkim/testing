@@ -108,3 +108,21 @@ def test_numerals_in_free_text_are_rejected(reg):
     reg2 = G.load(REGISTER)
     gap(reg2, "GAP-001")["rationale"] = "See KR-C11 and GAP-004; EQ-5D-5L norms."
     assert not any("R7" in e for e in G.validate(reg2)), "identifiers are not numerals"
+
+
+def test_yaml_anchors_rejected(tmp_path):
+    text = REGISTER.read_text().replace("    escalation_options:\n      - option_id: E1\n        action: obtain_local_data",
+                                        "    escalation_options: &opts\n      - option_id: E1\n        action: obtain_local_data", 1)
+    p = tmp_path / "anchored.yaml"
+    p.write_text(text)
+    with pytest.raises(G.RegisterFormatError):
+        G.load(p)
+    r = subprocess.run([sys.executable, "-m", "tools.gap_register", str(p)], cwd=ROOT, capture_output=True, text=True)
+    assert r.returncode == 1 and "R8" in r.stdout
+
+
+def test_d13_classifications_in_answer_key(reg):
+    by_target = {t: g for g in reg["gaps"] for t in g["target_names"]}
+    assert (by_target["prop_male"]["class"], by_target["prop_male"]["handling"]) == ("transferable", "retain_flagged")
+    assert (by_target["int_ae_qaly_loss"]["class"], by_target["int_ae_qaly_loss"]["handling"]) == ("partial", "retain_flagged")
+    assert all(isinstance(g["retained_source"], list) for g in reg["gaps"] if g["handling"] != "block")

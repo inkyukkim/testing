@@ -53,7 +53,11 @@ def test_gap_ids_are_labels_compared_by_class_and_handling():
         if "gap_id" in m:
             m["gap_id"] = relabel[m["gap_id"]]
     assert evaluate(cand, KEY, creg, reg)["agreement"] == 1.0
-    next(g for g in creg["gaps"] if "prop_male" in g["target_names"])["handling"] = "retain_flagged"
+    g = next(g for g in creg["gaps"] if "prop_male" in g["target_names"])
+    g["handling"] = "retain_tagged"                       # key now flags them (D13): minor only
+    r = evaluate(cand, KEY, creg, reg)
+    assert r["agreement"] == 1.0 and {d["target"] for d in r["minor_differences"]} == {"prop_male", "baseline_age"}
+    g["class"] = "non_transferable"; g["handling"] = "block"   # a real difference
     r = evaluate(cand, KEY, creg, reg)
     assert {d["target"] for d in r["differences"]} == {"prop_male", "baseline_age"} and r["critical"] == []
 
@@ -65,4 +69,8 @@ def test_first_blind_agent_run_is_recorded_and_scores():
     cand = json.loads((run / "mapping_spec.json").read_text())
     r = evaluate(cand, KEY, yaml.safe_load((run / "gap_register.yaml").read_text()),
                  yaml.safe_load((FIXTURES / "gap_register_KR.yaml").read_text()))
-    assert r["critical"] == [] and r["agreement"] >= 0.95
+    assert r["critical"] == [] and r["minor_differences"] == []
+    # After D13 the only difference is the label-only horizon confirmation the agent itself
+    # reported, which Gate 2.1 now rejects (the recorded run predates the rule).
+    assert [d["target"] for d in r["differences"]] == ["time_horizon_years", "unused_local_items"]
+    assert r["agreement"] == 80 / 81

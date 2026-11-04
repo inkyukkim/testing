@@ -130,13 +130,8 @@
       "target": "time_horizon_years",
       "status": "retained",
       "operation": "retain_global",
-      "rationale": "Lifetime horizon retained as stated by the affiliate.",
-      "basis": "confirmed_by_local_text",
-      "confirm_in_source": {
-        "item": "KR-S08",
-        "field": "value",
-        "pattern": "Lifetime"
-      }
+      "rationale": "Lifetime horizon retained as model structure; the affiliate states the horizon in words only.",
+      "basis": "structural_setting"
     },
     {
       "target": "weight_mean_kg",
@@ -702,6 +697,10 @@
     {
       "item": "KR-C15",
       "reason": "Confirms list prices are used; no discount to apply."
+    },
+    {
+      "item": "KR-S08",
+      "reason": "States the horizon in words only; consistent with the retained lifetime horizon, so no value is taken from it."
     }
   ]
 }

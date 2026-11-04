@@ -72,3 +72,17 @@ Both arguments are defensible. Whether the answer key should adopt them is a dec
 | `confirm_in_source` without `{value}` (e.g. "Lifetime", "mg/kg") confirms a label, not the retained number | Open: report label-only confirmations separately in the dry run |
 | No guidance for jurisdiction-specific bounds such as `wtp_threshold_lower` | Open: covered by accepted D09; add to the agent instructions |
 | YAML anchors (`&id001`) pass validation | Open: reject anchors and aliases in registers |
+
+## Update after Gate 2.1 (2026-11-04)
+
+The HEOR lead accepted the agent's four classifications into the answer key (D13). The
+recorded run now scores **80 of 81**, with no critical or minor differences. The one
+remaining difference is `time_horizon_years`. The agent confirmed it with the label
+"Lifetime"; Gate 2.1 rejects a label-only confirmation of a numeric input, so the key now
+retains the horizon as a structural setting. The agent had raised this weakness itself.
+
+The open tool issues listed above were fixed in Gate 2.1 (D15):
+- `retained_source` is a list and every entry is checked.
+- Label-only confirmations are rejected for numeric inputs and listed as REVIEW for switches.
+- YAML anchors are rejected (R8).
+- The life-table gap convention and the single-threshold rule (D09) are in the agent instructions.

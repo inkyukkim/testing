@@ -11,8 +11,10 @@ Input Mapper deterministic tools (`profile_workbook`, `read_local_inputs`, `appl
 (`mapping_spec_KR.json`, `gap_register_KR.yaml`). **Gate 2** adds the Builder/Runner
 (`build_run`) and Model Verifier (`verify_model`, checks V01-V10) tools and agent
 definitions, the mapping-spec schema, exact float writing, and a first blind Input Mapper
-agent run scored against the answer key (`docs/gate2_agent_eval.md`). Stage 2 (report
-agents) is not built. Modelling decisions D01-D12 are accepted (`docs/decisions.md`).
+agent run scored against the answer key (`docs/gate2_agent_eval.md`). **Gate 2.1** fixes the
+tool issues that run raised (label-only confirmations, list-valued `retained_source`, YAML
+anchors R8, free-text numerals R7) and updates the answer key (D13). Decisions D01-D16 are
+in `docs/decisions.md`; GAP-001 remains open (D14).
 
 ## Design principle (non-negotiable)
 
@@ -95,7 +97,9 @@ entry in `gap_register.yaml` (schema: `schemas/gap_register.schema.yaml`; KR ans
 | `decided_by` | `{kind: agent \| human, role}` | who classified the gap; a `resolution` must be `kind: human` |
 
 Allowed class → handling: non_transferable → block; transferable → retain_tagged or
-retain_flagged; partial → retain_flagged or block. The gate (`python -m tools.gap_register
+retain_flagged; partial → retain_flagged or block. `retained_source` is a list of model names
+or item_ids. Life-table conversions are mapped inputs with a partial / retain_flagged gap
+entry. Free text holds no numerals (R7) and registers use no YAML anchors (R8). The gate (`python -m tools.gap_register
 <file>`) exits 0 (proceed), 1 (invalid register) or 2 (an open `block` gap). In the KR
 fixture, the missing terminal care cost (`GAP-001`, `KR-C11`) blocks the pipeline.
 
@@ -259,7 +263,7 @@ when the change is intended, and say so in the PR.
   (`KR-C11`), AE disutility (`KR-U03`), population utility norms (`KR-U04`) and proportion
   male (`KR-P03`); exchange rate and co-payment rate marked informational only.
 - `gap_register_KR.yaml` and `mapping_spec_KR.json` are the expected Input Mapper outputs
-  (81 model inputs: 34 mapped, 46 retained, 1 gap). `GAP-001` (terminal care) is
+  (81 model inputs: 34 mapped, 46 retained, 1 gap; D13 classifications). `GAP-001` (terminal care) is
   `non_transferable` / `block` and stops the pipeline; `apply_mapping` refuses to produce
   overrides until a human resolves it. Tests simulate that resolution with a test-only
   value to smoke-test the adapted model; that number is not a fixture.

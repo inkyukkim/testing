@@ -28,8 +28,17 @@ ALLOWED_HANDLING = {
 _TYPES = {"object": dict, "array": list, "string": str, "integer": int, "null": type(None)}
 
 
+class RegisterFormatError(ValueError):
+    pass
+
+
 def load(path: str | Path) -> dict:
-    return yaml.safe_load(Path(path).read_text())
+    """Load a register; R8 rejects YAML anchors and aliases so each entry reads on its own."""
+    text = Path(path).read_text()
+    for ev in yaml.parse(text):
+        if isinstance(ev, yaml.AliasEvent) or getattr(ev, "anchor", None):
+            raise RegisterFormatError(f"{path}: R8 YAML anchors/aliases are not allowed")
+    return yaml.safe_load(text)
 
 
 def _check(node, schema, path, errors):
@@ -128,7 +137,12 @@ def gate(register: dict) -> GateResult:
 
 def main(argv=None) -> int:
     argv = argv or sys.argv[1:]
-    result = gate(load(argv[0]))
+    try:
+        register = load(argv[0])
+    except RegisterFormatError as e:
+        print(f"INVALID: {e}")
+        return 1
+    result = gate(register)
     for e in result.errors:
         print(f"INVALID: {e}")
     for gid in result.blocking:

@@ -102,6 +102,7 @@ def validate_spec(spec: dict, model: dict, local: dict, register: dict) -> list[
         if n not in targets:
             errors.append(f"{n}: model input not covered by the mapping")
     used = set()
+    review = []
     remapped_currency = False
     retained_currency = []
     for m in spec.get("mappings", []):
@@ -135,8 +136,16 @@ def validate_spec(spec: dict, model: dict, local: dict, register: dict) -> list[
                 errors.append(f"{t}: retain_global needs a gap_id or basis in {sorted(RETAIN_BASES)}")
             if gid is not None and gid in gaps and gaps[gid]["handling"] not in ("retain_tagged", "retain_flagged"):
                 errors.append(f"{t}: gap {gid} handling {gaps[gid]['handling']} does not allow retention")
+            if basis == "structural_setting":
+                review.append(f"{t}: retained as a structural setting")
             if basis == "confirmed_by_local_text":
                 c = m.get("confirm_in_source") or {}
+                if "{value}" not in c.get("pattern", "{value}"):
+                    if dimension(tgt["unit"]) not in ("switch", "text"):
+                        errors.append(f"{t}: label-only confirmation of a {dimension(tgt['unit'])} input; "
+                                      "include {value} in the pattern or use basis structural_setting")
+                    else:
+                        review.append(f"{t}: confirmed by a label in {c.get('item')}, not by its value")
                 item = local.get(c.get("item"))
                 if item is None:
                     errors.append(f"{t}: confirm_in_source item {c.get('item')!r} not found")
@@ -199,6 +208,11 @@ def validate_spec(spec: dict, model: dict, local: dict, register: dict) -> list[
     if remapped_currency:
         errors += [f"{t}: retains a global {model[t]['unit']} value although the currency is remapped"
                    for t in retained_currency]
+    for g in register.get("gaps", []):
+        for ref in g.get("retained_source") or []:
+            if ref not in model and ref not in local:
+                errors.append(f"{g['gap_id']}: retained_source {ref!r} is neither a model input nor a local item")
+    spec["_review"] = review
     accounted = used | {u["item"] for u in spec.get("unused_local_items", [])}
     for g in register.get("gaps", []):
         accounted |= set(g["source_items"])
@@ -264,7 +278,8 @@ def _compute(m, model, local, overrides):
 def apply_mapping(spec, model, local, register, dry_run=False) -> dict:
     errors = validate_spec(spec, model, local, register)
     gate = gap_register.gate(register)
-    result = {"errors": errors, "gate_blocked": gate.blocked, "blocking_gaps": gate.blocking}
+    result = {"errors": errors, "review": spec.pop("_review", []), "gate_blocked": gate.blocked,
+              "blocking_gaps": gate.blocking}
     if errors or dry_run:
         return result
     if gate.blocked:
@@ -297,8 +312,14 @@ def main(argv=None) -> int:
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--out")
     a = ap.parse_args(argv)
-    spec, model, local, register = load_all(a.spec)
+    try:
+        spec, model, local, register = load_all(a.spec)
+    except gap_register.RegisterFormatError as e:
+        print(f"INVALID: {e}")
+        return 1
     res = apply_mapping(spec, model, local, register, dry_run=not a.apply)
+    for r in res["review"]:
+        print(f"REVIEW: {r}")
     for e in res["errors"]:
         print(f"INVALID: {e}")
     for g in res["blocking_gaps"]:
