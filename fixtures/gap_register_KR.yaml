@@ -106,13 +106,16 @@ gaps:
     resolution: null
 
   - gap_id: GAP-005
-    target_names: [prop_male]
+    target_names: [prop_male, baseline_age]
     source_items: [KR-P03]
-    description: Proportion male not supplied; trial population retained.
+    description: Proportion male and baseline age not supplied; trial population retained.
     class: transferable
     handling: retain_tagged
-    retained_source: prop_male (global model)
-    rationale: Population characteristic of the trial cohort from which efficacy is taken.
+    retained_source: prop_male, baseline_age (global model)
+    rationale: >-
+      Population characteristics of the trial cohort from which efficacy is taken. Both drive
+      the general-population mortality cap and the utility age multiplier, so a Korean
+      incident population that is older or differently composed would change results.
     escalation_options:
       - option_id: E1
         action: obtain_local_data
@@ -124,6 +127,7 @@ gaps:
   - gap_id: GAP-006
     target_names: [int_pfs_shape, int_pfs_scale, int_os_shape, int_os_scale, int_tot_shape, int_tot_scale,
                    comp_pfs_shape, comp_pfs_scale, comp_os_shape, comp_os_scale, comp_tot_shape, comp_tot_scale,
+                   int_pfs_corr, int_os_corr, int_tot_corr, comp_pfs_corr, comp_os_corr, comp_tot_corr,
                    int_p_death_first_pfs, comp_p_death_first_pfs, int_rdi, comp_rdi]
     source_items: []
     description: Clinical efficacy and treatment-exposure inputs retained from the global trial by design.

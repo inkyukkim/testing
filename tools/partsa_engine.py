@@ -178,11 +178,17 @@ def _capped(s_raw, s_gpm, cap_on):
     return np.concatenate(([s_raw[0]], s_raw[0] * np.cumprod(r)))
 
 
-def discount_factors(rate, c, cyc_years, method):
+def model_year(c, cyc_days, days_per_year):
+    """INT(cycle start in years), computed as (c*days)/days_per_year so that exact year
+    boundaries stay exact (1461*7/365.25 = 28.0, whereas 1461*(7/365.25) = 27.999...)."""
+    return np.floor(c * cyc_days / days_per_year)
+
+
+def discount_factors(rate, c, cyc_years, method, cyc_days=7.0, days_per_year=365.25):
     if method == "mid_cycle_continuous":
         return (1.0 + rate) ** -((c + 0.5) * cyc_years), (1.0 + rate) ** -(c * cyc_years)
     if method == "annual_step":
-        year = np.floor(c * cyc_years)
+        year = model_year(c, cyc_days, days_per_year)
         return (1.0 + rate) ** -year, (1.0 + rate) ** -year
     raise ConventionError(method)
 
@@ -210,8 +216,9 @@ def run_arm(p: dict, arm: str, method: str = "mid_cycle_continuous") -> ArmResul
     deaths = s_os[:-1] - s_os[1:]
     progressions = np.maximum(0.0, pf[:-1] - pf[1:]) * (1.0 - g("p_death_first_pfs"))
     c = i[:-1]
-    df_c_mid, df_c_start = discount_factors(float(p["dr_costs"]), c, cy, method)
-    df_o_mid, _ = discount_factors(float(p["dr_outcomes"]), c, cy, method)
+    dpy = float(p["days_per_year"])
+    df_c_mid, df_c_start = discount_factors(float(p["dr_costs"]), c, cy, method, cyc_days, dpy)
+    df_o_mid, _ = discount_factors(float(p["dr_outcomes"]), c, cy, method, cyc_days, dpy)
     ic = g("admin_interval_weeks") * 7.0 / cyc_days
     dose_due = (np.mod(c, ic) == 0) & (c / ic < g("max_doses"))
     doses = np.where(dose_due, s_tot[:-1], 0.0)

@@ -1,6 +1,8 @@
 """Generate fixtures/global_model.xlsx: formula-driven 3-state PartSA (synthetic data).
 
-Run:  python scripts/build_global_model.py
+Run:  python scripts/build_global_model.py [A|B]
+      A (default) -> fixtures/global_model.xlsx    mid-cycle continuous discounting
+      B           -> fixtures/global_model_B.xlsx  annual-step discounting (otherwise identical)
 All values are SYNTHETIC. Calculation sheets contain formulas only; every input is a
 named single-cell or one-dimensional range on an Inputs_* sheet. Conventions are declared
 in fixtures/global_model.conventions.yaml ("Fixture A").
@@ -519,7 +521,30 @@ def readme_sheet(wb):
     ws.column_dimensions["A"].width = 130
 
 
-def main():
+VARIANTS = {
+    "A": {"out": OUT, "label": "Fixture A", "df": {
+        "Y": ("DF costs, cycle start", "=1/(1+dr_costs)^(A{r}*cycle_length_years)"),
+        "Z": ("DF costs, mid-cycle", "=1/(1+dr_costs)^((A{r}+0.5)*cycle_length_years)"),
+        "AA": ("DF outcomes, mid-cycle", "=1/(1+dr_outcomes)^((A{r}+0.5)*cycle_length_years)")},
+        "readme": "Discounting: dosing costs at cycle start; other costs and outcomes at cycle mid-point; (1+r)^-t, t in years."},
+    "B": {"out": OUT.with_name("global_model_B.xlsx"), "label": "Fixture B", "df": {
+        "Y": ("DF costs, model year (dosing)", "=1/(1+dr_costs)^INT(A{r}*cycle_length_days/days_per_year)"),
+        "Z": ("DF costs, model year", "=1/(1+dr_costs)^INT(A{r}*cycle_length_days/days_per_year)"),
+        "AA": ("DF outcomes, model year", "=1/(1+dr_outcomes)^INT(A{r}*cycle_length_days/days_per_year)")},
+        "readme": "Discounting: annual step; every cycle starting in model year k is discounted by (1+r)^-k (year 1 undiscounted)."},
+}
+
+
+def apply_variant(variant: str) -> Path:
+    v = VARIANTS[variant]
+    for i, (col, header, first_f, f) in enumerate(TRACE_COLS):
+        if col in v["df"]:
+            TRACE_COLS[i] = (col, v["df"][col][0], first_f, v["df"][col][1])
+    return v["out"]
+
+
+def main(variant: str = "A"):
+    out = apply_variant(variant)
     wb = Workbook()
     readme_sheet(wb)
     ws, nxt = input_sheet(wb, "Inputs_Settings", "Model settings", SETTINGS)
@@ -541,9 +566,16 @@ def main():
     results_sheet(wb)
     psa_sheet(wb)
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    wb.save(OUT)
-    print(f"wrote {OUT}")
+    readme = wb["ReadMe"]
+    readme["A1"] = readme["A1"].value.replace("(Fixture A)", f"({VARIANTS[variant]['label']})")
+    for row in readme.iter_rows():
+        if row[0].value and str(row[0].value).startswith("Discounting:"):
+            row[0].value = VARIANTS[variant]["readme"]
+        if row[0].value and "global_model.conventions.yaml" in str(row[0].value):
+            row[0].value = row[0].value.replace("global_model.conventions.yaml", out.stem + ".conventions.yaml")
+    wb.save(out)
+    print(f"wrote {out}")
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1] if len(sys.argv) > 1 else "A")

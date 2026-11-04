@@ -54,8 +54,18 @@ def test_annual_step_discounting_closed_form():
     r = 0.035
     p = {**BASE, **arm("int", os_=(1.0, 12.0)), "dr_outcomes": r}
     q = math.exp(-H)
-    expected = sum(H * (q**i + q**(i + 1)) / 2 * (1 + r) ** -math.floor(i * H) for i in range(N60))
+    expected = sum(H * (q**i + q**(i + 1)) / 2 * (1 + r) ** -((i * 7) // 365.25) for i in range(N60))
     assert run_arm(p, "int", method="annual_step").ly_disc == pytest.approx(expected, rel=1e-12)
+
+
+def test_model_year_exact_at_year_boundaries():
+    """Cycle 1461 starts exactly at year 28; naive i*(7/365.25) gives 27.999... and floors to 27."""
+    from tools.partsa_engine import model_year
+    assert math.floor(1461 * (7 / 365.25)) == 27
+    assert model_year(1461, 7.0, 365.25) == 28
+    for k in range(1, 41):
+        i = round(k * 365.25 / 7)
+        assert model_year(i, 7.0, 365.25) == ((i * 7) // 365.25)
 
 
 def test_gpm_survival_constant_qx():

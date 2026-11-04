@@ -4,11 +4,12 @@ Prototype agent system that adapts a global oncology partitioned-survival (PartS
 cost-effectiveness model to a local country and regenerates its technical report.
 **Synthetic data only.** Nothing in this repository is real clinical, price or HTA data.
 
-Status: **Gate 0.5** = architecture, synthetic fixtures with realistic structure (mortality
-cap, age-adjusted utilities, ToT with dose-count stopping rule, vial wastage, RDI,
-subsequent therapies), per-model convention declarations, gap register with a blocking
-gate, rounding-interval verifier, deterministic recalculation and independent parity tests.
-No agent is implemented yet.
+Status: **Gate 1** = Gate 0.5 (realistic Fixture A, conventions, gap register, rounding
+verifier, parity tests) plus Fixture B (annual-step discounting), the Model Profiler and
+Input Mapper deterministic tools (`profile_workbook`, `read_local_inputs`, `apply_mapping`,
+`eval_mapping`), their agent definitions in `.claude/agents/`, and KR answer keys
+(`mapping_spec_KR.json`, `gap_register_KR.yaml`). Builder/Runner onward (Gate 2+) not built.
+Provisional modelling decisions are logged in `docs/decisions.md`.
 
 ## Design principle (non-negotiable)
 
@@ -54,8 +55,8 @@ the rest are specified contracts for later gates.
 
 | # | Agent | Inputs | Outputs | Deterministic tools called |
 |---|-------|--------|---------|----------------------------|
-| 1 | **Model Profiler** | global model `.xlsx` | `model_profile.json`: sheets, defined names with role (input / calc / result / check), units, PSA metadata, arm-block layout, conventions detected (HCC, discounting, survival form) | `workbook_io.list_names` **(G0)**, `workbook_io.read_named` **(G0)**, `profile_workbook` (formula dependency graph, hardcoded-constant scan) |
-| 2 | **Input Mapper** | `model_profile.json`, `<model>.conventions.yaml`, local input `.xlsx` (e.g. `adaptation_input_KR.xlsx`) | `mapping_spec.json`: one entry per model input with `target_name`, `source` (`item_id` / model name / `retain_global`), whitelisted `operation`, rationale, and `status` (`mapped` / `retained` / `gap` / `rejected`); `gap_register.yaml` (every `gap` and `retained` entry classified, see below) | `read_local_inputs` (item_id → value, unit), `apply_mapping --dry-run` (validates every reference, every unit chain and every operation; computes nothing the agent sees as prose), `gap_register.validate` **(G0.5)** |
+| 1 | **Model Profiler** (`.claude/agents/model-profiler.md`) | global model `.xlsx`, `<model>.conventions.yaml` | `model_profile.json`: formula regions, defined names with structural role (input / derived / output), input metadata (label, unit, PSA), input dependencies of every formula name, parallel arm layouts, hardcoding findings, detected conventions and mismatches with the declaration; `model_profile_review.md` (agent's reading of it) | `profile_workbook` **(G1)**, `partsa_engine.load_conventions` **(G0.5)** |
+| 2 | **Input Mapper** (`.claude/agents/input-mapper.md`) | `model_profile.json`, `<model>.conventions.yaml`, local input `.xlsx` (e.g. `adaptation_input_KR.xlsx`) | `mapping_spec.json`: one entry per model input with `target_name`, `source` (`item_id` / model name / `retain_global`), whitelisted `operation`, rationale, and `status` (`mapped` / `retained` / `gap` / `rejected`); `gap_register.yaml` (every `gap` and `retained` entry classified, see below) | `read_local_inputs` **(G1)**, `apply_mapping` dry run **(G1)** (coverage of every input, every local item accounted for, gap references, unit dimensions via `tools/constants_registry.yaml`, text confirmations, currency mixing; exposes no values), `gap_register.validate` **(G0.5)**; scored offline by `eval_mapping` **(G1)** |
 | 3 | **Builder/Runner** | global model, approved `mapping_spec.json`, approved `gap_register.yaml`, scenario list | `adapted_model.xlsx` (constants written into named input cells only), recalculated copy, `run_log.json` (tool versions, file hashes, overrides) | `gap_register.gate` **(G0.5)** first (exit 2 = stop), then `apply_mapping` → `workbook_io.write_named` **(G0)**, `recalc.recalc` **(G0)** |
 | 4 | **Model Verifier** | global and adapted workbooks (recalculated), `mapping_spec.json`, conventions | `model_verification.json`: pass/fail per check | `partsa_engine.run_model` **(G0.5)** parity (tol 1e-6) with `check_conventions`, convention ↔ formula checks (pattern in `tests/test_conventions.py`), invariants (pattern in `tests/test_invariants.py`), `diff_workbooks` (only mapped input cells changed; formulas byte-identical), model checks (`check_*` cells), mapping round-trip |
 
@@ -108,7 +109,10 @@ pipeline can run where only one of them is available.
 | `partsa_engine` **(G0.5)** | `run_model(inputs: dict, conventions) -> results`; `check_conventions` refuses anything not implemented | `tools/partsa_engine.py` (numpy, PyYAML) | ~150 lines of base R, same conventions | not needed (the workbook is the VBA-side model) |
 | `gap_register` **(G0.5)** | `validate(register) -> errors`; `gate(register) -> blocked, blocking ids`; CLI exit 0/1/2 | `tools/gap_register.py` (PyYAML; minimal JSON Schema subset, no third-party validator) | `yaml` + `jsonvalidate` | parse the JSON form of the register |
 | `rounding` **(G0.5)** | `check_derived(op, operands, result) -> pass / pass_with_footnote / fail / indeterminate` | `tools/rounding.py` (exact `Fraction` interval arithmetic) | same four-corner arithmetic | `Decimal`/`Currency` arithmetic |
-| `apply_mapping` | `mapping_spec.json` + local inputs → overrides JSON; operations limited to `copy`, `scale_by_cell`, `per_period_to_per_week` (factor from model cells), `duration_to_doses` (years → doses via interval; rounding rule declared), `mx_to_qx` (method declared, e.g. 1 − exp(−mx)), `extend_open_age_band`, `retain_global` | planned | planned | planned |
+| `profile_workbook` **(G1)** | `profile(xlsx, conventions) -> model_profile.json` | `tools/profile_workbook.py` (R1C1 region compression; no recalculation) | `tidyxl` cells + formulas | walk `UsedRange.FormulaR1C1` |
+| `read_local_inputs` **(G1)** | `read_local_inputs(xlsx) -> {item_id: value, unit, sheet, cell}` incl. vector items | `tools/read_local_inputs.py` | `readxl` | loop `UsedRange` |
+| `apply_mapping` **(G1)** | `mapping_spec.json` + local inputs + gap register → errors (dry run) or overrides + provenance; whitelist `copy`, `per_period_to_per_week`, `duration_to_doses` (rule declared), `mx_to_qx` (method and open band declared), `retain_global` (gap_id or basis); CLI exit 0/1/2 | `tools/apply_mapping.py` (exact `Fraction` arithmetic; constants from `tools/constants_registry.yaml` or model cells) | same operations | same operations |
+| `eval_mapping` **(G1)** | candidate spec vs answer key → agreement, critical findings (filled gap, wrongly mapped retained input, missing input) | `tools/eval_mapping.py` | n/a | n/a |
 | `trace_numbers` | docx + provenance → list of untraced or mismatched numerals | logic in tests (G0); to be extracted | `officer::docx_summary` + regex | `Document.Range.Find` with wildcards |
 | `evaluate_claim` | claim JSON + values → bool / ranking | planned | planned | planned |
 | `render_report` | template.docx + values + format map → docx + provenance | planned (pattern in `scripts/build_global_report_uk.py`) | `officer` | Word mail-merge style field replace |
@@ -121,19 +125,20 @@ choices a reviewer would otherwise have to reverse-engineer from formulas. The e
 checks the declaration against the formulas (`tests/test_conventions.py`). Changing a
 convention means changing the workbook generator, the engine and the YAML together.
 
-| Key | Fixture A (`global_model.xlsx`, built) | Fixture B (Gate 1, to be built) |
+| Key | Fixture A (`global_model.xlsx`) | Fixture B (`global_model_B.xlsx`) |
 |-----|------------------------------------------|---------------------------------|
 | `discounting.method` | `mid_cycle_continuous`: DF = (1+r)^-t, t in years, continuous in time | `annual_step`: every cycle starting in model year k gets DF = (1+r)^-k, k = INT(cycle start in years); year 1 undiscounted |
 | `discounting.timing` | state costs, one-off event costs and outcomes at the cycle mid-point; dosing costs at cycle start (time of dose); AE at baseline undiscounted | all streams `model_year`; AE at baseline undiscounted |
-| `half_cycle_correction` | trapezoidal on state membership; applied to PF/PD state costs, LYs, QALYs; **not** to drug, administration, terminal care, subsequent therapy or AE | to be declared with Fixture B |
+| `half_cycle_correction` | trapezoidal on state membership; applied to PF/PD state costs, LYs, QALYs; **not** to drug, administration, terminal care, subsequent therapy or AE | same as A |
 | `dosing` | costs only in dosing weeks, ToT (capped by OS) at cycle start, no HCC; stopping rule by dose count; RDI on drug cost after vial rounding; exact expected vials for mg/kg under a lognormal weight distribution, no vial sharing | |
 | `one_off_incidence` | deaths = S_OS(t) − S_OS(t+1); progressions = (PF(t) − PF(t+1)) × (1 − share of PFS events that are deaths); subsequent therapy = share-weighted course cost per progression; terminal care per death | |
 | `general_population_mortality` | per-cycle hazard max on PFS and OS: S(t+1) = S(t) × min(S_param ratio, S_gpm ratio); qx by single age at cycle start; sex-specific survival weighted by proportion male | |
 | `utilities` | multiplicative age adjustment gpu(age at mid-cycle)/gpu(baseline age), quadratic in age plus sex term; AE QALY loss not age-adjusted | |
 
-Fixture B exists so the Model Profiler and Model Verifier are tested on a model whose
-conventions differ; the engine already implements `annual_step` (tested against a closed
-form), so Fixture B parity is possible from the start.
+Fixture B is generated by the same script (`build_global_model.py B`) and differs from A
+only in the three discount-factor columns (enforced by `tests/test_fixture_b.py`), so the
+Model Profiler and Verifier are tested on a model whose conventions differ in exactly one
+declared way. Base-case ICER: A £28,270.86, B £28,278.66 per QALY.
 
 ## Model conventions (Fixture A summary)
 
@@ -170,6 +175,10 @@ form), so Fixture B parity is possible from the start.
 - **Rounded displays do not recompute exactly.** 24,622 / 0.869 = 28,334 but the ICER from
   unrounded cells is 28,321. `tools/rounding.py` decides whether the display is explainable
   by rounding (pass with footnote) or is an error (fail).
+- **Year boundaries in floating point.** `1461*(7/365.25)` is 27.999999999999996, so a naive
+  floor puts the cycle that starts exactly at year 28 in year 27 (LibreOffice's `INT` snaps
+  it to 28, Python's `floor` does not). Compute model years as `INT(cycle*days/days_per_year)`
+  (multiply before divide); both sides then agree exactly.
 - The traceability check matches numerals to provenance in document order; matching as a set
   let a stray numeral hide behind an identical traced one (found in Gate 0.5).
 
@@ -190,8 +199,15 @@ scripts/                        fixture generators (deterministic, re-runnable)
   build_adaptation_input_kr.py  -> fixtures/adaptation_input_KR.xlsx
   build_global_report_uk.py     -> fixtures/global_report_UK.docx + .provenance.json
   rebaseline.py                 -> fixtures/baseline.json (run deliberately)
+tools/ (Gate 1)
+  profile_workbook.py, read_local_inputs.py, apply_mapping.py, eval_mapping.py
+  constants_registry.yaml       versioned unit constants and unit dimensions
+.claude/agents/                 model-profiler.md, input-mapper.md (agent definitions)
+docs/decisions.md               decision log (provisional defaults flagged)
 fixtures/
   global_model.xlsx, global_model.conventions.yaml   Fixture A
+  global_model_B.xlsx, global_model_B.conventions.yaml   Fixture B (annual-step)
+  mapping_spec_KR.json          expected Input Mapper output (answer key)
   adaptation_input_KR.xlsx, gap_register_KR.yaml     KR inputs and expected gap register
   global_report_UK.docx, global_report_UK.provenance.json
   baseline.json                 recorded base case and history
@@ -202,11 +218,15 @@ tests/                          pytest suite (LibreOffice required for most test
 
 ```bash
 pip install -r requirements.txt          # plus LibreOffice: apt-get install libreoffice-calc libreoffice-writer
-python scripts/build_global_model.py     # 1. model (must run first)
+python scripts/build_global_model.py     # 1. model A (must run first)
+python scripts/build_global_model.py B   #    model B
 python scripts/build_adaptation_input_kr.py
 python scripts/build_global_report_uk.py # 2. report (recalcs the model and 8 scenarios, ~1.5 min)
 python scripts/rebaseline.py <label>     # 3. only after an intended model change
 python -m tools.gap_register fixtures/gap_register_KR.yaml   # exit 2: GAP-001 blocks
+python -m tools.profile_workbook fixtures/global_model.xlsx --conventions fixtures/global_model.conventions.yaml
+python -m tools.apply_mapping fixtures/mapping_spec_KR.json  # dry run; exit 2: blocked by GAP-001
+python -m tools.eval_mapping <candidate.json> fixtures/mapping_spec_KR.json
 python -m pytest -q                      # ~3-4 min; recalcs via LibreOffice
 ```
 
@@ -223,8 +243,11 @@ when the change is intended, and say so in the PR.
   ages to 110); subsequent-therapy categories renamed; missing terminal care cost
   (`KR-C11`), AE disutility (`KR-U03`), population utility norms (`KR-U04`) and proportion
   male (`KR-P03`); exchange rate and co-payment rate marked informational only.
-- `gap_register_KR.yaml` is the expected Input Mapper output for those gaps; `GAP-001`
-  (terminal care) is `non_transferable` / `block` and stops the pipeline.
+- `gap_register_KR.yaml` and `mapping_spec_KR.json` are the expected Input Mapper outputs
+  (81 model inputs: 34 mapped, 46 retained, 1 gap). `GAP-001` (terminal care) is
+  `non_transferable` / `block` and stops the pipeline; `apply_mapping` refuses to produce
+  overrides until a human resolves it. Tests simulate that resolution with a test-only
+  value to smoke-test the adapted model; that number is not a fixture.
 - `global_report_UK.provenance.json` is the answer key for the Report Profiler and Claims
   Analyst: 184 traced numbers (base case plus 8 scenarios) and 12 typed claims, including
   one deliberately untraceable external assertion (medians within KM CIs), one scope
