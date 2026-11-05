@@ -36,6 +36,12 @@ def test_input_metadata_read_from_input_rows(prof_a):
     assert m["Unit"] == "GBP/week" and m["PSA distribution"] == "Gamma"
 
 
+def test_vector_inputs_are_labelled_from_their_header(prof_a):
+    """Round 2: life-table ranges had no label in the report's retained-inputs list."""
+    assert prof_a["names"]["lt_qx_male"]["metadata"] == {"Parameter": "qx male"}
+    assert prof_a["names"]["lt_age"]["metadata"] == {"Parameter": "Age"}
+
+
 def test_dependencies_follow_the_arm(prof_a):
     deps = prof_a["input_dependencies"]
     drug_a = set(deps["res_int_cost_drug"])

@@ -3,7 +3,9 @@
     evaluate_register(register, global_contexts, local_contexts=None) -> register with truths filled
         (global_contexts None: local truth only)
     validate(register, blocks) -> errors (schema + rules K1-K7)
-    review_notes(register) -> advisory REVIEW lines (not errors) for a human approving the register
+    review_notes(register, blocks) -> advisory REVIEW lines (not errors) for a human approving the
+        register: rerender rationales that ask for new wording, and truth-dependent wording
+        (tools/truth_cues.yaml) in the report that no claim excerpt covers
     ready(register) -> blockers before the Report Writer may start
 
 rerender means: the excerpt stays word for word; only its numerals become placeholders, rendered
@@ -31,6 +33,9 @@ from tools.jurisdiction_lint import TERMS, lint
 
 SCHEMA = Path(__file__).resolve().parents[1] / "schemas" / "claims_register.schema.yaml"
 REGEN_KINDS = {"ranking", "sensitivity_ranking", "threshold_comparison", "magnitude_judgement"}
+# wording whose truth depends on results (tools/truth_cues.yaml); shared with tools/render_report.py
+TRUTH_CUES = yaml.safe_load((Path(__file__).with_name("truth_cues.yaml")).read_text())["cues"]
+TRUTH_CUE = re.compile("|".join(f"(?:{c['pattern']})" for c in TRUTH_CUES), re.IGNORECASE)
 # advisory: a rationale that asks for new wording contradicts action rerender
 _REWORDING = re.compile(r"\breword|\bwording\b|\brephras|\bshould (?:say|read)\b", re.IGNORECASE)
 
@@ -101,9 +106,28 @@ def validate(register, blocks=None) -> list[str]:
     return errors
 
 
-def review_notes(register) -> list[str]:
+def uncovered_cues(register, blocks) -> list[tuple[int, str]]:
+    """(block, cue) for truth-dependent wording in the report body that no claim excerpt covers."""
+    spans = {}
+    for c in register.get("claims", []):
+        b = c.get("block")
+        if isinstance(b, int) and b < len(blocks) and (i := blocks[b]["text"].find(c.get("excerpt", ""))) >= 0:
+            spans.setdefault(b, []).append((i, i + len(c["excerpt"])))
+    out = []
+    for b in blocks:
+        if b["kind"] == "reference":
+            continue
+        for m in TRUTH_CUE.finditer(b["text"]):
+            if not any(s <= m.start() and m.end() <= e for s, e in spans.get(b["index"], [])):
+                out.append((b["index"], m.group(0)))
+    return out
+
+
+def review_notes(register, blocks=None) -> list[str]:
     """Advisory lines for the human approving the register; they never make it invalid."""
     out = []
+    for b, cue in uncovered_cues(register, blocks) if blocks is not None else []:
+        out.append(f"block {b}: truth-dependent wording {cue!r} is not covered by any claim excerpt")
     for c in register.get("claims", []):
         if c.get("action") == "rerender" and _REWORDING.search(c.get("rationale") or ""):
             out.append(f"{c.get('claim_id')}: action rerender keeps the excerpt verbatim, but the rationale "
@@ -144,13 +168,14 @@ def main() -> int:
     if a.local_run:
         loc = {"base": read_named(Path(a.local_run) / "recalc" / "adapted_model.xlsx")}
     reg = evaluate_register(reg, g, loc)
-    errors = validate(reg, extract(a.report)["blocks"])
+    blocks = extract(a.report)["blocks"]
+    errors = validate(reg, blocks)
     blockers = ready(reg)
     if a.out:
         Path(a.out).write_text(json.dumps(reg, indent=2, default=str))
     for e in errors:
         print(f"INVALID: {e}")
-    for r in review_notes(reg):
+    for r in review_notes(reg, blocks):
         print(f"REVIEW: {r}")
     for b in blockers:
         print(f"NOT READY: {b}")

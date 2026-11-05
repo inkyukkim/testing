@@ -5,7 +5,9 @@ Portable contract (Builder/Runner):
 CLI: python -m tools.build_run <spec.json> <out_dir> [--scenarios <yaml>]
      exit 0 built, 1 invalid spec, 2 blocked by the gap register (nothing is built)
 
-Steps: gap gate -> apply_mapping -> write constants into named input cells of a copy of the
+Steps: gap gate -> convention gate (the global model's declared conventions must match what
+profile_workbook detects in its formulas; a mismatch is a Model Profiler sign-off item, and
+parity against a wrong declaration would be meaningless) -> apply_mapping -> write constants into named input cells of a copy of the
 global model -> LibreOffice recalculation -> optional scenarios -> run_log with file hashes,
 tool versions and the provenance of every override.
 
@@ -94,6 +96,14 @@ def _versions(inputs=()) -> dict:
             "git_dirty_scope": scope}
 
 
+def convention_mismatches(model_path, conventions_path) -> list[str]:
+    """Declared vs detected conventions of the model (empty when no declaration exists)."""
+    from tools.profile_workbook import profile
+    if not Path(conventions_path).exists():
+        return []
+    return list(profile(model_path, conventions_path).get("convention_mismatches", []))
+
+
 def resolve_scenario(sset: dict, local: dict, base_values: dict) -> dict:
     out = {}
     for name, ref in sset.items():
@@ -135,6 +145,10 @@ def build_run(spec_path, out_dir, scenarios_path=None) -> dict:
         return finish("invalid", errors=gate.errors)
     if gate.blocked:
         return finish("blocked", blocking_gaps=gate.blocking)
+    mismatches = convention_mismatches(paths["model"], conv)
+    if mismatches:
+        return finish("invalid", errors=[f"convention mismatch (Model Profiler sign-off needed): {m}"
+                                         for m in mismatches])
     res = apply_mapping(spec, model, local, register)
     if res["errors"]:
         return finish("invalid", errors=res["errors"])

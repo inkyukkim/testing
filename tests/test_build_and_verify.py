@@ -120,6 +120,22 @@ def test_pasted_constant_is_caught(built, tmp_path):
     assert checks["V08"]["status"] == "fail"
 
 
+def test_parity_is_not_reported_under_a_contradicted_declaration(built, tmp_path):
+    """Round 2: with a wrong but supported declaration, V07 would have tested the wrong convention."""
+    tmp, spec, _ = built
+    shutil.copy(FIXTURES / "global_model.xlsx", tmp_path / "global_model.xlsx")
+    conv = (FIXTURES / "global_model.conventions.yaml").read_text()
+    (tmp_path / "global_model.conventions.yaml").write_text(
+        conv.replace("  method: mid_cycle_continuous", "  method: annual_step", 1))
+    s = json.loads(Path(spec).read_text())
+    s["model"] = str(tmp_path / "global_model.xlsx")
+    spec2 = tmp_path / "spec.json"
+    spec2.write_text(json.dumps(s))
+    c = {x["id"]: x for x in verify(tmp / "run", spec2)["checks"]}
+    assert c["V07"]["status"] == "fail" and "not evaluated" in c["V07"]["details"][0]
+    assert c["V08"]["status"] == "fail"
+
+
 def test_scenarios_use_references_only(tmp_path):
     spec = make_resolved(tmp_path)
     sc = tmp_path / "scenarios.yaml"
@@ -166,3 +182,21 @@ def test_git_dirty_ignores_files_outside_its_scope(tmp_path):
     assert git_state(tmp_path)[1] is True                       # unscoped: whole tree
     (tmp_path / "inputs" / "model.xlsx").write_text("changed")
     assert git_state(tmp_path, scope)[1] is True
+
+
+def test_convention_mismatch_blocks_the_build(tmp_path):
+    """Round 2 (Model Profiler): a wrong but supported declaration (annual_step) passed the engine,
+    so V07 would have tested parity against the wrong convention. The build now refuses."""
+    spec_path = make_resolved(tmp_path)
+    model = tmp_path / "global_model.xlsx"
+    shutil.copy(FIXTURES / "global_model.xlsx", model)
+    conv = (FIXTURES / "global_model.conventions.yaml").read_text()
+    wrong = conv.replace("  method: mid_cycle_continuous", "  method: annual_step", 1)
+    assert wrong != conv
+    (tmp_path / "global_model.conventions.yaml").write_text(wrong)
+    spec = json.loads(spec_path.read_text())
+    spec["model"] = str(model)
+    spec_path.write_text(json.dumps(spec))
+    log = build_run(spec_path, tmp_path / "run")
+    assert log["status"] == "invalid" and not (tmp_path / "run" / "adapted_model.xlsx").exists()
+    assert any("convention mismatch" in e and "annual_step" in e for e in log["errors"])

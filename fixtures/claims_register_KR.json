@@ -426,6 +426,61 @@
         "NHS",
         "PAS"
       ]
+    },
+    {
+      "claim_id": "C23",
+      "block": 281,
+      "excerpt": "driven mainly by longer overall survival",
+      "kind": "magnitude_judgement",
+      "expression": {
+        "op": "external"
+      },
+      "action": "human_review",
+      "rationale": "Attributes the QALY gain to overall survival; the model has no cell that splits the gain by health state, so a person must confirm the attribution on the adapted model or the phrase is dropped (D20)."
+    },
+    {
+      "claim_id": "C24",
+      "block": 290,
+      "excerpt": "This is below the threshold of £30,000 per QALY gained",
+      "kind": "threshold_comparison",
+      "expression": {
+        "op": "le",
+        "lhs": "res_icer",
+        "rhs": "wtp_threshold"
+      },
+      "action": "reword",
+      "rationale": "Truth re-evaluated against the local reference value; it is a reference value, not an official threshold (D09), and the figure is re-rendered in the local currency.",
+      "jurisdiction_terms": [
+        "£"
+      ]
+    },
+    {
+      "claim_id": "C25",
+      "block": 290,
+      "excerpt": "within the range of £20,000 to £30,000 per QALY that NICE normally considers to represent a cost-effective use of NHS resources",
+      "kind": "threshold_comparison",
+      "expression": {
+        "op": "all",
+        "of": [
+          {
+            "op": "ge",
+            "lhs": "res_icer",
+            "rhs": "wtp_threshold_lower"
+          },
+          {
+            "op": "le",
+            "lhs": "res_icer",
+            "rhs": "wtp_threshold"
+          }
+        ]
+      },
+      "action": "remove",
+      "rationale": "The local setting has a single reference value, not a range (D09), and the sentence cites NICE and NHS resources.",
+      "jurisdiction_terms": [
+        "NICE",
+        "NHS",
+        "£"
+      ]
     }
   ]
 }

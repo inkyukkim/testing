@@ -27,4 +27,4 @@ as a draft against a test-only build: GAP-001 and six human reviews remain open.
 **Gate 5** runs blind evaluations of all eight agents (`evals/`, `docs/gate5_agent_evals.md`). Rounds 1
 and 2 were exposed to fixture notes through the session's cached CLAUDE.md. Round 3 ran in a separate
 session on an orphan branch holding only the workspaces. It matched the earlier rounds within one to
-two items per agent, with no critical differences. Its five findings were fixed afterwards (D17–D19, accepted by the HEOR lead on 2026-11-05).
+two items per agent, with no critical differences. Its five findings were fixed afterwards (D17–D19, accepted by the HEOR lead on 2026-11-05), and so were the eight still open from round 2, including three claims added to the KR claims key (D20).

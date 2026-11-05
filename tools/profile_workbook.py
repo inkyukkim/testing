@@ -162,6 +162,18 @@ def _input_metadata(wb, sheet, col, row):
     return meta
 
 
+def _vector_metadata(wb, sheet, col, row, name):
+    """A column-vector input is labelled by the text header directly above it, e.g.
+    'qx male (lt_qx_male)' -> Parameter 'qx male'."""
+    if row <= 1:
+        return {}
+    h = wb[sheet].cell(row=row - 1, column=col).value
+    if not isinstance(h, str) or not h.strip():
+        return {}
+    label = re.sub(rf"\s*\({re.escape(name)}\)\s*$", "", h.strip()) or h.strip()
+    return {"Parameter": label}
+
+
 def detect_conventions(W: Workbook) -> dict:
     det = {"discount_factor_regions": [], "hcc_columns": [], "survival_forms": set(), "gpm_cap": False}
     for rid, reg in W.regions.items():
@@ -242,6 +254,8 @@ def profile(xlsx, conventions_yaml=None, structural_literals=STRUCTURAL_LITERALS
             entry["metadata"] = _input_metadata(W.wb, s, c1, r1)
             v = W.wb[s].cell(row=r1, column=c1).value
             entry["type"] = "number" if isinstance(v, (int, float)) and not isinstance(v, bool) else "text"
+        elif role == "input" and c1 == c2:
+            entry["metadata"] = _vector_metadata(W.wb, s, c1, r1, n)
         names_out[n] = entry
     deps_of = {}
     for n, e in names_out.items():

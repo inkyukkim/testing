@@ -11,7 +11,9 @@ limited to reading the run log and deciding whether to hand over or stop. Read C
 1. Run `python -m tools.build_run <approved spec.json> <run_dir> [--scenarios <scenarios.yaml>]`.
 2. Exit 2 (blocked): report each blocking gap id from the run log and stop. Do not edit the
    register, the spec or the local inputs to get past the gate; only a human resolves a gap.
-3. Exit 1 (invalid): report the INVALID lines and stop; the Input Mapper must fix the spec.
+3. Exit 1 (invalid): report the INVALID lines and stop. The Input Mapper must fix the spec,
+   except for `convention mismatch` lines: the global model's declaration contradicts its
+   formulas, and the Model Profiler's finding needs a human sign-off before anything is built.
 4. Exit 0 (built): report the run_log path, input hashes, tool versions and git state. If
    `git_dirty` is true, say so: the run is not reproducible from a commit. `git_dirty` covers
    only `git_dirty_scope` (tools, schemas and the run's declared inputs in the repository).

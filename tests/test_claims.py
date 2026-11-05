@@ -95,6 +95,23 @@ def test_rerender_with_a_rewording_rationale_gets_a_review_note():
     assert validate(reg, BLOCKS) == validate(KEY, BLOCKS), "advisory only"
 
 
+def test_truth_dependent_wording_must_be_covered_by_a_claim():
+    """Round 2: "driven mainly by longer overall survival" had no claim in the key (now C23, D20)."""
+    assert review_notes(KEY, BLOCKS) == []
+    reg = copy.deepcopy(KEY)
+    reg["claims"] = [c for c in reg["claims"] if c["claim_id"] != "C23"]
+    assert review_notes(reg, BLOCKS) == ["block 281: truth-dependent wording 'driven mainly by' is not covered by any claim excerpt"]
+
+
+def test_template_wording_rule_and_bare_uk_term():
+    from docx import Document
+    from tools.render_report import truth_cues, unconditioned_cues
+    assert unconditioned_cues(Document(FIXTURES / "report_template_KR.docx")) == []
+    assert truth_cues("{{if C02}}Drug A is cost-effective.{{endif}} See the cost-effectiveness ratio.") == []
+    assert len(truth_cues("Drug A increased QALYs by {{res_inc_qaly_disc|qaly}}.")) == 1
+    assert [h["term"] for h in lint([{"index": 0, "kind": "paragraph", "section": "", "text": "a UK trial"}])] == ["UK"]
+
+
 def test_rerendering_a_locally_false_claim_is_rejected(global_contexts, kr_contexts):
     reg = copy.deepcopy(KEY)
     claim(reg, "C03")["action"] = "rerender"

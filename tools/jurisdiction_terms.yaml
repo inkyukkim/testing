@@ -12,4 +12,4 @@ jurisdictions:
                        "national reference costs"]
     value_set: ["UK time trade-off value set", "UK value set", "UK population norms"]
     currency: ["£", "GBP"]
-    geography: ["England", "United Kingdom"]
+    geography: ["England", "United Kingdom", "UK"]

@@ -57,6 +57,7 @@ def test_final_render_refuses_while_not_ready(kr_render, tmp_path):
 def test_draft_renders_and_passes_every_check(kr_render):
     tmp, register, res = kr_render
     assert res["status"] == "draft" and res["currency"] == "KRW" and len(res["numbers"]) > 50
+    assert set(res["template"]) == {"file", "sha256"} and len(res["template"]["sha256"]) == 64, "content, not path"
     r, c = checks(tmp, register)
     assert r["overall"] == "pass", [x for x in r["checks"] if x["status"] != "pass"]
     banner = next(p for p in paragraphs(tmp / "report_KR.docx") if p.startswith("DRAFT"))
@@ -81,6 +82,17 @@ def test_template_with_a_literal_numeral_is_refused(kr_render, tmp_path):
     bad = tmp_path / "bad_template.docx"
     doc.save(bad)
     with pytest.raises(TemplateError, match="literal numerals"):
+        render(bad, SIDECAR, tmp / "run", CLAIMS, register, tmp_path / "x.docx", draft=True)
+
+
+def test_truth_dependent_wording_outside_a_conditional_is_refused(kr_render, tmp_path):
+    """Round 2: the writer added "driven mainly by longer overall survival" with no claim behind it."""
+    tmp, register, _ = kr_render
+    doc = Document(TEMPLATE)
+    doc.paragraphs[8].add_run(" The gain is driven mainly by longer overall survival.")
+    bad = tmp_path / "bad_template.docx"
+    doc.save(bad)
+    with pytest.raises(TemplateError, match="T1"):
         render(bad, SIDECAR, tmp / "run", CLAIMS, register, tmp_path / "x.docx", draft=True)
 
 

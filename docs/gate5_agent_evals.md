@@ -51,14 +51,14 @@
 | Report Writer (r1) | `{{st_cost_1\|money}}` refused as a "literal numeral" (digit after `_`) | Fixed in `docx_extract` |
 | Report Writer (r1) | R06 needs the DRAFT banner on the title page; undocumented | Documented in the agent definition |
 | Report Profiler (r1) | wrote outside its workspace | Prompts now require scratch files under `work/` |
-| Model Profiler (r2) | `annual_step` is a supported value, so the engine accepts a wrong declaration, and V07 would test parity against the wrong convention | **Open**: make a Model Profiler mismatch a blocking sign-off before the Model Verifier |
-| Input Mapper (r2) | `apply_mapping` does not check that subsequent-therapy shares sum to at most 1 (only the built model's `check_st_shares_ok` does) | Open |
-| Input Mapper (r2) | `mx_to_qx` with `carry_last_rate` also replaces the open-band age's own rate; `duration_to_doses` rule semantics undocumented | Open (documentation) |
-| Input Mapper (r2) | label-only confirmations for switches are weak evidence | Open |
-| Report Writer (r2) | no bare "UK" in the jurisdiction term list | Open |
-| Report Writer (r2) | truth-dependent prose with no claim behind it (e.g. "driven mainly by longer OS"); reworded claims only get a banned-term check | Open: Claims Analyst coverage rule |
-| Report Writer (r2) | life-table ranges have no label in the retained-inputs list | Open |
-| Report Verifier (r2) | provenance records a template path outside the workspace, which points at the answer-key template | Open: record template hash only |
+| Model Profiler (r2) | `annual_step` is a supported value, so the engine accepts a wrong declaration, and V07 would test parity against the wrong convention | Fixed: `build_run` refuses to build on a declared-vs-detected mismatch (exit 1, "convention mismatch"), and V07 reports "not evaluated" when V08 finds one |
+| Input Mapper (r2) | `apply_mapping` does not check that subsequent-therapy shares sum to at most 1 (only the built model's `check_st_shares_ok` does) | Fixed: registry `share_groups`, checked in the dry run in exact arithmetic without showing values |
+| Input Mapper (r2) | `mx_to_qx` with `carry_last_rate` also replaces the open-band age's own rate; `duration_to_doses` rule semantics undocumented | Fixed: both documented in the `apply_mapping` docstring (open band replaces age N and above; ceil counts doses starting before the limit, floor counts whole intervals) |
+| Input Mapper (r2) | label-only confirmations for switches are weak evidence | Fixed: a label confirming a switch must declare `means: switch_on/switch_off`, and the tool checks it against the retained value |
+| Report Writer (r2) | no bare "UK" in the jurisdiction term list | Fixed: added to `geography` (no hit in any existing report) |
+| Report Writer (r2) | truth-dependent prose with no claim behind it (e.g. "driven mainly by longer OS"); reworded claims only get a banned-term check | Fixed: `tools/truth_cues.yaml`. The renderer refuses truth-dependent wording outside a claim conditional (T1), and `claims` lists report wording no claim excerpt covers (REVIEW). This showed the key itself lacked the claim, so C23–C25 were added (D20) |
+| Report Writer (r2) | life-table ranges have no label in the retained-inputs list | Fixed: `profile_workbook` labels a column-vector input from the header above it |
+| Report Verifier (r2) | provenance records a template path outside the workspace, which points at the answer-key template | Fixed: provenance records template and sidecar as file name plus SHA-256 |
 
 ## Round 3: blind run
 
@@ -89,6 +89,8 @@
   - No hand-back restates a model value in its own words.
   - The Report Verifier quotes the verifier's own failure message, which contains the tampered and the traced ICER. That is allowed, as tool output.
   - The Claims Analyst quotes two report excerpts verbatim, with GBP thresholds. This is borderline: it is a quote from a file, not tool output.
+
+**Rescored against the 25-claim key (D20).** The Claims Analyst gets recall 96% in both rounds. Round 2: precision 49%, action agreement 96%, truth agreement 100%. Round 3: precision 45%, action agreement 88%, truth agreement 96%. Neither round has a critical difference. Both rounds registered the "driven mainly by" claim the key lacked. In round 3, C24 is another `rerender` where the key says `reword`, and C23 is a truth disagreement: the agent checked only direction, while the key holds the attribution not traceable to a cell.
 
 **Findings from round 3 (fixed after the round; decisions D17–D19, accepted).**
 

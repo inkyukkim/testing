@@ -30,7 +30,8 @@ tables), and every assertion you cannot trace to the model.
 
 ## Loop
 `python -m tools.claims <register> <report> <model> --global-scenarios <scenarios.yaml> [--local-run <run_dir>] --out <evaluated.json>`
-REVIEW lines are advisory: resolve each one (change the action or the rationale) or explain it
+REVIEW lines also list truth-dependent wording in the report (tools/truth_cues.yaml) that no
+claim excerpt covers: register a claim for it, or explain why it needs none. REVIEW lines are advisory: resolve each one (change the action or the rationale) or explain it
 to the human. Exit 1: fix every INVALID line (a K1 failure means the global report itself is wrong:
 report it, do not change the claim to make it pass). Exit 2 (not ready) is normal before
 the adapted model exists or while reviews are open; list the blockers for the human.

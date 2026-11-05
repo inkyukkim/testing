@@ -359,7 +359,8 @@
       "confirm_in_source": {
         "item": "KR-C02",
         "field": "unit",
-        "pattern": "mg/kg"
+        "pattern": "mg/kg",
+        "means": "switch_on"
       }
     },
     {
@@ -439,7 +440,8 @@
       "confirm_in_source": {
         "item": "KR-C07",
         "field": "value",
-        "pattern": "mg flat"
+        "pattern": "mg flat",
+        "means": "switch_off"
       }
     },
     {

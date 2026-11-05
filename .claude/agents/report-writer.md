@@ -30,6 +30,11 @@ truth-dependent choice. Read CLAUDE.md first.
 - human_review: `{{review Cxx}}` until a person closes it; a final report cannot contain one.
 Put `{{draft_banner}}` on the title page (before the first heading): the verifier looks for the
 DRAFT banner there.
+Wording whose truth depends on results (verdicts such as "cost-effective" or "dominant",
+attributions such as "driven mainly by", rankings, signed changes such as "increased ... by
+{{x}}"; the list is tools/truth_cues.yaml) must sit inside `{{if Cxx}}`/`{{ifnot Cxx}}`/`{{ifany Cxx}}`
+on a claim that states it. The renderer refuses the template otherwise (T1). If no claim covers
+the wording, drop it or ask for a claim; do not add prose the register does not support.
 Write no numerals anywhere in the template body (section and table numbers, citations
 `[n]` and the title page are exempt). Do not write source-jurisdiction terms outside the References.
 

@@ -17,13 +17,28 @@ Operations (whitelist):
     per_period_to_per_week   currency per month -> per week; period length from model
                              days_per_year / registry months_per_year, cross-checked against
                              any "(N days)" stated in the source unit
-    duration_to_doses        years -> dose count with a declared rule:
-                             doses_starting_within (ceil) | complete_intervals_within (floor)
+    duration_to_doses        years -> dose count with a declared rule, with
+                             weeks = years x days_per_year (model) / days_per_week (registry) and
+                             interval = the input named by interval_weeks_from (its mapped
+                             value if this spec maps it, else the global value):
+                             doses_starting_within      ceil(weeks / interval): every dose that
+                                                        starts before the limit (doses at weeks
+                                                        0, interval, 2 x interval, ...)
+                             complete_intervals_within  floor(weeks / interval): only doses whose
+                                                        whole interval ends within the limit
     mx_to_qx                 central death rates -> qx by single age, method exponential
-                             (1 - exp(-mx)) or actuarial (mx / (1 + mx/2)); ages past an
-                             open "N+" band only with open_band: carry_last_rate
+                             (1 - exp(-mx)) or actuarial (mx / (1 + mx/2)). With an open "N+"
+                             band and open_band: carry_last_rate, the band's rate is used for
+                             age N itself AND every model age above N (the band's single-age
+                             rate is not kept separately: the band row is the rate for N and over)
     retain_global            keep the global value; needs a gap_id (retain_* gap) or
-                             basis structural_setting | confirmed_by_local_text
+                             basis structural_setting | confirmed_by_local_text. A text pattern
+                             must contain {value}, except for switch and text inputs; a label
+                             confirming a switch declares means: switch_on | switch_off and must
+                             match the retained value
+
+Share groups (registry share_groups): inputs that must sum to at most one, e.g. one arm's
+subsequent-therapy shares, are checked on the values the spec would produce.
 """
 from __future__ import annotations
 
@@ -88,6 +103,34 @@ def schema_errors(spec: dict) -> list[str]:
     return errors
 
 
+def _resulting_value(m, model, local):
+    """Value a copy or retain_global entry will give its target, or None if not known in a dry run."""
+    if m.get("operation") == "retain_global":
+        return model[m["target"]]["value"]
+    if m.get("operation") == "copy":
+        return (local.get((m.get("args") or {}).get("source")) or {}).get("value")
+    return None
+
+
+def share_group_errors(spec: dict, model: dict, local: dict) -> list[str]:
+    """Registry share_groups: inputs whose values must sum to at most one per group (e.g. the
+    subsequent-therapy shares of one arm). Checked in exact arithmetic; values are not shown."""
+    errors = []
+    by_target = {m.get("target"): m for m in spec.get("mappings", [])}
+    for sg in REGISTRY.get("share_groups", []):
+        pat, groups = re.compile(sg["pattern"]), {}
+        for name in model:
+            if (mt := pat.match(name)):
+                groups.setdefault(mt.group("group"), []).append(name)
+        for g, names in sorted(groups.items()):
+            vals = [_resulting_value(by_target[n], model, local) if n in by_target else None for n in names]
+            if any(not isinstance(v, (int, float)) or isinstance(v, bool) for v in vals):
+                continue                       # a gap or a converted value: checked in the built model
+            if sum(Fraction(str(v)) for v in vals) > REGISTRY["constants"][sg["max_sum"]]:
+                errors.append(f"{g}: {sg['description']} ({', '.join(sorted(names))})")
+    return errors
+
+
 def validate_spec(spec: dict, model: dict, local: dict, register: dict) -> list[str]:
     errors = schema_errors(spec)
     gaps = {g["gap_id"]: g for g in register.get("gaps", [])}
@@ -145,7 +188,17 @@ def validate_spec(spec: dict, model: dict, local: dict, register: dict) -> list[
                         errors.append(f"{t}: label-only confirmation of a {dimension(tgt['unit'])} input; "
                                       "include {value} in the pattern or use basis structural_setting")
                     else:
-                        review.append(f"{t}: confirmed by a label in {c.get('item')}, not by its value")
+                        # a label can confirm a switch only by declaring which state it means;
+                        # the declared state must be the retained value
+                        means = c.get("means")
+                        if dimension(tgt["unit"]) == "switch" and means not in ("switch_on", "switch_off"):
+                            errors.append(f"{t}: label confirmation of a switch must declare means: "
+                                          "switch_on or switch_off")
+                        elif means and REGISTRY["constants"][means] != tgt["value"]:
+                            errors.append(f"{t}: label in {c.get('item')} is declared to mean {means}, "
+                                          "which is not the retained value")
+                        review.append(f"{t}: confirmed by a label in {c.get('item')}, not by its value"
+                                      + (f" (declared to mean {means})" if means else ""))
                 item = local.get(c.get("item"))
                 if item is None:
                     errors.append(f"{t}: confirm_in_source item {c.get('item')!r} not found")
@@ -205,6 +258,7 @@ def validate_spec(spec: dict, model: dict, local: dict, register: dict) -> list[
                 if beyond and not (has_open and args.get("open_band") == "carry_last_rate"):
                     errors.append(f"{t}: model ages {beyond[0]}-{beyond[-1]} have no local rate; "
                                   "declare open_band: carry_last_rate (and its gap entry) or supply rates")
+    errors += share_group_errors(spec, model, local)
     if remapped_currency:
         errors += [f"{t}: retains a global {model[t]['unit']} value although the currency is remapped"
                    for t in retained_currency]

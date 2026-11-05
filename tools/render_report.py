@@ -21,11 +21,16 @@ Directives (inside one paragraph or table cell):
 Paragraph directives (the whole paragraph):
     {{draft_banner}}  {{rounding_note}}  {{retained_inputs}}
 A paragraph left empty after conditional removal is deleted.
+
+Wording whose truth depends on results (tools/truth_cues.yaml: verdicts, attributions such as
+"driven mainly by", rankings, signed changes such as "increased ... by {{x}}") must sit inside a
+claim conditional; the renderer refuses a template where it does not (T1).
 """
 from __future__ import annotations
 
 import argparse
 import copy
+import hashlib
 import json
 import re
 import sys
@@ -36,7 +41,7 @@ from docx import Document
 from docx.table import Table
 from docx.text.paragraph import Paragraph
 
-from tools.claims import evaluate_register, ready, validate
+from tools.claims import evaluate_register, ready, validate, TRUTH_CUE
 from tools.docx_extract import extract
 from tools.workbook_io import list_names, read_named
 
@@ -234,6 +239,22 @@ def rounding_needed(contexts, prov) -> bool:
     return any(r.needs_footnote for r in results)
 
 
+_CONDITIONAL = re.compile(r"\{\{(?:if|ifnot|ifany) C\w+\}\}.*?\{\{endif\}\}", re.DOTALL)
+
+
+def truth_cues(text: str, conditionals: bool = True) -> list[str]:
+    """Truth-dependent wording in text; with conditionals, text inside claim conditionals is
+    exempt. Placeholders count as '#'."""
+    outside = _CONDITIONAL.sub(" ", text) if conditionals else text
+    outside = re.sub(r"\{\{[^}]*\}\}", "#", outside)
+    return [outside[max(0, m.start() - 40):m.end() + 20].strip() for m in TRUTH_CUE.finditer(outside)]
+
+
+def unconditioned_cues(doc) -> list[str]:
+    texts = [p.text for p in doc.paragraphs] + [c.text for tb in doc.tables for r in tb.rows for c in r.cells]
+    return [hit for tx in dict.fromkeys(texts) for hit in truth_cues(tx)]
+
+
 def render(template, sidecar, run_dir, claims_path, register_path, out, draft=False) -> dict:
     from tools.gap_register import load as load_register
     from tools.profile_workbook import profile
@@ -263,6 +284,9 @@ def render(template, sidecar, run_dir, claims_path, register_path, out, draft=Fa
     currency = contexts["base"]["currency_code"]
     R = Renderer(contexts, list_names(recalculated), str(recalculated), claims, side.get("labels", {}), draft, currency)
     doc = Document(template)
+    cues = unconditioned_cues(doc)
+    if cues:
+        raise TemplateError(f"T1 truth-dependent wording outside a claim conditional: {cues[:5]}")
     section = None
     for el in list(doc.element.body.iterchildren()):
         if el.tag.endswith("}p"):
@@ -322,7 +346,11 @@ def render(template, sidecar, run_dir, claims_path, register_path, out, draft=Fa
             _delete(rp)
     Path(out).parent.mkdir(parents=True, exist_ok=True)
     doc.save(out)
-    manifest = {"document": str(out), "template": str(template), "model_run": str(run_dir), "draft": draft,
+    # template and sidecar are identified by content, not by path: a path can point outside the
+    # workspace (e.g. at an evaluation answer key) and says nothing about what was rendered
+    ident = lambda f: {"file": Path(f).name, "sha256": hashlib.sha256(Path(f).read_bytes()).hexdigest()}
+    manifest = {"document": str(out), "template": ident(template), "sidecar": ident(sidecar),
+                "model_run": str(run_dir), "draft": draft,
                 "blockers": blockers, "currency": currency, "rounding_footnote": footnote,
                 "claims_used": R.used, "numbers": R.prov}
     Path(out).with_suffix(".provenance.json").write_text(json.dumps(manifest, indent=2, default=str))

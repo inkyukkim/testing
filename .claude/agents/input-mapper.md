@@ -56,6 +56,8 @@ arithmetic. Read CLAUDE.md first; its design principle is binding.
 - `retained_source` is a list of model names or item_ids, one per retained or derived value.
 - `confirm_in_source` must include `{value}` unless the target is a switch or text input; a
   label alone (e.g. "Lifetime") does not confirm a number, so retain it as structural_setting.
+  A label confirming a switch must declare `means: switch_on` or `switch_off`; the tool checks
+  that the declared state is the retained value.
 - Where the local setting has a single reference threshold instead of a range, map the lower
   bound from the same item and say so (decision D09); never keep a global bound.
 - Gap register free text must not contain numerals (rule R7); write no YAML anchors (rule R8).

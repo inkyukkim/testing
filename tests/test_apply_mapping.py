@@ -104,6 +104,15 @@ def test_dose_rule_matters(parts):
     (lambda s, l: entry(s, "lt_qx_male")["args"].pop("open_band"), "have no local rate"),
     (lambda s, l: entry(s, "int_pfs_shape").pop("gap_id"), "needs a gap_id or basis"),
     (lambda s, l: entry(s, "prop_male").update(gap_id="GAP-002"), "does not list this target"),
+    # round 2: shares were checked only in the built model (check_st_shares_ok)
+    (lambda s, l: l["KR-T04"].update(value=0.99), "int: subsequent-therapy shares sum to more than one"),
+    (lambda s, l: entry(s, "comp_st_share_2").update(status="retained", operation="retain_global", args={},
+                                                     basis="structural_setting") or l["KR-T07"].update(value=0.9),
+     "comp: subsequent-therapy shares sum to more than one"),
+    # round 2: a label alone was weak evidence for a switch
+    (lambda s, l: entry(s, "int_dose_weight_based")["confirm_in_source"].pop("means"), "must declare means"),
+    (lambda s, l: entry(s, "comp_dose_weight_based")["confirm_in_source"].update(means="switch_on"),
+     "which is not the retained value"),
 ])
 def test_validation_catches(parts, mutate, expect):
     spec, model, local, register = parts
@@ -136,7 +145,8 @@ def test_label_only_confirmation_rejected_for_numbers_and_listed_for_switches(pa
     assert any("label-only confirmation" in x for x in validate_spec(spec, model, local, register))
     spec2, *_ = load_all(SPEC)
     res = apply_mapping(spec2, model, local, register, dry_run=True)
-    assert "int_dose_weight_based: confirmed by a label in KR-C02, not by its value" in res["review"]
+    assert ("int_dose_weight_based: confirmed by a label in KR-C02, not by its value "
+            "(declared to mean switch_on)") in res["review"]
     assert any(r.startswith("cycle_length_days: retained as a structural setting") for r in res["review"])
 
 

@@ -12,7 +12,8 @@ adapted_model.xlsx, recalc/adapted_model.xlsx). Checks:
   V04 round_trip     re-applying the mapping spec reproduces every override exactly
   V05 recalc_clean   no error values after recalculation
   V06 model_checks   every OK/FAIL check cell reads OK
-  V07 parity         independent engine within 1e-6 (abs and rel) under the declared conventions
+  V07 parity         independent engine within 1e-6 (abs and rel) under the declared conventions;
+                     not evaluated (fail) when V08 finds the declaration contradicts the formulas
   V08 conventions    conventions detected from formulas match the declaration; no hardcoding
   V09 invariants     trace invariants (partition, monotonicity, cap, ToT <= OS, dosing schedule)
   V10 currency       every currency-valued input was mapped from a local source (none retained)
@@ -114,15 +115,19 @@ def verify(run_dir, spec_path, register_override=None, local_override=None) -> d
     add("V06", "model_checks", d)
 
     conv_path = glob_path.with_name(glob_path.stem + ".conventions.yaml")
+    prof = profile(adapted, conv_path)
+    mismatches = list(prof.get("convention_mismatches", []))
     try:
         conv = load_conventions(conv_path)
-        add("V07", "parity", parity(values, conv))
+        if mismatches:   # parity under a declaration the formulas contradict proves nothing
+            add("V07", "parity", ["not evaluated: declared conventions disagree with the formulas (see V08)"])
+        else:
+            add("V07", "parity", parity(values, conv))
     except ConventionError as e:
         conv = None
         add("V07", "parity", [f"engine refuses declared conventions: {e}"])
 
-    prof = profile(adapted, conv_path)
-    d = list(prof.get("convention_mismatches", []))
+    d = list(mismatches)
     d += [f"hardcoding: {f}" for f in prof["hardcoding_findings"]]
     add("V08", "conventions", d)
 

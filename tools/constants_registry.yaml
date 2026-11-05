@@ -9,6 +9,12 @@ constants:
   switch_on: 1
   # wording rule: a change is called negligible if |relative change| is below this
   negligible_rel_change: 0.001
+  share_total_max: 1
+share_groups:
+  # inputs whose values must sum to at most constants[max_sum], one group per (?P<group>) match
+  - pattern: '^(?P<group>[a-z]+)_st_share_\d+$'
+    max_sum: share_total_max
+    description: subsequent-therapy shares sum to more than one
 units:
   # unit string as written in a model or local input file -> dimension
   "-": dimensionless
