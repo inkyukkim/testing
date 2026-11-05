@@ -1,0 +1,59 @@
+# JSON Schema (draft 2020-12) for claims registers, written in YAML.
+# Produced by the Claims Analyst; truth values are filled by tools/claims.py, never by the agent.
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Claims register
+type: object
+required: [schema_version, report, model, local_context, claims]
+additionalProperties: false
+properties:
+  schema_version: {type: integer, enum: [1]}
+  note: {type: string}
+  report: {type: string}
+  model: {type: string}
+  local_context:
+    type: object
+    required: [country, jurisdiction_from, adapted_model]
+    additionalProperties: false
+    properties:
+      country: {type: string}
+      jurisdiction_from: {type: string, description: key in tools/jurisdiction_terms.yaml}
+      adapted_model: {type: string, enum: [built, pending]}
+  claims:
+    type: array
+    items:
+      type: object
+      required: [claim_id, block, excerpt, kind, expression, action, rationale]
+      additionalProperties: false
+      properties:
+        claim_id: {type: string, pattern: "^C[0-9]{2}$"}
+        block: {type: integer, description: block index from tools/docx_extract.py}
+        excerpt: {type: string, description: verbatim text from the block that carries the claim}
+        kind:
+          type: string
+          enum: [threshold_comparison, ranking, sensitivity_ranking, magnitude_judgement, model_check,
+                 overall_conclusion, jurisdiction_specific, external_assertion_untraceable,
+                 scope_statement, rounding_disclosure]
+        expression: {type: [object, "null"], description: tools/evaluate_claim.py expression; null if not evaluable}
+        jurisdiction_terms: {type: array, items: {type: string}}
+        action:
+          type: string
+          enum: [rerender, regenerate, reword, remove, human_review]
+          x-meaning:
+            rerender: keep the sentence; numbers are re-rendered from the adapted model; requires local truth
+            regenerate: the sentence was generated from data (rankings, selections); rebuild it from the local evaluation
+            reword: keep the meaning, replace jurisdiction-specific wording (agency, payer, sources, threshold)
+            remove: the claim does not apply in the local setting
+            human_review: a person must decide (untraceable assertion, missing local scenario set, judgement)
+        rationale: {type: string}
+        truth_global: {description: filled by tools/claims.py}
+        truth_local: {description: filled by tools/claims.py}
+        evidence_local: {description: filled by tools/claims.py}
+x-rules:
+  - K1 an evaluable claim must be true on the global model (otherwise the global report is wrong)
+  - K2 external_assertion_untraceable -> human_review; jurisdiction_specific -> reword, remove or human_review
+    (a local clinical fact such as the standard of care needs review); overall_conclusion -> reword or remove
+  - K3 regenerate only for ranking, sensitivity_ranking, threshold_comparison or magnitude_judgement with an expression
+  - K4 a claim whose local truth is false may not be rerendered
+  - K5 expressions contain no numeric literals
+  - K6 excerpt must occur verbatim in the referenced block
+  - READY the Report Writer may start only when no rerender/regenerate claim is pending and no human_review is open

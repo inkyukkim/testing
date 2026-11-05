@@ -1,0 +1,1071 @@
+{
+  "overrides": {
+    "country": "Republic of Korea",
+    "currency_code": "KRW",
+    "price_year": 2025,
+    "perspective": "Healthcare system (NHIS insurer plus patient out-of-pocket)",
+    "dr_costs": 0.045,
+    "dr_outcomes": 0.045,
+    "wtp_threshold": 50000000,
+    "wtp_threshold_lower": 50000000,
+    "cycle_length_days": 7,
+    "days_per_year": 365.25,
+    "lifetime_check_tol": 0.001,
+    "use_gpm_cap": 1,
+    "use_age_util_adj": 1,
+    "psa_seed": 20251027,
+    "psa_iterations": 1000,
+    "time_horizon_years": 40,
+    "weight_mean_kg": 64.5,
+    "weight_sd_kg": 11.8,
+    "prop_male": 0.6,
+    "baseline_age": 62,
+    "lt_age": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110
+    ],
+    "lt_qx_male": [
+      0.0004209113919351193,
+      0.00042291054811316453,
+      0.0004259092748833959,
+      0.0004279084210657702,
+      0.00043090713284243964,
+      0.0004339058356229719,
+      0.0004379040920030608,
+      0.000441902332390276,
+      0.00044590055678439544,
+      0.0004508983147872847,
+      0.00045589604780138515,
+      0.00046189329443324656,
+      0.0004688900366915938,
+      0.0004758867299728964,
+      0.0004828833742774874,
+      0.000491878987846861,
+      0.0005018740190816384,
+      0.0005118689503668117,
+      0.000523862735976488,
+      0.0005368558413055835,
+      0.0005508482273768323,
+      0.0005658398522159214,
+      0.0005828300885211135,
+      0.0006018188343557274,
+      0.0006228059757944493,
+      0.0006467907406326745,
+      0.0006717742585689024,
+      0.0006997550571566924,
+      0.0007307328845911343,
+      0.0007657066968947968,
+      0.0008026776817796621,
+      0.0008446430880373335,
+      0.0008906031773651124,
+      0.0009415564572833324,
+      0.0009975021636273729,
+      0.0010594383984501299,
+      0.0011273640471407553,
+      0.0012032754828020797,
+      0.0012861721706768359,
+      0.00137804961640986,
+      0.0014789053400988683,
+      0.0015907334402102125,
+      0.001714528513810487,
+      0.0018502861062070775,
+      0.0019999973346682687,
+      0.002165651585427475,
+      0.0023482385639692627,
+      0.0025497438670585293,
+      0.002772150474917745,
+      0.0030164413711946114,
+      0.003287584022069523,
+      0.003585556485343644,
+      0.003915315088087623,
+      0.004277823932783198,
+      0.004679019123477568,
+      0.0051208435467064994,
+      0.0056082149176311935,
+      0.00614603537980829,
+      0.0067381958613697,
+      0.00739253976030152,
+      0.008112911249943955,
+      0.008908085787510345,
+      0.009784814122077323,
+      0.010751781917995196,
+      0.011816628725934586,
+      0.012990880523347181,
+      0.01428498736837669,
+      0.015711269828958097,
+      0.01728290714710934,
+      0.019014892039109554,
+      0.020921053730926786,
+      0.023021858235732107,
+      0.02533358013783238,
+      0.027879003234558497,
+      0.03067953060704065,
+      0.03376190501512122,
+      0.03715034416466256,
+      0.04087704438780948,
+      0.04497236333127652,
+      0.049470422780327095,
+      0.054410749207368325,
+      0.05983228554500142,
+      0.06577876453867049,
+      0.072297333486803,
+      0.07943714767086041,
+      0.08725341509666795,
+      0.09580117173246083,
+      0.10514089707532392,
+      0.11533567525690647,
+      0.1264509521150975,
+      0.1385549421212674,
+      0.15171702337069393,
+      0.16600844285335736,
+      0.18150009644307386,
+      0.19826167306720854,
+      0.2163595707514293,
+      0.23585750849467468,
+      0.256811079927607,
+      0.2792673392607711,
+      0.3032621145516392,
+      0.32881401193962245,
+      0.32881401193962245,
+      0.32881401193962245,
+      0.32881401193962245,
+      0.32881401193962245,
+      0.32881401193962245,
+      0.32881401193962245,
+      0.32881401193962245,
+      0.32881401193962245,
+      0.32881401193962245,
+      0.32881401193962245
+    ],
+    "lt_qx_female": [
+      0.00020797836949970616,
+      0.00020897816102150024,
+      0.00020997795154342747,
+      0.0002119775295879034,
+      0.0002129773171105631,
+      0.00021397710363335598,
+      0.0002159766736795632,
+      0.00021697645720297754,
+      0.0002189760212504277,
+      0.00022097558129885453,
+      0.0002239749138731595,
+      0.00022597446392380593,
+      0.0002289737815013293,
+      0.00023297285760814912,
+      0.00023597215419057793,
+      0.00023997120230390134,
+      0.0002439702344210204,
+      0.0002489690020728297,
+      0.0002549674902634358,
+      0.00026096594246305393,
+      0.0002669643586721282,
+      0.00027496219096589947,
+      0.0002829599592772958,
+      0.0002919573721492652,
+      0.0003019544025902876,
+      0.0003129510206103525,
+      0.00032594686777387416,
+      0.00033994220655009233,
+      0.0003549369949558123,
+      0.0003719308165790469,
+      0.0003909235694617985,
+      0.0004119151396545506,
+      0.00043490540121726706,
+      0.0004608937558268078,
+      0.0004888804589859852,
+      0.0005208643030670812,
+      0.0005558454606425789,
+      0.0005948230226022755,
+      0.0006387958829792151,
+      0.000686764069531165,
+      0.0007397262675248317,
+      0.0007986808844967497,
+      0.000864625995345758,
+      0.0009375602155167195,
+      0.0010174820137849316,
+      0.001107386394645804,
+      0.0012072706617097806,
+      0.0013171318194625803,
+      0.0014399622580218985,
+      0.0015757571888902477,
+      0.0017265078675919865,
+      0.0018932056211282688,
+      0.0020788362207018185,
+      0.002284386808003025,
+      0.0025128375248185675,
+      0.0027651698555389848,
+      0.0030463504293153365,
+      0.0033583480914497477,
+      0.0037031264529139296,
+      0.004086626920652425,
+      0.004511791151934008,
+      0.004983540749440851,
+      0.00550578728883544,
+      0.0060854084388635155,
+      0.0067282631936650406,
+      0.007441176334247568,
+      0.00823193055929261,
+      0.009108266135285481,
+      0.01007985428430147,
+      0.011157290552458288,
+      0.012350103695217385,
+      0.01367365456695957,
+      0.015139231915806461,
+      0.016762912278473707,
+      0.018560590771495855,
+      0.02055285082932201,
+      0.022758038523397306,
+      0.025199066890690847,
+      0.027901361760360066,
+      0.030889850328383872,
+      0.03419564853706181,
+      0.03785104362855929,
+      0.041890301751036696,
+      0.04635233533369132,
+      0.05127945797182454,
+      0.05671611772157381,
+      0.06271323717913202,
+      0.06932206869175772,
+      0.07660113678850022,
+      0.0846117621163529,
+      0.09341909236397428,
+      0.10309201230023002,
+      0.1137037355358792,
+      0.1253329680844688,
+      0.1380577448952659,
+      0.15196044565221822,
+      0.16712441024147362,
+      0.18363359576361005,
+      0.2015692179050872,
+      0.22100994534274243,
+      0.2420273683543649,
+      0.2420273683543649,
+      0.2420273683543649,
+      0.2420273683543649,
+      0.2420273683543649,
+      0.2420273683543649,
+      0.2420273683543649,
+      0.2420273683543649,
+      0.2420273683543649,
+      0.2420273683543649,
+      0.2420273683543649
+    ],
+    "int_pfs_shape": 0.95,
+    "int_pfs_scale": 12,
+    "int_pfs_corr": -0.35,
+    "int_os_shape": 0.85,
+    "int_os_scale": 32,
+    "int_os_corr": -0.4,
+    "int_tot_shape": 0.9,
+    "int_tot_scale": 10,
+    "int_tot_corr": -0.3,
+    "int_p_death_first_pfs": 0.15,
+    "int_rdi": 0.95,
+    "comp_pfs_shape": 1.25,
+    "comp_pfs_scale": 7,
+    "comp_pfs_corr": -0.3,
+    "comp_os_shape": 1.15,
+    "comp_os_scale": 16,
+    "comp_os_corr": -0.38,
+    "comp_tot_shape": 1.4,
+    "comp_tot_scale": 4.5,
+    "comp_tot_corr": -0.25,
+    "comp_p_death_first_pfs": 0.12,
+    "comp_rdi": 0.9,
+    "int_dose_weight_based": 1,
+    "int_dose_mg": 2,
+    "int_vial_mg": 100,
+    "int_vial_price": 1050000,
+    "int_admin_interval_weeks": 3,
+    "int_admin_cost_per_admin": 95000,
+    "int_ae_cost": 1600000,
+    "comp_dose_weight_based": 0,
+    "comp_dose_mg": 500,
+    "comp_vial_mg": 100,
+    "comp_vial_price": 84000,
+    "comp_admin_interval_weeks": 3,
+    "comp_max_doses": 6,
+    "comp_admin_cost_per_admin": 95000,
+    "comp_ae_cost": 3100000,
+    "c_pf_week": 137987.6796714579,
+    "c_pd_week": 241478.43942505133,
+    "c_terminal": 4500000,
+    "st_cost_1": 3900000,
+    "st_cost_2": 38000000,
+    "st_cost_3": 21000000,
+    "int_st_share_1": 0.55,
+    "int_st_share_2": 0,
+    "int_st_share_3": 0.08,
+    "comp_st_share_1": 0.35,
+    "comp_st_share_2": 0.25,
+    "comp_st_share_3": 0.06,
+    "u_pf": 0.8,
+    "u_pd": 0.66,
+    "int_ae_qaly_loss": 0.008,
+    "comp_ae_qaly_loss": 0.015,
+    "gpu_intercept": 0.95,
+    "gpu_male": 0.021,
+    "gpu_age": -0.00026,
+    "gpu_age2": -3.3e-05,
+    "int_max_doses": 35
+  },
+  "provenance": {
+    "country": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-S01",
+        "sheet": "Settings_KR",
+        "cell": "C4"
+      }
+    },
+    "currency_code": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-S02",
+        "sheet": "Settings_KR",
+        "cell": "C5"
+      }
+    },
+    "price_year": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-S03",
+        "sheet": "Settings_KR",
+        "cell": "C6"
+      }
+    },
+    "perspective": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-S04",
+        "sheet": "Settings_KR",
+        "cell": "C7"
+      }
+    },
+    "dr_costs": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-S05",
+        "sheet": "Settings_KR",
+        "cell": "C8"
+      }
+    },
+    "dr_outcomes": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-S06",
+        "sheet": "Settings_KR",
+        "cell": "C9"
+      }
+    },
+    "wtp_threshold": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-S07",
+        "sheet": "Settings_KR",
+        "cell": "C10"
+      }
+    },
+    "wtp_threshold_lower": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-S07",
+        "sheet": "Settings_KR",
+        "cell": "C10"
+      }
+    },
+    "cycle_length_days": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": null,
+      "retained_from": "Inputs_Settings!C8"
+    },
+    "days_per_year": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": null,
+      "retained_from": "Inputs_Settings!C9"
+    },
+    "lifetime_check_tol": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": null,
+      "retained_from": "Inputs_Settings!C15"
+    },
+    "use_gpm_cap": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": null,
+      "retained_from": "Inputs_Settings!C16"
+    },
+    "use_age_util_adj": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": null,
+      "retained_from": "Inputs_Settings!C17"
+    },
+    "psa_seed": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": null,
+      "retained_from": "PSA_Placeholder!B12"
+    },
+    "psa_iterations": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": null,
+      "retained_from": "PSA_Placeholder!B13"
+    },
+    "time_horizon_years": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": null,
+      "retained_from": "Inputs_Settings!C10"
+    },
+    "weight_mean_kg": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-P01",
+        "sheet": "Population_KR",
+        "cell": "C4"
+      }
+    },
+    "weight_sd_kg": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-P02",
+        "sheet": "Population_KR",
+        "cell": "C5"
+      }
+    },
+    "prop_male": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-005",
+      "retained_from": "Inputs_Population!C5"
+    },
+    "baseline_age": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-005",
+      "retained_from": "Inputs_Population!C4"
+    },
+    "lt_age": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": null,
+      "retained_from": "Inputs_LifeTable!A4:A114"
+    },
+    "lt_qx_male": {
+      "operation": "mx_to_qx",
+      "status": "mapped",
+      "gap_id": "GAP-004",
+      "source": {
+        "item_id": "KR-L01",
+        "sheet": "LifeTable_KR",
+        "cell": "B6:B106"
+      },
+      "constants": {
+        "method": "exponential",
+        "open_band": "carry_last_rate"
+      }
+    },
+    "lt_qx_female": {
+      "operation": "mx_to_qx",
+      "status": "mapped",
+      "gap_id": "GAP-004",
+      "source": {
+        "item_id": "KR-L02",
+        "sheet": "LifeTable_KR",
+        "cell": "C6:C106"
+      },
+      "constants": {
+        "method": "exponential",
+        "open_band": "carry_last_rate"
+      }
+    },
+    "int_pfs_shape": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-006",
+      "retained_from": "Inputs_Clinical!C4"
+    },
+    "int_pfs_scale": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-006",
+      "retained_from": "Inputs_Clinical!C5"
+    },
+    "int_pfs_corr": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-006",
+      "retained_from": "Inputs_Clinical!C6"
+    },
+    "int_os_shape": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-006",
+      "retained_from": "Inputs_Clinical!C7"
+    },
+    "int_os_scale": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-006",
+      "retained_from": "Inputs_Clinical!C8"
+    },
+    "int_os_corr": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-006",
+      "retained_from": "Inputs_Clinical!C9"
+    },
+    "int_tot_shape": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-006",
+      "retained_from": "Inputs_Clinical!C10"
+    },
+    "int_tot_scale": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-006",
+      "retained_from": "Inputs_Clinical!C11"
+    },
+    "int_tot_corr": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-006",
+      "retained_from": "Inputs_Clinical!C12"
+    },
+    "int_p_death_first_pfs": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-006",
+      "retained_from": "Inputs_Clinical!C13"
+    },
+    "int_rdi": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-006",
+      "retained_from": "Inputs_Clinical!C14"
+    },
+    "comp_pfs_shape": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-006",
+      "retained_from": "Inputs_Clinical!C15"
+    },
+    "comp_pfs_scale": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-006",
+      "retained_from": "Inputs_Clinical!C16"
+    },
+    "comp_pfs_corr": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-006",
+      "retained_from": "Inputs_Clinical!C17"
+    },
+    "comp_os_shape": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-006",
+      "retained_from": "Inputs_Clinical!C18"
+    },
+    "comp_os_scale": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-006",
+      "retained_from": "Inputs_Clinical!C19"
+    },
+    "comp_os_corr": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-006",
+      "retained_from": "Inputs_Clinical!C20"
+    },
+    "comp_tot_shape": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-006",
+      "retained_from": "Inputs_Clinical!C21"
+    },
+    "comp_tot_scale": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-006",
+      "retained_from": "Inputs_Clinical!C22"
+    },
+    "comp_tot_corr": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-006",
+      "retained_from": "Inputs_Clinical!C23"
+    },
+    "comp_p_death_first_pfs": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-006",
+      "retained_from": "Inputs_Clinical!C24"
+    },
+    "comp_rdi": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-006",
+      "retained_from": "Inputs_Clinical!C25"
+    },
+    "int_dose_weight_based": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": null,
+      "retained_from": "Inputs_Costs!C4"
+    },
+    "int_dose_mg": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-C02",
+        "sheet": "Costs_KR",
+        "cell": "C5"
+      }
+    },
+    "int_vial_mg": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-C03",
+        "sheet": "Costs_KR",
+        "cell": "C6"
+      }
+    },
+    "int_vial_price": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-C01",
+        "sheet": "Costs_KR",
+        "cell": "C4"
+      }
+    },
+    "int_admin_interval_weeks": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": null,
+      "retained_from": "Inputs_Costs!C9"
+    },
+    "int_admin_cost_per_admin": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-C08",
+        "sheet": "Costs_KR",
+        "cell": "C11"
+      }
+    },
+    "int_ae_cost": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-C12",
+        "sheet": "Costs_KR",
+        "cell": "C15"
+      }
+    },
+    "comp_dose_weight_based": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": null,
+      "retained_from": "Inputs_Costs!C12"
+    },
+    "comp_dose_mg": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": null,
+      "retained_from": "Inputs_Costs!C13"
+    },
+    "comp_vial_mg": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": null,
+      "retained_from": "Inputs_Costs!C14"
+    },
+    "comp_vial_price": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-C06",
+        "sheet": "Costs_KR",
+        "cell": "C9"
+      }
+    },
+    "comp_admin_interval_weeks": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": null,
+      "retained_from": "Inputs_Costs!C17"
+    },
+    "comp_max_doses": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": null,
+      "retained_from": "Inputs_Costs!C18"
+    },
+    "comp_admin_cost_per_admin": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-C08",
+        "sheet": "Costs_KR",
+        "cell": "C11"
+      }
+    },
+    "comp_ae_cost": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-C13",
+        "sheet": "Costs_KR",
+        "cell": "C16"
+      }
+    },
+    "c_pf_week": {
+      "operation": "per_period_to_per_week",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-C09",
+        "sheet": "Costs_KR",
+        "cell": "C12"
+      },
+      "constants": {
+        "days_per_week": 7,
+        "months_per_year": 12,
+        "days_per_year": "model:Inputs_Settings!C9"
+      }
+    },
+    "c_pd_week": {
+      "operation": "per_period_to_per_week",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-C10",
+        "sheet": "Costs_KR",
+        "cell": "C13"
+      },
+      "constants": {
+        "days_per_week": 7,
+        "months_per_year": 12,
+        "days_per_year": "model:Inputs_Settings!C9"
+      }
+    },
+    "c_terminal": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": "GAP-001",
+      "source": {
+        "item_id": "KR-C11",
+        "sheet": "Costs_KR",
+        "cell": "C14"
+      }
+    },
+    "st_cost_1": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-T01",
+        "sheet": "SubsequentTx_KR",
+        "cell": "C4"
+      }
+    },
+    "st_cost_2": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-T02",
+        "sheet": "SubsequentTx_KR",
+        "cell": "C5"
+      }
+    },
+    "st_cost_3": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-T03",
+        "sheet": "SubsequentTx_KR",
+        "cell": "C6"
+      }
+    },
+    "int_st_share_1": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-T04",
+        "sheet": "SubsequentTx_KR",
+        "cell": "C7"
+      }
+    },
+    "int_st_share_2": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-T05",
+        "sheet": "SubsequentTx_KR",
+        "cell": "C8"
+      }
+    },
+    "int_st_share_3": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-T06",
+        "sheet": "SubsequentTx_KR",
+        "cell": "C9"
+      }
+    },
+    "comp_st_share_1": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-T07",
+        "sheet": "SubsequentTx_KR",
+        "cell": "C10"
+      }
+    },
+    "comp_st_share_2": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-T08",
+        "sheet": "SubsequentTx_KR",
+        "cell": "C11"
+      }
+    },
+    "comp_st_share_3": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-T09",
+        "sheet": "SubsequentTx_KR",
+        "cell": "C12"
+      }
+    },
+    "u_pf": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-U01",
+        "sheet": "Utilities_KR",
+        "cell": "C4"
+      }
+    },
+    "u_pd": {
+      "operation": "copy",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-U02",
+        "sheet": "Utilities_KR",
+        "cell": "C5"
+      }
+    },
+    "int_ae_qaly_loss": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-002",
+      "retained_from": "Inputs_Utilities!C6"
+    },
+    "comp_ae_qaly_loss": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-002",
+      "retained_from": "Inputs_Utilities!C7"
+    },
+    "gpu_intercept": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-003",
+      "retained_from": "Inputs_Utilities!C8"
+    },
+    "gpu_male": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-003",
+      "retained_from": "Inputs_Utilities!C9"
+    },
+    "gpu_age": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-003",
+      "retained_from": "Inputs_Utilities!C10"
+    },
+    "gpu_age2": {
+      "operation": "retain_global",
+      "status": "retained",
+      "gap_id": "GAP-003",
+      "retained_from": "Inputs_Utilities!C11"
+    },
+    "int_max_doses": {
+      "operation": "duration_to_doses",
+      "status": "mapped",
+      "gap_id": null,
+      "source": {
+        "item_id": "KR-C05",
+        "sheet": "Costs_KR",
+        "cell": "C8"
+      },
+      "constants": {
+        "interval_weeks": "int_admin_interval_weeks",
+        "rule": "doses_starting_within"
+      }
+    }
+  }
+}

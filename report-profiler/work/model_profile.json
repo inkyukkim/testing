@@ -1,0 +1,3555 @@
+{
+  "workbook": "fixtures/global_model.xlsx",
+  "sheets": [
+    "ReadMe",
+    "Inputs_Settings",
+    "Inputs_Population",
+    "Inputs_Clinical",
+    "Inputs_Costs",
+    "Inputs_Utilities",
+    "Inputs_LifeTable",
+    "Calc_Dosing",
+    "Trace_Int",
+    "Trace_Comp",
+    "Results",
+    "PSA_Placeholder"
+  ],
+  "n_formula_cells": 167616,
+  "n_regions": 221,
+  "names": {
+    "baseline_age": {
+      "role": "input",
+      "sheet": "Inputs_Population",
+      "ref": "C4",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Mean age at baseline",
+        "Name (defined range)": "baseline_age",
+        "Unit": "years",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "Synthetic trial baseline"
+      },
+      "type": "number"
+    },
+    "c_pd_week": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C21",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Progressed disease health state cost per week",
+        "Name (defined range)": "c_pd_week",
+        "Unit": "GBP/week",
+        "PSA distribution": "Gamma",
+        "PSA SE": 46,
+        "Source / note": "Synthetic resource use x PSSRU"
+      },
+      "type": "number"
+    },
+    "c_pf_week": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C20",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Progression-free health state cost per week",
+        "Name (defined range)": "c_pf_week",
+        "Unit": "GBP/week",
+        "PSA distribution": "Gamma",
+        "PSA SE": 30,
+        "Source / note": "Synthetic resource use x PSSRU"
+      },
+      "type": "number"
+    },
+    "c_terminal": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C22",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Terminal care cost (one-off at death)",
+        "Name (defined range)": "c_terminal",
+        "Unit": "GBP",
+        "PSA distribution": "Gamma",
+        "PSA SE": 1300,
+        "Source / note": "Synthetic end-of-life costing"
+      },
+      "type": "number"
+    },
+    "calc_comp_drug_cost_per_admin": {
+      "role": "derived",
+      "sheet": "Calc_Dosing",
+      "ref": "G5",
+      "vector": false
+    },
+    "calc_comp_expected_vials": {
+      "role": "derived",
+      "sheet": "Calc_Dosing",
+      "ref": "G3",
+      "vector": false
+    },
+    "calc_comp_interval_cycles": {
+      "role": "derived",
+      "sheet": "Calc_Dosing",
+      "ref": "G6",
+      "vector": false
+    },
+    "calc_comp_st_cost_per_progression": {
+      "role": "derived",
+      "sheet": "Calc_Dosing",
+      "ref": "G7",
+      "vector": false
+    },
+    "calc_comp_st_share_sum": {
+      "role": "derived",
+      "sheet": "Calc_Dosing",
+      "ref": "G8",
+      "vector": false
+    },
+    "calc_comp_vial_tail_mass": {
+      "role": "derived",
+      "sheet": "Calc_Dosing",
+      "ref": "G4",
+      "vector": false
+    },
+    "calc_gpu_baseline": {
+      "role": "derived",
+      "sheet": "Calc_Dosing",
+      "ref": "B5",
+      "vector": false
+    },
+    "calc_int_drug_cost_per_admin": {
+      "role": "derived",
+      "sheet": "Calc_Dosing",
+      "ref": "F5",
+      "vector": false
+    },
+    "calc_int_expected_vials": {
+      "role": "derived",
+      "sheet": "Calc_Dosing",
+      "ref": "F3",
+      "vector": false
+    },
+    "calc_int_interval_cycles": {
+      "role": "derived",
+      "sheet": "Calc_Dosing",
+      "ref": "F6",
+      "vector": false
+    },
+    "calc_int_st_cost_per_progression": {
+      "role": "derived",
+      "sheet": "Calc_Dosing",
+      "ref": "F7",
+      "vector": false
+    },
+    "calc_int_st_share_sum": {
+      "role": "derived",
+      "sheet": "Calc_Dosing",
+      "ref": "F8",
+      "vector": false
+    },
+    "calc_int_vial_tail_mass": {
+      "role": "derived",
+      "sheet": "Calc_Dosing",
+      "ref": "F4",
+      "vector": false
+    },
+    "calc_weight_mu": {
+      "role": "derived",
+      "sheet": "Calc_Dosing",
+      "ref": "B3",
+      "vector": false
+    },
+    "calc_weight_sigma2": {
+      "role": "derived",
+      "sheet": "Calc_Dosing",
+      "ref": "B4",
+      "vector": false
+    },
+    "check_cross_comp": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D49",
+      "vector": false
+    },
+    "check_cross_int": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D48",
+      "vector": false
+    },
+    "check_interval_ok": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D45",
+      "vector": false
+    },
+    "check_life_table_ok": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D44",
+      "vector": false
+    },
+    "check_lifetime_ok": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D43",
+      "vector": false
+    },
+    "check_st_shares_ok": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D46",
+      "vector": false
+    },
+    "check_trace_rows_ok": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D42",
+      "vector": false
+    },
+    "check_vial_bands_ok": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D47",
+      "vector": false
+    },
+    "comp_admin_cost_per_admin": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C16",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug B administration cost per administration",
+        "Name (defined range)": "comp_admin_cost_per_admin",
+        "Unit": "GBP",
+        "PSA distribution": "Gamma",
+        "PSA SE": 62,
+        "Source / note": "Synthetic NHS reference cost, SB12Z"
+      },
+      "type": "number"
+    },
+    "comp_admin_interval_weeks": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C17",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug B administration interval",
+        "Name (defined range)": "comp_admin_interval_weeks",
+        "Unit": "weeks",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "Q3W"
+      },
+      "type": "number"
+    },
+    "comp_ae_cost": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C19",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug B adverse event cost (one-off)",
+        "Name (defined range)": "comp_ae_cost",
+        "Unit": "GBP",
+        "PSA distribution": "Gamma",
+        "PSA SE": 480,
+        "Source / note": "Grade 3+ AE incidence x unit costs"
+      },
+      "type": "number"
+    },
+    "comp_ae_qaly_loss": {
+      "role": "input",
+      "sheet": "Inputs_Utilities",
+      "ref": "C7",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug B AE QALY loss (one-off)",
+        "Name (defined range)": "comp_ae_qaly_loss",
+        "Unit": "QALY",
+        "PSA distribution": "Beta",
+        "PSA SE": 0.004,
+        "Source / note": "Synthetic"
+      },
+      "type": "number"
+    },
+    "comp_dose_mg": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C13",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug B dose",
+        "Name (defined range)": "comp_dose_mg",
+        "Unit": "mg (flat)",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "Synthetic regimen"
+      },
+      "type": "number"
+    },
+    "comp_dose_weight_based": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C12",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug B dosing basis (1 = mg/kg, 0 = flat mg)",
+        "Name (defined range)": "comp_dose_weight_based",
+        "Unit": "switch",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "Synthetic regimen"
+      },
+      "type": "number"
+    },
+    "comp_max_doses": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C18",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug B maximum number of doses",
+        "Name (defined range)": "comp_max_doses",
+        "Unit": "doses",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "6 cycles"
+      },
+      "type": "number"
+    },
+    "comp_os_corr": {
+      "role": "input",
+      "sheet": "Inputs_Clinical",
+      "ref": "C20",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug B, platinum doublet (comparator): OS corr(log shape, log scale)",
+        "Name (defined range)": "comp_os_corr",
+        "Unit": "-",
+        "PSA distribution": "PSA only",
+        "PSA SE": null,
+        "Source / note": "Not used in deterministic run"
+      },
+      "type": "number"
+    },
+    "comp_os_scale": {
+      "role": "input",
+      "sheet": "Inputs_Clinical",
+      "ref": "C19",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug B, platinum doublet (comparator): OS Weibull scale",
+        "Name (defined range)": "comp_os_scale",
+        "Unit": "months",
+        "PSA distribution": "MVN on log",
+        "PSA SE": 0.05,
+        "Source / note": "Synthetic Weibull fit to OS KM, Drug B, platinum doublet (comparator)"
+      },
+      "type": "number"
+    },
+    "comp_os_shape": {
+      "role": "input",
+      "sheet": "Inputs_Clinical",
+      "ref": "C18",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug B, platinum doublet (comparator): OS Weibull shape",
+        "Name (defined range)": "comp_os_shape",
+        "Unit": "-",
+        "PSA distribution": "MVN on log",
+        "PSA SE": 0.06,
+        "Source / note": "Synthetic Weibull fit to OS KM, Drug B, platinum doublet (comparator)"
+      },
+      "type": "number"
+    },
+    "comp_p_death_first_pfs": {
+      "role": "input",
+      "sheet": "Inputs_Clinical",
+      "ref": "C24",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug B, platinum doublet (comparator): proportion of PFS events that are deaths",
+        "Name (defined range)": "comp_p_death_first_pfs",
+        "Unit": "proportion",
+        "PSA distribution": "Beta",
+        "PSA SE": 0.03,
+        "Source / note": "Synthetic trial event composition"
+      },
+      "type": "number"
+    },
+    "comp_pfs_corr": {
+      "role": "input",
+      "sheet": "Inputs_Clinical",
+      "ref": "C17",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug B, platinum doublet (comparator): PFS corr(log shape, log scale)",
+        "Name (defined range)": "comp_pfs_corr",
+        "Unit": "-",
+        "PSA distribution": "PSA only",
+        "PSA SE": null,
+        "Source / note": "Not used in deterministic run"
+      },
+      "type": "number"
+    },
+    "comp_pfs_scale": {
+      "role": "input",
+      "sheet": "Inputs_Clinical",
+      "ref": "C16",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug B, platinum doublet (comparator): PFS Weibull scale",
+        "Name (defined range)": "comp_pfs_scale",
+        "Unit": "months",
+        "PSA distribution": "MVN on log",
+        "PSA SE": 0.04,
+        "Source / note": "Synthetic Weibull fit to PFS KM, Drug B, platinum doublet (comparator)"
+      },
+      "type": "number"
+    },
+    "comp_pfs_shape": {
+      "role": "input",
+      "sheet": "Inputs_Clinical",
+      "ref": "C15",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug B, platinum doublet (comparator): PFS Weibull shape",
+        "Name (defined range)": "comp_pfs_shape",
+        "Unit": "-",
+        "PSA distribution": "MVN on log",
+        "PSA SE": 0.05,
+        "Source / note": "Synthetic Weibull fit to PFS KM, Drug B, platinum doublet (comparator)"
+      },
+      "type": "number"
+    },
+    "comp_rdi": {
+      "role": "input",
+      "sheet": "Inputs_Clinical",
+      "ref": "C25",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug B, platinum doublet (comparator): relative dose intensity",
+        "Name (defined range)": "comp_rdi",
+        "Unit": "proportion",
+        "PSA distribution": "Beta",
+        "PSA SE": 0.02,
+        "Source / note": "Synthetic trial exposure data"
+      },
+      "type": "number"
+    },
+    "comp_st_share_1": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C29",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Share receiving Docetaxel-based chemotherapy after progression on Drug B, platinum doublet (comparator)",
+        "Name (defined range)": "comp_st_share_1",
+        "Unit": "proportion",
+        "PSA distribution": "Dirichlet",
+        "PSA SE": null,
+        "Source / note": "Synthetic trial post-progression therapy"
+      },
+      "type": "number"
+    },
+    "comp_st_share_2": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C30",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Share receiving Immunotherapy after progression on Drug B, platinum doublet (comparator)",
+        "Name (defined range)": "comp_st_share_2",
+        "Unit": "proportion",
+        "PSA distribution": "Dirichlet",
+        "PSA SE": null,
+        "Source / note": "Synthetic trial post-progression therapy"
+      },
+      "type": "number"
+    },
+    "comp_st_share_3": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C31",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Share receiving Other targeted therapy after progression on Drug B, platinum doublet (comparator)",
+        "Name (defined range)": "comp_st_share_3",
+        "Unit": "proportion",
+        "PSA distribution": "Dirichlet",
+        "PSA SE": null,
+        "Source / note": "Synthetic trial post-progression therapy"
+      },
+      "type": "number"
+    },
+    "comp_tot_corr": {
+      "role": "input",
+      "sheet": "Inputs_Clinical",
+      "ref": "C23",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug B, platinum doublet (comparator): TOT corr(log shape, log scale)",
+        "Name (defined range)": "comp_tot_corr",
+        "Unit": "-",
+        "PSA distribution": "PSA only",
+        "PSA SE": null,
+        "Source / note": "Not used in deterministic run"
+      },
+      "type": "number"
+    },
+    "comp_tot_scale": {
+      "role": "input",
+      "sheet": "Inputs_Clinical",
+      "ref": "C22",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug B, platinum doublet (comparator): TOT Weibull scale",
+        "Name (defined range)": "comp_tot_scale",
+        "Unit": "months",
+        "PSA distribution": "MVN on log",
+        "PSA SE": 0.04,
+        "Source / note": "Synthetic Weibull fit to TOT KM, Drug B, platinum doublet (comparator)"
+      },
+      "type": "number"
+    },
+    "comp_tot_shape": {
+      "role": "input",
+      "sheet": "Inputs_Clinical",
+      "ref": "C21",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug B, platinum doublet (comparator): TOT Weibull shape",
+        "Name (defined range)": "comp_tot_shape",
+        "Unit": "-",
+        "PSA distribution": "MVN on log",
+        "PSA SE": 0.05,
+        "Source / note": "Synthetic Weibull fit to TOT KM, Drug B, platinum doublet (comparator)"
+      },
+      "type": "number"
+    },
+    "comp_vial_mg": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C14",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug B vial size",
+        "Name (defined range)": "comp_vial_mg",
+        "Unit": "mg",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "Synthetic"
+      },
+      "type": "number"
+    },
+    "comp_vial_price": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C15",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug B price per vial",
+        "Name (defined range)": "comp_vial_price",
+        "Unit": "GBP",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "Synthetic eMIT price"
+      },
+      "type": "number"
+    },
+    "country": {
+      "role": "input",
+      "sheet": "Inputs_Settings",
+      "ref": "C4",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Country / setting",
+        "Name (defined range)": "country",
+        "Unit": "text",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "Global base case"
+      },
+      "type": "text"
+    },
+    "currency_code": {
+      "role": "input",
+      "sheet": "Inputs_Settings",
+      "ref": "C5",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Currency",
+        "Name (defined range)": "currency_code",
+        "Unit": "ISO 4217",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": null
+      },
+      "type": "text"
+    },
+    "cycle_length_days": {
+      "role": "input",
+      "sheet": "Inputs_Settings",
+      "ref": "C8",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Cycle length",
+        "Name (defined range)": "cycle_length_days",
+        "Unit": "days",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "Weekly cycles"
+      },
+      "type": "number"
+    },
+    "cycle_length_years": {
+      "role": "derived",
+      "sheet": "Inputs_Settings",
+      "ref": "C20",
+      "vector": false
+    },
+    "days_per_year": {
+      "role": "input",
+      "sheet": "Inputs_Settings",
+      "ref": "C9",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Days per year",
+        "Name (defined range)": "days_per_year",
+        "Unit": "days",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": null
+      },
+      "type": "number"
+    },
+    "dr_costs": {
+      "role": "input",
+      "sheet": "Inputs_Settings",
+      "ref": "C11",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Discount rate, costs",
+        "Name (defined range)": "dr_costs",
+        "Unit": "per annum",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "NICE reference case"
+      },
+      "type": "number"
+    },
+    "dr_outcomes": {
+      "role": "input",
+      "sheet": "Inputs_Settings",
+      "ref": "C12",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Discount rate, outcomes",
+        "Name (defined range)": "dr_outcomes",
+        "Unit": "per annum",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "NICE reference case"
+      },
+      "type": "number"
+    },
+    "gpu_age": {
+      "role": "input",
+      "sheet": "Inputs_Utilities",
+      "ref": "C10",
+      "vector": false,
+      "metadata": {
+        "Parameter": "General-population utility: age coefficient",
+        "Name (defined range)": "gpu_age",
+        "Unit": "per year",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "Synthetic UK norms regression"
+      },
+      "type": "number"
+    },
+    "gpu_age2": {
+      "role": "input",
+      "sheet": "Inputs_Utilities",
+      "ref": "C11",
+      "vector": false,
+      "metadata": {
+        "Parameter": "General-population utility: age-squared coefficient",
+        "Name (defined range)": "gpu_age2",
+        "Unit": "per year^2",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "Synthetic UK norms regression"
+      },
+      "type": "number"
+    },
+    "gpu_intercept": {
+      "role": "input",
+      "sheet": "Inputs_Utilities",
+      "ref": "C8",
+      "vector": false,
+      "metadata": {
+        "Parameter": "General-population utility: intercept",
+        "Name (defined range)": "gpu_intercept",
+        "Unit": "-",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "Synthetic UK norms regression"
+      },
+      "type": "number"
+    },
+    "gpu_male": {
+      "role": "input",
+      "sheet": "Inputs_Utilities",
+      "ref": "C9",
+      "vector": false,
+      "metadata": {
+        "Parameter": "General-population utility: male coefficient",
+        "Name (defined range)": "gpu_male",
+        "Unit": "-",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "Synthetic UK norms regression"
+      },
+      "type": "number"
+    },
+    "int_admin_cost_per_admin": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C8",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug A administration cost per administration",
+        "Name (defined range)": "int_admin_cost_per_admin",
+        "Unit": "GBP",
+        "PSA distribution": "Gamma",
+        "PSA SE": 62,
+        "Source / note": "Synthetic NHS reference cost, SB12Z"
+      },
+      "type": "number"
+    },
+    "int_admin_interval_weeks": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C9",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug A administration interval",
+        "Name (defined range)": "int_admin_interval_weeks",
+        "Unit": "weeks",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "Q3W per SmPC"
+      },
+      "type": "number"
+    },
+    "int_ae_cost": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C11",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug A adverse event cost (one-off)",
+        "Name (defined range)": "int_ae_cost",
+        "Unit": "GBP",
+        "PSA distribution": "Gamma",
+        "PSA SE": 230,
+        "Source / note": "Grade 3+ AE incidence x unit costs"
+      },
+      "type": "number"
+    },
+    "int_ae_qaly_loss": {
+      "role": "input",
+      "sheet": "Inputs_Utilities",
+      "ref": "C6",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug A AE QALY loss (one-off)",
+        "Name (defined range)": "int_ae_qaly_loss",
+        "Unit": "QALY",
+        "PSA distribution": "Beta",
+        "PSA SE": 0.002,
+        "Source / note": "Synthetic"
+      },
+      "type": "number"
+    },
+    "int_dose_mg": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C5",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug A dose",
+        "Name (defined range)": "int_dose_mg",
+        "Unit": "mg/kg",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "SmPC: 2 mg/kg Q3W"
+      },
+      "type": "number"
+    },
+    "int_dose_weight_based": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C4",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug A dosing basis (1 = mg/kg, 0 = flat mg)",
+        "Name (defined range)": "int_dose_weight_based",
+        "Unit": "switch",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "SmPC"
+      },
+      "type": "number"
+    },
+    "int_max_doses": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C10",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug A maximum number of doses (stopping rule)",
+        "Name (defined range)": "int_max_doses",
+        "Unit": "doses",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "35 doses Q3W per protocol"
+      },
+      "type": "number"
+    },
+    "int_os_corr": {
+      "role": "input",
+      "sheet": "Inputs_Clinical",
+      "ref": "C9",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug A (intervention): OS corr(log shape, log scale)",
+        "Name (defined range)": "int_os_corr",
+        "Unit": "-",
+        "PSA distribution": "PSA only",
+        "PSA SE": null,
+        "Source / note": "Not used in deterministic run"
+      },
+      "type": "number"
+    },
+    "int_os_scale": {
+      "role": "input",
+      "sheet": "Inputs_Clinical",
+      "ref": "C8",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug A (intervention): OS Weibull scale",
+        "Name (defined range)": "int_os_scale",
+        "Unit": "months",
+        "PSA distribution": "MVN on log",
+        "PSA SE": 0.08,
+        "Source / note": "Synthetic Weibull fit to OS KM, Drug A (intervention)"
+      },
+      "type": "number"
+    },
+    "int_os_shape": {
+      "role": "input",
+      "sheet": "Inputs_Clinical",
+      "ref": "C7",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug A (intervention): OS Weibull shape",
+        "Name (defined range)": "int_os_shape",
+        "Unit": "-",
+        "PSA distribution": "MVN on log",
+        "PSA SE": 0.07,
+        "Source / note": "Synthetic Weibull fit to OS KM, Drug A (intervention)"
+      },
+      "type": "number"
+    },
+    "int_p_death_first_pfs": {
+      "role": "input",
+      "sheet": "Inputs_Clinical",
+      "ref": "C13",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug A (intervention): proportion of PFS events that are deaths",
+        "Name (defined range)": "int_p_death_first_pfs",
+        "Unit": "proportion",
+        "PSA distribution": "Beta",
+        "PSA SE": 0.03,
+        "Source / note": "Synthetic trial event composition"
+      },
+      "type": "number"
+    },
+    "int_pfs_corr": {
+      "role": "input",
+      "sheet": "Inputs_Clinical",
+      "ref": "C6",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug A (intervention): PFS corr(log shape, log scale)",
+        "Name (defined range)": "int_pfs_corr",
+        "Unit": "-",
+        "PSA distribution": "PSA only",
+        "PSA SE": null,
+        "Source / note": "Not used in deterministic run"
+      },
+      "type": "number"
+    },
+    "int_pfs_scale": {
+      "role": "input",
+      "sheet": "Inputs_Clinical",
+      "ref": "C5",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug A (intervention): PFS Weibull scale",
+        "Name (defined range)": "int_pfs_scale",
+        "Unit": "months",
+        "PSA distribution": "MVN on log",
+        "PSA SE": 0.05,
+        "Source / note": "Synthetic Weibull fit to PFS KM, Drug A (intervention)"
+      },
+      "type": "number"
+    },
+    "int_pfs_shape": {
+      "role": "input",
+      "sheet": "Inputs_Clinical",
+      "ref": "C4",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug A (intervention): PFS Weibull shape",
+        "Name (defined range)": "int_pfs_shape",
+        "Unit": "-",
+        "PSA distribution": "MVN on log",
+        "PSA SE": 0.06,
+        "Source / note": "Synthetic Weibull fit to PFS KM, Drug A (intervention)"
+      },
+      "type": "number"
+    },
+    "int_rdi": {
+      "role": "input",
+      "sheet": "Inputs_Clinical",
+      "ref": "C14",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug A (intervention): relative dose intensity",
+        "Name (defined range)": "int_rdi",
+        "Unit": "proportion",
+        "PSA distribution": "Beta",
+        "PSA SE": 0.02,
+        "Source / note": "Synthetic trial exposure data"
+      },
+      "type": "number"
+    },
+    "int_st_share_1": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C26",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Share receiving Docetaxel-based chemotherapy after progression on Drug A (intervention)",
+        "Name (defined range)": "int_st_share_1",
+        "Unit": "proportion",
+        "PSA distribution": "Dirichlet",
+        "PSA SE": null,
+        "Source / note": "Synthetic trial post-progression therapy"
+      },
+      "type": "number"
+    },
+    "int_st_share_2": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C27",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Share receiving Immunotherapy after progression on Drug A (intervention)",
+        "Name (defined range)": "int_st_share_2",
+        "Unit": "proportion",
+        "PSA distribution": "Dirichlet",
+        "PSA SE": null,
+        "Source / note": "Synthetic trial post-progression therapy"
+      },
+      "type": "number"
+    },
+    "int_st_share_3": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C28",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Share receiving Other targeted therapy after progression on Drug A (intervention)",
+        "Name (defined range)": "int_st_share_3",
+        "Unit": "proportion",
+        "PSA distribution": "Dirichlet",
+        "PSA SE": null,
+        "Source / note": "Synthetic trial post-progression therapy"
+      },
+      "type": "number"
+    },
+    "int_tot_corr": {
+      "role": "input",
+      "sheet": "Inputs_Clinical",
+      "ref": "C12",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug A (intervention): TOT corr(log shape, log scale)",
+        "Name (defined range)": "int_tot_corr",
+        "Unit": "-",
+        "PSA distribution": "PSA only",
+        "PSA SE": null,
+        "Source / note": "Not used in deterministic run"
+      },
+      "type": "number"
+    },
+    "int_tot_scale": {
+      "role": "input",
+      "sheet": "Inputs_Clinical",
+      "ref": "C11",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug A (intervention): TOT Weibull scale",
+        "Name (defined range)": "int_tot_scale",
+        "Unit": "months",
+        "PSA distribution": "MVN on log",
+        "PSA SE": 0.05,
+        "Source / note": "Synthetic Weibull fit to TOT KM, Drug A (intervention)"
+      },
+      "type": "number"
+    },
+    "int_tot_shape": {
+      "role": "input",
+      "sheet": "Inputs_Clinical",
+      "ref": "C10",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug A (intervention): TOT Weibull shape",
+        "Name (defined range)": "int_tot_shape",
+        "Unit": "-",
+        "PSA distribution": "MVN on log",
+        "PSA SE": 0.05,
+        "Source / note": "Synthetic Weibull fit to TOT KM, Drug A (intervention)"
+      },
+      "type": "number"
+    },
+    "int_vial_mg": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C6",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug A vial size",
+        "Name (defined range)": "int_vial_mg",
+        "Unit": "mg",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "SmPC"
+      },
+      "type": "number"
+    },
+    "int_vial_price": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C7",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Drug A net price per vial (incl. PAS)",
+        "Name (defined range)": "int_vial_price",
+        "Unit": "GBP",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "Synthetic list price with confidential discount"
+      },
+      "type": "number"
+    },
+    "lifetime_check_tol": {
+      "role": "input",
+      "sheet": "Inputs_Settings",
+      "ref": "C15",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Lifetime check: max proportion alive at horizon",
+        "Name (defined range)": "lifetime_check_tol",
+        "Unit": "proportion",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "QA setting"
+      },
+      "type": "number"
+    },
+    "lt_age": {
+      "role": "input",
+      "sheet": "Inputs_LifeTable",
+      "ref": "A4:A114",
+      "vector": true
+    },
+    "lt_qx_female": {
+      "role": "input",
+      "sheet": "Inputs_LifeTable",
+      "ref": "C4:C114",
+      "vector": true
+    },
+    "lt_qx_male": {
+      "role": "input",
+      "sheet": "Inputs_LifeTable",
+      "ref": "B4:B114",
+      "vector": true
+    },
+    "max_trace_cycles": {
+      "role": "derived",
+      "sheet": "Inputs_Settings",
+      "ref": "C22",
+      "vector": false
+    },
+    "n_cycles": {
+      "role": "derived",
+      "sheet": "Inputs_Settings",
+      "ref": "C21",
+      "vector": false
+    },
+    "perspective": {
+      "role": "input",
+      "sheet": "Inputs_Settings",
+      "ref": "C7",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Perspective",
+        "Name (defined range)": "perspective",
+        "Unit": "text",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "NICE reference case"
+      },
+      "type": "text"
+    },
+    "price_year": {
+      "role": "input",
+      "sheet": "Inputs_Settings",
+      "ref": "C6",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Price year",
+        "Name (defined range)": "price_year",
+        "Unit": "year",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "Synthetic"
+      },
+      "type": "number"
+    },
+    "prop_male": {
+      "role": "input",
+      "sheet": "Inputs_Population",
+      "ref": "C5",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Proportion male",
+        "Name (defined range)": "prop_male",
+        "Unit": "proportion",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "Synthetic trial baseline"
+      },
+      "type": "number"
+    },
+    "psa_iterations": {
+      "role": "input",
+      "sheet": "PSA_Placeholder",
+      "ref": "B13",
+      "vector": false,
+      "metadata": {},
+      "type": "number"
+    },
+    "psa_seed": {
+      "role": "input",
+      "sheet": "PSA_Placeholder",
+      "ref": "B12",
+      "vector": false,
+      "metadata": {},
+      "type": "number"
+    },
+    "res_below_wtp": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D24",
+      "vector": false
+    },
+    "res_below_wtp_lower": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D25",
+      "vector": false
+    },
+    "res_comp_cost_admin": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "C6",
+      "vector": false
+    },
+    "res_comp_cost_ae": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "C11",
+      "vector": false
+    },
+    "res_comp_cost_drug": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "C5",
+      "vector": false
+    },
+    "res_comp_cost_pd_state": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "C8",
+      "vector": false
+    },
+    "res_comp_cost_pf_state": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "C7",
+      "vector": false
+    },
+    "res_comp_cost_st": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "C10",
+      "vector": false
+    },
+    "res_comp_cost_terminal": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "C9",
+      "vector": false
+    },
+    "res_comp_drug_cost_per_admin": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "C34",
+      "vector": false
+    },
+    "res_comp_drug_share": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "C36",
+      "vector": false
+    },
+    "res_comp_expected_vials": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "C33",
+      "vector": false
+    },
+    "res_comp_gpm_bind_cycles": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "C37",
+      "vector": false
+    },
+    "res_comp_gpm_first_bind_age": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "C38",
+      "vector": false
+    },
+    "res_comp_gpm_first_bind_alive": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "C39",
+      "vector": false
+    },
+    "res_comp_ly_disc": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "C14",
+      "vector": false
+    },
+    "res_comp_ly_undisc": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "C13",
+      "vector": false
+    },
+    "res_comp_median_os": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "C29",
+      "vector": false
+    },
+    "res_comp_median_pfs": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "C28",
+      "vector": false
+    },
+    "res_comp_median_tot": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "C30",
+      "vector": false
+    },
+    "res_comp_n_doses": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "C32",
+      "vector": false
+    },
+    "res_comp_qaly_disc": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "C16",
+      "vector": false
+    },
+    "res_comp_qaly_undisc": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "C15",
+      "vector": false
+    },
+    "res_comp_s_os_horizon": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "C31",
+      "vector": false
+    },
+    "res_comp_st_cost_per_progression": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "C35",
+      "vector": false
+    },
+    "res_comp_total_cost": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "C12",
+      "vector": false
+    },
+    "res_dominance": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D23",
+      "vector": false
+    },
+    "res_icer": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "D19",
+      "vector": false
+    },
+    "res_icer_ly": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D20",
+      "vector": false
+    },
+    "res_inc_cost_admin": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D6",
+      "vector": false
+    },
+    "res_inc_cost_ae": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D11",
+      "vector": false
+    },
+    "res_inc_cost_drug": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D5",
+      "vector": false
+    },
+    "res_inc_cost_pd_state": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D8",
+      "vector": false
+    },
+    "res_inc_cost_pf_state": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D7",
+      "vector": false
+    },
+    "res_inc_cost_st": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D10",
+      "vector": false
+    },
+    "res_inc_cost_terminal": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D9",
+      "vector": false
+    },
+    "res_inc_ly_disc": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "D14",
+      "vector": false
+    },
+    "res_inc_ly_undisc": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D13",
+      "vector": false
+    },
+    "res_inc_nmb": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D21",
+      "vector": false
+    },
+    "res_inc_nmb_lower": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D22",
+      "vector": false
+    },
+    "res_inc_qaly_disc": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "D16",
+      "vector": false
+    },
+    "res_inc_qaly_undisc": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "D15",
+      "vector": false
+    },
+    "res_inc_total_cost": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "D12",
+      "vector": false
+    },
+    "res_int_cost_admin": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "B6",
+      "vector": false
+    },
+    "res_int_cost_ae": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "B11",
+      "vector": false
+    },
+    "res_int_cost_drug": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "B5",
+      "vector": false
+    },
+    "res_int_cost_pd_state": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "B8",
+      "vector": false
+    },
+    "res_int_cost_pf_state": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "B7",
+      "vector": false
+    },
+    "res_int_cost_st": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "B10",
+      "vector": false
+    },
+    "res_int_cost_terminal": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "B9",
+      "vector": false
+    },
+    "res_int_drug_cost_per_admin": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "B34",
+      "vector": false
+    },
+    "res_int_drug_share": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "B36",
+      "vector": false
+    },
+    "res_int_expected_vials": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "B33",
+      "vector": false
+    },
+    "res_int_gpm_bind_cycles": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "B37",
+      "vector": false
+    },
+    "res_int_gpm_first_bind_age": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "B38",
+      "vector": false
+    },
+    "res_int_gpm_first_bind_alive": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "B39",
+      "vector": false
+    },
+    "res_int_ly_disc": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "B14",
+      "vector": false
+    },
+    "res_int_ly_undisc": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "B13",
+      "vector": false
+    },
+    "res_int_median_os": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "B29",
+      "vector": false
+    },
+    "res_int_median_pfs": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "B28",
+      "vector": false
+    },
+    "res_int_median_tot": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "B30",
+      "vector": false
+    },
+    "res_int_n_doses": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "B32",
+      "vector": false
+    },
+    "res_int_qaly_disc": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "B16",
+      "vector": false
+    },
+    "res_int_qaly_undisc": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "B15",
+      "vector": false
+    },
+    "res_int_s_os_horizon": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "B31",
+      "vector": false
+    },
+    "res_int_st_cost_per_progression": {
+      "role": "output",
+      "sheet": "Results",
+      "ref": "B35",
+      "vector": false
+    },
+    "res_int_total_cost": {
+      "role": "derived",
+      "sheet": "Results",
+      "ref": "B12",
+      "vector": false
+    },
+    "st_cost_1": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C23",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Subsequent therapy course cost: Docetaxel-based chemotherapy",
+        "Name (defined range)": "st_cost_1",
+        "Unit": "GBP per course",
+        "PSA distribution": "Gamma",
+        "PSA SE": 560,
+        "Source / note": "Synthetic: drug + administration for mean course"
+      },
+      "type": "number"
+    },
+    "st_cost_2": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C24",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Subsequent therapy course cost: Immunotherapy",
+        "Name (defined range)": "st_cost_2",
+        "Unit": "GBP per course",
+        "PSA distribution": "Gamma",
+        "PSA SE": 6000,
+        "Source / note": "Synthetic: drug + administration for mean course"
+      },
+      "type": "number"
+    },
+    "st_cost_3": {
+      "role": "input",
+      "sheet": "Inputs_Costs",
+      "ref": "C25",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Subsequent therapy course cost: Other targeted therapy",
+        "Name (defined range)": "st_cost_3",
+        "Unit": "GBP per course",
+        "PSA distribution": "Gamma",
+        "PSA SE": 3000,
+        "Source / note": "Synthetic: drug + administration for mean course"
+      },
+      "type": "number"
+    },
+    "time_horizon_years": {
+      "role": "input",
+      "sheet": "Inputs_Settings",
+      "ref": "C10",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Time horizon",
+        "Name (defined range)": "time_horizon_years",
+        "Unit": "years",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "Lifetime"
+      },
+      "type": "number"
+    },
+    "u_pd": {
+      "role": "input",
+      "sheet": "Inputs_Utilities",
+      "ref": "C5",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Utility, progressed disease",
+        "Name (defined range)": "u_pd",
+        "Unit": "-",
+        "PSA distribution": "Beta",
+        "PSA SE": 0.04,
+        "Source / note": "Synthetic trial EQ-5D-3L, UK value set"
+      },
+      "type": "number"
+    },
+    "u_pf": {
+      "role": "input",
+      "sheet": "Inputs_Utilities",
+      "ref": "C4",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Utility, progression-free",
+        "Name (defined range)": "u_pf",
+        "Unit": "-",
+        "PSA distribution": "Beta",
+        "PSA SE": 0.03,
+        "Source / note": "Synthetic trial EQ-5D-3L, UK value set"
+      },
+      "type": "number"
+    },
+    "use_age_util_adj": {
+      "role": "input",
+      "sheet": "Inputs_Settings",
+      "ref": "C17",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Apply age adjustment to utilities (1 = yes)",
+        "Name (defined range)": "use_age_util_adj",
+        "Unit": "switch",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "Base case on"
+      },
+      "type": "number"
+    },
+    "use_gpm_cap": {
+      "role": "input",
+      "sheet": "Inputs_Settings",
+      "ref": "C16",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Apply general-population mortality cap (1 = yes)",
+        "Name (defined range)": "use_gpm_cap",
+        "Unit": "switch",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "Base case on"
+      },
+      "type": "number"
+    },
+    "weight_mean_kg": {
+      "role": "input",
+      "sheet": "Inputs_Population",
+      "ref": "C6",
+      "vector": false,
+      "metadata": {
+        "Parameter": "Mean body weight",
+        "Name (defined range)": "weight_mean_kg",
+        "Unit": "kg",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "Synthetic trial baseline"
+      },
+      "type": "number"
+    },
+    "weight_sd_kg": {
+      "role": "input",
+      "sheet": "Inputs_Population",
+      "ref": "C7",
+      "vector": false,
+      "metadata": {
+        "Parameter": "SD of body weight",
+        "Name (defined range)": "weight_sd_kg",
+        "Unit": "kg",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "Synthetic trial baseline; lognormal by moments"
+      },
+      "type": "number"
+    },
+    "wtp_threshold": {
+      "role": "input",
+      "sheet": "Inputs_Settings",
+      "ref": "C13",
+      "vector": false,
+      "metadata": {
+        "Parameter": "WTP threshold (upper)",
+        "Name (defined range)": "wtp_threshold",
+        "Unit": "currency/QALY",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "NICE range upper bound"
+      },
+      "type": "number"
+    },
+    "wtp_threshold_lower": {
+      "role": "input",
+      "sheet": "Inputs_Settings",
+      "ref": "C14",
+      "vector": false,
+      "metadata": {
+        "Parameter": "WTP threshold (lower)",
+        "Name (defined range)": "wtp_threshold_lower",
+        "Unit": "currency/QALY",
+        "PSA distribution": "Fixed",
+        "PSA SE": null,
+        "Source / note": "NICE range lower bound"
+      },
+      "type": "number"
+    }
+  },
+  "input_dependencies": {
+    "calc_comp_drug_cost_per_admin": [
+      "comp_dose_mg",
+      "comp_dose_weight_based",
+      "comp_vial_mg",
+      "comp_vial_price",
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "calc_comp_expected_vials": [
+      "comp_dose_mg",
+      "comp_dose_weight_based",
+      "comp_vial_mg",
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "calc_comp_interval_cycles": [
+      "comp_admin_interval_weeks",
+      "cycle_length_days"
+    ],
+    "calc_comp_st_cost_per_progression": [
+      "comp_st_share_1",
+      "comp_st_share_2",
+      "comp_st_share_3",
+      "st_cost_1",
+      "st_cost_2",
+      "st_cost_3"
+    ],
+    "calc_comp_st_share_sum": [
+      "comp_st_share_1",
+      "comp_st_share_2",
+      "comp_st_share_3"
+    ],
+    "calc_comp_vial_tail_mass": [
+      "comp_dose_mg",
+      "comp_dose_weight_based",
+      "comp_vial_mg",
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "calc_gpu_baseline": [
+      "baseline_age",
+      "gpu_age",
+      "gpu_age2",
+      "gpu_intercept",
+      "gpu_male",
+      "prop_male"
+    ],
+    "calc_int_drug_cost_per_admin": [
+      "int_dose_mg",
+      "int_dose_weight_based",
+      "int_vial_mg",
+      "int_vial_price",
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "calc_int_expected_vials": [
+      "int_dose_mg",
+      "int_dose_weight_based",
+      "int_vial_mg",
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "calc_int_interval_cycles": [
+      "cycle_length_days",
+      "int_admin_interval_weeks"
+    ],
+    "calc_int_st_cost_per_progression": [
+      "int_st_share_1",
+      "int_st_share_2",
+      "int_st_share_3",
+      "st_cost_1",
+      "st_cost_2",
+      "st_cost_3"
+    ],
+    "calc_int_st_share_sum": [
+      "int_st_share_1",
+      "int_st_share_2",
+      "int_st_share_3"
+    ],
+    "calc_int_vial_tail_mass": [
+      "int_dose_mg",
+      "int_dose_weight_based",
+      "int_vial_mg",
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "calc_weight_mu": [
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "calc_weight_sigma2": [
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "check_cross_comp": [
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "cycle_length_days",
+      "days_per_year"
+    ],
+    "check_cross_int": [
+      "cycle_length_days",
+      "days_per_year",
+      "int_os_scale",
+      "int_os_shape",
+      "int_pfs_scale",
+      "int_pfs_shape"
+    ],
+    "check_interval_ok": [
+      "comp_admin_interval_weeks",
+      "cycle_length_days",
+      "int_admin_interval_weeks"
+    ],
+    "check_life_table_ok": [
+      "baseline_age",
+      "lt_age",
+      "time_horizon_years"
+    ],
+    "check_lifetime_ok": [
+      "baseline_age",
+      "comp_os_scale",
+      "comp_os_shape",
+      "cycle_length_days",
+      "days_per_year",
+      "int_os_scale",
+      "int_os_shape",
+      "lifetime_check_tol",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "check_st_shares_ok": [
+      "comp_st_share_1",
+      "comp_st_share_2",
+      "comp_st_share_3",
+      "int_st_share_1",
+      "int_st_share_2",
+      "int_st_share_3"
+    ],
+    "check_trace_rows_ok": [
+      "cycle_length_days",
+      "days_per_year",
+      "time_horizon_years"
+    ],
+    "check_vial_bands_ok": [
+      "comp_dose_mg",
+      "comp_dose_weight_based",
+      "comp_vial_mg",
+      "int_dose_mg",
+      "int_dose_weight_based",
+      "int_vial_mg",
+      "lifetime_check_tol",
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "cycle_length_years": [
+      "cycle_length_days",
+      "days_per_year"
+    ],
+    "max_trace_cycles": [],
+    "n_cycles": [
+      "cycle_length_days",
+      "days_per_year",
+      "time_horizon_years"
+    ],
+    "res_below_wtp": [
+      "baseline_age",
+      "c_pd_week",
+      "c_pf_week",
+      "c_terminal",
+      "comp_admin_cost_per_admin",
+      "comp_admin_interval_weeks",
+      "comp_ae_cost",
+      "comp_ae_qaly_loss",
+      "comp_dose_mg",
+      "comp_dose_weight_based",
+      "comp_max_doses",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_p_death_first_pfs",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "comp_rdi",
+      "comp_st_share_1",
+      "comp_st_share_2",
+      "comp_st_share_3",
+      "comp_tot_scale",
+      "comp_tot_shape",
+      "comp_vial_mg",
+      "comp_vial_price",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "dr_outcomes",
+      "gpu_age",
+      "gpu_age2",
+      "gpu_intercept",
+      "gpu_male",
+      "int_admin_cost_per_admin",
+      "int_admin_interval_weeks",
+      "int_ae_cost",
+      "int_ae_qaly_loss",
+      "int_dose_mg",
+      "int_dose_weight_based",
+      "int_max_doses",
+      "int_os_scale",
+      "int_os_shape",
+      "int_p_death_first_pfs",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "int_rdi",
+      "int_st_share_1",
+      "int_st_share_2",
+      "int_st_share_3",
+      "int_tot_scale",
+      "int_tot_shape",
+      "int_vial_mg",
+      "int_vial_price",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "st_cost_1",
+      "st_cost_2",
+      "st_cost_3",
+      "time_horizon_years",
+      "u_pd",
+      "u_pf",
+      "use_age_util_adj",
+      "use_gpm_cap",
+      "weight_mean_kg",
+      "weight_sd_kg",
+      "wtp_threshold"
+    ],
+    "res_below_wtp_lower": [
+      "baseline_age",
+      "c_pd_week",
+      "c_pf_week",
+      "c_terminal",
+      "comp_admin_cost_per_admin",
+      "comp_admin_interval_weeks",
+      "comp_ae_cost",
+      "comp_ae_qaly_loss",
+      "comp_dose_mg",
+      "comp_dose_weight_based",
+      "comp_max_doses",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_p_death_first_pfs",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "comp_rdi",
+      "comp_st_share_1",
+      "comp_st_share_2",
+      "comp_st_share_3",
+      "comp_tot_scale",
+      "comp_tot_shape",
+      "comp_vial_mg",
+      "comp_vial_price",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "dr_outcomes",
+      "gpu_age",
+      "gpu_age2",
+      "gpu_intercept",
+      "gpu_male",
+      "int_admin_cost_per_admin",
+      "int_admin_interval_weeks",
+      "int_ae_cost",
+      "int_ae_qaly_loss",
+      "int_dose_mg",
+      "int_dose_weight_based",
+      "int_max_doses",
+      "int_os_scale",
+      "int_os_shape",
+      "int_p_death_first_pfs",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "int_rdi",
+      "int_st_share_1",
+      "int_st_share_2",
+      "int_st_share_3",
+      "int_tot_scale",
+      "int_tot_shape",
+      "int_vial_mg",
+      "int_vial_price",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "st_cost_1",
+      "st_cost_2",
+      "st_cost_3",
+      "time_horizon_years",
+      "u_pd",
+      "u_pf",
+      "use_age_util_adj",
+      "use_gpm_cap",
+      "weight_mean_kg",
+      "weight_sd_kg",
+      "wtp_threshold_lower"
+    ],
+    "res_comp_cost_admin": [
+      "baseline_age",
+      "comp_admin_cost_per_admin",
+      "comp_admin_interval_weeks",
+      "comp_max_doses",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_tot_scale",
+      "comp_tot_shape",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_comp_cost_ae": [
+      "comp_ae_cost"
+    ],
+    "res_comp_cost_drug": [
+      "baseline_age",
+      "comp_admin_interval_weeks",
+      "comp_dose_mg",
+      "comp_dose_weight_based",
+      "comp_max_doses",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_rdi",
+      "comp_tot_scale",
+      "comp_tot_shape",
+      "comp_vial_mg",
+      "comp_vial_price",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap",
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "res_comp_cost_pd_state": [
+      "baseline_age",
+      "c_pd_week",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_comp_cost_pf_state": [
+      "baseline_age",
+      "c_pf_week",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_comp_cost_st": [
+      "baseline_age",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_p_death_first_pfs",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "comp_st_share_1",
+      "comp_st_share_2",
+      "comp_st_share_3",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "st_cost_1",
+      "st_cost_2",
+      "st_cost_3",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_comp_cost_terminal": [
+      "baseline_age",
+      "c_terminal",
+      "comp_os_scale",
+      "comp_os_shape",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_comp_drug_cost_per_admin": [
+      "comp_dose_mg",
+      "comp_dose_weight_based",
+      "comp_vial_mg",
+      "comp_vial_price",
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "res_comp_drug_share": [
+      "baseline_age",
+      "c_pd_week",
+      "c_pf_week",
+      "c_terminal",
+      "comp_admin_cost_per_admin",
+      "comp_admin_interval_weeks",
+      "comp_ae_cost",
+      "comp_dose_mg",
+      "comp_dose_weight_based",
+      "comp_max_doses",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_p_death_first_pfs",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "comp_rdi",
+      "comp_st_share_1",
+      "comp_st_share_2",
+      "comp_st_share_3",
+      "comp_tot_scale",
+      "comp_tot_shape",
+      "comp_vial_mg",
+      "comp_vial_price",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "st_cost_1",
+      "st_cost_2",
+      "st_cost_3",
+      "time_horizon_years",
+      "use_gpm_cap",
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "res_comp_expected_vials": [
+      "comp_dose_mg",
+      "comp_dose_weight_based",
+      "comp_vial_mg",
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "res_comp_gpm_bind_cycles": [
+      "baseline_age",
+      "comp_os_scale",
+      "comp_os_shape",
+      "cycle_length_days",
+      "days_per_year",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_comp_gpm_first_bind_age": [
+      "baseline_age",
+      "comp_os_scale",
+      "comp_os_shape",
+      "cycle_length_days",
+      "days_per_year",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_comp_gpm_first_bind_alive": [
+      "baseline_age",
+      "comp_os_scale",
+      "comp_os_shape",
+      "cycle_length_days",
+      "days_per_year",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_comp_ly_disc": [
+      "baseline_age",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_outcomes",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_comp_ly_undisc": [
+      "baseline_age",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "cycle_length_days",
+      "days_per_year",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_comp_median_os": [
+      "comp_os_scale",
+      "comp_os_shape"
+    ],
+    "res_comp_median_pfs": [
+      "comp_pfs_scale",
+      "comp_pfs_shape"
+    ],
+    "res_comp_median_tot": [
+      "comp_tot_scale",
+      "comp_tot_shape"
+    ],
+    "res_comp_n_doses": [
+      "baseline_age",
+      "comp_admin_interval_weeks",
+      "comp_max_doses",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_tot_scale",
+      "comp_tot_shape",
+      "cycle_length_days",
+      "days_per_year",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_comp_qaly_disc": [
+      "baseline_age",
+      "comp_ae_qaly_loss",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_outcomes",
+      "gpu_age",
+      "gpu_age2",
+      "gpu_intercept",
+      "gpu_male",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "u_pd",
+      "u_pf",
+      "use_age_util_adj",
+      "use_gpm_cap"
+    ],
+    "res_comp_qaly_undisc": [
+      "baseline_age",
+      "comp_ae_qaly_loss",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "cycle_length_days",
+      "days_per_year",
+      "gpu_age",
+      "gpu_age2",
+      "gpu_intercept",
+      "gpu_male",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "u_pd",
+      "u_pf",
+      "use_age_util_adj",
+      "use_gpm_cap"
+    ],
+    "res_comp_s_os_horizon": [
+      "baseline_age",
+      "comp_os_scale",
+      "comp_os_shape",
+      "cycle_length_days",
+      "days_per_year",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_comp_st_cost_per_progression": [
+      "comp_st_share_1",
+      "comp_st_share_2",
+      "comp_st_share_3",
+      "st_cost_1",
+      "st_cost_2",
+      "st_cost_3"
+    ],
+    "res_comp_total_cost": [
+      "baseline_age",
+      "c_pd_week",
+      "c_pf_week",
+      "c_terminal",
+      "comp_admin_cost_per_admin",
+      "comp_admin_interval_weeks",
+      "comp_ae_cost",
+      "comp_dose_mg",
+      "comp_dose_weight_based",
+      "comp_max_doses",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_p_death_first_pfs",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "comp_rdi",
+      "comp_st_share_1",
+      "comp_st_share_2",
+      "comp_st_share_3",
+      "comp_tot_scale",
+      "comp_tot_shape",
+      "comp_vial_mg",
+      "comp_vial_price",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "st_cost_1",
+      "st_cost_2",
+      "st_cost_3",
+      "time_horizon_years",
+      "use_gpm_cap",
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "res_dominance": [
+      "baseline_age",
+      "c_pd_week",
+      "c_pf_week",
+      "c_terminal",
+      "comp_admin_cost_per_admin",
+      "comp_admin_interval_weeks",
+      "comp_ae_cost",
+      "comp_ae_qaly_loss",
+      "comp_dose_mg",
+      "comp_dose_weight_based",
+      "comp_max_doses",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_p_death_first_pfs",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "comp_rdi",
+      "comp_st_share_1",
+      "comp_st_share_2",
+      "comp_st_share_3",
+      "comp_tot_scale",
+      "comp_tot_shape",
+      "comp_vial_mg",
+      "comp_vial_price",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "dr_outcomes",
+      "gpu_age",
+      "gpu_age2",
+      "gpu_intercept",
+      "gpu_male",
+      "int_admin_cost_per_admin",
+      "int_admin_interval_weeks",
+      "int_ae_cost",
+      "int_ae_qaly_loss",
+      "int_dose_mg",
+      "int_dose_weight_based",
+      "int_max_doses",
+      "int_os_scale",
+      "int_os_shape",
+      "int_p_death_first_pfs",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "int_rdi",
+      "int_st_share_1",
+      "int_st_share_2",
+      "int_st_share_3",
+      "int_tot_scale",
+      "int_tot_shape",
+      "int_vial_mg",
+      "int_vial_price",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "st_cost_1",
+      "st_cost_2",
+      "st_cost_3",
+      "time_horizon_years",
+      "u_pd",
+      "u_pf",
+      "use_age_util_adj",
+      "use_gpm_cap",
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "res_icer": [
+      "baseline_age",
+      "c_pd_week",
+      "c_pf_week",
+      "c_terminal",
+      "comp_admin_cost_per_admin",
+      "comp_admin_interval_weeks",
+      "comp_ae_cost",
+      "comp_ae_qaly_loss",
+      "comp_dose_mg",
+      "comp_dose_weight_based",
+      "comp_max_doses",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_p_death_first_pfs",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "comp_rdi",
+      "comp_st_share_1",
+      "comp_st_share_2",
+      "comp_st_share_3",
+      "comp_tot_scale",
+      "comp_tot_shape",
+      "comp_vial_mg",
+      "comp_vial_price",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "dr_outcomes",
+      "gpu_age",
+      "gpu_age2",
+      "gpu_intercept",
+      "gpu_male",
+      "int_admin_cost_per_admin",
+      "int_admin_interval_weeks",
+      "int_ae_cost",
+      "int_ae_qaly_loss",
+      "int_dose_mg",
+      "int_dose_weight_based",
+      "int_max_doses",
+      "int_os_scale",
+      "int_os_shape",
+      "int_p_death_first_pfs",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "int_rdi",
+      "int_st_share_1",
+      "int_st_share_2",
+      "int_st_share_3",
+      "int_tot_scale",
+      "int_tot_shape",
+      "int_vial_mg",
+      "int_vial_price",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "st_cost_1",
+      "st_cost_2",
+      "st_cost_3",
+      "time_horizon_years",
+      "u_pd",
+      "u_pf",
+      "use_age_util_adj",
+      "use_gpm_cap",
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "res_icer_ly": [
+      "baseline_age",
+      "c_pd_week",
+      "c_pf_week",
+      "c_terminal",
+      "comp_admin_cost_per_admin",
+      "comp_admin_interval_weeks",
+      "comp_ae_cost",
+      "comp_dose_mg",
+      "comp_dose_weight_based",
+      "comp_max_doses",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_p_death_first_pfs",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "comp_rdi",
+      "comp_st_share_1",
+      "comp_st_share_2",
+      "comp_st_share_3",
+      "comp_tot_scale",
+      "comp_tot_shape",
+      "comp_vial_mg",
+      "comp_vial_price",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "dr_outcomes",
+      "int_admin_cost_per_admin",
+      "int_admin_interval_weeks",
+      "int_ae_cost",
+      "int_dose_mg",
+      "int_dose_weight_based",
+      "int_max_doses",
+      "int_os_scale",
+      "int_os_shape",
+      "int_p_death_first_pfs",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "int_rdi",
+      "int_st_share_1",
+      "int_st_share_2",
+      "int_st_share_3",
+      "int_tot_scale",
+      "int_tot_shape",
+      "int_vial_mg",
+      "int_vial_price",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "st_cost_1",
+      "st_cost_2",
+      "st_cost_3",
+      "time_horizon_years",
+      "use_gpm_cap",
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "res_inc_cost_admin": [
+      "baseline_age",
+      "comp_admin_cost_per_admin",
+      "comp_admin_interval_weeks",
+      "comp_max_doses",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_tot_scale",
+      "comp_tot_shape",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "int_admin_cost_per_admin",
+      "int_admin_interval_weeks",
+      "int_max_doses",
+      "int_os_scale",
+      "int_os_shape",
+      "int_tot_scale",
+      "int_tot_shape",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_inc_cost_ae": [
+      "comp_ae_cost",
+      "int_ae_cost"
+    ],
+    "res_inc_cost_drug": [
+      "baseline_age",
+      "comp_admin_interval_weeks",
+      "comp_dose_mg",
+      "comp_dose_weight_based",
+      "comp_max_doses",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_rdi",
+      "comp_tot_scale",
+      "comp_tot_shape",
+      "comp_vial_mg",
+      "comp_vial_price",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "int_admin_interval_weeks",
+      "int_dose_mg",
+      "int_dose_weight_based",
+      "int_max_doses",
+      "int_os_scale",
+      "int_os_shape",
+      "int_rdi",
+      "int_tot_scale",
+      "int_tot_shape",
+      "int_vial_mg",
+      "int_vial_price",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap",
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "res_inc_cost_pd_state": [
+      "baseline_age",
+      "c_pd_week",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "int_os_scale",
+      "int_os_shape",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_inc_cost_pf_state": [
+      "baseline_age",
+      "c_pf_week",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "int_os_scale",
+      "int_os_shape",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_inc_cost_st": [
+      "baseline_age",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_p_death_first_pfs",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "comp_st_share_1",
+      "comp_st_share_2",
+      "comp_st_share_3",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "int_os_scale",
+      "int_os_shape",
+      "int_p_death_first_pfs",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "int_st_share_1",
+      "int_st_share_2",
+      "int_st_share_3",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "st_cost_1",
+      "st_cost_2",
+      "st_cost_3",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_inc_cost_terminal": [
+      "baseline_age",
+      "c_terminal",
+      "comp_os_scale",
+      "comp_os_shape",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "int_os_scale",
+      "int_os_shape",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_inc_ly_disc": [
+      "baseline_age",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_outcomes",
+      "int_os_scale",
+      "int_os_shape",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_inc_ly_undisc": [
+      "baseline_age",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "cycle_length_days",
+      "days_per_year",
+      "int_os_scale",
+      "int_os_shape",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_inc_nmb": [
+      "baseline_age",
+      "c_pd_week",
+      "c_pf_week",
+      "c_terminal",
+      "comp_admin_cost_per_admin",
+      "comp_admin_interval_weeks",
+      "comp_ae_cost",
+      "comp_ae_qaly_loss",
+      "comp_dose_mg",
+      "comp_dose_weight_based",
+      "comp_max_doses",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_p_death_first_pfs",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "comp_rdi",
+      "comp_st_share_1",
+      "comp_st_share_2",
+      "comp_st_share_3",
+      "comp_tot_scale",
+      "comp_tot_shape",
+      "comp_vial_mg",
+      "comp_vial_price",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "dr_outcomes",
+      "gpu_age",
+      "gpu_age2",
+      "gpu_intercept",
+      "gpu_male",
+      "int_admin_cost_per_admin",
+      "int_admin_interval_weeks",
+      "int_ae_cost",
+      "int_ae_qaly_loss",
+      "int_dose_mg",
+      "int_dose_weight_based",
+      "int_max_doses",
+      "int_os_scale",
+      "int_os_shape",
+      "int_p_death_first_pfs",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "int_rdi",
+      "int_st_share_1",
+      "int_st_share_2",
+      "int_st_share_3",
+      "int_tot_scale",
+      "int_tot_shape",
+      "int_vial_mg",
+      "int_vial_price",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "st_cost_1",
+      "st_cost_2",
+      "st_cost_3",
+      "time_horizon_years",
+      "u_pd",
+      "u_pf",
+      "use_age_util_adj",
+      "use_gpm_cap",
+      "weight_mean_kg",
+      "weight_sd_kg",
+      "wtp_threshold"
+    ],
+    "res_inc_nmb_lower": [
+      "baseline_age",
+      "c_pd_week",
+      "c_pf_week",
+      "c_terminal",
+      "comp_admin_cost_per_admin",
+      "comp_admin_interval_weeks",
+      "comp_ae_cost",
+      "comp_ae_qaly_loss",
+      "comp_dose_mg",
+      "comp_dose_weight_based",
+      "comp_max_doses",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_p_death_first_pfs",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "comp_rdi",
+      "comp_st_share_1",
+      "comp_st_share_2",
+      "comp_st_share_3",
+      "comp_tot_scale",
+      "comp_tot_shape",
+      "comp_vial_mg",
+      "comp_vial_price",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "dr_outcomes",
+      "gpu_age",
+      "gpu_age2",
+      "gpu_intercept",
+      "gpu_male",
+      "int_admin_cost_per_admin",
+      "int_admin_interval_weeks",
+      "int_ae_cost",
+      "int_ae_qaly_loss",
+      "int_dose_mg",
+      "int_dose_weight_based",
+      "int_max_doses",
+      "int_os_scale",
+      "int_os_shape",
+      "int_p_death_first_pfs",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "int_rdi",
+      "int_st_share_1",
+      "int_st_share_2",
+      "int_st_share_3",
+      "int_tot_scale",
+      "int_tot_shape",
+      "int_vial_mg",
+      "int_vial_price",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "st_cost_1",
+      "st_cost_2",
+      "st_cost_3",
+      "time_horizon_years",
+      "u_pd",
+      "u_pf",
+      "use_age_util_adj",
+      "use_gpm_cap",
+      "weight_mean_kg",
+      "weight_sd_kg",
+      "wtp_threshold_lower"
+    ],
+    "res_inc_qaly_disc": [
+      "baseline_age",
+      "comp_ae_qaly_loss",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_outcomes",
+      "gpu_age",
+      "gpu_age2",
+      "gpu_intercept",
+      "gpu_male",
+      "int_ae_qaly_loss",
+      "int_os_scale",
+      "int_os_shape",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "u_pd",
+      "u_pf",
+      "use_age_util_adj",
+      "use_gpm_cap"
+    ],
+    "res_inc_qaly_undisc": [
+      "baseline_age",
+      "comp_ae_qaly_loss",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "cycle_length_days",
+      "days_per_year",
+      "gpu_age",
+      "gpu_age2",
+      "gpu_intercept",
+      "gpu_male",
+      "int_ae_qaly_loss",
+      "int_os_scale",
+      "int_os_shape",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "u_pd",
+      "u_pf",
+      "use_age_util_adj",
+      "use_gpm_cap"
+    ],
+    "res_inc_total_cost": [
+      "baseline_age",
+      "c_pd_week",
+      "c_pf_week",
+      "c_terminal",
+      "comp_admin_cost_per_admin",
+      "comp_admin_interval_weeks",
+      "comp_ae_cost",
+      "comp_dose_mg",
+      "comp_dose_weight_based",
+      "comp_max_doses",
+      "comp_os_scale",
+      "comp_os_shape",
+      "comp_p_death_first_pfs",
+      "comp_pfs_scale",
+      "comp_pfs_shape",
+      "comp_rdi",
+      "comp_st_share_1",
+      "comp_st_share_2",
+      "comp_st_share_3",
+      "comp_tot_scale",
+      "comp_tot_shape",
+      "comp_vial_mg",
+      "comp_vial_price",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "int_admin_cost_per_admin",
+      "int_admin_interval_weeks",
+      "int_ae_cost",
+      "int_dose_mg",
+      "int_dose_weight_based",
+      "int_max_doses",
+      "int_os_scale",
+      "int_os_shape",
+      "int_p_death_first_pfs",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "int_rdi",
+      "int_st_share_1",
+      "int_st_share_2",
+      "int_st_share_3",
+      "int_tot_scale",
+      "int_tot_shape",
+      "int_vial_mg",
+      "int_vial_price",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "st_cost_1",
+      "st_cost_2",
+      "st_cost_3",
+      "time_horizon_years",
+      "use_gpm_cap",
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "res_int_cost_admin": [
+      "baseline_age",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "int_admin_cost_per_admin",
+      "int_admin_interval_weeks",
+      "int_max_doses",
+      "int_os_scale",
+      "int_os_shape",
+      "int_tot_scale",
+      "int_tot_shape",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_int_cost_ae": [
+      "int_ae_cost"
+    ],
+    "res_int_cost_drug": [
+      "baseline_age",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "int_admin_interval_weeks",
+      "int_dose_mg",
+      "int_dose_weight_based",
+      "int_max_doses",
+      "int_os_scale",
+      "int_os_shape",
+      "int_rdi",
+      "int_tot_scale",
+      "int_tot_shape",
+      "int_vial_mg",
+      "int_vial_price",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap",
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "res_int_cost_pd_state": [
+      "baseline_age",
+      "c_pd_week",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "int_os_scale",
+      "int_os_shape",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_int_cost_pf_state": [
+      "baseline_age",
+      "c_pf_week",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "int_os_scale",
+      "int_os_shape",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_int_cost_st": [
+      "baseline_age",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "int_os_scale",
+      "int_os_shape",
+      "int_p_death_first_pfs",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "int_st_share_1",
+      "int_st_share_2",
+      "int_st_share_3",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "st_cost_1",
+      "st_cost_2",
+      "st_cost_3",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_int_cost_terminal": [
+      "baseline_age",
+      "c_terminal",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "int_os_scale",
+      "int_os_shape",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_int_drug_cost_per_admin": [
+      "int_dose_mg",
+      "int_dose_weight_based",
+      "int_vial_mg",
+      "int_vial_price",
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "res_int_drug_share": [
+      "baseline_age",
+      "c_pd_week",
+      "c_pf_week",
+      "c_terminal",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "int_admin_cost_per_admin",
+      "int_admin_interval_weeks",
+      "int_ae_cost",
+      "int_dose_mg",
+      "int_dose_weight_based",
+      "int_max_doses",
+      "int_os_scale",
+      "int_os_shape",
+      "int_p_death_first_pfs",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "int_rdi",
+      "int_st_share_1",
+      "int_st_share_2",
+      "int_st_share_3",
+      "int_tot_scale",
+      "int_tot_shape",
+      "int_vial_mg",
+      "int_vial_price",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "st_cost_1",
+      "st_cost_2",
+      "st_cost_3",
+      "time_horizon_years",
+      "use_gpm_cap",
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "res_int_expected_vials": [
+      "int_dose_mg",
+      "int_dose_weight_based",
+      "int_vial_mg",
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ],
+    "res_int_gpm_bind_cycles": [
+      "baseline_age",
+      "cycle_length_days",
+      "days_per_year",
+      "int_os_scale",
+      "int_os_shape",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_int_gpm_first_bind_age": [
+      "baseline_age",
+      "cycle_length_days",
+      "days_per_year",
+      "int_os_scale",
+      "int_os_shape",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_int_gpm_first_bind_alive": [
+      "baseline_age",
+      "cycle_length_days",
+      "days_per_year",
+      "int_os_scale",
+      "int_os_shape",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_int_ly_disc": [
+      "baseline_age",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_outcomes",
+      "int_os_scale",
+      "int_os_shape",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_int_ly_undisc": [
+      "baseline_age",
+      "cycle_length_days",
+      "days_per_year",
+      "int_os_scale",
+      "int_os_shape",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_int_median_os": [
+      "int_os_scale",
+      "int_os_shape"
+    ],
+    "res_int_median_pfs": [
+      "int_pfs_scale",
+      "int_pfs_shape"
+    ],
+    "res_int_median_tot": [
+      "int_tot_scale",
+      "int_tot_shape"
+    ],
+    "res_int_n_doses": [
+      "baseline_age",
+      "cycle_length_days",
+      "days_per_year",
+      "int_admin_interval_weeks",
+      "int_max_doses",
+      "int_os_scale",
+      "int_os_shape",
+      "int_tot_scale",
+      "int_tot_shape",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_int_qaly_disc": [
+      "baseline_age",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_outcomes",
+      "gpu_age",
+      "gpu_age2",
+      "gpu_intercept",
+      "gpu_male",
+      "int_ae_qaly_loss",
+      "int_os_scale",
+      "int_os_shape",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "u_pd",
+      "u_pf",
+      "use_age_util_adj",
+      "use_gpm_cap"
+    ],
+    "res_int_qaly_undisc": [
+      "baseline_age",
+      "cycle_length_days",
+      "days_per_year",
+      "gpu_age",
+      "gpu_age2",
+      "gpu_intercept",
+      "gpu_male",
+      "int_ae_qaly_loss",
+      "int_os_scale",
+      "int_os_shape",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "u_pd",
+      "u_pf",
+      "use_age_util_adj",
+      "use_gpm_cap"
+    ],
+    "res_int_s_os_horizon": [
+      "baseline_age",
+      "cycle_length_days",
+      "days_per_year",
+      "int_os_scale",
+      "int_os_shape",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "time_horizon_years",
+      "use_gpm_cap"
+    ],
+    "res_int_st_cost_per_progression": [
+      "int_st_share_1",
+      "int_st_share_2",
+      "int_st_share_3",
+      "st_cost_1",
+      "st_cost_2",
+      "st_cost_3"
+    ],
+    "res_int_total_cost": [
+      "baseline_age",
+      "c_pd_week",
+      "c_pf_week",
+      "c_terminal",
+      "cycle_length_days",
+      "days_per_year",
+      "dr_costs",
+      "int_admin_cost_per_admin",
+      "int_admin_interval_weeks",
+      "int_ae_cost",
+      "int_dose_mg",
+      "int_dose_weight_based",
+      "int_max_doses",
+      "int_os_scale",
+      "int_os_shape",
+      "int_p_death_first_pfs",
+      "int_pfs_scale",
+      "int_pfs_shape",
+      "int_rdi",
+      "int_st_share_1",
+      "int_st_share_2",
+      "int_st_share_3",
+      "int_tot_scale",
+      "int_tot_shape",
+      "int_vial_mg",
+      "int_vial_price",
+      "lt_age",
+      "lt_qx_female",
+      "lt_qx_male",
+      "prop_male",
+      "st_cost_1",
+      "st_cost_2",
+      "st_cost_3",
+      "time_horizon_years",
+      "use_gpm_cap",
+      "weight_mean_kg",
+      "weight_sd_kg"
+    ]
+  },
+  "parallel_layouts": [
+    [
+      "Trace_Int",
+      "Trace_Comp"
+    ]
+  ],
+  "hardcoding_findings": [],
+  "conventions_detected": {
+    "discount_factor_regions": [
+      {
+        "region": "Trace_Int!Y20",
+        "rate": "dr_costs",
+        "timing": "cycle_start",
+        "rows": [
+          20,
+          2107
+        ]
+      },
+      {
+        "region": "Trace_Int!Z20",
+        "rate": "dr_costs",
+        "timing": "cycle_midpoint",
+        "rows": [
+          20,
+          2107
+        ]
+      },
+      {
+        "region": "Trace_Int!AA20",
+        "rate": "dr_outcomes",
+        "timing": "cycle_midpoint",
+        "rows": [
+          20,
+          2107
+        ]
+      },
+      {
+        "region": "Trace_Comp!Y20",
+        "rate": "dr_costs",
+        "timing": "cycle_start",
+        "rows": [
+          20,
+          2107
+        ]
+      },
+      {
+        "region": "Trace_Comp!Z20",
+        "rate": "dr_costs",
+        "timing": "cycle_midpoint",
+        "rows": [
+          20,
+          2107
+        ]
+      },
+      {
+        "region": "Trace_Comp!AA20",
+        "rate": "dr_outcomes",
+        "timing": "cycle_midpoint",
+        "rows": [
+          20,
+          2107
+        ]
+      }
+    ],
+    "hcc_columns": [
+      {
+        "region": "Trace_Int!R20",
+        "averages_column": "N"
+      },
+      {
+        "region": "Trace_Int!S20",
+        "averages_column": "O"
+      },
+      {
+        "region": "Trace_Comp!R20",
+        "averages_column": "N"
+      },
+      {
+        "region": "Trace_Comp!S20",
+        "averages_column": "O"
+      }
+    ],
+    "survival_forms": [
+      "weibull_aft"
+    ],
+    "gpm_cap": true,
+    "discounting_method": "mid_cycle_continuous",
+    "hcc_method": "trapezoidal"
+  },
+  "conventions_declared": "fixtures/global_model.conventions.yaml",
+  "convention_mismatches": []
+}

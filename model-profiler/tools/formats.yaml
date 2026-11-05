@@ -1,0 +1,23 @@
+# Display formats used by tools/render_report.py and tools/verify_report.py.
+# A placeholder {{name|fmt}} is displayed with format fmt; "money" takes its symbol and
+# decimals from the model's currency_code.
+version: 1
+currencies:
+  GBP: {symbol: "£", decimals: 0}
+  KRW: {symbol: "₩", decimals: 0}
+formats:
+  money: {scale: 1, decimals: currency, prefix: currency, suffix: ""}
+  qaly: {scale: 1, decimals: 3, prefix: "", suffix: ""}
+  ly: {scale: 1, decimals: 2, prefix: "", suffix: ""}
+  pct: {scale: 100, decimals: 1, prefix: "", suffix: "%"}
+  pct2: {scale: 100, decimals: 2, prefix: "", suffix: "%"}
+  p2: {scale: 1, decimals: 2, prefix: "", suffix: ""}
+  m1: {scale: 1, decimals: 1, prefix: "", suffix: ""}
+  int: {scale: 1, decimals: 0, prefix: "", suffix: ""}
+  kg: {scale: 1, decimals: 1, prefix: "", suffix: ""}
+  coef: {scale: 1, decimals: 6, prefix: "", suffix: ""}
+  year: {scale: 1, decimals: 0, prefix: "", suffix: "", grouping: false}
+rounding_note: >-
+  Note: figures in the results tables are rounded; incremental values and the ICER are
+  calculated from unrounded results and may differ slightly from values recalculated from
+  the rounded figures shown.

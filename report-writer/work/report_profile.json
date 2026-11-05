@@ -1,0 +1,1293 @@
+{
+  "note": "Report profile from the reference pipeline.",
+  "numerals": [
+    {
+      "token_index": 0,
+      "block": 5,
+      "token": "40",
+      "name": "time_horizon_years",
+      "context": "base"
+    },
+    {
+      "token_index": 1,
+      "block": 5,
+      "token": "3.5%",
+      "name": "dr_costs",
+      "context": "base"
+    },
+    {
+      "token_index": 2,
+      "block": 6,
+      "token": "\u00a360,016",
+      "name": "res_int_total_cost",
+      "context": "base"
+    },
+    {
+      "token_index": 3,
+      "block": 6,
+      "token": "1.669",
+      "name": "res_int_qaly_disc",
+      "context": "base"
+    },
+    {
+      "token_index": 4,
+      "block": 6,
+      "token": "\u00a335,270",
+      "name": "res_comp_total_cost",
+      "context": "base"
+    },
+    {
+      "token_index": 5,
+      "block": 6,
+      "token": "0.794",
+      "name": "res_comp_qaly_disc",
+      "context": "base"
+    },
+    {
+      "token_index": 6,
+      "block": 6,
+      "token": "\u00a324,746",
+      "name": "res_inc_total_cost",
+      "context": "base"
+    },
+    {
+      "token_index": 7,
+      "block": 6,
+      "token": "0.875",
+      "name": "res_inc_qaly_disc",
+      "context": "base"
+    },
+    {
+      "token_index": 8,
+      "block": 6,
+      "token": "\u00a328,271",
+      "name": "res_icer",
+      "context": "base"
+    },
+    {
+      "token_index": 9,
+      "block": 7,
+      "token": "\u00a330,000",
+      "name": "wtp_threshold",
+      "context": "base"
+    },
+    {
+      "token_index": 10,
+      "block": 7,
+      "token": "\u00a31,514",
+      "name": "res_inc_nmb",
+      "context": "base"
+    },
+    {
+      "token_index": 11,
+      "block": 7,
+      "token": "\u00a320,000",
+      "name": "wtp_threshold_lower",
+      "context": "base"
+    },
+    {
+      "token_index": 12,
+      "block": 10,
+      "token": "3",
+      "name": "int_admin_interval_weeks",
+      "context": "base"
+    },
+    {
+      "token_index": 13,
+      "block": 17,
+      "token": "3",
+      "name": "int_admin_interval_weeks",
+      "context": "base"
+    },
+    {
+      "token_index": 14,
+      "block": 19,
+      "token": "3",
+      "name": "comp_admin_interval_weeks",
+      "context": "base"
+    },
+    {
+      "token_index": 15,
+      "block": 30,
+      "token": "7",
+      "name": "cycle_length_days",
+      "context": "base"
+    },
+    {
+      "token_index": 16,
+      "block": 30,
+      "token": "40",
+      "name": "time_horizon_years",
+      "context": "base"
+    },
+    {
+      "token_index": 17,
+      "block": 30,
+      "token": "62",
+      "name": "baseline_age",
+      "context": "base"
+    },
+    {
+      "token_index": 18,
+      "block": 30,
+      "token": "60.0%",
+      "name": "prop_male",
+      "context": "base"
+    },
+    {
+      "token_index": 19,
+      "block": 30,
+      "token": "0.1%",
+      "name": "lifetime_check_tol",
+      "context": "base"
+    },
+    {
+      "token_index": 20,
+      "block": 32,
+      "token": "3.5%",
+      "name": "dr_costs",
+      "context": "base"
+    },
+    {
+      "token_index": 21,
+      "block": 32,
+      "token": "3.5%",
+      "name": "dr_outcomes",
+      "context": "base"
+    },
+    {
+      "token_index": 22,
+      "block": 41,
+      "token": "0.95",
+      "name": "int_pfs_shape",
+      "context": "base"
+    },
+    {
+      "token_index": 23,
+      "block": 42,
+      "token": "12.00",
+      "name": "int_pfs_scale",
+      "context": "base"
+    },
+    {
+      "token_index": 24,
+      "block": 43,
+      "token": "8.2",
+      "name": "res_int_median_pfs",
+      "context": "base"
+    },
+    {
+      "token_index": 25,
+      "block": 45,
+      "token": "0.85",
+      "name": "int_os_shape",
+      "context": "base"
+    },
+    {
+      "token_index": 26,
+      "block": 46,
+      "token": "32.00",
+      "name": "int_os_scale",
+      "context": "base"
+    },
+    {
+      "token_index": 27,
+      "block": 47,
+      "token": "20.8",
+      "name": "res_int_median_os",
+      "context": "base"
+    },
+    {
+      "token_index": 28,
+      "block": 49,
+      "token": "0.90",
+      "name": "int_tot_shape",
+      "context": "base"
+    },
+    {
+      "token_index": 29,
+      "block": 50,
+      "token": "10.00",
+      "name": "int_tot_scale",
+      "context": "base"
+    },
+    {
+      "token_index": 30,
+      "block": 51,
+      "token": "6.7",
+      "name": "res_int_median_tot",
+      "context": "base"
+    },
+    {
+      "token_index": 31,
+      "block": 53,
+      "token": "1.25",
+      "name": "comp_pfs_shape",
+      "context": "base"
+    },
+    {
+      "token_index": 32,
+      "block": 54,
+      "token": "7.00",
+      "name": "comp_pfs_scale",
+      "context": "base"
+    },
+    {
+      "token_index": 33,
+      "block": 55,
+      "token": "5.2",
+      "name": "res_comp_median_pfs",
+      "context": "base"
+    },
+    {
+      "token_index": 34,
+      "block": 57,
+      "token": "1.15",
+      "name": "comp_os_shape",
+      "context": "base"
+    },
+    {
+      "token_index": 35,
+      "block": 58,
+      "token": "16.00",
+      "name": "comp_os_scale",
+      "context": "base"
+    },
+    {
+      "token_index": 36,
+      "block": 59,
+      "token": "11.6",
+      "name": "res_comp_median_os",
+      "context": "base"
+    },
+    {
+      "token_index": 37,
+      "block": 61,
+      "token": "1.40",
+      "name": "comp_tot_shape",
+      "context": "base"
+    },
+    {
+      "token_index": 38,
+      "block": 62,
+      "token": "4.50",
+      "name": "comp_tot_scale",
+      "context": "base"
+    },
+    {
+      "token_index": 39,
+      "block": 63,
+      "token": "3.5",
+      "name": "res_comp_median_tot",
+      "context": "base"
+    },
+    {
+      "token_index": 40,
+      "block": 64,
+      "token": "20.8",
+      "name": "res_int_median_os",
+      "context": "base"
+    },
+    {
+      "token_index": 41,
+      "block": 64,
+      "token": "11.6",
+      "name": "res_comp_median_os",
+      "context": "base"
+    },
+    {
+      "token_index": 42,
+      "block": 64,
+      "token": "8.2",
+      "name": "res_int_median_pfs",
+      "context": "base"
+    },
+    {
+      "token_index": 43,
+      "block": 64,
+      "token": "5.2",
+      "name": "res_comp_median_pfs",
+      "context": "base"
+    },
+    {
+      "token_index": 44,
+      "block": 66,
+      "token": "3",
+      "name": "int_admin_interval_weeks",
+      "context": "base"
+    },
+    {
+      "token_index": 45,
+      "block": 66,
+      "token": "35",
+      "name": "int_max_doses",
+      "context": "base"
+    },
+    {
+      "token_index": 46,
+      "block": 66,
+      "token": "3",
+      "name": "comp_admin_interval_weeks",
+      "context": "base"
+    },
+    {
+      "token_index": 47,
+      "block": 66,
+      "token": "6",
+      "name": "comp_max_doses",
+      "context": "base"
+    },
+    {
+      "token_index": 48,
+      "block": 67,
+      "token": "2.00",
+      "name": "int_dose_mg",
+      "context": "base"
+    },
+    {
+      "token_index": 49,
+      "block": 67,
+      "token": "2.05",
+      "name": "res_int_expected_vials",
+      "context": "base"
+    },
+    {
+      "token_index": 50,
+      "block": 67,
+      "token": "76.0",
+      "name": "weight_mean_kg",
+      "context": "base"
+    },
+    {
+      "token_index": 51,
+      "block": 67,
+      "token": "16.0",
+      "name": "weight_sd_kg",
+      "context": "base"
+    },
+    {
+      "token_index": 52,
+      "block": 67,
+      "token": "500",
+      "name": "comp_dose_mg",
+      "context": "base"
+    },
+    {
+      "token_index": 53,
+      "block": 67,
+      "token": "5",
+      "name": "res_comp_expected_vials",
+      "context": "base"
+    },
+    {
+      "token_index": 54,
+      "block": 67,
+      "token": "95.0%",
+      "name": "int_rdi",
+      "context": "base"
+    },
+    {
+      "token_index": 55,
+      "block": 67,
+      "token": "90.0%",
+      "name": "comp_rdi",
+      "context": "base"
+    },
+    {
+      "token_index": 56,
+      "block": 67,
+      "token": "13.70",
+      "name": "res_int_n_doses",
+      "context": "base"
+    },
+    {
+      "token_index": 57,
+      "block": 67,
+      "token": "4.58",
+      "name": "res_comp_n_doses",
+      "context": "base"
+    },
+    {
+      "token_index": 58,
+      "block": 70,
+      "token": "2025",
+      "name": "price_year",
+      "context": "base"
+    },
+    {
+      "token_index": 59,
+      "block": 76,
+      "token": "\u00a3700",
+      "name": "int_vial_price",
+      "context": "base"
+    },
+    {
+      "token_index": 60,
+      "block": 79,
+      "token": "\u00a31,435",
+      "name": "res_int_drug_cost_per_admin",
+      "context": "base"
+    },
+    {
+      "token_index": 61,
+      "block": 82,
+      "token": "\u00a396",
+      "name": "comp_vial_price",
+      "context": "base"
+    },
+    {
+      "token_index": 62,
+      "block": 85,
+      "token": "\u00a3480",
+      "name": "res_comp_drug_cost_per_admin",
+      "context": "base"
+    },
+    {
+      "token_index": 63,
+      "block": 88,
+      "token": "\u00a3310",
+      "name": "int_admin_cost_per_admin",
+      "context": "base"
+    },
+    {
+      "token_index": 64,
+      "block": 91,
+      "token": "\u00a3310",
+      "name": "comp_admin_cost_per_admin",
+      "context": "base"
+    },
+    {
+      "token_index": 65,
+      "block": 94,
+      "token": "\u00a3150",
+      "name": "c_pf_week",
+      "context": "base"
+    },
+    {
+      "token_index": 66,
+      "block": 97,
+      "token": "\u00a3230",
+      "name": "c_pd_week",
+      "context": "base"
+    },
+    {
+      "token_index": 67,
+      "block": 100,
+      "token": "\u00a36,500",
+      "name": "c_terminal",
+      "context": "base"
+    },
+    {
+      "token_index": 68,
+      "block": 103,
+      "token": "\u00a31,150",
+      "name": "int_ae_cost",
+      "context": "base"
+    },
+    {
+      "token_index": 69,
+      "block": 106,
+      "token": "\u00a32,400",
+      "name": "comp_ae_cost",
+      "context": "base"
+    },
+    {
+      "token_index": 70,
+      "block": 108,
+      "token": "15.0%",
+      "name": "int_p_death_first_pfs",
+      "context": "base"
+    },
+    {
+      "token_index": 71,
+      "block": 108,
+      "token": "12.0%",
+      "name": "comp_p_death_first_pfs",
+      "context": "base"
+    },
+    {
+      "token_index": 72,
+      "block": 115,
+      "token": "\u00a32,800",
+      "name": "st_cost_1",
+      "context": "base"
+    },
+    {
+      "token_index": 73,
+      "block": 116,
+      "token": "45.0%",
+      "name": "int_st_share_1",
+      "context": "base"
+    },
+    {
+      "token_index": 74,
+      "block": 117,
+      "token": "30.0%",
+      "name": "comp_st_share_1",
+      "context": "base"
+    },
+    {
+      "token_index": 75,
+      "block": 119,
+      "token": "\u00a330,000",
+      "name": "st_cost_2",
+      "context": "base"
+    },
+    {
+      "token_index": 76,
+      "block": 120,
+      "token": "5.0%",
+      "name": "int_st_share_2",
+      "context": "base"
+    },
+    {
+      "token_index": 77,
+      "block": 121,
+      "token": "35.0%",
+      "name": "comp_st_share_2",
+      "context": "base"
+    },
+    {
+      "token_index": 78,
+      "block": 123,
+      "token": "\u00a315,000",
+      "name": "st_cost_3",
+      "context": "base"
+    },
+    {
+      "token_index": 79,
+      "block": 124,
+      "token": "10.0%",
+      "name": "int_st_share_3",
+      "context": "base"
+    },
+    {
+      "token_index": 80,
+      "block": 125,
+      "token": "8.0%",
+      "name": "comp_st_share_3",
+      "context": "base"
+    },
+    {
+      "token_index": 81,
+      "block": 128,
+      "token": "\u00a34,260",
+      "name": "res_int_st_cost_per_progression",
+      "context": "base"
+    },
+    {
+      "token_index": 82,
+      "block": 129,
+      "token": "\u00a312,540",
+      "name": "res_comp_st_cost_per_progression",
+      "context": "base"
+    },
+    {
+      "token_index": 83,
+      "block": 136,
+      "token": "0.75",
+      "name": "u_pf",
+      "context": "base"
+    },
+    {
+      "token_index": 84,
+      "block": 138,
+      "token": "0.60",
+      "name": "u_pd",
+      "context": "base"
+    },
+    {
+      "token_index": 85,
+      "block": 140,
+      "token": "0.008",
+      "name": "int_ae_qaly_loss",
+      "context": "base"
+    },
+    {
+      "token_index": 86,
+      "block": 142,
+      "token": "0.015",
+      "name": "comp_ae_qaly_loss",
+      "context": "base"
+    },
+    {
+      "token_index": 87,
+      "block": 144,
+      "token": "0.95",
+      "name": "gpu_intercept",
+      "context": "base"
+    },
+    {
+      "token_index": 88,
+      "block": 146,
+      "token": "0.021000",
+      "name": "gpu_male",
+      "context": "base"
+    },
+    {
+      "token_index": 89,
+      "block": 148,
+      "token": "-0.000260",
+      "name": "gpu_age",
+      "context": "base"
+    },
+    {
+      "token_index": 90,
+      "block": 150,
+      "token": "-0.000033",
+      "name": "gpu_age2",
+      "context": "base"
+    },
+    {
+      "token_index": 91,
+      "block": 155,
+      "token": "1.37",
+      "name": "res_inc_ly_disc",
+      "context": "base"
+    },
+    {
+      "token_index": 92,
+      "block": 155,
+      "token": "0.875",
+      "name": "res_inc_qaly_disc",
+      "context": "base"
+    },
+    {
+      "token_index": 93,
+      "block": 155,
+      "token": "\u00a324,746",
+      "name": "res_inc_total_cost",
+      "context": "base"
+    },
+    {
+      "token_index": 94,
+      "block": 155,
+      "token": "\u00a328,271",
+      "name": "res_icer",
+      "context": "base"
+    },
+    {
+      "token_index": 95,
+      "block": 155,
+      "token": "\u00a318,033",
+      "name": "res_icer_ly",
+      "context": "base"
+    },
+    {
+      "token_index": 96,
+      "block": 162,
+      "token": "\u00a360,016",
+      "name": "res_int_total_cost",
+      "context": "base"
+    },
+    {
+      "token_index": 97,
+      "block": 163,
+      "token": "\u00a335,270",
+      "name": "res_comp_total_cost",
+      "context": "base"
+    },
+    {
+      "token_index": 98,
+      "block": 164,
+      "token": "\u00a324,746",
+      "name": "res_inc_total_cost",
+      "context": "base"
+    },
+    {
+      "token_index": 99,
+      "block": 166,
+      "token": "2.59",
+      "name": "res_int_ly_disc",
+      "context": "base"
+    },
+    {
+      "token_index": 100,
+      "block": 167,
+      "token": "1.22",
+      "name": "res_comp_ly_disc",
+      "context": "base"
+    },
+    {
+      "token_index": 101,
+      "block": 168,
+      "token": "1.37",
+      "name": "res_inc_ly_disc",
+      "context": "base"
+    },
+    {
+      "token_index": 102,
+      "block": 170,
+      "token": "1.669",
+      "name": "res_int_qaly_disc",
+      "context": "base"
+    },
+    {
+      "token_index": 103,
+      "block": 171,
+      "token": "0.794",
+      "name": "res_comp_qaly_disc",
+      "context": "base"
+    },
+    {
+      "token_index": 104,
+      "block": 172,
+      "token": "0.875",
+      "name": "res_inc_qaly_disc",
+      "context": "base"
+    },
+    {
+      "token_index": 105,
+      "block": 176,
+      "token": "\u00a328,271",
+      "name": "res_icer",
+      "context": "base"
+    },
+    {
+      "token_index": 106,
+      "block": 180,
+      "token": "\u00a31,514",
+      "name": "res_inc_nmb",
+      "context": "base"
+    },
+    {
+      "token_index": 107,
+      "block": 182,
+      "token": "2.90",
+      "name": "res_int_ly_undisc",
+      "context": "base"
+    },
+    {
+      "token_index": 108,
+      "block": 182,
+      "token": "1.27",
+      "name": "res_comp_ly_undisc",
+      "context": "base"
+    },
+    {
+      "token_index": 109,
+      "block": 184,
+      "token": "30.5%",
+      "name": "res_int_drug_share",
+      "context": "base"
+    },
+    {
+      "token_index": 110,
+      "block": 184,
+      "token": "5.6%",
+      "name": "res_comp_drug_share",
+      "context": "base"
+    },
+    {
+      "token_index": 111,
+      "block": 184,
+      "token": "\u00a316,309",
+      "name": "res_inc_cost_drug",
+      "context": "base"
+    },
+    {
+      "token_index": 112,
+      "block": 191,
+      "token": "\u00a318,278",
+      "name": "res_int_cost_drug",
+      "context": "base"
+    },
+    {
+      "token_index": 113,
+      "block": 192,
+      "token": "\u00a31,969",
+      "name": "res_comp_cost_drug",
+      "context": "base"
+    },
+    {
+      "token_index": 114,
+      "block": 193,
+      "token": "\u00a316,309",
+      "name": "res_inc_cost_drug",
+      "context": "base"
+    },
+    {
+      "token_index": 115,
+      "block": 195,
+      "token": "\u00a34,157",
+      "name": "res_int_cost_admin",
+      "context": "base"
+    },
+    {
+      "token_index": 116,
+      "block": 196,
+      "token": "\u00a31,413",
+      "name": "res_comp_cost_admin",
+      "context": "base"
+    },
+    {
+      "token_index": 117,
+      "block": 197,
+      "token": "\u00a32,745",
+      "name": "res_inc_cost_admin",
+      "context": "base"
+    },
+    {
+      "token_index": 118,
+      "block": 199,
+      "token": "\u00a37,724",
+      "name": "res_int_cost_pf_state",
+      "context": "base"
+    },
+    {
+      "token_index": 119,
+      "block": 200,
+      "token": "\u00a34,188",
+      "name": "res_comp_cost_pf_state",
+      "context": "base"
+    },
+    {
+      "token_index": 120,
+      "block": 201,
+      "token": "\u00a33,536",
+      "name": "res_inc_cost_pf_state",
+      "context": "base"
+    },
+    {
+      "token_index": 121,
+      "block": 203,
+      "token": "\u00a319,289",
+      "name": "res_int_cost_pd_state",
+      "context": "base"
+    },
+    {
+      "token_index": 122,
+      "block": 204,
+      "token": "\u00a38,243",
+      "name": "res_comp_cost_pd_state",
+      "context": "base"
+    },
+    {
+      "token_index": 123,
+      "block": 205,
+      "token": "\u00a311,047",
+      "name": "res_inc_cost_pd_state",
+      "context": "base"
+    },
+    {
+      "token_index": 124,
+      "block": 207,
+      "token": "\u00a35,920",
+      "name": "res_int_cost_terminal",
+      "context": "base"
+    },
+    {
+      "token_index": 125,
+      "block": 208,
+      "token": "\u00a36,227",
+      "name": "res_comp_cost_terminal",
+      "context": "base"
+    },
+    {
+      "token_index": 126,
+      "block": 209,
+      "token": "-\u00a3307",
+      "name": "res_inc_cost_terminal",
+      "context": "base"
+    },
+    {
+      "token_index": 127,
+      "block": 211,
+      "token": "\u00a33,498",
+      "name": "res_int_cost_st",
+      "context": "base"
+    },
+    {
+      "token_index": 128,
+      "block": 212,
+      "token": "\u00a310,832",
+      "name": "res_comp_cost_st",
+      "context": "base"
+    },
+    {
+      "token_index": 129,
+      "block": 213,
+      "token": "-\u00a37,334",
+      "name": "res_inc_cost_st",
+      "context": "base"
+    },
+    {
+      "token_index": 130,
+      "block": 215,
+      "token": "\u00a31,150",
+      "name": "res_int_cost_ae",
+      "context": "base"
+    },
+    {
+      "token_index": 131,
+      "block": 216,
+      "token": "\u00a32,400",
+      "name": "res_comp_cost_ae",
+      "context": "base"
+    },
+    {
+      "token_index": 132,
+      "block": 217,
+      "token": "-\u00a31,250",
+      "name": "res_inc_cost_ae",
+      "context": "base"
+    },
+    {
+      "token_index": 133,
+      "block": 219,
+      "token": "\u00a360,016",
+      "name": "res_int_total_cost",
+      "context": "base"
+    },
+    {
+      "token_index": 134,
+      "block": 220,
+      "token": "\u00a335,270",
+      "name": "res_comp_total_cost",
+      "context": "base"
+    },
+    {
+      "token_index": 135,
+      "block": 221,
+      "token": "\u00a324,746",
+      "name": "res_inc_total_cost",
+      "context": "base"
+    },
+    {
+      "token_index": 136,
+      "block": 232,
+      "token": "\u00a324,746",
+      "name": "res_inc_total_cost",
+      "context": "base"
+    },
+    {
+      "token_index": 137,
+      "block": 233,
+      "token": "0.875",
+      "name": "res_inc_qaly_disc",
+      "context": "base"
+    },
+    {
+      "token_index": 138,
+      "block": 234,
+      "token": "\u00a328,271",
+      "name": "res_icer",
+      "context": "base"
+    },
+    {
+      "token_index": 139,
+      "block": 236,
+      "token": "1.5%",
+      "name": "dr_costs",
+      "context": "SC1"
+    },
+    {
+      "token_index": 140,
+      "block": 237,
+      "token": "\u00a326,725",
+      "name": "res_inc_total_cost",
+      "context": "SC1"
+    },
+    {
+      "token_index": 141,
+      "block": 238,
+      "token": "0.957",
+      "name": "res_inc_qaly_disc",
+      "context": "SC1"
+    },
+    {
+      "token_index": 142,
+      "block": 239,
+      "token": "\u00a327,924",
+      "name": "res_icer",
+      "context": "SC1"
+    },
+    {
+      "token_index": 143,
+      "block": 241,
+      "token": "20",
+      "name": "time_horizon_years",
+      "context": "SC2"
+    },
+    {
+      "token_index": 144,
+      "block": 242,
+      "token": "\u00a324,646",
+      "name": "res_inc_total_cost",
+      "context": "SC2"
+    },
+    {
+      "token_index": 145,
+      "block": 243,
+      "token": "0.872",
+      "name": "res_inc_qaly_disc",
+      "context": "SC2"
+    },
+    {
+      "token_index": 146,
+      "block": 244,
+      "token": "\u00a328,279",
+      "name": "res_icer",
+      "context": "SC2"
+    },
+    {
+      "token_index": 147,
+      "block": 246,
+      "token": "0.72",
+      "name": "u_pf",
+      "context": "SC3"
+    },
+    {
+      "token_index": 148,
+      "block": 246,
+      "token": "0.55",
+      "name": "u_pd",
+      "context": "SC3"
+    },
+    {
+      "token_index": 149,
+      "block": 247,
+      "token": "\u00a324,746",
+      "name": "res_inc_total_cost",
+      "context": "SC3"
+    },
+    {
+      "token_index": 150,
+      "block": 248,
+      "token": "0.817",
+      "name": "res_inc_qaly_disc",
+      "context": "SC3"
+    },
+    {
+      "token_index": 151,
+      "block": 249,
+      "token": "\u00a330,270",
+      "name": "res_icer",
+      "context": "SC3"
+    },
+    {
+      "token_index": 152,
+      "block": 251,
+      "token": "696",
+      "name": "int_max_doses",
+      "context": "SC4"
+    },
+    {
+      "token_index": 153,
+      "block": 252,
+      "token": "\u00a327,844",
+      "name": "res_inc_total_cost",
+      "context": "SC4"
+    },
+    {
+      "token_index": 154,
+      "block": 253,
+      "token": "0.875",
+      "name": "res_inc_qaly_disc",
+      "context": "SC4"
+    },
+    {
+      "token_index": 155,
+      "block": 254,
+      "token": "\u00a331,811",
+      "name": "res_icer",
+      "context": "SC4"
+    },
+    {
+      "token_index": 156,
+      "block": 256,
+      "token": "28.00",
+      "name": "int_os_scale",
+      "context": "SC5"
+    },
+    {
+      "token_index": 157,
+      "block": 257,
+      "token": "\u00a321,283",
+      "name": "res_inc_total_cost",
+      "context": "SC5"
+    },
+    {
+      "token_index": 158,
+      "block": 258,
+      "token": "0.705",
+      "name": "res_inc_qaly_disc",
+      "context": "SC5"
+    },
+    {
+      "token_index": 159,
+      "block": 259,
+      "token": "\u00a330,205",
+      "name": "res_icer",
+      "context": "SC5"
+    },
+    {
+      "token_index": 160,
+      "block": 262,
+      "token": "\u00a324,746",
+      "name": "res_inc_total_cost",
+      "context": "SC6"
+    },
+    {
+      "token_index": 161,
+      "block": 263,
+      "token": "0.875",
+      "name": "res_inc_qaly_disc",
+      "context": "SC6"
+    },
+    {
+      "token_index": 162,
+      "block": 264,
+      "token": "\u00a328,271",
+      "name": "res_icer",
+      "context": "SC6"
+    },
+    {
+      "token_index": 163,
+      "block": 267,
+      "token": "\u00a324,746",
+      "name": "res_inc_total_cost",
+      "context": "SC7"
+    },
+    {
+      "token_index": 164,
+      "block": 268,
+      "token": "0.898",
+      "name": "res_inc_qaly_disc",
+      "context": "SC7"
+    },
+    {
+      "token_index": 165,
+      "block": 269,
+      "token": "\u00a327,553",
+      "name": "res_icer",
+      "context": "SC7"
+    },
+    {
+      "token_index": 166,
+      "block": 271,
+      "token": "0.95",
+      "name": "int_tot_shape",
+      "context": "SC8"
+    },
+    {
+      "token_index": 167,
+      "block": 271,
+      "token": "12.00",
+      "name": "int_tot_scale",
+      "context": "SC8"
+    },
+    {
+      "token_index": 168,
+      "block": 272,
+      "token": "\u00a327,597",
+      "name": "res_inc_total_cost",
+      "context": "SC8"
+    },
+    {
+      "token_index": 169,
+      "block": 273,
+      "token": "0.875",
+      "name": "res_inc_qaly_disc",
+      "context": "SC8"
+    },
+    {
+      "token_index": 170,
+      "block": 274,
+      "token": "\u00a331,528",
+      "name": "res_icer",
+      "context": "SC8"
+    },
+    {
+      "token_index": 171,
+      "block": 275,
+      "token": "\u00a330,000",
+      "name": "wtp_threshold",
+      "context": "base"
+    },
+    {
+      "token_index": 172,
+      "block": 275,
+      "token": "\u00a330,270",
+      "name": "res_icer",
+      "context": "SC3"
+    },
+    {
+      "token_index": 173,
+      "block": 275,
+      "token": "\u00a331,811",
+      "name": "res_icer",
+      "context": "SC4"
+    },
+    {
+      "token_index": 174,
+      "block": 275,
+      "token": "\u00a330,205",
+      "name": "res_icer",
+      "context": "SC5"
+    },
+    {
+      "token_index": 175,
+      "block": 275,
+      "token": "\u00a331,528",
+      "name": "res_icer",
+      "context": "SC8"
+    },
+    {
+      "token_index": 176,
+      "block": 277,
+      "token": "0.1%",
+      "name": "lifetime_check_tol",
+      "context": "base"
+    },
+    {
+      "token_index": 177,
+      "block": 278,
+      "token": "312",
+      "name": "res_int_gpm_bind_cycles",
+      "context": "base"
+    },
+    {
+      "token_index": 178,
+      "block": 278,
+      "token": "96",
+      "name": "res_int_gpm_first_bind_age",
+      "context": "base"
+    },
+    {
+      "token_index": 179,
+      "block": 278,
+      "token": "0.02%",
+      "name": "res_int_gpm_first_bind_alive",
+      "context": "base"
+    },
+    {
+      "token_index": 180,
+      "block": 290,
+      "token": "\u00a328,271",
+      "name": "res_icer",
+      "context": "base"
+    },
+    {
+      "token_index": 181,
+      "block": 290,
+      "token": "\u00a330,000",
+      "name": "wtp_threshold",
+      "context": "base"
+    },
+    {
+      "token_index": 182,
+      "block": 290,
+      "token": "\u00a320,000",
+      "name": "wtp_threshold_lower",
+      "context": "base"
+    },
+    {
+      "token_index": 183,
+      "block": 290,
+      "token": "\u00a330,000",
+      "name": "wtp_threshold",
+      "context": "base"
+    }
+  ]
+}

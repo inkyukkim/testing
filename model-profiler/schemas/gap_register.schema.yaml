@@ -1,0 +1,99 @@
+# JSON Schema (draft 2020-12) for gap registers, written in YAML.
+# Produced by the Input Mapper, approved by a human, enforced by tools/gap_register.py.
+# Cross-field rules that JSON Schema cannot express are listed under x-rules and are
+# implemented in tools/gap_register.py (validate_rules).
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Gap register
+type: object
+required: [schema_version, adaptation, gaps]
+additionalProperties: false
+properties:
+  schema_version: {type: integer, enum: [1]}
+  adaptation:
+    type: object
+    required: [model, local_inputs, country]
+    additionalProperties: false
+    properties:
+      model: {type: string}
+      local_inputs: {type: string}
+      country: {type: string}
+  gaps:
+    type: array
+    items:
+      type: object
+      required: [gap_id, target_names, source_items, description, class, handling, rationale,
+                 escalation_options, decided_by, status, resolution]
+      additionalProperties: false
+      properties:
+        gap_id: {type: string, pattern: "^GAP-[0-9]{3}$"}
+        target_names: {type: array, items: {type: string}, minItems: 1}
+        source_items: {type: array, items: {type: string}}
+        description: {type: string}
+        class:
+          type: string
+          enum: [non_transferable, transferable, partial]
+          x-meaning:
+            non_transferable: value depends on the local health system (unit costs, resource use, prices); a global value must not be used
+            transferable: value is expected to hold across settings (e.g. trial efficacy); the global value may be retained
+            partial: part of the value transfers (e.g. structure or shape) but local calibration is expected
+        handling:
+          type: string
+          enum: [block, retain_tagged, retain_flagged]
+          x-meaning:
+            block: the pipeline stops until a human resolves the gap with local evidence or an approved method change
+            retain_tagged: keep the global value; the Report Writer tags it as a retained global input
+            retain_flagged: keep the global value; flagged for human review and listed as a limitation
+        retained_source:
+          type: [array, "null"]
+          items: {type: string}
+          description: >-
+            defined names (global model) or item_ids whose values are retained or derived;
+            required for retain_* handling; every entry must exist (checked by apply_mapping)
+        rationale: {type: string}
+        escalation_options:
+          type: array
+          items:
+            type: object
+            required: [option_id, action, description]
+            additionalProperties: false
+            properties:
+              option_id: {type: string, pattern: "^E[0-9]+$"}
+              action: {type: string, enum: [obtain_local_data, cite_local_literature, approved_method_change,
+                                            retain_with_scenario, expert_elicitation]}
+              description: {type: string}
+        prohibited_options:
+          type: array
+          items: {type: string}
+        decided_by:
+          type: object
+          required: [kind, role]
+          additionalProperties: false
+          properties:
+            kind: {type: string, enum: [agent, human]}
+            role: {type: string}
+        status: {type: string, enum: [open, resolved]}
+        resolution:
+          type: [object, "null"]
+          required: [option_id, decided_by, date, evidence]
+          additionalProperties: false
+          properties:
+            option_id: {type: string}
+            decided_by:
+              type: object
+              required: [kind, role]
+              additionalProperties: false
+              properties:
+                kind: {type: string, enum: [human]}
+                role: {type: string}
+            date: {type: string, pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"}
+            evidence: {type: string, description: item_id or document reference for the resolving source; never a number}
+x-rules:
+  - R1 class/handling compatibility: non_transferable -> block; transferable -> retain_tagged | retain_flagged; partial -> retain_flagged | block
+  - R2 handling block requires at least one escalation option
+  - R3 status resolved requires a resolution whose option_id is one of the gap's escalation options and whose decided_by.kind is human
+  - R4 status open requires resolution null
+  - R5 retain_tagged and retain_flagged require retained_source
+  - R6 gap_id values are unique
+  - R8 YAML anchors and aliases are not allowed (each entry must be readable on its own)
+  - R7 free text (description, rationale, escalation and prohibited options) contains no numerals other than identifiers
+  - GATE the pipeline is blocked while any gap has handling block and status open

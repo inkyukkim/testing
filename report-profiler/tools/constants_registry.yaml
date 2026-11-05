@@ -1,0 +1,46 @@
+# Versioned constants and unit dimensions read by tools/apply_mapping.py.
+# The only numbers an Input Mapper may use besides local and model cells are these,
+# referenced by key. Changing a value is a reviewed change to this file.
+version: 1
+constants:
+  days_per_week: 7
+  months_per_year: 12
+  switch_off: 0
+  switch_on: 1
+  # wording rule: a change is called negligible if |relative change| is below this
+  negligible_rel_change: 0.001
+units:
+  # unit string as written in a model or local input file -> dimension
+  "-": dimensionless
+  "proportion": proportion
+  "proportion of progressors": proportion
+  "switch": switch
+  "text": text
+  "ISO 4217": text
+  "year": calendar_year
+  "years": duration_years
+  "weeks": duration_weeks
+  "days": duration_days
+  "months": duration_months
+  "cycles": count
+  "doses": count
+  "per annum": rate_per_year
+  "kg": mass_kg
+  "mg": mass_mg
+  "mg (flat)": mass_mg
+  "mg/kg": dose_per_kg
+  "QALY": qaly
+  "per year": coefficient
+  "per year^2": coefficient
+  "GBP": currency
+  "KRW": currency
+  "KRW per vial": currency
+  "KRW per administration": currency
+  "KRW (one-off)": currency
+  "GBP per course": currency
+  "KRW per course": currency
+  "GBP/week": currency_per_week
+  "KRW per month (30.4375 days)": currency_per_month
+  "currency/QALY": currency_per_qaly
+  "KRW per QALY": currency_per_qaly
+  "KRW per GBP": exchange_rate
