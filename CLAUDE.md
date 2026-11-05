@@ -1,30 +1,11 @@
-# PartSA adaptation agents: prototype (Gate 0)
+# PartSA adaptation agents: prototype
 
 Prototype agent system that adapts a global oncology partitioned-survival (PartSA)
 cost-effectiveness model to a local country and regenerates its technical report.
 **Synthetic data only.** Nothing in this repository is real clinical, price or HTA data.
 
-Status: **Gate 1** = Gate 0.5 (realistic Fixture A, conventions, gap register, rounding
-verifier, parity tests) plus Fixture B (annual-step discounting), the Model Profiler and
-Input Mapper deterministic tools (`profile_workbook`, `read_local_inputs`, `apply_mapping`,
-`eval_mapping`), their agent definitions in `.claude/agents/`, and KR answer keys
-(`mapping_spec_KR.json`, `gap_register_KR.yaml`). **Gate 2** adds the Builder/Runner
-(`build_run`) and Model Verifier (`verify_model`, checks V01-V10) tools and agent
-definitions, the mapping-spec schema, exact float writing, and a first blind Input Mapper
-agent run scored against the answer key (`docs/gate2_agent_eval.md`). **Gate 2.1** fixes the
-tool issues that run raised (label-only confirmations, list-valued `retained_source`, YAML
-anchors R8, free-text numerals R7) and updates the answer key (D13). Decisions D01-D16 are
-in `docs/decisions.md`; GAP-001 remains open (D14). **Gate 3** adds the Report Profiler and
-Claims Analyst: tools `docx_extract`, `match_numbers`, `jurisdiction_lint`, `scenario_runner`,
-`evaluate_claim` (cell-referencing claim language, no numeric literals), `claims` (register
-rules K1-K6 and a readiness gate for the Report Writer), the claims-register schema, agent
-definitions, `fixtures/scenarios_UK.yaml` and the KR claims answer key. **Gate 4** adds the
-Report Writer (`render_report`: directive templates, no numerals, truth-driven wording,
-provenance; final render refused until the claims register is ready, otherwise a disclosed
-DRAFT) and the Report Verifier (`verify_report`, checks R01-R07), `tools/formats.yaml`
-(currency-aware formats), agent definitions, the KR template answer key, a `slow` test
-marker with a fast lane, and CI (`.github/workflows/tests.yml`). The KR report exists only
-as a draft against a test-only build: GAP-001 and six human reviews remain open.
+Status and gate history: `docs/status.md`. Fixture-specific notes and answer keys: `docs/fixture_notes.md`
+(never load either into an agent that is being evaluated).
 
 ## Design principle (non-negotiable)
 
@@ -92,8 +73,7 @@ runs.
 ### Gap register
 
 Every model input that the local data do not supply, or supply only in part, gets an
-entry in `gap_register.yaml` (schema: `schemas/gap_register.schema.yaml`; KR answer key:
-`fixtures/gap_register_KR.yaml`).
+entry in `gap_register.yaml` (schema: `schemas/gap_register.schema.yaml`).
 
 | Field | Values | Meaning |
 |-------|--------|---------|
@@ -110,8 +90,7 @@ Allowed class → handling: non_transferable → block; transferable → retain_
 retain_flagged; partial → retain_flagged or block. `retained_source` is a list of model names
 or item_ids. Life-table conversions are mapped inputs with a partial / retain_flagged gap
 entry. Free text holds no numerals (R7) and registers use no YAML anchors (R8). The gate (`python -m tools.gap_register
-<file>`) exits 0 (proceed), 1 (invalid register) or 2 (an open `block` gap). In the KR
-fixture, the missing terminal care cost (`GAP-001`, `KR-C11`) blocks the pipeline.
+<file>`) exits 0 (proceed), 1 (invalid register) or 2 (an open `block` gap).
 
 ### Deterministic tool contracts (portable, no Claude runtime)
 
@@ -148,31 +127,7 @@ choices a reviewer would otherwise have to reverse-engineer from formulas. The e
 checks the declaration against the formulas (`tests/test_conventions.py`). Changing a
 convention means changing the workbook generator, the engine and the YAML together.
 
-| Key | Fixture A (`global_model.xlsx`) | Fixture B (`global_model_B.xlsx`) |
-|-----|------------------------------------------|---------------------------------|
-| `discounting.method` | `mid_cycle_continuous`: DF = (1+r)^-t, t in years, continuous in time | `annual_step`: every cycle starting in model year k gets DF = (1+r)^-k, k = INT(cycle start in years); year 1 undiscounted |
-| `discounting.timing` | state costs, one-off event costs and outcomes at the cycle mid-point; dosing costs at cycle start (time of dose); AE at baseline undiscounted | all streams `model_year`; AE at baseline undiscounted |
-| `half_cycle_correction` | trapezoidal on state membership; applied to PF/PD state costs, LYs, QALYs; **not** to drug, administration, terminal care, subsequent therapy or AE | same as A |
-| `dosing` | costs only in dosing weeks, ToT (capped by OS) at cycle start, no HCC; stopping rule by dose count; RDI on drug cost after vial rounding; exact expected vials for mg/kg under a lognormal weight distribution, no vial sharing | |
-| `one_off_incidence` | deaths = S_OS(t) − S_OS(t+1); progressions = (PF(t) − PF(t+1)) × (1 − share of PFS events that are deaths); subsequent therapy = share-weighted course cost per progression; terminal care per death | |
-| `general_population_mortality` | per-cycle hazard max on PFS and OS: S(t+1) = S(t) × min(S_param ratio, S_gpm ratio); qx by single age at cycle start; sex-specific survival weighted by proportion male | |
-| `utilities` | multiplicative age adjustment gpu(age at mid-cycle)/gpu(baseline age), quadratic in age plus sex term; AE QALY loss not age-adjusted | |
-
-Fixture B is generated by the same script (`build_global_model.py B`) and differs from A
-only in the three discount-factor columns (enforced by `tests/test_fixture_b.py`), so the
-Model Profiler and Verifier are tested on a model whose conventions differ in exactly one
-declared way. Base-case ICER: A £28,270.86, B £28,278.66 per QALY.
-
-## Model conventions (Fixture A summary)
-
-- Three states: PF = MIN(S_PFS, S_OS); PD = S_OS − PF; Dead = 1 − S_OS, after the
-  general-population cap. ToT = MIN(S_ToT, S_OS), so treatment beyond progression is allowed.
-- Weibull (AFT), time in months: `S(t) = EXP(-((t/scale)^shape))`, for PFS, OS and ToT.
-- Weekly cycles (`cycle_length_days` = 7, `days_per_year` = 365.25); lifetime horizon;
-  `n_cycles = ROUND(horizon*days_per_year/cycle_days)`.
-- Stopping rules are dose counts (`*_max_doses`): Drug A 35 doses Q3W, Drug B 6 doses Q3W.
-- Not modelled: vial sharing, treatment effect of subsequent therapies, time-varying share
-  of deaths among PFS events, age-adjusted AE disutility.
+The fixture models' declared conventions are documented in `docs/fixture_notes.md`.
 
 ## Known traps (encode in tools, not in prompts)
 
@@ -195,9 +150,9 @@ declared way. Base-case ICER: A £28,270.86, B £28,278.66 per QALY.
   about 60: in Fixture A it binds only from age 96 (0.02% alive). Tests exercise it with a
   perturbed older, long-tail case where it changes life years by more than 1%. Do not tune
   curves to make it matter in the base case.
-- **Rounded displays do not recompute exactly.** 24,622 / 0.869 = 28,334 but the ICER from
-  unrounded cells is 28,321. `tools/rounding.py` decides whether the display is explainable
-  by rounding (pass with footnote) or is an error (fail).
+- **Rounded displays do not recompute exactly.** A ratio of two rounded displays need not equal
+  the rounded ratio of the unrounded cells. `tools/rounding.py` decides whether the display is
+  explainable by rounding (pass with footnote) or is an error (fail).
 - **Year boundaries in floating point.** `1461*(7/365.25)` is 27.999999999999996, so a naive
   floor puts the cycle that starts exactly at year 28 in year 27 (LibreOffice's `INT` snaps
   it to 28, Python's `floor` does not). Compute model years as `INT(cycle*days/days_per_year)`
@@ -262,15 +217,15 @@ python scripts/build_global_model.py B   #    model B
 python scripts/build_adaptation_input_kr.py
 python scripts/build_global_report_uk.py # 2. report (recalcs the model and 8 scenarios, ~1.5 min)
 python scripts/rebaseline.py <label>     # 3. only after an intended model change
-python -m tools.gap_register fixtures/gap_register_KR.yaml   # exit 2: GAP-001 blocks
+python -m tools.gap_register fixtures/gap_register_KR.yaml   # exit 0 proceed / 1 invalid / 2 blocked
 python -m tools.profile_workbook fixtures/global_model.xlsx --conventions fixtures/global_model.conventions.yaml
-python -m tools.apply_mapping fixtures/mapping_spec_KR.json  # dry run; exit 2: blocked by GAP-001
+python -m tools.apply_mapping fixtures/mapping_spec_KR.json  # dry run
 python -m tools.eval_mapping <candidate.json> fixtures/mapping_spec_KR.json
-python -m tools.build_run fixtures/mapping_spec_KR.json runs/kr   # exit 2: blocked by GAP-001, nothing built
+python -m tools.build_run fixtures/mapping_spec_KR.json runs/kr
 python -m tools.verify_model <run_dir> <spec.json>
 python -m tools.docx_extract fixtures/global_report_UK.docx
 python -m tools.jurisdiction_lint fixtures/global_report_UK.docx
-python -m tools.claims fixtures/claims_register_KR.json fixtures/global_report_UK.docx fixtures/global_model.xlsx --global-scenarios fixtures/scenarios_UK.yaml   # exit 2: not ready (KR model pending, reviews open)
+python -m tools.claims fixtures/claims_register_KR.json fixtures/global_report_UK.docx fixtures/global_model.xlsx --global-scenarios fixtures/scenarios_UK.yaml
 python scripts/build_report_template_kr.py
 python -m tools.render_report fixtures/report_template_KR.docx fixtures/report_template_KR.sidecar.yaml <run_dir> fixtures/claims_register_KR.json <gap_register> out/report_KR.docx [--draft]
 python -m tools.verify_report out/report_KR.docx <run_dir> fixtures/claims_register_KR.json <gap_register>
@@ -281,34 +236,6 @@ python -m pytest -q -n auto              # full suite in parallel (pytest-xdist,
 Regenerate the report whenever the model generator changes; the provenance tests fail if
 they drift apart. The baseline test fails on any change to the base case; re-baseline only
 when the change is intended, and say so in the PR.
-
-## Fixture notes for later gates
-
-- `adaptation_input_KR.xlsx` is intentionally **not** shaped like the model's inputs:
-  list price per vial (UK input is a net PAS price); mg/kg dose with KR weight mean/SD;
-  reimbursed maximum duration in **years** (model uses a dose count); monthly (30.4375-day)
-  state costs; life table as **mx** (not qx) ending at an open **100+** band (model needs
-  ages to 110); subsequent-therapy categories renamed; missing terminal care cost
-  (`KR-C11`), AE disutility (`KR-U03`), population utility norms (`KR-U04`) and proportion
-  male (`KR-P03`); exchange rate and co-payment rate marked informational only.
-- `gap_register_KR.yaml` and `mapping_spec_KR.json` are the expected Input Mapper outputs
-  (81 model inputs: 34 mapped, 46 retained, 1 gap; D13 classifications). `GAP-001` (terminal care) is
-  `non_transferable` / `block` and stops the pipeline; `apply_mapping` refuses to produce
-  overrides until a human resolves it. Tests simulate that resolution with a test-only
-  value to smoke-test the adapted model; that number is not a fixture.
-- `global_report_UK.provenance.json` is the answer key for the Report Profiler and Claims
-  Analyst: 184 traced numbers (base case plus 8 scenarios) and 12 typed claims, including
-  one deliberately untraceable external assertion (medians within KM CIs), one scope
-  statement (PSA not reported), one magnitude judgement (cap effect negligible) and one
-  rounding disclosure.
-- `claims_register_KR.json` holds 22 claims: 10 evaluable (all true on the global model, a
-  check on the UK report itself), 12 jurisdiction-specific, scope, rounding or untraceable.
-  On a test-only KR build the lower-bound claim becomes false (removed under D09) and the
-  conclusion stays true against the KR reference value. Scenario claims stay pending until a
-  local scenario set exists. `match_numbers` finds every report numeral's true cell among
-  its candidates (86 unique, 98 ambiguous of 184; the agent resolves ambiguity from context).
-- `PSA_Placeholder` documents the intended VBA macro (seed, distributions, Cholesky on
-  log-Weibull parameters, output table). It is empty, and the workbook contains no macros.
 
 ## Conventions for contributors (human or agent)
 

@@ -9,6 +9,7 @@ title page and before "References". Exempt (structural numerals, defined here an
 else): headings, table/figure captions, citation markers [n], and references such as
 "Section 4.3", "Table 8" or "Tables 6 and 7". Exempt spans are blanked, not removed, so
 token offsets index the original text.
+Digits inside identifiers (st_cost_1, KR-C11, C04) are not numerals.
 Equivalent in R: officer::docx_summary + the same regular expressions.
 """
 from __future__ import annotations
@@ -23,7 +24,7 @@ from docx.table import Table
 from docx.text.paragraph import Paragraph
 
 CURRENCY_SYMBOLS = "£₩"
-NUM = re.compile(r"(?<![A-Za-z0-9.\-])-?[" + CURRENCY_SYMBOLS + r"]?\d(?:[\d,]*\d)?(?:\.\d+)?%?(?![A-Za-z0-9])")
+NUM = re.compile(r"(?<![A-Za-z0-9_.\-])-?[" + CURRENCY_SYMBOLS + r"]?\d(?:[\d,]*\d)?(?:\.\d+)?%?(?![A-Za-z0-9])")
 CAPTION = re.compile(r"^(Table|Figure) \d+\. ")
 STRUCTURAL = re.compile(r"\[\d+\]|\b(?:Sections?|Tables?|Figures?) \d+(?:\.\d+)*(?: and \d+(?:\.\d+)*)?")
 END_HEADING = "References"

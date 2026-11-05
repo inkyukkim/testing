@@ -28,6 +28,8 @@ truth-dependent choice. Read CLAUDE.md first.
 - reword: rewrite for the local setting; truth-dependent sentences need both `{{if}}` and `{{ifnot}}` branches.
 - remove: leave the claim out entirely; never reference a removed claim.
 - human_review: `{{review Cxx}}` until a person closes it; a final report cannot contain one.
+Put `{{draft_banner}}` on the title page (before the first heading): the verifier looks for the
+DRAFT banner there.
 Write no numerals anywhere in the template body (section and table numbers, citations
 `[n]` and the title page are exempt). Do not write source-jurisdiction terms outside the References.
 

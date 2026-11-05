@@ -25,7 +25,7 @@ ROOT = Path(__file__).resolve().parents[1]
 FIX = ROOT / "fixtures"
 PY = sys.executable
 
-AGENTS = ["model-profiler", "builder-runner", "model-verifier", "report-profiler",
+AGENTS = ["input-mapper", "model-profiler", "builder-runner", "model-verifier", "report-profiler",
           "claims-analyst", "report-writer", "report-verifier"]
 
 LOCAL_HTA_CONTEXT = """# Local HTA context (provided by the HEOR lead, synthetic)
@@ -97,6 +97,15 @@ def resolved_build(ws: Path, run_dir="runs/kr_test"):
     r = run(ws, "tools.build_run", str(spec), run_dir)
     assert r.returncode == 0, r.stdout + r.stderr
     return spec, ws / run_dir
+
+
+def prep_input_mapper(ws, keys):
+    base(ws, "input-mapper")
+    copy(ws, "global_model.xlsx", "global_model.conventions.yaml", "adaptation_input_KR.xlsx")
+    r = run(ws, "tools.profile_workbook", "fixtures/global_model.xlsx", "--conventions",
+            "fixtures/global_model.conventions.yaml", "--out", "work/model_profile.json")
+    assert r.returncode == 0, r.stderr
+    keys["input-mapper"] = {"key_spec": str(FIX / "mapping_spec_KR.json"), "key_register": str(FIX / "gap_register_KR.yaml")}
 
 
 def prep_model_profiler(ws, keys):
@@ -238,7 +247,7 @@ def main(base_dir):
     base_dir.mkdir(parents=True, exist_ok=True)
     sys.path.insert(0, str(ROOT))
     keys = {}
-    for agent, fn in zip(AGENTS, [prep_model_profiler, prep_builder_runner, prep_model_verifier, prep_report_profiler,
+    for agent, fn in zip(AGENTS, [prep_input_mapper, prep_model_profiler, prep_builder_runner, prep_model_verifier, prep_report_profiler,
                                   prep_claims_analyst, prep_report_writer, prep_report_verifier]):
         fn(base_dir / agent, keys)
         print(f"prepared {agent}")
@@ -251,7 +260,8 @@ def check_leaks(base_dir):
     base_dir = Path(base_dir)
     forbidden = {"mapping_spec_KR.json", "gap_register_KR.yaml", "claims_register_KR.json", "report_template_KR.docx",
                  "report_template_KR.sidecar.yaml", "global_report_UK.provenance.json", "decisions.md",
-                 "gate2_agent_eval.md", "CLAUDE.md", "keys.json"}
+                 "gate2_agent_eval.md", "CLAUDE.md", "keys.json", "fixture_notes.md", "status.md",
+                 "gate5_agent_evals.md"}
     for agent in AGENTS:
         names = {p.name for p in (base_dir / agent).rglob("*")}
         assert not names & forbidden, f"{agent}: leaked {names & forbidden}"
