@@ -1,0 +1,9 @@
+claims_register: approved/claims_register.json
+labels:
+  res_inc_cost_drug: drug acquisition
+  res_inc_cost_admin: administration
+  res_inc_cost_pf_state: progression-free state
+  res_inc_cost_pd_state: progressed disease state
+  res_inc_cost_terminal: terminal care
+  res_inc_cost_st: subsequent therapy
+  res_inc_cost_ae: adverse event

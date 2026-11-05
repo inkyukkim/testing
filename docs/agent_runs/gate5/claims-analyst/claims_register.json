@@ -1,0 +1,896 @@
+{
+  "schema_version": 1,
+  "note": "Claims Analyst register for the KR adaptation. Truth values are filled by tools/claims.py.",
+  "report": "fixtures/global_report_UK.docx",
+  "model": "fixtures/global_model.xlsx",
+  "local_context": {
+    "country": "Republic of Korea",
+    "jurisdiction_from": "UK",
+    "adapted_model": "built"
+  },
+  "claims": [
+    {
+      "claim_id": "C01",
+      "block": 1,
+      "excerpt": "Cost-effectiveness analysis: technical report (United Kingdom)",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "jurisdiction_terms": [
+        "United Kingdom"
+      ],
+      "action": "reword",
+      "rationale": "Title names the source jurisdiction; replace with the local country from the model cell country."
+    },
+    {
+      "claim_id": "C02",
+      "block": 5,
+      "excerpt": "from the perspective of the NHS and Personal Social Services (PSS) in England",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "jurisdiction_terms": [
+        "NHS",
+        "Personal Social Services",
+        "PSS",
+        "England"
+      ],
+      "action": "reword",
+      "rationale": "Perspective is localised: use the mapped model cell perspective (healthcare system perspective per the local guideline)."
+    },
+    {
+      "claim_id": "C03",
+      "block": 6,
+      "excerpt": "The incremental cost was £24,746 for an incremental gain of 0.875 QALYs",
+      "kind": "ranking",
+      "expression": {
+        "op": "all",
+        "of": [
+          {
+            "op": "sign",
+            "ref": "res_inc_total_cost",
+            "sign": "positive"
+          },
+          {
+            "op": "sign",
+            "ref": "res_inc_qaly_disc",
+            "sign": "positive"
+          }
+        ]
+      },
+      "action": "rerender",
+      "rationale": "The words incremental cost and gain presuppose that Drug A costs more and yields more QALYs; the sentence stays and only numbers change if the signs hold locally. Currency symbol is set by the local format. Relies on retained tagged efficacy and exposure inputs (GAP-006: int_pfs_shape, int_pfs_scale, int_os_shape, int_os_scale, int_tot_shape, int_tot_scale, comp_pfs_shape, comp_pfs_scale, comp_os_shape, comp_os_scale, comp_tot_shape, comp_tot_scale, the arm correlation names, int_p_death_first_pfs, comp_p_death_first_pfs, int_rdi, comp_rdi). Relies on retained flagged population inputs prop_male and baseline_age (GAP-005) and on the flagged life-table conversion lt_qx_male, lt_qx_female with open-band ages (GAP-004). Relies on retained flagged utility inputs int_ae_qaly_loss, comp_ae_qaly_loss (GAP-002, UK value set) and gpu_intercept, gpu_male, gpu_age, gpu_age2 (GAP-003, UK population norms). Local truth is evaluated on a build that uses a test-only resolution of c_terminal (GAP-001, open block); any rendering from it is a draft."
+    },
+    {
+      "claim_id": "C04",
+      "block": 7,
+      "excerpt": "At the upper end of the range normally considered by NICE (£30,000 per QALY), Drug A is cost-effective, with an incremental net monetary benefit of £1,514.",
+      "kind": "threshold_comparison",
+      "expression": {
+        "op": "all",
+        "of": [
+          {
+            "op": "le",
+            "lhs": "res_icer",
+            "rhs": "wtp_threshold"
+          },
+          {
+            "op": "sign",
+            "ref": "res_inc_qaly_disc",
+            "sign": "positive"
+          },
+          {
+            "op": "sign",
+            "ref": "res_inc_nmb",
+            "sign": "positive"
+          }
+        ]
+      },
+      "jurisdiction_terms": [
+        "NICE"
+      ],
+      "action": "reword",
+      "rationale": "Truth is re-evaluated against the local reference value in wtp_threshold. The NICE range wording must go: the local context has a single reference value, not an official threshold and no range. Relies on retained tagged efficacy and exposure inputs (GAP-006: int_pfs_shape, int_pfs_scale, int_os_shape, int_os_scale, int_tot_shape, int_tot_scale, comp_pfs_shape, comp_pfs_scale, comp_os_shape, comp_os_scale, comp_tot_shape, comp_tot_scale, the arm correlation names, int_p_death_first_pfs, comp_p_death_first_pfs, int_rdi, comp_rdi). Relies on retained flagged population inputs prop_male and baseline_age (GAP-005) and on the flagged life-table conversion lt_qx_male, lt_qx_female with open-band ages (GAP-004). Relies on retained flagged utility inputs int_ae_qaly_loss, comp_ae_qaly_loss (GAP-002, UK value set) and gpu_intercept, gpu_male, gpu_age, gpu_age2 (GAP-003, UK population norms). Local truth is evaluated on a build that uses a test-only resolution of c_terminal (GAP-001, open block); any rendering from it is a draft."
+    },
+    {
+      "claim_id": "C05",
+      "block": 7,
+      "excerpt": "At £20,000 per QALY, Drug A is not cost-effective.",
+      "kind": "threshold_comparison",
+      "expression": {
+        "op": "all",
+        "of": [
+          {
+            "op": "gt",
+            "lhs": "res_icer",
+            "rhs": "wtp_threshold_lower"
+          },
+          {
+            "op": "sign",
+            "ref": "res_inc_nmb_lower",
+            "sign": "negative"
+          }
+        ]
+      },
+      "action": "remove",
+      "rationale": "Lower bound of the source threshold range. Locally wtp_threshold_lower was set equal to the single reference value and the local context forbids describing a range, so the statement does not apply (and its local truth is evaluated for the record). Local truth is evaluated on a build that uses a test-only resolution of c_terminal (GAP-001, open block); any rendering from it is a draft."
+    },
+    {
+      "claim_id": "C06",
+      "block": 8,
+      "excerpt": "In scenario analyses, the ICER was most sensitive to removing the stopping rule for Drug A and setting Drug A time on treatment equal to PFS",
+      "kind": "sensitivity_ranking",
+      "expression": {
+        "op": "rank_abs_change",
+        "refs": [
+          "res_icer@SC1",
+          "res_icer@SC2",
+          "res_icer@SC3",
+          "res_icer@SC4",
+          "res_icer@SC5",
+          "res_icer@SC6",
+          "res_icer@SC7",
+          "res_icer@SC8"
+        ],
+        "base": "res_icer",
+        "expect_order": [
+          "res_icer@SC4",
+          "res_icer@SC8"
+        ]
+      },
+      "action": "human_review",
+      "rationale": "Ranking of scenarios by absolute ICER change; generated from data. No Korean scenario set has been specified, so local truth stays pending until one exists; a person must decide which scenarios the local report presents."
+    },
+    {
+      "claim_id": "C07",
+      "block": 10,
+      "excerpt": "first-line systemic therapy with a platinum doublet is assumed to be the established standard of care in the NHS",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "jurisdiction_terms": [
+        "NHS"
+      ],
+      "action": "human_review",
+      "rationale": "Local clinical fact: whether Drug B (platinum doublet) reflects the Korean standard of care has not been confirmed by local clinicians."
+    },
+    {
+      "claim_id": "C08",
+      "block": 23,
+      "excerpt": "NHS and PSS",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "jurisdiction_terms": [
+        "NHS",
+        "PSS"
+      ],
+      "action": "reword",
+      "rationale": "Perspective row of the decision problem table; use the mapped model cell perspective."
+    },
+    {
+      "claim_id": "C09",
+      "block": 26,
+      "excerpt": "The analysis follows the NICE reference case [1].",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "jurisdiction_terms": [
+        "NICE reference case"
+      ],
+      "action": "reword",
+      "rationale": "Replace with the local pharmacoeconomic guideline (synthetic placeholder)."
+    },
+    {
+      "claim_id": "C10",
+      "block": 26,
+      "excerpt": "Health effects are expressed in quality-adjusted life years (QALYs) using EQ-5D-3L values from the pivotal trial",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "action": "reword",
+      "rationale": "State utilities u_pf and u_pd are mapped from local EQ-5D-5L values with the Korean value set, not trial EQ-5D-3L values. AE disutilities int_ae_qaly_loss, comp_ae_qaly_loss (GAP-002) are retained from the global model on the UK value set and must be tagged as a flagged limitation."
+    },
+    {
+      "claim_id": "C11",
+      "block": 26,
+      "excerpt": "costs reflect NHS list prices and national reference costs",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "jurisdiction_terms": [
+        "NHS",
+        "national reference costs"
+      ],
+      "action": "reword",
+      "rationale": "Local unit costs come from the local drug list, fee schedule and claims analysis; name the local sources."
+    },
+    {
+      "claim_id": "C12",
+      "block": 26,
+      "excerpt": "A confidential patient access scheme (PAS) discount is applied to the price of Drug A in all analyses.",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "jurisdiction_terms": [
+        "patient access scheme",
+        "PAS"
+      ],
+      "action": "remove",
+      "rationale": "The local input states that no risk-sharing agreement applies and list prices are used (int_vial_price mapped from the local list price), so the discount statement does not apply."
+    },
+    {
+      "claim_id": "C13",
+      "block": 30,
+      "excerpt": "The horizon captures virtually all survival in both arms; the modelled proportion alive at the end of the horizon is below 0.1% in each arm.",
+      "kind": "model_check",
+      "expression": {
+        "op": "all",
+        "of": [
+          {
+            "op": "lt",
+            "lhs": "res_int_s_os_horizon",
+            "rhs": "lifetime_check_tol"
+          },
+          {
+            "op": "lt",
+            "lhs": "res_comp_s_os_horizon",
+            "rhs": "lifetime_check_tol"
+          }
+        ]
+      },
+      "action": "rerender",
+      "rationale": "Horizon sufficiency check re-evaluated on the adapted model (time_horizon_years retained as structural setting). Relies on retained tagged efficacy and exposure inputs (GAP-006: int_pfs_shape, int_pfs_scale, int_os_shape, int_os_scale, int_tot_shape, int_tot_scale, comp_pfs_shape, comp_pfs_scale, comp_os_shape, comp_os_scale, comp_tot_shape, comp_tot_scale, the arm correlation names, int_p_death_first_pfs, comp_p_death_first_pfs, int_rdi, comp_rdi). Relies on retained flagged population inputs prop_male and baseline_age (GAP-005) and on the flagged life-table conversion lt_qx_male, lt_qx_female with open-band ages (GAP-004). Local truth is evaluated on a build that uses a test-only resolution of c_terminal (GAP-001, open block); any rendering from it is a draft."
+    },
+    {
+      "claim_id": "C14",
+      "block": 32,
+      "excerpt": "Costs and outcomes are discounted at annual rates of 3.5% and 3.5% respectively, in line with the reference case",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "action": "reword",
+      "rationale": "Reference case means the source agency reference case; local rates dr_costs and dr_outcomes are mapped from the local guideline, so cite that guideline instead."
+    },
+    {
+      "claim_id": "C15",
+      "block": 34,
+      "excerpt": "The Weibull distribution was selected on the basis of statistical fit, visual inspection against the Kaplan-Meier curves, and the clinical plausibility of long-term extrapolations.",
+      "kind": "external_assertion_untraceable",
+      "expression": {
+        "op": "external"
+      },
+      "action": "human_review",
+      "rationale": "Model selection evidence is not in the model; the curves are retained global inputs. Relies on retained tagged efficacy and exposure inputs (GAP-006: int_pfs_shape, int_pfs_scale, int_os_shape, int_os_scale, int_tot_shape, int_tot_scale, comp_pfs_shape, comp_pfs_scale, comp_os_shape, comp_os_scale, comp_tot_shape, comp_tot_scale, the arm correlation names, int_p_death_first_pfs, comp_p_death_first_pfs, int_rdi, comp_rdi). Clinical plausibility for Korean patients needs local confirmation."
+    },
+    {
+      "claim_id": "C16",
+      "block": 34,
+      "excerpt": "following the NICE Decision Support Unit guidance on survival analysis [3]",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "jurisdiction_terms": [
+        "NICE",
+        "Decision Support Unit"
+      ],
+      "action": "reword",
+      "rationale": "Methodological citation of the source agency; reword to cite the technical support document as method guidance or the local guideline."
+    },
+    {
+      "claim_id": "C17",
+      "block": 64,
+      "excerpt": "The fitted PFS and OS curves did not cross in either arm.",
+      "kind": "model_check",
+      "expression": {
+        "op": "all",
+        "of": [
+          {
+            "op": "sign",
+            "ref": "check_cross_int",
+            "sign": "zero"
+          },
+          {
+            "op": "sign",
+            "ref": "check_cross_comp",
+            "sign": "zero"
+          }
+        ]
+      },
+      "action": "rerender",
+      "rationale": "Curve-crossing counts from the model checks. Relies on retained tagged efficacy and exposure inputs (GAP-006: int_pfs_shape, int_pfs_scale, int_os_shape, int_os_scale, int_tot_shape, int_tot_scale, comp_pfs_shape, comp_pfs_scale, comp_os_shape, comp_os_scale, comp_tot_shape, comp_tot_scale, the arm correlation names, int_p_death_first_pfs, comp_p_death_first_pfs, int_rdi, comp_rdi)."
+    },
+    {
+      "claim_id": "C18",
+      "block": 66,
+      "excerpt": "Drug A is given every 3 weeks for a maximum of 35 doses, consistent with the stopping rule in the trial protocol.",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "action": "reword",
+      "rationale": "int_max_doses is mapped from the local reimbursed maximum treatment duration (converted to a dose count by apply_mapping), so the source of the stopping rule is the local reimbursement criteria, not the trial protocol. int_admin_interval_weeks retained, confirmed by local label text."
+    },
+    {
+      "claim_id": "C19",
+      "block": 69,
+      "excerpt": "Drug acquisition costs for Drug A reflect the list price net of the confidential PAS discount.",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "jurisdiction_terms": [
+        "PAS"
+      ],
+      "action": "reword",
+      "rationale": "Local price is the list price from the local drug list with no risk-sharing agreement; state that."
+    },
+    {
+      "claim_id": "C20",
+      "block": 69,
+      "excerpt": "The cost of Drug B was taken from the electronic market information tool (eMIT).",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "jurisdiction_terms": [
+        "electronic market information tool",
+        "eMIT"
+      ],
+      "action": "reword",
+      "rationale": "comp_vial_price is mapped from the local drug list; name that source."
+    },
+    {
+      "claim_id": "C21",
+      "block": 69,
+      "excerpt": "Administration costs per intravenous infusion are based on NHS reference costs.",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "jurisdiction_terms": [
+        "NHS reference costs",
+        "NHS"
+      ],
+      "action": "reword",
+      "rationale": "Administration costs are mapped from the local fee schedule (infusion fee per visit, both arms)."
+    },
+    {
+      "claim_id": "C22",
+      "block": 69,
+      "excerpt": "Health state costs comprise outpatient visits, imaging, blood tests and community care, valued using PSSRU unit costs.",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "jurisdiction_terms": [
+        "PSSRU"
+      ],
+      "action": "reword",
+      "rationale": "c_pf_week and c_pd_week are converted from local monthly claims-analysis costs; the components and the source must be described from the local data, not the UK unit-cost source."
+    },
+    {
+      "claim_id": "C23",
+      "block": 69,
+      "excerpt": "A one-off terminal care cost is applied to each death.",
+      "kind": "scope_statement",
+      "expression": null,
+      "action": "human_review",
+      "rationale": "c_terminal is an open blocking gap (GAP-001): no local value exists and the resolution (local data, literature, or an approved method change excluding terminal care) decides whether this sentence stays. The run used here holds a test-only value."
+    },
+    {
+      "claim_id": "C24",
+      "block": 70,
+      "excerpt": "All costs are in GBP at 2025 prices.",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "jurisdiction_terms": [
+        "GBP"
+      ],
+      "action": "reword",
+      "rationale": "Currency is set by currency_code and the price year by price_year (mapped locally); render both from cells."
+    },
+    {
+      "claim_id": "C25",
+      "block": 108,
+      "excerpt": "weighted by the proportion of patients receiving each therapy in the trial",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "action": "reword",
+      "rationale": "Subsequent-therapy shares and course costs are mapped from a local expert panel and local claims analysis, with renamed local categories (immune checkpoint inhibitor, other targeted agents); the source is no longer the trial. int_p_death_first_pfs and comp_p_death_first_pfs in the same sentence are retained tagged trial inputs (GAP-006)."
+    },
+    {
+      "claim_id": "C26",
+      "block": 131,
+      "excerpt": "Health state utility values were derived from EQ-5D-3L questionnaires collected in the pivotal trial and valued using the UK time trade-off value set, consistent with the NICE reference case.",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "jurisdiction_terms": [
+        "UK time trade-off value set",
+        "NICE reference case"
+      ],
+      "action": "reword",
+      "rationale": "u_pf and u_pd are mapped from local EQ-5D-5L values with the Korean value set. The AE QALY losses later in the block (int_ae_qaly_loss, comp_ae_qaly_loss, GAP-002) stay on the UK value set and must be tagged as a flagged retained input."
+    },
+    {
+      "claim_id": "C27",
+      "block": 131,
+      "excerpt": "using a regression on age and sex from UK population norms",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "jurisdiction_terms": [
+        "UK population norms"
+      ],
+      "action": "human_review",
+      "rationale": "Korean population norms were not supplied; gpu_intercept, gpu_male, gpu_age, gpu_age2 are retained flagged (GAP-003). A person decides whether the UK norms stay, with a limitation and the no-age-adjustment scenario, or local norms are sought."
+    },
+    {
+      "claim_id": "C28",
+      "block": 152,
+      "excerpt": "PSA results are not included in this version of the report and will be provided in an addendum.",
+      "kind": "scope_statement",
+      "expression": null,
+      "action": "human_review",
+      "rationale": "No PSA has been run on the adapted model; whether the local submission commits to a PSA addendum is a decision for the HEOR lead."
+    },
+    {
+      "claim_id": "C29",
+      "block": 155,
+      "excerpt": "Drug A increased discounted life years by 1.37 and QALYs by 0.875 compared with Drug B, at an additional cost of £24,746.",
+      "kind": "ranking",
+      "expression": {
+        "op": "all",
+        "of": [
+          {
+            "op": "sign",
+            "ref": "res_inc_ly_disc",
+            "sign": "positive"
+          },
+          {
+            "op": "sign",
+            "ref": "res_inc_qaly_disc",
+            "sign": "positive"
+          },
+          {
+            "op": "sign",
+            "ref": "res_inc_total_cost",
+            "sign": "positive"
+          }
+        ]
+      },
+      "action": "rerender",
+      "rationale": "Direction words (increased, additional cost) depend on the signs of the incremental results. Relies on retained tagged efficacy and exposure inputs (GAP-006: int_pfs_shape, int_pfs_scale, int_os_shape, int_os_scale, int_tot_shape, int_tot_scale, comp_pfs_shape, comp_pfs_scale, comp_os_shape, comp_os_scale, comp_tot_shape, comp_tot_scale, the arm correlation names, int_p_death_first_pfs, comp_p_death_first_pfs, int_rdi, comp_rdi). Relies on retained flagged population inputs prop_male and baseline_age (GAP-005) and on the flagged life-table conversion lt_qx_male, lt_qx_female with open-band ages (GAP-004). Relies on retained flagged utility inputs int_ae_qaly_loss, comp_ae_qaly_loss (GAP-002, UK value set) and gpu_intercept, gpu_male, gpu_age, gpu_age2 (GAP-003, UK population norms). Local truth is evaluated on a build that uses a test-only resolution of c_terminal (GAP-001, open block); any rendering from it is a draft."
+    },
+    {
+      "claim_id": "C30",
+      "block": 184,
+      "excerpt": "The largest single contributor to incremental costs was drug acquisition (£16,309).",
+      "kind": "ranking",
+      "expression": {
+        "op": "argmax",
+        "refs": [
+          "res_inc_cost_drug",
+          "res_inc_cost_admin",
+          "res_inc_cost_pf_state",
+          "res_inc_cost_pd_state",
+          "res_inc_cost_terminal",
+          "res_inc_cost_st",
+          "res_inc_cost_ae"
+        ],
+        "expect": "res_inc_cost_drug"
+      },
+      "action": "regenerate",
+      "rationale": "Selection of the largest incremental cost category; rebuild from the local argmax. Relies on retained tagged efficacy and exposure inputs (GAP-006: int_pfs_shape, int_pfs_scale, int_os_shape, int_os_scale, int_tot_shape, int_tot_scale, comp_pfs_shape, comp_pfs_scale, comp_os_shape, comp_os_scale, comp_tot_shape, comp_tot_scale, the arm correlation names, int_p_death_first_pfs, comp_p_death_first_pfs, int_rdi, comp_rdi). Relies on retained flagged population inputs prop_male and baseline_age (GAP-005) and on the flagged life-table conversion lt_qx_male, lt_qx_female with open-band ages (GAP-004). Local truth is evaluated on a build that uses a test-only resolution of c_terminal (GAP-001, open block); any rendering from it is a draft."
+    },
+    {
+      "claim_id": "C31",
+      "block": 184,
+      "excerpt": "Lower subsequent therapy, adverse event and terminal care costs with Drug A partially offset its higher costs in other categories.",
+      "kind": "ranking",
+      "expression": {
+        "op": "select",
+        "refs": [
+          "res_inc_cost_drug",
+          "res_inc_cost_admin",
+          "res_inc_cost_pf_state",
+          "res_inc_cost_pd_state",
+          "res_inc_cost_terminal",
+          "res_inc_cost_st",
+          "res_inc_cost_ae"
+        ],
+        "where": {
+          "op": "sign",
+          "sign": "negative"
+        },
+        "expect": [
+          "res_inc_cost_terminal",
+          "res_inc_cost_st",
+          "res_inc_cost_ae"
+        ]
+      },
+      "action": "regenerate",
+      "rationale": "Selection of categories with negative incremental cost; rebuild the list from the local selection. The terminal care category depends on the test-only c_terminal (GAP-001). Relies on retained tagged efficacy and exposure inputs (GAP-006: int_pfs_shape, int_pfs_scale, int_os_shape, int_os_scale, int_tot_shape, int_tot_scale, comp_pfs_shape, comp_pfs_scale, comp_os_shape, comp_os_scale, comp_tot_shape, comp_tot_scale, the arm correlation names, int_p_death_first_pfs, comp_p_death_first_pfs, int_rdi, comp_rdi). Relies on retained flagged population inputs prop_male and baseline_age (GAP-005) and on the flagged life-table conversion lt_qx_male, lt_qx_female with open-band ages (GAP-004). Local truth is evaluated on a build that uses a test-only resolution of c_terminal (GAP-001, open block); any rendering from it is a draft."
+    },
+    {
+      "claim_id": "C32",
+      "block": 223,
+      "excerpt": "Removing the stopping rule for Drug A had the largest effect on the ICER, followed by setting Drug A time on treatment equal to PFS and the alternative utility values.",
+      "kind": "sensitivity_ranking",
+      "expression": {
+        "op": "rank_abs_change",
+        "refs": [
+          "res_icer@SC1",
+          "res_icer@SC2",
+          "res_icer@SC3",
+          "res_icer@SC4",
+          "res_icer@SC5",
+          "res_icer@SC6",
+          "res_icer@SC7",
+          "res_icer@SC8"
+        ],
+        "base": "res_icer",
+        "expect_order": [
+          "res_icer@SC4",
+          "res_icer@SC8",
+          "res_icer@SC3"
+        ]
+      },
+      "action": "human_review",
+      "rationale": "Scenario ranking by absolute ICER change. No Korean scenario set has been specified, so local truth stays pending until one exists; a person must decide which scenarios the local report presents."
+    },
+    {
+      "claim_id": "C33",
+      "block": 223,
+      "excerpt": "The ICER was lower than in the base case only with the lower discount rate, removing the general-population mortality constraint and removing the age adjustment of utilities.",
+      "kind": "sensitivity_ranking",
+      "expression": {
+        "op": "select",
+        "refs": [
+          "res_icer@SC1",
+          "res_icer@SC2",
+          "res_icer@SC3",
+          "res_icer@SC4",
+          "res_icer@SC5",
+          "res_icer@SC6",
+          "res_icer@SC7",
+          "res_icer@SC8"
+        ],
+        "where": {
+          "op": "lt",
+          "rhs": "res_icer"
+        },
+        "expect": [
+          "res_icer@SC1",
+          "res_icer@SC6",
+          "res_icer@SC7"
+        ]
+      },
+      "action": "human_review",
+      "rationale": "Selection of scenarios with an ICER below the base case. The lower discount rate scenario is defined relative to the source discount rate and has no meaning against the local rate without a local scenario set. No Korean scenario set has been specified, so local truth stays pending until one exists; a person must decide which scenarios the local report presents."
+    },
+    {
+      "claim_id": "C34",
+      "block": 275,
+      "excerpt": "The ICER exceeded £30,000 per QALY with the alternative utility values (£30,270), removing the stopping rule for Drug A (£31,811), the conservative OS extrapolation (£30,205) and setting Drug A time on treatment equal to PFS (£31,528), and remained below it in all other scenarios.",
+      "kind": "threshold_comparison",
+      "expression": {
+        "op": "select",
+        "refs": [
+          "res_icer@SC1",
+          "res_icer@SC2",
+          "res_icer@SC3",
+          "res_icer@SC4",
+          "res_icer@SC5",
+          "res_icer@SC6",
+          "res_icer@SC7",
+          "res_icer@SC8"
+        ],
+        "where": {
+          "op": "gt",
+          "rhs": "wtp_threshold"
+        },
+        "expect": [
+          "res_icer@SC3",
+          "res_icer@SC4",
+          "res_icer@SC5",
+          "res_icer@SC8"
+        ]
+      },
+      "action": "human_review",
+      "rationale": "Selection of scenarios above the threshold; locally the comparator is the single reference value in wtp_threshold. No Korean scenario set has been specified, so local truth stays pending until one exists; a person must decide which scenarios the local report presents."
+    },
+    {
+      "claim_id": "C35",
+      "block": 277,
+      "excerpt": "The model was quality-assured using a checklist covering input transcription, formula consistency between arms, and extreme-value testing.",
+      "kind": "external_assertion_untraceable",
+      "expression": {
+        "op": "external"
+      },
+      "action": "human_review",
+      "rationale": "QA process of the global model is not traceable to cells; for the adapted model the evidence is the Model Verifier report, which a person must accept."
+    },
+    {
+      "claim_id": "C36",
+      "block": 277,
+      "excerpt": "The time horizon is sufficient for the modelled cohort, with fewer than 0.1% of patients in either arm alive at the end of the horizon.",
+      "kind": "model_check",
+      "expression": {
+        "op": "all",
+        "of": [
+          {
+            "op": "lt",
+            "lhs": "res_int_s_os_horizon",
+            "rhs": "lifetime_check_tol"
+          },
+          {
+            "op": "lt",
+            "lhs": "res_comp_s_os_horizon",
+            "rhs": "lifetime_check_tol"
+          }
+        ]
+      },
+      "action": "rerender",
+      "rationale": "Same horizon check as in the methods section. Relies on retained tagged efficacy and exposure inputs (GAP-006: int_pfs_shape, int_pfs_scale, int_os_shape, int_os_scale, int_tot_shape, int_tot_scale, comp_pfs_shape, comp_pfs_scale, comp_os_shape, comp_os_scale, comp_tot_shape, comp_tot_scale, the arm correlation names, int_p_death_first_pfs, comp_p_death_first_pfs, int_rdi, comp_rdi). Relies on retained flagged population inputs prop_male and baseline_age (GAP-005) and on the flagged life-table conversion lt_qx_male, lt_qx_female with open-band ages (GAP-004). Local truth is evaluated on a build that uses a test-only resolution of c_terminal (GAP-001, open block); any rendering from it is a draft."
+    },
+    {
+      "claim_id": "C37",
+      "block": 277,
+      "excerpt": "The deterministic results were reproduced to within numerical precision by an independent implementation of the model in Python.",
+      "kind": "external_assertion_untraceable",
+      "expression": {
+        "op": "external"
+      },
+      "action": "human_review",
+      "rationale": "Not a model cell; for the adapted model this corresponds to the engine-parity check of the Model Verifier, which must be run and accepted by a person before the sentence is kept."
+    },
+    {
+      "claim_id": "C38",
+      "block": 278,
+      "excerpt": "The general-population mortality constraint was active in 312 weekly cycles in the Drug A arm, from age 96, when 0.02% of patients remained alive, and was not active in the Drug B arm",
+      "kind": "model_check",
+      "expression": {
+        "op": "all",
+        "of": [
+          {
+            "op": "sign",
+            "ref": "res_int_gpm_bind_cycles",
+            "sign": "positive"
+          },
+          {
+            "op": "sign",
+            "ref": "res_comp_gpm_bind_cycles",
+            "sign": "zero"
+          }
+        ]
+      },
+      "action": "rerender",
+      "rationale": "Activity of the mortality cap by arm, re-evaluated on the localised life table. Relies on retained tagged efficacy and exposure inputs (GAP-006: int_pfs_shape, int_pfs_scale, int_os_shape, int_os_scale, int_tot_shape, int_tot_scale, comp_pfs_shape, comp_pfs_scale, comp_os_shape, comp_os_scale, comp_tot_shape, comp_tot_scale, the arm correlation names, int_p_death_first_pfs, comp_p_death_first_pfs, int_rdi, comp_rdi). Relies on retained flagged population inputs prop_male and baseline_age (GAP-005) and on the flagged life-table conversion lt_qx_male, lt_qx_female with open-band ages (GAP-004). Local truth is evaluated on a build that uses a test-only resolution of c_terminal (GAP-001, open block); any rendering from it is a draft."
+    },
+    {
+      "claim_id": "C39",
+      "block": 278,
+      "excerpt": "its effect on the ICER was negligible (Table 8)",
+      "kind": "magnitude_judgement",
+      "expression": {
+        "op": "rel_change_below",
+        "a": "res_icer@SC6",
+        "b": "res_icer",
+        "tol": {
+          "registry": "negligible_rel_change"
+        }
+      },
+      "action": "human_review",
+      "rationale": "Magnitude wording rule from the constants registry against the no-cap scenario. Relies on retained flagged population inputs prop_male and baseline_age (GAP-005) and on the flagged life-table conversion lt_qx_male, lt_qx_female with open-band ages (GAP-004). No Korean scenario set has been specified, so local truth stays pending until one exists; a person must decide which scenarios the local report presents."
+    },
+    {
+      "claim_id": "C40",
+      "block": 279,
+      "excerpt": "Modelled medians were within the confidence intervals of the observed medians for all six curves.",
+      "kind": "external_assertion_untraceable",
+      "expression": {
+        "op": "external"
+      },
+      "action": "human_review",
+      "rationale": "Kaplan-Meier confidence intervals are not in the model. Curves are retained global inputs. Relies on retained tagged efficacy and exposure inputs (GAP-006: int_pfs_shape, int_pfs_scale, int_os_shape, int_os_scale, int_tot_shape, int_tot_scale, comp_pfs_shape, comp_pfs_scale, comp_os_shape, comp_os_scale, comp_tot_shape, comp_tot_scale, the arm correlation names, int_p_death_first_pfs, comp_p_death_first_pfs, int_rdi, comp_rdi)."
+    },
+    {
+      "claim_id": "C41",
+      "block": 281,
+      "excerpt": "The analysis indicates that Drug A provides substantial health gains relative to Drug B, driven mainly by longer overall survival.",
+      "kind": "magnitude_judgement",
+      "expression": null,
+      "action": "human_review",
+      "rationale": "Substantial is a judgement with no wording rule in the registry, and the attribution to overall survival is not a model cell; a person decides the local wording. Relies on retained tagged efficacy and exposure inputs (GAP-006: int_pfs_shape, int_pfs_scale, int_os_shape, int_os_scale, int_tot_shape, int_tot_scale, comp_pfs_shape, comp_pfs_scale, comp_os_shape, comp_os_scale, comp_tot_shape, comp_tot_scale, the arm correlation names, int_p_death_first_pfs, comp_p_death_first_pfs, int_rdi, comp_rdi). Relies on retained flagged population inputs prop_male and baseline_age (GAP-005) and on the flagged life-table conversion lt_qx_male, lt_qx_female with open-band ages (GAP-004). Relies on retained flagged utility inputs int_ae_qaly_loss, comp_ae_qaly_loss (GAP-002, UK value set) and gpu_intercept, gpu_male, gpu_age, gpu_age2 (GAP-003, UK population norms). Local truth is evaluated on a build that uses a test-only resolution of c_terminal (GAP-001, open block); any rendering from it is a draft."
+    },
+    {
+      "claim_id": "C42",
+      "block": 281,
+      "excerpt": "The additional costs arise from drug acquisition and administration during the treatment period and from health state costs accumulated over the longer survival period",
+      "kind": "ranking",
+      "expression": {
+        "op": "select",
+        "refs": [
+          "res_inc_cost_drug",
+          "res_inc_cost_admin",
+          "res_inc_cost_pf_state",
+          "res_inc_cost_pd_state",
+          "res_inc_cost_terminal",
+          "res_inc_cost_st",
+          "res_inc_cost_ae"
+        ],
+        "where": {
+          "op": "sign",
+          "sign": "positive"
+        },
+        "expect": [
+          "res_inc_cost_drug",
+          "res_inc_cost_admin",
+          "res_inc_cost_pf_state",
+          "res_inc_cost_pd_state"
+        ]
+      },
+      "action": "regenerate",
+      "rationale": "Selection of categories with positive incremental cost; rebuild from the local selection. Relies on retained tagged efficacy and exposure inputs (GAP-006: int_pfs_shape, int_pfs_scale, int_os_shape, int_os_scale, int_tot_shape, int_tot_scale, comp_pfs_shape, comp_pfs_scale, comp_os_shape, comp_os_scale, comp_tot_shape, comp_tot_scale, the arm correlation names, int_p_death_first_pfs, comp_p_death_first_pfs, int_rdi, comp_rdi). Relies on retained flagged population inputs prop_male and baseline_age (GAP-005) and on the flagged life-table conversion lt_qx_male, lt_qx_female with open-band ages (GAP-004). Local truth is evaluated on a build that uses a test-only resolution of c_terminal (GAP-001, open block); any rendering from it is a draft."
+    },
+    {
+      "claim_id": "C43",
+      "block": 283,
+      "excerpt": "long-term extrapolation of OS is the main source of structural uncertainty",
+      "kind": "magnitude_judgement",
+      "expression": null,
+      "action": "human_review",
+      "rationale": "Judgement not traceable to cells; with retained trial curves it may still hold, but no local scenario set exists to support it. Relies on retained tagged efficacy and exposure inputs (GAP-006: int_pfs_shape, int_pfs_scale, int_os_shape, int_os_scale, int_tot_shape, int_tot_scale, comp_pfs_shape, comp_pfs_scale, comp_os_shape, comp_os_scale, comp_tot_shape, comp_tot_scale, the arm correlation names, int_p_death_first_pfs, comp_p_death_first_pfs, int_rdi, comp_rdi)."
+    },
+    {
+      "claim_id": "C44",
+      "block": 287,
+      "excerpt": "as discussed in NICE DSU guidance [2]",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "jurisdiction_terms": [
+        "NICE",
+        "DSU"
+      ],
+      "action": "reword",
+      "rationale": "Methodological citation of the source agency; reword as a neutral citation of the technical support document."
+    },
+    {
+      "claim_id": "C45",
+      "block": 288,
+      "excerpt": "The base-case ICER lies close to the upper end of the threshold range, so plausible changes in key assumptions move it above that threshold.",
+      "kind": "threshold_comparison",
+      "expression": {
+        "op": "all",
+        "of": [
+          {
+            "op": "le",
+            "lhs": "res_icer",
+            "rhs": "wtp_threshold"
+          },
+          {
+            "op": "any",
+            "of": [
+              {
+                "op": "gt",
+                "lhs": "res_icer@SC1",
+                "rhs": "wtp_threshold"
+              },
+              {
+                "op": "gt",
+                "lhs": "res_icer@SC2",
+                "rhs": "wtp_threshold"
+              },
+              {
+                "op": "gt",
+                "lhs": "res_icer@SC3",
+                "rhs": "wtp_threshold"
+              },
+              {
+                "op": "gt",
+                "lhs": "res_icer@SC4",
+                "rhs": "wtp_threshold"
+              },
+              {
+                "op": "gt",
+                "lhs": "res_icer@SC5",
+                "rhs": "wtp_threshold"
+              },
+              {
+                "op": "gt",
+                "lhs": "res_icer@SC6",
+                "rhs": "wtp_threshold"
+              },
+              {
+                "op": "gt",
+                "lhs": "res_icer@SC7",
+                "rhs": "wtp_threshold"
+              },
+              {
+                "op": "gt",
+                "lhs": "res_icer@SC8",
+                "rhs": "wtp_threshold"
+              }
+            ]
+          }
+        ]
+      },
+      "action": "human_review",
+      "rationale": "Refers to a threshold range that does not exist locally (single reference value), and the second half depends on scenarios. Closeness is a judgement. No Korean scenario set has been specified, so local truth stays pending until one exists; a person must decide which scenarios the local report presents. Relies on retained tagged efficacy and exposure inputs (GAP-006: int_pfs_shape, int_pfs_scale, int_os_shape, int_os_scale, int_tot_shape, int_tot_scale, comp_pfs_shape, comp_pfs_scale, comp_os_shape, comp_os_scale, comp_tot_shape, comp_tot_scale, the arm correlation names, int_p_death_first_pfs, comp_p_death_first_pfs, int_rdi, comp_rdi). Relies on retained flagged population inputs prop_male and baseline_age (GAP-005) and on the flagged life-table conversion lt_qx_male, lt_qx_female with open-band ages (GAP-004). Relies on retained flagged utility inputs int_ae_qaly_loss, comp_ae_qaly_loss (GAP-002, UK value set) and gpu_intercept, gpu_male, gpu_age, gpu_age2 (GAP-003, UK population norms). Local truth is evaluated on a build that uses a test-only resolution of c_terminal (GAP-001, open block); any rendering from it is a draft."
+    },
+    {
+      "claim_id": "C46",
+      "block": 288,
+      "excerpt": "The stopping rule is a key assumption and should be reflected in the commissioning arrangements for Drug A.",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "jurisdiction_terms": [
+        "commissioning"
+      ],
+      "action": "reword",
+      "rationale": "Commissioning is a source-payer term; locally the stopping rule (int_max_doses) comes from the reimbursement criteria."
+    },
+    {
+      "claim_id": "C47",
+      "block": 290,
+      "excerpt": "This is below the threshold of £30,000 per QALY gained",
+      "kind": "threshold_comparison",
+      "expression": {
+        "op": "all",
+        "of": [
+          {
+            "op": "le",
+            "lhs": "res_icer",
+            "rhs": "wtp_threshold"
+          },
+          {
+            "op": "sign",
+            "ref": "res_inc_qaly_disc",
+            "sign": "positive"
+          }
+        ]
+      },
+      "action": "reword",
+      "rationale": "Re-evaluated against wtp_threshold, which locally is a reference value and not an official threshold; reword accordingly. Relies on retained tagged efficacy and exposure inputs (GAP-006: int_pfs_shape, int_pfs_scale, int_os_shape, int_os_scale, int_tot_shape, int_tot_scale, comp_pfs_shape, comp_pfs_scale, comp_os_shape, comp_os_scale, comp_tot_shape, comp_tot_scale, the arm correlation names, int_p_death_first_pfs, comp_p_death_first_pfs, int_rdi, comp_rdi). Relies on retained flagged population inputs prop_male and baseline_age (GAP-005) and on the flagged life-table conversion lt_qx_male, lt_qx_female with open-band ages (GAP-004). Relies on retained flagged utility inputs int_ae_qaly_loss, comp_ae_qaly_loss (GAP-002, UK value set) and gpu_intercept, gpu_male, gpu_age, gpu_age2 (GAP-003, UK population norms). Local truth is evaluated on a build that uses a test-only resolution of c_terminal (GAP-001, open block); any rendering from it is a draft."
+    },
+    {
+      "claim_id": "C48",
+      "block": 290,
+      "excerpt": "within the range of £20,000 to £30,000 per QALY that NICE normally considers to represent a cost-effective use of NHS resources",
+      "kind": "threshold_comparison",
+      "expression": {
+        "op": "all",
+        "of": [
+          {
+            "op": "ge",
+            "lhs": "res_icer",
+            "rhs": "wtp_threshold_lower"
+          },
+          {
+            "op": "le",
+            "lhs": "res_icer",
+            "rhs": "wtp_threshold"
+          }
+        ]
+      },
+      "jurisdiction_terms": [
+        "NICE",
+        "NHS"
+      ],
+      "action": "remove",
+      "rationale": "Source threshold range; the local context has a single reference value and forbids describing a range. Local truth is evaluated on a build that uses a test-only resolution of c_terminal (GAP-001, open block); any rendering from it is a draft."
+    },
+    {
+      "claim_id": "C49",
+      "block": 290,
+      "excerpt": "Drug A can therefore be considered a cost-effective option for adults with previously untreated advanced synthetic carcinoma in the NHS, with the PAS discount and the stopping rule in place.",
+      "kind": "overall_conclusion",
+      "expression": {
+        "op": "all",
+        "of": [
+          {
+            "op": "le",
+            "lhs": "res_icer",
+            "rhs": "wtp_threshold"
+          },
+          {
+            "op": "sign",
+            "ref": "res_inc_qaly_disc",
+            "sign": "positive"
+          },
+          {
+            "op": "sign",
+            "ref": "res_inc_nmb",
+            "sign": "positive"
+          }
+        ]
+      },
+      "jurisdiction_terms": [
+        "NHS",
+        "PAS"
+      ],
+      "action": "reword",
+      "rationale": "Conclusion re-evaluated against the local reference value; remove the payer and PAS wording (no risk-sharing agreement locally), keep the stopping-rule condition. Final wording depends on the GAP-001 resolution. Relies on retained tagged efficacy and exposure inputs (GAP-006: int_pfs_shape, int_pfs_scale, int_os_shape, int_os_scale, int_tot_shape, int_tot_scale, comp_pfs_shape, comp_pfs_scale, comp_os_shape, comp_os_scale, comp_tot_shape, comp_tot_scale, the arm correlation names, int_p_death_first_pfs, comp_p_death_first_pfs, int_rdi, comp_rdi). Relies on retained flagged population inputs prop_male and baseline_age (GAP-005) and on the flagged life-table conversion lt_qx_male, lt_qx_female with open-band ages (GAP-004). Relies on retained flagged utility inputs int_ae_qaly_loss, comp_ae_qaly_loss (GAP-002, UK value set) and gpu_intercept, gpu_male, gpu_age, gpu_age2 (GAP-003, UK population norms). Local truth is evaluated on a build that uses a test-only resolution of c_terminal (GAP-001, open block); any rendering from it is a draft."
+    }
+  ]
+}

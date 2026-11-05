@@ -1,0 +1,73 @@
+{
+  "overall": "fail",
+  "run_dir": "runs/run_B",
+  "spec": "approved_test_resolved/mapping_spec_resolved.json",
+  "checks": [
+    {
+      "id": "V01",
+      "name": "structure",
+      "status": "pass",
+      "details": []
+    },
+    {
+      "id": "V02",
+      "name": "formulas",
+      "status": "fail",
+      "details": [
+        "Trace_Int!AD200: formula changed"
+      ]
+    },
+    {
+      "id": "V03",
+      "name": "inputs_only",
+      "status": "fail",
+      "details": [
+        "int_os_scale: written value differs from override"
+      ]
+    },
+    {
+      "id": "V04",
+      "name": "round_trip",
+      "status": "pass",
+      "details": []
+    },
+    {
+      "id": "V05",
+      "name": "recalc_clean",
+      "status": "pass",
+      "details": []
+    },
+    {
+      "id": "V06",
+      "name": "model_checks",
+      "status": "pass",
+      "details": []
+    },
+    {
+      "id": "V07",
+      "name": "parity",
+      "status": "pass",
+      "details": []
+    },
+    {
+      "id": "V08",
+      "name": "conventions",
+      "status": "fail",
+      "details": [
+        "hardcoding: {'kind': 'literal_in_formula', 'region': 'Trace_Int!AD200', 'literals': ['0.9']}"
+      ]
+    },
+    {
+      "id": "V09",
+      "name": "invariants",
+      "status": "pass",
+      "details": []
+    },
+    {
+      "id": "V10",
+      "name": "currency",
+      "status": "pass",
+      "details": []
+    }
+  ]
+}
