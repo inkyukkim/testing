@@ -117,7 +117,7 @@ def build():
     h("3.3 Treatment duration and dosing", 2)
     p("Drug A is given every {{int_admin_interval_weeks|int}} weeks for a maximum of {{int_max_doses|int}} doses, "
       "the doses that start within the reimbursed maximum treatment duration. Drug B is given for a maximum of "
-      "{{comp_max_doses|int}} doses. Drug A is dosed at {{int_dose_mg|p2}} mg/kg; the expected number of vials per "
+      "{{comp_max_doses|int}} doses. Drug A is dosed at {{int_dose|p2}} mg/kg; the expected number of vials per "
       "administration ({{res_int_expected_vials|p2}}) assumes no vial sharing and a lognormal body weight "
       "distribution with mean {{weight_mean_kg|kg}} kg and standard deviation {{weight_sd_kg|kg}} kg from a "
       "Korean registry. Relative dose intensity is retained from the trial.")

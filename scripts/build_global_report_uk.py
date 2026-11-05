@@ -284,10 +284,10 @@ def build(base: dict, scen: dict, refs: dict) -> Report:
         f"the start of that week. Drug A is given every {n('int_admin_interval_weeks','int')} weeks for a maximum "
         f"of {n('int_max_doses','int')} doses, consistent with the stopping rule in the trial protocol. Drug B is "
         f"given every {n('comp_admin_interval_weeks','int')} weeks for a maximum of {n('comp_max_doses','int')} doses.")
-    R.p(f"Drug A is dosed at {n('int_dose_mg','p2')} mg/kg. The expected number of vials per administration "
+    R.p(f"Drug A is dosed at {n('int_dose','p2')} mg/kg. The expected number of vials per administration "
         f"({n('res_int_expected_vials','p2')}) accounts for wastage, assuming no vial sharing and a lognormal "
         f"distribution of body weight with mean {n('weight_mean_kg','kg')} kg and standard deviation "
-        f"{n('weight_sd_kg','kg')} kg. Drug B is given at a flat dose of {n('comp_dose_mg','int')} mg "
+        f"{n('weight_sd_kg','kg')} kg. Drug B is given at a flat dose of {n('comp_dose','int')} mg "
         f"({n('res_comp_expected_vials','int')} vials). Drug acquisition costs are multiplied by the relative "
         f"dose intensity observed in the trial ({n('int_rdi','pct')} for Drug A and {n('comp_rdi','pct')} for Drug B); "
         "administration costs are not adjusted. Patients received an expected "

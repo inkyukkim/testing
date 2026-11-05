@@ -1029,7 +1029,7 @@
       },
       "source": {
         "workbook": "fixtures/global_model.xlsx",
-        "name": "int_dose_mg",
+        "name": "int_dose",
         "sheet": "Inputs_Costs",
         "cell": "C5",
         "scenario": null,
@@ -1109,7 +1109,7 @@
       },
       "source": {
         "workbook": "fixtures/global_model.xlsx",
-        "name": "comp_dose_mg",
+        "name": "comp_dose",
         "sheet": "Inputs_Costs",
         "cell": "C13",
         "scenario": null,

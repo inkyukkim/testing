@@ -26,7 +26,7 @@ PERTURBED = {
     "int_ae_cost": 1600000, "comp_ae_cost": 3100000,
     "int_os_shape": 0.55, "int_os_scale": 60.0, "int_max_doses": 20, "int_rdi": 0.88,
     "comp_pfs_shape": 0.8, "comp_pfs_scale": 40.0,
-    "comp_dose_weight_based": 1, "comp_dose_mg": 7.5, "comp_vial_mg": 100, "comp_vial_price": 84000,
+    "comp_dose_weight_based": 1, "comp_dose": 7.5, "comp_vial_mg": 100, "comp_vial_price": 84000,
     "st_cost_1": 3900000, "st_cost_2": 38000000, "st_cost_3": 21000000,
     "int_st_share_1": 0.55, "int_st_share_2": 0.0, "int_st_share_3": 0.08,
 }

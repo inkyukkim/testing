@@ -23,7 +23,7 @@ BASE = dict(cycle_length_days=7, days_per_year=365.25, time_horizon_years=60, dr
 def arm(prefix, pfs=(1.0, 6.0), os_=(1.0, 12.0), tot=(1.0, 3.0), **kw):
     d = {"pfs_shape": pfs[0], "pfs_scale": pfs[1], "os_shape": os_[0], "os_scale": os_[1],
          "tot_shape": tot[0], "tot_scale": tot[1], "p_death_first_pfs": 0.0, "rdi": 1.0,
-         "dose_weight_based": 0, "dose_mg": 100, "vial_mg": 100, "vial_price": 0, "admin_cost_per_admin": 0,
+         "dose_weight_based": 0, "dose": 100, "vial_mg": 100, "vial_price": 0, "admin_cost_per_admin": 0,
          "admin_interval_weeks": 3, "max_doses": 0, "ae_cost": 0, "ae_qaly_loss": 0,
          "st_share_1": 0, "st_share_2": 0, "st_share_3": 0, **kw}
     return {f"{prefix}_{k}": v for k, v in d.items()}

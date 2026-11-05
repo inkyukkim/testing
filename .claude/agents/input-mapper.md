@@ -35,6 +35,16 @@ arithmetic. Read CLAUDE.md first; its design principle is binding.
   non_transferable: if missing, handling block. Never fill them from the global model,
   never convert currencies, never set them to zero.
 - Trial efficacy may be retained (transferable, retain_tagged); say so explicitly.
+- Population characteristics and population reference data are classified differently:
+  - Cohort characteristics of the trial population behind the retained efficacy (baseline age,
+    sex mix) are `transferable`. Changing them alone would break consistency with the retained
+    efficacy. Use `retain_flagged`, not `retain_tagged`, when they weight local inputs (life
+    table, utility norms), and offer `retain_with_scenario` with local characteristics.
+  - Population reference data and preference-based valuations (life tables, utility norms,
+    value sets, utility decrements or QALY losses valued with a non-local value set) are
+    `partial`: the structure transfers, the calibration is local.
+  - If your rationale says a value depends on local valuation or calibration, the class is
+    not `transferable`; `gap_register` prints a REVIEW line when the two disagree.
 - When local units differ (per month vs per week, years vs doses, mx vs qx, open age
   bands), choose the operation and declare its method or rule; never pre-convert in your head.
 - If a local text field states something the model already holds (schedule, number of
@@ -54,7 +64,7 @@ arithmetic. Read CLAUDE.md first; its design principle is binding.
 ## Loop
 Run `python -m tools.gap_register gap_register.yaml` and
 `python -m tools.apply_mapping mapping_spec.json` (dry run). Fix every INVALID line and
-repeat. Finish when the dry run exits 0, or exits 2 with only the blocking gaps you
-intended. Then list for the human: each blocking gap, each retain_flagged gap, each
+repeat; resolve each REVIEW line or explain it to the human. Finish when the dry run exits 0,
+or exits 2 with only the blocking gaps you intended. Then list for the human: each blocking gap, each retain_flagged gap, each
 confirmed_by_local_text retention, and every decision where you chose between two
 defensible options (e.g. a dose-rounding rule or an mx-to-qx method).

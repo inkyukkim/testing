@@ -9,6 +9,7 @@ import json
 import shutil
 import subprocess
 import sys
+from pathlib import Path
 
 import openpyxl
 import pytest
@@ -142,3 +143,26 @@ def test_git_state_unknown_outside_a_repository(tmp_path):
     assert git_state(tmp_path) == (None, None)
     commit, dirty = git_state(ROOT)
     assert isinstance(commit, str) and len(commit) == 40 and isinstance(dirty, bool)
+
+
+def test_git_dirty_ignores_files_outside_its_scope(tmp_path):
+    """Found by the blind round-3 Builder/Runner: other agents' outputs made every run dirty."""
+    import subprocess
+    from tools.build_run import dirty_scope, git_state
+
+    def git(*a):
+        subprocess.run(["git", *a], cwd=tmp_path, check=True, capture_output=True)
+    git("init", "-q")
+    git("-c", "user.email=t@t", "-c", "user.name=t", "commit", "-q", "--allow-empty", "-m", "init")
+    (tmp_path / "tools").mkdir()
+    (tmp_path / "inputs").mkdir()
+    (tmp_path / "inputs" / "model.xlsx").write_text("x")
+    git("add", "-A")
+    git("-c", "user.email=t@t", "-c", "user.name=t", "commit", "-q", "-m", "inputs")
+    scope = dirty_scope(tmp_path, [tmp_path / "inputs" / "model.xlsx", Path("/elsewhere/spec.json")])
+    assert scope == ["tools", "schemas", "inputs/model.xlsx"]
+    (tmp_path / "other_agent_output.json").write_text("{}")
+    assert git_state(tmp_path, scope)[1] is False
+    assert git_state(tmp_path)[1] is True                       # unscoped: whole tree
+    (tmp_path / "inputs" / "model.xlsx").write_text("changed")
+    assert git_state(tmp_path, scope)[1] is True

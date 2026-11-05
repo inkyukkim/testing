@@ -9,7 +9,8 @@ CLI: python -m tools.verify_report <report.docx> <run_dir> <claims.json> <gap_re
   R02 rounding      every displayed difference and the ICER pass the rounding-interval check; the
                     rounding note is present exactly when a figure needs it
   R03 claims        every truth-dependent choice re-evaluated on the adapted model; every rerender /
-                    regenerate claim is used; no removed claim is used
+                    regenerate claim WITH an expression is used (expression-less ones, such as scope
+                    notes, may appear as plain prose); no removed claim is used
   R04 jurisdiction  no term of the source jurisdiction outside the References
   R05 retained      every target of a retain_tagged / retain_flagged gap is listed in the report
   R06 status        a final report needs a ready claims register; a draft carries the DRAFT banner

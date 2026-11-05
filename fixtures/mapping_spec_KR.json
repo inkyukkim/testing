@@ -363,7 +363,7 @@
       }
     },
     {
-      "target": "int_dose_mg",
+      "target": "int_dose",
       "status": "mapped",
       "operation": "copy",
       "args": {
@@ -443,7 +443,7 @@
       }
     },
     {
-      "target": "comp_dose_mg",
+      "target": "comp_dose",
       "status": "retained",
       "operation": "retain_global",
       "rationale": "Same flat dose in Korea.",

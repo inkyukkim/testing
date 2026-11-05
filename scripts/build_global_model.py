@@ -90,7 +90,7 @@ for arm, label in ARMS.items():
 
 COSTS = [
     ("Drug A dosing basis (1 = mg/kg, 0 = flat mg)", "int_dose_weight_based", 1, "switch", "Fixed", None, "SmPC"),
-    ("Drug A dose", "int_dose_mg", 2, "mg/kg", "Fixed", None, "SmPC: 2 mg/kg Q3W"),
+    ("Drug A dose", "int_dose", 2, "mg/kg", "Fixed", None, "SmPC: 2 mg/kg Q3W"),
     ("Drug A vial size", "int_vial_mg", 100, "mg", "Fixed", None, "SmPC"),
     ("Drug A net price per vial (incl. PAS)", "int_vial_price", 700, "GBP", "Fixed", None, "Synthetic list price with confidential discount"),
     ("Drug A administration cost per administration", "int_admin_cost_per_admin", 310, "GBP", "Gamma", 62, "Synthetic NHS reference cost, SB12Z"),
@@ -98,7 +98,7 @@ COSTS = [
     ("Drug A maximum number of doses (stopping rule)", "int_max_doses", 35, "doses", "Fixed", None, "35 doses Q3W per protocol"),
     ("Drug A adverse event cost (one-off)", "int_ae_cost", 1150, "GBP", "Gamma", 230, "Grade 3+ AE incidence x unit costs"),
     ("Drug B dosing basis (1 = mg/kg, 0 = flat mg)", "comp_dose_weight_based", 0, "switch", "Fixed", None, "Synthetic regimen"),
-    ("Drug B dose", "comp_dose_mg", 500, "mg (flat)", "Fixed", None, "Synthetic regimen"),
+    ("Drug B dose", "comp_dose", 500, "mg (flat)", "Fixed", None, "Synthetic regimen"),
     ("Drug B vial size", "comp_vial_mg", 100, "mg", "Fixed", None, "Synthetic"),
     ("Drug B price per vial", "comp_vial_price", 96, "GBP", "Fixed", None, "Synthetic eMIT price"),
     ("Drug B administration cost per administration", "comp_admin_cost_per_admin", 310, "GBP", "Gamma", 62, "Synthetic NHS reference cost, SB12Z"),
@@ -269,14 +269,14 @@ def dosing_sheet(wb):
     for r in range(first, last + 1):
         ws[f"A{r}"] = f"=ROW()-ROW($A${first})+1"
         for arm, (cw, cp, ck) in cols.items():
-            ws[f"{cw}{r}"] = f"=A{r}*{arm}_vial_mg/{arm}_dose_mg"
+            ws[f"{cw}{r}"] = f"=A{r}*{arm}_vial_mg/{arm}_dose"
             lower = f"IF(A{r}=1,0,NORMDIST(LN({cw}{r - 1}),calc_weight_mu,SQRT(calc_weight_sigma2),TRUE))" if r > first else "0"
             ws[f"{cp}{r}"] = f"=NORMDIST(LN({cw}{r}),calc_weight_mu,SQRT(calc_weight_sigma2),TRUE)-{lower}"
             ws[f"{ck}{r}"] = f"=A{r}*{cp}{r}"
     derived = [
         ("Expected vials per administration", "expected_vials",
-         lambda a, cp, ck: f"=IF({a}_dose_weight_based=1,IF(calc_weight_sigma2=0,ROUNDUP({a}_dose_mg*weight_mean_kg/{a}_vial_mg,0),"
-                           f"SUM({ck}{first}:{ck}{last})/SUM({cp}{first}:{cp}{last})),ROUNDUP({a}_dose_mg/{a}_vial_mg,0))"),
+         lambda a, cp, ck: f"=IF({a}_dose_weight_based=1,IF(calc_weight_sigma2=0,ROUNDUP({a}_dose*weight_mean_kg/{a}_vial_mg,0),"
+                           f"SUM({ck}{first}:{ck}{last})/SUM({cp}{first}:{cp}{last})),ROUNDUP({a}_dose/{a}_vial_mg,0))"),
         ("Probability mass beyond last vial band (weight-based only)", "vial_tail_mass",
          lambda a, cp, ck: f"=IF(AND({a}_dose_weight_based=1,calc_weight_sigma2>0),1-SUM({cp}{first}:{cp}{last}),0)"),
         ("Drug cost per administration", "drug_cost_per_admin", lambda a, cp, ck: f"=calc_{a}_expected_vials*{a}_vial_price"),

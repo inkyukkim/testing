@@ -126,3 +126,13 @@ def test_d13_classifications_in_answer_key(reg):
     assert (by_target["prop_male"]["class"], by_target["prop_male"]["handling"]) == ("transferable", "retain_flagged")
     assert (by_target["int_ae_qaly_loss"]["class"], by_target["int_ae_qaly_loss"]["handling"]) == ("partial", "retain_flagged")
     assert all(isinstance(g["retained_source"], list) for g in reg["gaps"] if g["handling"] != "block")
+
+
+def test_transferable_gap_citing_local_valuation_gets_a_review_note(reg):
+    """Round 3: AE QALY losses classed transferable although the rationale cites a UK value set."""
+    assert G.review_notes(reg) == []
+    g = next(g for g in reg["gaps"] if g["class"] == "transferable")
+    g["rationale"] = "Incidence transfers, but the losses are valued with a UK value set."
+    notes = G.review_notes(reg)
+    assert len(notes) == 1 and notes[0].startswith(g["gap_id"])
+    assert G.validate(reg) == [], "advisory only: the register stays valid"

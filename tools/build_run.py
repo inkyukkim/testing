@@ -45,29 +45,53 @@ def sha256(path) -> str:
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def git_state(root) -> tuple[str | None, bool | None]:
+DIRTY_SCOPE = ["tools", "schemas"]
+
+
+def dirty_scope(root, inputs=()) -> list[str]:
+    """Paths whose uncommitted changes make a run irreproducible from its commit: the tools, the
+    schemas and the run's declared inputs that live inside the repository. Inputs outside it are
+    identified by their hashes in the run log instead."""
+    root = Path(root).resolve()
+    scope = list(DIRTY_SCOPE)
+    for p in inputs:
+        try:
+            rel = Path(p).resolve().relative_to(root).as_posix()
+        except ValueError:
+            continue
+        if rel not in scope:
+            scope.append(rel)
+    return scope
+
+
+def git_state(root, scope=None) -> tuple[str | None, bool | None]:
     """(commit, dirty) of the repository holding the tools; (None, None) when unknown.
-    Outside a repository both are unknown: a missing commit must never read as a clean tree."""
+    Outside a repository both are unknown: a missing commit must never read as a clean tree.
+    `dirty` considers only `scope` (default: the whole tree), so unrelated untracked files,
+    such as other agents' outputs, do not mark a run as irreproducible."""
     try:
         head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=root, capture_output=True, text=True)
         if head.returncode != 0 or not head.stdout.strip():
             return None, None
-        status = subprocess.run(["git", "status", "--porcelain"], cwd=root, capture_output=True, text=True)
+        cmd = ["git", "status", "--porcelain"] + (["--", *scope] if scope else [])
+        status = subprocess.run(cmd, cwd=root, capture_output=True, text=True)
         return head.stdout.strip(), (bool(status.stdout.strip()) if status.returncode == 0 else None)
     except OSError:
         return None, None
 
 
-def _versions() -> dict:
+def _versions(inputs=()) -> dict:
     import numpy
     import openpyxl
     try:
         lo = subprocess.run([soffice_binary(), "--version"], capture_output=True, text=True, timeout=60).stdout.strip()
     except Exception as e:  # noqa: BLE001 - recorded, recalc itself will fail loudly
         lo = f"unavailable: {e}"
-    commit, dirty = git_state(ROOT)
+    scope = dirty_scope(ROOT, inputs)
+    commit, dirty = git_state(ROOT, scope)
     return {"python": platform.python_version(), "openpyxl": openpyxl.__version__, "numpy": numpy.__version__,
-            "libreoffice": lo, "registry_version": REGISTRY["version"], "git_commit": commit, "git_dirty": dirty}
+            "libreoffice": lo, "registry_version": REGISTRY["version"], "git_commit": commit, "git_dirty": dirty,
+            "git_dirty_scope": scope}
 
 
 def resolve_scenario(sset: dict, local: dict, base_values: dict) -> dict:
@@ -92,11 +116,12 @@ def build_run(spec_path, out_dir, scenarios_path=None) -> dict:
     out_dir.mkdir(parents=True, exist_ok=True)
     spec, model, local, register = load_all(spec_path)
     paths = {k: (ROOT / spec[k]) for k in ("model", "local_inputs", "gap_register")}
+    conv = paths["model"].with_name(paths["model"].stem + ".conventions.yaml")
+    declared = [*paths.values(), spec_path, conv] + ([scenarios_path] if scenarios_path else [])
     log = {"started": datetime.now(timezone.utc).isoformat(timespec="seconds"), "spec": str(spec_path),
            "inputs": {k: {"path": str(p), "sha256": sha256(p)} for k, p in paths.items()},
-           "tools": _versions()}
+           "tools": _versions(declared)}
     log["inputs"]["spec"] = {"path": str(spec_path), "sha256": sha256(spec_path)}
-    conv = paths["model"].with_name(paths["model"].stem + ".conventions.yaml")
     if conv.exists():
         log["inputs"]["conventions"] = {"path": str(conv), "sha256": sha256(conv)}
 

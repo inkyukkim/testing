@@ -20,7 +20,7 @@ ARMS = ("int", "comp")
 ST_CATEGORIES = (1, 2, 3)
 ARM_PARAMS = (
     "pfs_shape", "pfs_scale", "os_shape", "os_scale", "tot_shape", "tot_scale",
-    "p_death_first_pfs", "rdi", "dose_weight_based", "dose_mg", "vial_mg", "vial_price",
+    "p_death_first_pfs", "rdi", "dose_weight_based", "dose", "vial_mg", "vial_price",
     "admin_cost_per_admin", "admin_interval_weeks", "max_doses", "ae_cost", "ae_qaly_loss",
 ) + tuple(f"st_share_{j}" for j in ST_CATEGORIES)
 SHARED_PARAMS = (
@@ -150,8 +150,8 @@ def expected_vials_lognormal(dose_mg_per_kg, vial_mg, mean_kg, sd_kg, k_max=1000
 def vials_per_admin(p: dict, arm: str) -> float:
     g = lambda k: float(p[f"{arm}_{k}"])
     if int(g("dose_weight_based")) == 1:
-        return expected_vials_lognormal(g("dose_mg"), g("vial_mg"), float(p["weight_mean_kg"]), float(p["weight_sd_kg"]))
-    return float(math.ceil(g("dose_mg") / g("vial_mg")))
+        return expected_vials_lognormal(g("dose"), g("vial_mg"), float(p["weight_mean_kg"]), float(p["weight_sd_kg"]))
+    return float(math.ceil(g("dose") / g("vial_mg")))
 
 
 def gpm_survival(p: dict, n: int, cyc_years: float) -> np.ndarray:

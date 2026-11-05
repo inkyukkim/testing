@@ -7,7 +7,7 @@ import pytest
 from conftest import FIXTURES, MODEL
 from test_build_and_verify import make_resolved
 from tools.build_run import build_run
-from tools.claims import evaluate_register, ready, validate
+from tools.claims import evaluate_register, ready, rerender_terms, review_notes, validate
 from tools.docx_extract import extract
 from tools.evaluate_claim import evaluate
 from tools.jurisdiction_lint import lint
@@ -70,11 +70,29 @@ def claim(reg, cid):
     (lambda r: claim(r, "C09").update(action="regenerate"), "K3"),      # model_check cannot regenerate
     (lambda r: claim(r, "C02")["expression"]["of"][1].update(rhs=30000), "K5"),
     (lambda r: claim(r, "C02").update(excerpt="Drug A is dominant"), "K6"),
+    (lambda r: claim(r, "C01").update(action="rerender"), "K7"),        # keeps a NICE term
 ])
 def test_rules(mutate, rule):
     reg = copy.deepcopy(KEY)
     mutate(reg)
     assert any(rule in e for e in validate(reg, BLOCKS))
+
+
+def test_k7_currency_attached_to_a_numeral_is_rerendered_but_other_terms_are_kept():
+    """Round 3: rerender keeps the excerpt verbatim, so only numerals (with their symbol) change."""
+    assert rerender_terms("an incremental net monetary benefit of £1,514") == []
+    assert rerender_terms("below the NICE threshold of £30,000 per QALY") == ["NICE"]
+    assert rerender_terms("costs in £ from NHS reference costs") == ["NHS", "NHS reference costs", "£"]
+    assert all("K7" not in e for e in validate(KEY, BLOCKS))
+
+
+def test_rerender_with_a_rewording_rationale_gets_a_review_note():
+    reg = copy.deepcopy(KEY)
+    assert review_notes(reg) == []
+    c = next(c for c in reg["claims"] if c["action"] == "rerender")
+    c["rationale"] = "Comparison holds locally. Wording should say reference value."
+    assert [n.split(":")[0] for n in review_notes(reg)] == [c["claim_id"]]
+    assert validate(reg, BLOCKS) == validate(KEY, BLOCKS), "advisory only"
 
 
 def test_rerendering_a_locally_false_claim_is_rejected(global_contexts, kr_contexts):

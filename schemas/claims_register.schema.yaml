@@ -39,7 +39,7 @@ properties:
           type: string
           enum: [rerender, regenerate, reword, remove, human_review]
           x-meaning:
-            rerender: keep the sentence; numbers are re-rendered from the adapted model; requires local truth
+            rerender: keep the excerpt word for word; only its numerals (with any attached currency symbol) are re-rendered from the adapted model; requires local truth. Any other change is reword
             regenerate: the sentence was generated from data (rankings, selections); rebuild it from the local evaluation
             reword: keep the meaning, replace jurisdiction-specific wording (agency, payer, sources, threshold)
             remove: the claim does not apply in the local setting
@@ -56,4 +56,6 @@ x-rules:
   - K4 a claim whose local truth is false may not be rerendered
   - K5 expressions contain no numeric literals
   - K6 excerpt must occur verbatim in the referenced block
+  - K7 a rerender excerpt may not contain a source-jurisdiction term (tools/jurisdiction_terms.yaml) other than a currency symbol attached to a numeral
+  - REVIEW (advisory) a rerender whose rationale asks for new wording is listed for the approving human
   - READY the Report Writer may start only when no rerender/regenerate claim is pending and no human_review is open

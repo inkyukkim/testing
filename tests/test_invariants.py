@@ -109,10 +109,10 @@ def test_expected_vials_bounds(case):
     for arm in ("int", "comp"):
         v = values[f"calc_{arm}_expected_vials"]
         if values[f"{arm}_dose_weight_based"] == 1:
-            mean_vials = values[f"{arm}_dose_mg"] * values["weight_mean_kg"] / values[f"{arm}_vial_mg"]
+            mean_vials = values[f"{arm}_dose"] * values["weight_mean_kg"] / values[f"{arm}_vial_mg"]
             assert mean_vials <= v <= mean_vials + 1, "E[ceil(X)] lies in [E[X], E[X]+1]"
         else:
-            assert v == math.ceil(values[f"{arm}_dose_mg"] / values[f"{arm}_vial_mg"])
+            assert v == math.ceil(values[f"{arm}_dose"] / values[f"{arm}_vial_mg"])
 
 
 def test_expected_vials_formula_against_monte_carlo():

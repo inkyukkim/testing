@@ -90,15 +90,17 @@
   - The Report Verifier quotes the verifier's own failure message, which contains the tampered and the traced ICER. That is allowed, as tool output.
   - The Claims Analyst quotes two report excerpts verbatim, with GBP thresholds. This is borderline: it is a quote from a file, not tool output.
 
-**New findings from round 3 (open).**
+**Findings from round 3 (fixed after the round; decisions D17–D19).**
 
-| Found by | Finding | Proposed fix |
-|----------|---------|--------------|
-| Claims Analyst, Report Writer | Two terms are unclear. Does `rerender` keep the sentence verbatim, even when it carries source-currency or source-jurisdiction wording? And R03 counts expression-less scope notes (C13, C14) as rerender claims. | Define `rerender` as "same sentence, new numbers, no banned terms" and add a K-rule rejecting `rerender` on an excerpt with jurisdiction hits. Give scope notes their own action, or exempt them from R03 coverage. |
-| Builder/Runner | `git_dirty` covers the whole checkout, so unrelated untracked files make every run non-reproducible. | Scope the dirty check to `tools/`, `schemas/` and the run's declared inputs. |
-| Input Mapper | `int_dose_mg` is labelled in mg but its unit is mg/kg. | Rename or relabel in the fixture generator (`scripts/build_global_model.py`). |
-| Input Mapper | No guidance on whether population characteristics (baseline age, sex mix) are `transferable` or `partial`. | Add a classification note to the Input Mapper instructions. Both rounds chose `transferable / retain_flagged`, as the key does. |
-| Input Mapper | Class contradicted rationale for AE QALY losses. | Add a `gap_register` lint: a rationale that mentions a local value set or local calibration while the class is `transferable` gets a REVIEW line. |
+| Found by | Finding | Fix |
+|----------|---------|-----|
+| Claims Analyst, Report Writer | Was `rerender` allowed to keep source-currency or source-jurisdiction wording? And did R03 count expression-less scope notes (C13, C14) as rerender claims? | `rerender` is now defined: the excerpt stays word for word, and only its numerals and their attached currency symbol change. A new rule K7 in `tools/claims.py` refuses a rerender excerpt that keeps any other source-jurisdiction term. An advisory REVIEW line flags a rerender whose rationale asks for new wording; on the round-3 register it flags C05 and C51. On the Report Writer's second point: R03 already exempts rerender claims with no expression. The writer misread it, and the docstring now says so explicitly. |
+| Builder/Runner | `git_dirty` covered the whole checkout, so unrelated untracked files made every run non-reproducible. | `git_state` now checks only `git_dirty_scope`: the `tools/` and `schemas/` folders plus the run's declared inputs inside the repository. The scope is recorded in `run_log`. |
+| Input Mapper | `int_dose_mg` was labelled in mg but its unit is mg/kg. | Renamed to `int_dose` and `comp_dose` in the generator, engine, report, template, answer key and tests. The fixtures were regenerated; values are unchanged and only the names in the provenance changed. |
+| Input Mapper | No guidance on whether population characteristics are `transferable` or `partial`. | Classification rule added to `.claude/agents/input-mapper.md` (D19). |
+| Input Mapper | Class contradicted the rationale for AE QALY losses. | `gap_register.review_notes` prints a REVIEW line when a `transferable` gap's text cites a value set, tariff, calibration or local valuation. It flags the round-3 register's GAP-006 and nothing in the key or the round-2 register. |
+
+**Caveat on D19.** The new guidance turns the D13 answer-key classifications into a general rule. Future blind Input Mapper scores on those items therefore test whether the agent follows instructions, not its own judgement.
 
 **Conclusion.**
 - Blind scores are within one to two items of the exposed rounds for every agent.

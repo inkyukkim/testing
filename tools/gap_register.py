@@ -3,6 +3,7 @@
 Portable contract (Input Mapper writes, human approves, Builder/Runner checks):
     validate(register) -> list of error strings (schema + cross-field rules R1-R6)
     gate(register)     -> GateResult(blocked, blocking_gap_ids, errors)
+    review_notes(register) -> advisory REVIEW lines (never errors) for the approving human
 CLI: python -m tools.gap_register <register.yaml>   exit 0 = proceed, 2 = blocked, 1 = invalid
 
 The schema lives in schemas/gap_register.schema.yaml. Only the JSON Schema keywords that
@@ -121,6 +122,22 @@ def validate(register: dict, schema: dict | None = None) -> list[str]:
     return errors + validate_rules(register)
 
 
+# A transferable gap whose own text says the value depends on local valuation or calibration
+# reads like a partial gap (structure transfers, calibration is local).
+_LOCAL_CALIBRATION = re.compile(r"\bvalue[- ]sets?\b|\btariffs?\b|\bcalibrat\w*|\bvalued (?:with|using|in)\b",
+                                re.IGNORECASE)
+
+
+def review_notes(register: dict) -> list[str]:
+    out = []
+    for g in register.get("gaps", []):
+        text = " ".join(t for t in (g.get("description"), g.get("rationale")) if isinstance(t, str))
+        if g.get("class") == "transferable" and (m := _LOCAL_CALIBRATION.search(text)):
+            out.append(f"{g.get('gap_id')}: class transferable, but its text cites local valuation or calibration "
+                       f"('{m.group(0)}'); check whether the class is partial")
+    return out
+
+
 @dataclass
 class GateResult:
     blocked: bool
@@ -145,6 +162,8 @@ def main(argv=None) -> int:
     result = gate(register)
     for e in result.errors:
         print(f"INVALID: {e}")
+    for r in review_notes(register):
+        print(f"REVIEW: {r}")
     for gid in result.blocking:
         print(f"BLOCKED: {gid}")
     if result.errors:
