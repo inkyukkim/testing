@@ -35,7 +35,7 @@ def test_every_evaluable_claim_is_true_on_the_global_model(global_contexts):
     reg = evaluate_register(KEY, global_contexts)
     truths = {c["claim_id"]: c["truth_global"] for c in reg["claims"]}
     assert all(t is True for t in truths.values() if t != "not_evaluable"), truths
-    assert sum(t is True for t in truths.values()) == 10
+    assert sum(t is True for t in truths.values()) == 12      # C24, C25 added (D20)
     assert validate(reg, BLOCKS) == []
 
 

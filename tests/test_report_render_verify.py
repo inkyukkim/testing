@@ -70,7 +70,7 @@ def test_truth_driven_wording(kr_render):
     assert "Drug A is cost-effective" in text and "Drug A is not cost-effective" not in text
     assert "This is below the reference value" in text
     assert "lower" not in text.split("1. Executive summary")[1].split("2. Decision problem")[0], "no threshold range (D09)"
-    assert "lt_qx_male: local value derived by a declared method" in text
+    assert "qx male (lt_qx_male): local value derived by a declared method" in text, "labelled range"
     used = {(u.get("claim"), u.get("directive")) for u in res["claims_used"]}
     assert ("C15", "label") in used and ("C16", "labels") in used and ("C03", "if") not in used
 

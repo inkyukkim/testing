@@ -6,6 +6,7 @@ inputs with a terminal care value, a register whose GAP-001 is resolved by a hum
 and a spec that maps c_terminal from that item. None of it is a fixture.
 """
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -125,8 +126,10 @@ def test_parity_is_not_reported_under_a_contradicted_declaration(built, tmp_path
     tmp, spec, _ = built
     shutil.copy(FIXTURES / "global_model.xlsx", tmp_path / "global_model.xlsx")
     conv = (FIXTURES / "global_model.conventions.yaml").read_text()
-    (tmp_path / "global_model.conventions.yaml").write_text(
-        conv.replace("  method: mid_cycle_continuous", "  method: annual_step", 1))
+    wrong = conv.replace("  method: mid_cycle_continuous", "  method: annual_step", 1)
+    for k in ("state_costs", "one_off_event_costs", "dosing_costs", "outcomes"):   # as in the blind plant:
+        wrong = re.sub(rf"    {k}: \w+.*", f"    {k}: model_year", wrong)      # the engine accepts it
+    (tmp_path / "global_model.conventions.yaml").write_text(wrong)
     s = json.loads(Path(spec).read_text())
     s["model"] = str(tmp_path / "global_model.xlsx")
     spec2 = tmp_path / "spec.json"
