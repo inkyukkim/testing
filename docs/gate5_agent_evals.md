@@ -90,7 +90,7 @@
   - The Report Verifier quotes the verifier's own failure message, which contains the tampered and the traced ICER. That is allowed, as tool output.
   - The Claims Analyst quotes two report excerpts verbatim, with GBP thresholds. This is borderline: it is a quote from a file, not tool output.
 
-**Rescored against the 25-claim key (D20).** The Claims Analyst gets recall 96% in both rounds. Round 2: precision 49%, action agreement 96%, truth agreement 100%. Round 3: precision 45%, action agreement 88%, truth agreement 96%. Neither round has a critical difference. Both rounds registered the "driven mainly by" claim the key lacked. In round 3, C24 is another `rerender` where the key says `reword`, and C23 is a truth disagreement: the agent checked only direction, while the key holds the attribution not traceable to a cell.
+**Rescored against the 25-claim key (D20, accepted).** The Claims Analyst gets recall 96% in both rounds. Round 2: precision 49%, action agreement 96%, truth agreement 100%. Round 3: precision 45%, action agreement 88%, truth agreement 96%. Neither round has a critical difference. Both rounds registered the "driven mainly by" claim the key lacked. In round 3, C24 is another `rerender` where the key says `reword`, and C23 is a truth disagreement: the agent checked only direction, while the key holds the attribution not traceable to a cell.
 
 **Findings from round 3 (fixed after the round; decisions D17–D19, accepted).**
 
