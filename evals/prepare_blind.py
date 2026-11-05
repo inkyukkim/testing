@@ -87,14 +87,28 @@ def run(ws: Path, *args) -> subprocess.CompletedProcess:
     return subprocess.run([PY, "-m", *args], cwd=ws, capture_output=True, text=True)
 
 
+def relativise(ws: Path, spec: Path) -> Path:
+    """make_resolved writes absolute paths; rewrite them relative to the workspace root so the
+    workspace still works when moved to another machine (round 3 runs in a separate session)."""
+    d = json.loads(spec.read_text())
+    for k in ("local_inputs", "gap_register"):
+        d[k] = str(Path(d[k]).resolve().relative_to(ws.resolve()))
+    spec.write_text(json.dumps(d, indent=2))
+    reg_path = ws / d["gap_register"]
+    reg = yaml.safe_load(reg_path.read_text())
+    reg["adaptation"]["local_inputs"] = d["local_inputs"]
+    reg_path.write_text(yaml.safe_dump(reg, sort_keys=False))
+    return spec
+
+
 def resolved_build(ws: Path, run_dir="runs/kr_test"):
     """Test-only resolution of GAP-001 inside the workspace, then build with the workspace tools."""
     sys.path.insert(0, str(ROOT / "tests"))
     from test_build_and_verify import make_resolved
     appr = ws / "approved_test_resolved"
     appr.mkdir(exist_ok=True)
-    spec = make_resolved(appr)
-    r = run(ws, "tools.build_run", str(spec), run_dir)
+    spec = relativise(ws, make_resolved(appr))
+    r = run(ws, "tools.build_run", str(spec.relative_to(ws)), run_dir)
     assert r.returncode == 0, r.stdout + r.stderr
     return spec, ws / run_dir
 
@@ -143,7 +157,7 @@ def prep_builder_runner(ws, keys):
     sys.path.insert(0, str(ROOT / "tests"))
     from test_build_and_verify import make_resolved
     (ws / "approved_test_resolved").mkdir()
-    make_resolved(ws / "approved_test_resolved")
+    relativise(ws, make_resolved(ws / "approved_test_resolved"))
     keys["builder-runner"] = {"expect": {"approved": "blocked by GAP-001, nothing built",
                                          "approved_test_resolved": "built"}}
 
@@ -164,7 +178,7 @@ def prep_model_verifier(ws, keys):
     from tools.recalc import recalc
     shutil.rmtree(run_b / "recalc")
     recalc(run_b / "adapted_model.xlsx", run_b / "recalc")
-    keys["model-verifier"] = {"spec_A": str(spec), "spec_B": str(spec2),
+    keys["model-verifier"] = {"spec_A": "approved_test_resolved/mapping_spec_resolved.json", "spec_B": "approved_test_resolved/mapping_spec_resolved.json",
                               "expect": {"run_A": "accept (all pass)", "run_B": "reject: V02 formula Trace_Int!AD200; V03 int_os_scale"}}
 
 
@@ -207,7 +221,7 @@ def prep_report_writer(ws, keys):
     run(ws, "tools.docx_extract", "fixtures/global_report_UK.docx", "--out", "work/report_extract.json")
     oracle_report_profile(ws / "work" / "report_profile.json")
     spec, run_dir = resolved_build(ws)
-    keys["report-writer"] = {"gap_register": json.loads(spec.read_text())["gap_register"], "run_dir": str(run_dir)}
+    keys["report-writer"] = {"gap_register": json.loads(spec.read_text())["gap_register"], "run_dir": "runs/kr_test"}
 
 
 def prep_report_verifier(ws, keys):
@@ -216,7 +230,7 @@ def prep_report_verifier(ws, keys):
     (ws / "approved").mkdir()
     shutil.copy(FIX / "claims_register_KR.json", ws / "approved" / "claims_register.json")
     spec, run_dir = resolved_build(ws)
-    register = json.loads(spec.read_text())["gap_register"]
+    register = str(ws / json.loads(spec.read_text())["gap_register"])
     from tools.render_report import render
     from docx import Document
     for name in ("report_A", "report_B"):
@@ -237,7 +251,7 @@ def prep_report_verifier(ws, keys):
                 r.text = r.text.replace(icer, icer[:-2] + "00", 1)              # changed number (first occurrence)
                 changed = True
     doc.save(rep_b)
-    keys["report-verifier"] = {"gap_register": register, "run_dir": str(run_dir),
+    keys["report-verifier"] = {"gap_register": "approved_test_resolved/gap_register_resolved.yaml", "run_dir": "runs/kr_test",
                                "expect": {"report_A": "pass (draft: not acceptable as final)",
                                           "report_B": "reject: R01 changed ICER, R04 NICE, R05 prop_male"}}
 
@@ -253,6 +267,7 @@ def main(base_dir):
         print(f"prepared {agent}")
     (base_dir / "_keys").mkdir(exist_ok=True)
     (base_dir / "_keys" / "keys.json").write_text(json.dumps(keys, indent=2))
+    sanitise(base_dir)
     check_leaks(base_dir)
 
 
@@ -268,5 +283,23 @@ def check_leaks(base_dir):
         generators = ("build_global_", "build_adaptation_", "build_report_template_", "synthetic_data", "rebaseline", "test_", "conftest")
         assert not any(n.startswith(generators) and n.endswith(".py") for n in names), f"{agent}: generator or test copied"
 
+def sanitise(base_dir):
+    """Make run logs and report provenance workspace-relative and withhold the template path
+    (it names the answer-key template). None of these fields is read by the verifiers."""
+    base_dir = Path(base_dir)
+    for ws in (p for p in base_dir.iterdir() if p.is_dir() and not p.name.startswith("_")):
+        for f in list(ws.rglob("run_log.json")) + list(ws.rglob("*.provenance.json")):
+            text = f.read_text().replace(str(ws.resolve()) + "/", "").replace(str(ws) + "/", "")
+            d = json.loads(text)
+            if "template" in d:
+                d["template"] = "(withheld)"
+            f.write_text(json.dumps(d, indent=2))
+
+
 if __name__ == "__main__":
-    check_leaks(sys.argv[2]) if sys.argv[1] == "--check" else main(sys.argv[1])
+    if sys.argv[1] == "--sanitise":
+        sanitise(sys.argv[2])
+    elif sys.argv[1] == "--check":
+        check_leaks(sys.argv[2])
+    else:
+        main(sys.argv[1])
