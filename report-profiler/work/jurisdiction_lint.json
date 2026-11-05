@@ -1,0 +1,758 @@
+[
+  {
+    "block": 1,
+    "kind": "title",
+    "section": null,
+    "term": "United Kingdom",
+    "category": "geography"
+  },
+  {
+    "block": 5,
+    "kind": "paragraph",
+    "section": "1. Executive summary",
+    "term": "Personal Social Services",
+    "category": "payer"
+  },
+  {
+    "block": 5,
+    "kind": "paragraph",
+    "section": "1. Executive summary",
+    "term": "NHS",
+    "category": "payer"
+  },
+  {
+    "block": 5,
+    "kind": "paragraph",
+    "section": "1. Executive summary",
+    "term": "PSS",
+    "category": "payer"
+  },
+  {
+    "block": 5,
+    "kind": "paragraph",
+    "section": "1. Executive summary",
+    "term": "England",
+    "category": "geography"
+  },
+  {
+    "block": 6,
+    "kind": "paragraph",
+    "section": "1. Executive summary",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 7,
+    "kind": "paragraph",
+    "section": "1. Executive summary",
+    "term": "NICE",
+    "category": "agency"
+  },
+  {
+    "block": 7,
+    "kind": "paragraph",
+    "section": "1. Executive summary",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 10,
+    "kind": "paragraph",
+    "section": "2. Decision problem",
+    "term": "NHS",
+    "category": "payer"
+  },
+  {
+    "block": 23,
+    "kind": "table_cell",
+    "section": "2. Decision problem",
+    "term": "NHS",
+    "category": "payer"
+  },
+  {
+    "block": 23,
+    "kind": "table_cell",
+    "section": "2. Decision problem",
+    "term": "PSS",
+    "category": "payer"
+  },
+  {
+    "block": 26,
+    "kind": "paragraph",
+    "section": "2. Decision problem",
+    "term": "NICE reference case",
+    "category": "agency"
+  },
+  {
+    "block": 26,
+    "kind": "paragraph",
+    "section": "2. Decision problem",
+    "term": "NHS",
+    "category": "payer"
+  },
+  {
+    "block": 26,
+    "kind": "paragraph",
+    "section": "2. Decision problem",
+    "term": "patient access scheme",
+    "category": "pricing"
+  },
+  {
+    "block": 26,
+    "kind": "paragraph",
+    "section": "2. Decision problem",
+    "term": "PAS",
+    "category": "pricing"
+  },
+  {
+    "block": 26,
+    "kind": "paragraph",
+    "section": "2. Decision problem",
+    "term": "national reference costs",
+    "category": "unit_cost_source"
+  },
+  {
+    "block": 34,
+    "kind": "paragraph",
+    "section": "3. Methods",
+    "term": "Decision Support Unit",
+    "category": "agency"
+  },
+  {
+    "block": 34,
+    "kind": "paragraph",
+    "section": "3. Methods",
+    "term": "NICE",
+    "category": "agency"
+  },
+  {
+    "block": 69,
+    "kind": "paragraph",
+    "section": "3. Methods",
+    "term": "NHS",
+    "category": "payer"
+  },
+  {
+    "block": 69,
+    "kind": "paragraph",
+    "section": "3. Methods",
+    "term": "PAS",
+    "category": "pricing"
+  },
+  {
+    "block": 69,
+    "kind": "paragraph",
+    "section": "3. Methods",
+    "term": "electronic market information tool",
+    "category": "unit_cost_source"
+  },
+  {
+    "block": 69,
+    "kind": "paragraph",
+    "section": "3. Methods",
+    "term": "NHS reference costs",
+    "category": "unit_cost_source"
+  },
+  {
+    "block": 69,
+    "kind": "paragraph",
+    "section": "3. Methods",
+    "term": "PSSRU",
+    "category": "unit_cost_source"
+  },
+  {
+    "block": 69,
+    "kind": "paragraph",
+    "section": "3. Methods",
+    "term": "eMIT",
+    "category": "unit_cost_source"
+  },
+  {
+    "block": 70,
+    "kind": "paragraph",
+    "section": "3. Methods",
+    "term": "GBP",
+    "category": "currency"
+  },
+  {
+    "block": 76,
+    "kind": "table_cell",
+    "section": "3. Methods",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 79,
+    "kind": "table_cell",
+    "section": "3. Methods",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 82,
+    "kind": "table_cell",
+    "section": "3. Methods",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 85,
+    "kind": "table_cell",
+    "section": "3. Methods",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 88,
+    "kind": "table_cell",
+    "section": "3. Methods",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 91,
+    "kind": "table_cell",
+    "section": "3. Methods",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 94,
+    "kind": "table_cell",
+    "section": "3. Methods",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 97,
+    "kind": "table_cell",
+    "section": "3. Methods",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 100,
+    "kind": "table_cell",
+    "section": "3. Methods",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 103,
+    "kind": "table_cell",
+    "section": "3. Methods",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 106,
+    "kind": "table_cell",
+    "section": "3. Methods",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 115,
+    "kind": "table_cell",
+    "section": "3. Methods",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 119,
+    "kind": "table_cell",
+    "section": "3. Methods",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 123,
+    "kind": "table_cell",
+    "section": "3. Methods",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 128,
+    "kind": "table_cell",
+    "section": "3. Methods",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 129,
+    "kind": "table_cell",
+    "section": "3. Methods",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 131,
+    "kind": "paragraph",
+    "section": "3. Methods",
+    "term": "NICE reference case",
+    "category": "agency"
+  },
+  {
+    "block": 131,
+    "kind": "paragraph",
+    "section": "3. Methods",
+    "term": "UK time trade-off value set",
+    "category": "value_set"
+  },
+  {
+    "block": 131,
+    "kind": "paragraph",
+    "section": "3. Methods",
+    "term": "UK population norms",
+    "category": "value_set"
+  },
+  {
+    "block": 155,
+    "kind": "paragraph",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 162,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 163,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 164,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 176,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 180,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 184,
+    "kind": "paragraph",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 185,
+    "kind": "caption",
+    "section": "4. Results",
+    "term": "GBP",
+    "category": "currency"
+  },
+  {
+    "block": 191,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 192,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 193,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 195,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 196,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 197,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 199,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 200,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 201,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 203,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 204,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 205,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 207,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 208,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 209,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 211,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 212,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 213,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 215,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 216,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 217,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 219,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 220,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 221,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 232,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 234,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 237,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 239,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 242,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 244,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 247,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 249,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 252,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 254,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 257,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 259,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 262,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 264,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 267,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 269,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 272,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 274,
+    "kind": "table_cell",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 275,
+    "kind": "paragraph",
+    "section": "4. Results",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 287,
+    "kind": "list_item",
+    "section": "6. Discussion",
+    "term": "NICE",
+    "category": "agency"
+  },
+  {
+    "block": 287,
+    "kind": "list_item",
+    "section": "6. Discussion",
+    "term": "DSU",
+    "category": "agency"
+  },
+  {
+    "block": 288,
+    "kind": "paragraph",
+    "section": "6. Discussion",
+    "term": "commissioning",
+    "category": "payer"
+  },
+  {
+    "block": 290,
+    "kind": "paragraph",
+    "section": "7. Conclusion",
+    "term": "NICE",
+    "category": "agency"
+  },
+  {
+    "block": 290,
+    "kind": "paragraph",
+    "section": "7. Conclusion",
+    "term": "NHS",
+    "category": "payer"
+  },
+  {
+    "block": 290,
+    "kind": "paragraph",
+    "section": "7. Conclusion",
+    "term": "PAS",
+    "category": "pricing"
+  },
+  {
+    "block": 290,
+    "kind": "paragraph",
+    "section": "7. Conclusion",
+    "term": "\u00a3",
+    "category": "currency"
+  },
+  {
+    "block": 292,
+    "kind": "reference",
+    "section": "References",
+    "term": "National Institute for Health and Care Excellence",
+    "category": "agency"
+  },
+  {
+    "block": 292,
+    "kind": "reference",
+    "section": "References",
+    "term": "NICE",
+    "category": "agency"
+  },
+  {
+    "block": 293,
+    "kind": "reference",
+    "section": "References",
+    "term": "NICE",
+    "category": "agency"
+  },
+  {
+    "block": 293,
+    "kind": "reference",
+    "section": "References",
+    "term": "DSU",
+    "category": "agency"
+  },
+  {
+    "block": 294,
+    "kind": "reference",
+    "section": "References",
+    "term": "NICE",
+    "category": "agency"
+  },
+  {
+    "block": 294,
+    "kind": "reference",
+    "section": "References",
+    "term": "DSU",
+    "category": "agency"
+  }
+]

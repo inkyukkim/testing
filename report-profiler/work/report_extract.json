@@ -1,0 +1,4791 @@
+{
+  "document": "fixtures/global_report_UK.docx",
+  "blocks": [
+    {
+      "kind": "title",
+      "text": "Drug A for previously untreated advanced synthetic carcinoma",
+      "section": null,
+      "subsection": null,
+      "index": 0
+    },
+    {
+      "kind": "title",
+      "text": "Cost-effectiveness analysis: technical report (United Kingdom)",
+      "section": null,
+      "subsection": null,
+      "index": 1
+    },
+    {
+      "kind": "title",
+      "text": "SYNTHETIC DOCUMENT FOR SOFTWARE TESTING. All data are fictitious. Not for clinical, reimbursement or investment decisions.",
+      "section": null,
+      "subsection": null,
+      "index": 2
+    },
+    {
+      "kind": "title",
+      "text": "Version 1.1 | Global HEOR | Model file: global_model.xlsx",
+      "section": null,
+      "subsection": null,
+      "index": 3
+    },
+    {
+      "kind": "heading",
+      "level": 1,
+      "text": "1. Executive summary",
+      "section": "1. Executive summary",
+      "subsection": null,
+      "index": 4
+    },
+    {
+      "kind": "paragraph",
+      "text": "This report describes the methods and results of a cost-utility analysis comparing Drug A with Drug B, a platinum doublet regimen, for adults with previously untreated advanced synthetic carcinoma, from the perspective of the NHS and Personal Social Services (PSS) in England. The analysis uses a three-state partitioned survival model with weekly cycles over a lifetime horizon of 40 years, with costs and outcomes discounted at 3.5% per annum.",
+      "section": "1. Executive summary",
+      "subsection": null,
+      "index": 5
+    },
+    {
+      "kind": "paragraph",
+      "text": "In the base case, Drug A was associated with total discounted costs of \u00a360,016 and 1.669 QALYs, compared with \u00a335,270 and 0.794 QALYs for Drug B. The incremental cost was \u00a324,746 for an incremental gain of 0.875 QALYs, giving an incremental cost-effectiveness ratio (ICER) of \u00a328,271 per QALY gained.",
+      "section": "1. Executive summary",
+      "subsection": null,
+      "index": 6
+    },
+    {
+      "kind": "paragraph",
+      "text": "At the upper end of the range normally considered by NICE (\u00a330,000 per QALY), Drug A is cost-effective, with an incremental net monetary benefit of \u00a31,514. At \u00a320,000 per QALY, Drug A is not cost-effective.",
+      "section": "1. Executive summary",
+      "subsection": null,
+      "index": 7
+    },
+    {
+      "kind": "paragraph",
+      "text": "In scenario analyses, the ICER was most sensitive to removing the stopping rule for Drug A and setting Drug A time on treatment equal to PFS (Section 4.3).",
+      "section": "1. Executive summary",
+      "subsection": null,
+      "index": 8
+    },
+    {
+      "kind": "heading",
+      "level": 1,
+      "text": "2. Decision problem",
+      "section": "2. Decision problem",
+      "subsection": null,
+      "index": 9
+    },
+    {
+      "kind": "paragraph",
+      "text": "Advanced synthetic carcinoma is a fictitious malignancy used here to exercise model-adaptation software. Patients with advanced disease have a poor prognosis, and first-line systemic therapy with a platinum doublet is assumed to be the established standard of care in the NHS. Drug A is a hypothetical targeted agent administered intravenously every 3 weeks.",
+      "section": "2. Decision problem",
+      "subsection": null,
+      "index": 10
+    },
+    {
+      "kind": "caption",
+      "text": "Table 1. Decision problem",
+      "section": "2. Decision problem",
+      "subsection": null,
+      "index": 11
+    },
+    {
+      "kind": "table_header",
+      "table": 1,
+      "row": 0,
+      "col": 0,
+      "text": "Element",
+      "section": "2. Decision problem",
+      "subsection": null,
+      "index": 12
+    },
+    {
+      "kind": "table_header",
+      "table": 1,
+      "row": 0,
+      "col": 1,
+      "text": "Base case",
+      "section": "2. Decision problem",
+      "subsection": null,
+      "index": 13
+    },
+    {
+      "kind": "table_cell",
+      "table": 1,
+      "row": 1,
+      "col": 0,
+      "text": "Population",
+      "section": "2. Decision problem",
+      "subsection": null,
+      "index": 14
+    },
+    {
+      "kind": "table_cell",
+      "table": 1,
+      "row": 1,
+      "col": 1,
+      "text": "Adults with previously untreated advanced synthetic carcinoma",
+      "section": "2. Decision problem",
+      "subsection": null,
+      "index": 15
+    },
+    {
+      "kind": "table_cell",
+      "table": 1,
+      "row": 2,
+      "col": 0,
+      "text": "Intervention",
+      "section": "2. Decision problem",
+      "subsection": null,
+      "index": 16
+    },
+    {
+      "kind": "table_cell",
+      "table": 1,
+      "row": 2,
+      "col": 1,
+      "text": "Drug A, intravenous, every 3 weeks, with a maximum treatment duration",
+      "section": "2. Decision problem",
+      "subsection": null,
+      "index": 17
+    },
+    {
+      "kind": "table_cell",
+      "table": 1,
+      "row": 3,
+      "col": 0,
+      "text": "Comparator",
+      "section": "2. Decision problem",
+      "subsection": null,
+      "index": 18
+    },
+    {
+      "kind": "table_cell",
+      "table": 1,
+      "row": 3,
+      "col": 1,
+      "text": "Drug B (platinum doublet), every 3 weeks, for a fixed number of cycles",
+      "section": "2. Decision problem",
+      "subsection": null,
+      "index": 19
+    },
+    {
+      "kind": "table_cell",
+      "table": 1,
+      "row": 4,
+      "col": 0,
+      "text": "Outcomes",
+      "section": "2. Decision problem",
+      "subsection": null,
+      "index": 20
+    },
+    {
+      "kind": "table_cell",
+      "table": 1,
+      "row": 4,
+      "col": 1,
+      "text": "Progression-free survival, overall survival, health-related quality of life, costs",
+      "section": "2. Decision problem",
+      "subsection": null,
+      "index": 21
+    },
+    {
+      "kind": "table_cell",
+      "table": 1,
+      "row": 5,
+      "col": 0,
+      "text": "Perspective",
+      "section": "2. Decision problem",
+      "subsection": null,
+      "index": 22
+    },
+    {
+      "kind": "table_cell",
+      "table": 1,
+      "row": 5,
+      "col": 1,
+      "text": "NHS and PSS",
+      "section": "2. Decision problem",
+      "subsection": null,
+      "index": 23
+    },
+    {
+      "kind": "table_cell",
+      "table": 1,
+      "row": 6,
+      "col": 0,
+      "text": "Economic evaluation",
+      "section": "2. Decision problem",
+      "subsection": null,
+      "index": 24
+    },
+    {
+      "kind": "table_cell",
+      "table": 1,
+      "row": 6,
+      "col": 1,
+      "text": "Cost-utility analysis; cost per QALY gained",
+      "section": "2. Decision problem",
+      "subsection": null,
+      "index": 25
+    },
+    {
+      "kind": "paragraph",
+      "text": "The analysis follows the NICE reference case [1]. Health effects are expressed in quality-adjusted life years (QALYs) using EQ-5D-3L values from the pivotal trial, and costs reflect NHS list prices and national reference costs. A confidential patient access scheme (PAS) discount is applied to the price of Drug A in all analyses.",
+      "section": "2. Decision problem",
+      "subsection": null,
+      "index": 26
+    },
+    {
+      "kind": "heading",
+      "level": 1,
+      "text": "3. Methods",
+      "section": "3. Methods",
+      "subsection": null,
+      "index": 27
+    },
+    {
+      "kind": "heading",
+      "level": 2,
+      "text": "3.1 Model structure",
+      "section": "3. Methods",
+      "subsection": "3.1 Model structure",
+      "index": 28
+    },
+    {
+      "kind": "paragraph",
+      "text": "A partitioned survival model with three mutually exclusive health states was developed in Microsoft Excel: progression-free (PF), progressed disease (PD) and death [2]. The proportion of patients in each state at each time point is derived directly from the parametric survival curves for progression-free survival (PFS) and overall survival (OS). The PF proportion is the lower of the PFS and OS curves, the PD proportion is the difference between OS and PF, and the proportion dead is the complement of OS.",
+      "section": "3. Methods",
+      "subsection": "3.1 Model structure",
+      "index": 29
+    },
+    {
+      "kind": "paragraph",
+      "text": "The model uses a cycle length of 7 days and a time horizon of 40 years. The modelled cohort has a mean starting age of 62 years and is 60.0% male. The horizon captures virtually all survival in both arms; the modelled proportion alive at the end of the horizon is below 0.1% in each arm.",
+      "section": "3. Methods",
+      "subsection": "3.1 Model structure",
+      "index": 30
+    },
+    {
+      "kind": "paragraph",
+      "text": "Modelled survival is constrained so that the risk of death is never lower than in the general population of the same age and sex. In each cycle, the conditional probability of surviving the cycle is taken as the lower of the value implied by the fitted curve and the value implied by national life tables, applied separately to the PFS and OS curves. General-population survival is calculated separately for men and women and weighted by the proportion of men at baseline.",
+      "section": "3. Methods",
+      "subsection": "3.1 Model structure",
+      "index": 31
+    },
+    {
+      "kind": "paragraph",
+      "text": "A half-cycle correction is applied to state membership by taking the average of the start and end of each cycle (trapezoidal method); it is used for health state costs, life years and QALYs. Drug acquisition and administration costs are incurred at the time of each dose and are not half-cycle corrected. Costs and outcomes are discounted at annual rates of 3.5% and 3.5% respectively, in line with the reference case, using a discount factor evaluated at the mid-point of each cycle, or at the time of administration for dosing costs.",
+      "section": "3. Methods",
+      "subsection": "3.1 Model structure",
+      "index": 32
+    },
+    {
+      "kind": "heading",
+      "level": 2,
+      "text": "3.2 Survival extrapolation",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 33
+    },
+    {
+      "kind": "paragraph",
+      "text": "Independent Weibull models were fitted to patient-level PFS, OS and time on treatment (ToT) data from the pivotal trial for each treatment arm, following the NICE Decision Support Unit guidance on survival analysis [3]. The Weibull distribution was selected on the basis of statistical fit, visual inspection against the Kaplan-Meier curves, and the clinical plausibility of long-term extrapolations. The survival function is parameterised as S(t) = exp(-(t/scale)^shape), with time in months. Medians in Table 2 are those of the fitted curves before the general-population constraint.",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 34
+    },
+    {
+      "kind": "caption",
+      "text": "Table 2. Weibull parameters and medians of the fitted curves",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 35
+    },
+    {
+      "kind": "table_header",
+      "table": 2,
+      "row": 0,
+      "col": 0,
+      "text": "Arm and endpoint",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 36
+    },
+    {
+      "kind": "table_header",
+      "table": 2,
+      "row": 0,
+      "col": 1,
+      "text": "Shape",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 37
+    },
+    {
+      "kind": "table_header",
+      "table": 2,
+      "row": 0,
+      "col": 2,
+      "text": "Scale (months)",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 38
+    },
+    {
+      "kind": "table_header",
+      "table": 2,
+      "row": 0,
+      "col": 3,
+      "text": "Median (months)",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 39
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 1,
+      "col": 0,
+      "text": "Drug A, PFS",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 40
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 1,
+      "col": 1,
+      "text": "0.95",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 41
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 1,
+      "col": 2,
+      "text": "12.00",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 42
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 1,
+      "col": 3,
+      "text": "8.2",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 43
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 2,
+      "col": 0,
+      "text": "Drug A, OS",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 44
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 2,
+      "col": 1,
+      "text": "0.85",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 45
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 2,
+      "col": 2,
+      "text": "32.00",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 46
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 2,
+      "col": 3,
+      "text": "20.8",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 47
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 3,
+      "col": 0,
+      "text": "Drug A, ToT",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 48
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 3,
+      "col": 1,
+      "text": "0.90",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 49
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 3,
+      "col": 2,
+      "text": "10.00",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 50
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 3,
+      "col": 3,
+      "text": "6.7",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 51
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 4,
+      "col": 0,
+      "text": "Drug B, PFS",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 52
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 4,
+      "col": 1,
+      "text": "1.25",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 53
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 4,
+      "col": 2,
+      "text": "7.00",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 54
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 4,
+      "col": 3,
+      "text": "5.2",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 55
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 5,
+      "col": 0,
+      "text": "Drug B, OS",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 56
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 5,
+      "col": 1,
+      "text": "1.15",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 57
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 5,
+      "col": 2,
+      "text": "16.00",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 58
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 5,
+      "col": 3,
+      "text": "11.6",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 59
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 6,
+      "col": 0,
+      "text": "Drug B, ToT",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 60
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 6,
+      "col": 1,
+      "text": "1.40",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 61
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 6,
+      "col": 2,
+      "text": "4.50",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 62
+    },
+    {
+      "kind": "table_cell",
+      "table": 2,
+      "row": 6,
+      "col": 3,
+      "text": "3.5",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 63
+    },
+    {
+      "kind": "paragraph",
+      "text": "Median OS of the fitted curves was 20.8 months with Drug A and 11.6 months with Drug B. Median PFS was 8.2 and 5.2 months, respectively. The fitted PFS and OS curves did not cross in either arm.",
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "index": 64
+    },
+    {
+      "kind": "heading",
+      "level": 2,
+      "text": "3.3 Treatment duration and dosing",
+      "section": "3. Methods",
+      "subsection": "3.3 Treatment duration and dosing",
+      "index": 65
+    },
+    {
+      "kind": "paragraph",
+      "text": "Treatment duration is modelled with the ToT curves, constrained not to exceed OS, so patients may continue treatment after progression as observed in the trial. Doses are given at fixed intervals and costed only in the weeks in which a dose is due, for the proportion of patients on treatment at the start of that week. Drug A is given every 3 weeks for a maximum of 35 doses, consistent with the stopping rule in the trial protocol. Drug B is given every 3 weeks for a maximum of 6 doses.",
+      "section": "3. Methods",
+      "subsection": "3.3 Treatment duration and dosing",
+      "index": 66
+    },
+    {
+      "kind": "paragraph",
+      "text": "Drug A is dosed at 2.00 mg/kg. The expected number of vials per administration (2.05) accounts for wastage, assuming no vial sharing and a lognormal distribution of body weight with mean 76.0 kg and standard deviation 16.0 kg. Drug B is given at a flat dose of 500 mg (5 vials). Drug acquisition costs are multiplied by the relative dose intensity observed in the trial (95.0% for Drug A and 90.0% for Drug B); administration costs are not adjusted. Patients received an expected 13.70 doses of Drug A and 4.58 doses of Drug B.",
+      "section": "3. Methods",
+      "subsection": "3.3 Treatment duration and dosing",
+      "index": 67
+    },
+    {
+      "kind": "heading",
+      "level": 2,
+      "text": "3.4 Costs and resource use",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 68
+    },
+    {
+      "kind": "paragraph",
+      "text": "Drug acquisition costs for Drug A reflect the list price net of the confidential PAS discount. The cost of Drug B was taken from the electronic market information tool (eMIT). Administration costs per intravenous infusion are based on NHS reference costs. Health state costs comprise outpatient visits, imaging, blood tests and community care, valued using PSSRU unit costs. A one-off terminal care cost is applied to each death.",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 69
+    },
+    {
+      "kind": "paragraph",
+      "text": "All costs are in GBP at 2025 prices.",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 70
+    },
+    {
+      "kind": "caption",
+      "text": "Table 3. Cost inputs",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 71
+    },
+    {
+      "kind": "table_header",
+      "table": 3,
+      "row": 0,
+      "col": 0,
+      "text": "Input",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 72
+    },
+    {
+      "kind": "table_header",
+      "table": 3,
+      "row": 0,
+      "col": 1,
+      "text": "Value",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 73
+    },
+    {
+      "kind": "table_header",
+      "table": 3,
+      "row": 0,
+      "col": 2,
+      "text": "Unit",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 74
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 1,
+      "col": 0,
+      "text": "Drug A net price per vial",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 75
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 1,
+      "col": 1,
+      "text": "\u00a3700",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 76
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 1,
+      "col": 2,
+      "text": "per vial",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 77
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 2,
+      "col": 0,
+      "text": "Drug A drug cost per administration (expected vials)",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 78
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 2,
+      "col": 1,
+      "text": "\u00a31,435",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 79
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 2,
+      "col": 2,
+      "text": "per administration",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 80
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 3,
+      "col": 0,
+      "text": "Drug B price per vial",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 81
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 3,
+      "col": 1,
+      "text": "\u00a396",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 82
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 3,
+      "col": 2,
+      "text": "per vial",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 83
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 4,
+      "col": 0,
+      "text": "Drug B drug cost per administration",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 84
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 4,
+      "col": 1,
+      "text": "\u00a3480",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 85
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 4,
+      "col": 2,
+      "text": "per administration",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 86
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 5,
+      "col": 0,
+      "text": "Administration cost, Drug A",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 87
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 5,
+      "col": 1,
+      "text": "\u00a3310",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 88
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 5,
+      "col": 2,
+      "text": "per administration",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 89
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 6,
+      "col": 0,
+      "text": "Administration cost, Drug B",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 90
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 6,
+      "col": 1,
+      "text": "\u00a3310",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 91
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 6,
+      "col": 2,
+      "text": "per administration",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 92
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 7,
+      "col": 0,
+      "text": "Progression-free health state",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 93
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 7,
+      "col": 1,
+      "text": "\u00a3150",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 94
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 7,
+      "col": 2,
+      "text": "per week",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 95
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 8,
+      "col": 0,
+      "text": "Progressed disease health state",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 96
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 8,
+      "col": 1,
+      "text": "\u00a3230",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 97
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 8,
+      "col": 2,
+      "text": "per week",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 98
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 9,
+      "col": 0,
+      "text": "Terminal care",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 99
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 9,
+      "col": 1,
+      "text": "\u00a36,500",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 100
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 9,
+      "col": 2,
+      "text": "one-off",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 101
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 10,
+      "col": 0,
+      "text": "Adverse events, Drug A",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 102
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 10,
+      "col": 1,
+      "text": "\u00a31,150",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 103
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 10,
+      "col": 2,
+      "text": "one-off",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 104
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 11,
+      "col": 0,
+      "text": "Adverse events, Drug B",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 105
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 11,
+      "col": 1,
+      "text": "\u00a32,400",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 106
+    },
+    {
+      "kind": "table_cell",
+      "table": 3,
+      "row": 11,
+      "col": 2,
+      "text": "one-off",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 107
+    },
+    {
+      "kind": "paragraph",
+      "text": "Subsequent therapies are costed once, at progression, as the cost of a mean treatment course weighted by the proportion of patients receiving each therapy in the trial. Progression events are estimated from the decline in the PF proportion, excluding the share of PFS events that were deaths (15.0% for Drug A and 12.0% for Drug B).",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 108
+    },
+    {
+      "kind": "caption",
+      "text": "Table 4. Subsequent therapies",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 109
+    },
+    {
+      "kind": "table_header",
+      "table": 4,
+      "row": 0,
+      "col": 0,
+      "text": "Therapy",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 110
+    },
+    {
+      "kind": "table_header",
+      "table": 4,
+      "row": 0,
+      "col": 1,
+      "text": "Course cost",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 111
+    },
+    {
+      "kind": "table_header",
+      "table": 4,
+      "row": 0,
+      "col": 2,
+      "text": "Share after Drug A",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 112
+    },
+    {
+      "kind": "table_header",
+      "table": 4,
+      "row": 0,
+      "col": 3,
+      "text": "Share after Drug B",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 113
+    },
+    {
+      "kind": "table_cell",
+      "table": 4,
+      "row": 1,
+      "col": 0,
+      "text": "Docetaxel-based chemotherapy",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 114
+    },
+    {
+      "kind": "table_cell",
+      "table": 4,
+      "row": 1,
+      "col": 1,
+      "text": "\u00a32,800",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 115
+    },
+    {
+      "kind": "table_cell",
+      "table": 4,
+      "row": 1,
+      "col": 2,
+      "text": "45.0%",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 116
+    },
+    {
+      "kind": "table_cell",
+      "table": 4,
+      "row": 1,
+      "col": 3,
+      "text": "30.0%",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 117
+    },
+    {
+      "kind": "table_cell",
+      "table": 4,
+      "row": 2,
+      "col": 0,
+      "text": "Immunotherapy",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 118
+    },
+    {
+      "kind": "table_cell",
+      "table": 4,
+      "row": 2,
+      "col": 1,
+      "text": "\u00a330,000",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 119
+    },
+    {
+      "kind": "table_cell",
+      "table": 4,
+      "row": 2,
+      "col": 2,
+      "text": "5.0%",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 120
+    },
+    {
+      "kind": "table_cell",
+      "table": 4,
+      "row": 2,
+      "col": 3,
+      "text": "35.0%",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 121
+    },
+    {
+      "kind": "table_cell",
+      "table": 4,
+      "row": 3,
+      "col": 0,
+      "text": "Other targeted therapy",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 122
+    },
+    {
+      "kind": "table_cell",
+      "table": 4,
+      "row": 3,
+      "col": 1,
+      "text": "\u00a315,000",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 123
+    },
+    {
+      "kind": "table_cell",
+      "table": 4,
+      "row": 3,
+      "col": 2,
+      "text": "10.0%",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 124
+    },
+    {
+      "kind": "table_cell",
+      "table": 4,
+      "row": 3,
+      "col": 3,
+      "text": "8.0%",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 125
+    },
+    {
+      "kind": "table_cell",
+      "table": 4,
+      "row": 4,
+      "col": 0,
+      "text": "Cost per progression",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 126
+    },
+    {
+      "kind": "table_cell",
+      "table": 4,
+      "row": 4,
+      "col": 1,
+      "text": "",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 127
+    },
+    {
+      "kind": "table_cell",
+      "table": 4,
+      "row": 4,
+      "col": 2,
+      "text": "\u00a34,260",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 128
+    },
+    {
+      "kind": "table_cell",
+      "table": 4,
+      "row": 4,
+      "col": 3,
+      "text": "\u00a312,540",
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "index": 129
+    },
+    {
+      "kind": "heading",
+      "level": 2,
+      "text": "3.5 Health-related quality of life",
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "index": 130
+    },
+    {
+      "kind": "paragraph",
+      "text": "Health state utility values were derived from EQ-5D-3L questionnaires collected in the pivotal trial and valued using the UK time trade-off value set, consistent with the NICE reference case. Utilities were assumed to depend on health state only and not on treatment. To reflect declining quality of life with age, state utilities are multiplied by the ratio of general-population utility at the current age to that at the baseline age, using a regression on age and sex from UK population norms. Quality-of-life losses associated with severe (grade three or higher) adverse events were applied as one-off QALY decrements at the start of the model.",
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "index": 131
+    },
+    {
+      "kind": "caption",
+      "text": "Table 5. Utility inputs",
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "index": 132
+    },
+    {
+      "kind": "table_header",
+      "table": 5,
+      "row": 0,
+      "col": 0,
+      "text": "Input",
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "index": 133
+    },
+    {
+      "kind": "table_header",
+      "table": 5,
+      "row": 0,
+      "col": 1,
+      "text": "Value",
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "index": 134
+    },
+    {
+      "kind": "table_cell",
+      "table": 5,
+      "row": 1,
+      "col": 0,
+      "text": "Progression-free",
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "index": 135
+    },
+    {
+      "kind": "table_cell",
+      "table": 5,
+      "row": 1,
+      "col": 1,
+      "text": "0.75",
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "index": 136
+    },
+    {
+      "kind": "table_cell",
+      "table": 5,
+      "row": 2,
+      "col": 0,
+      "text": "Progressed disease",
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "index": 137
+    },
+    {
+      "kind": "table_cell",
+      "table": 5,
+      "row": 2,
+      "col": 1,
+      "text": "0.60",
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "index": 138
+    },
+    {
+      "kind": "table_cell",
+      "table": 5,
+      "row": 3,
+      "col": 0,
+      "text": "AE QALY loss, Drug A",
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "index": 139
+    },
+    {
+      "kind": "table_cell",
+      "table": 5,
+      "row": 3,
+      "col": 1,
+      "text": "0.008",
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "index": 140
+    },
+    {
+      "kind": "table_cell",
+      "table": 5,
+      "row": 4,
+      "col": 0,
+      "text": "AE QALY loss, Drug B",
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "index": 141
+    },
+    {
+      "kind": "table_cell",
+      "table": 5,
+      "row": 4,
+      "col": 1,
+      "text": "0.015",
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "index": 142
+    },
+    {
+      "kind": "table_cell",
+      "table": 5,
+      "row": 5,
+      "col": 0,
+      "text": "Population norms: intercept",
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "index": 143
+    },
+    {
+      "kind": "table_cell",
+      "table": 5,
+      "row": 5,
+      "col": 1,
+      "text": "0.95",
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "index": 144
+    },
+    {
+      "kind": "table_cell",
+      "table": 5,
+      "row": 6,
+      "col": 0,
+      "text": "Population norms: male",
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "index": 145
+    },
+    {
+      "kind": "table_cell",
+      "table": 5,
+      "row": 6,
+      "col": 1,
+      "text": "0.021000",
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "index": 146
+    },
+    {
+      "kind": "table_cell",
+      "table": 5,
+      "row": 7,
+      "col": 0,
+      "text": "Population norms: age",
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "index": 147
+    },
+    {
+      "kind": "table_cell",
+      "table": 5,
+      "row": 7,
+      "col": 1,
+      "text": "-0.000260",
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "index": 148
+    },
+    {
+      "kind": "table_cell",
+      "table": 5,
+      "row": 8,
+      "col": 0,
+      "text": "Population norms: age squared",
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "index": 149
+    },
+    {
+      "kind": "table_cell",
+      "table": 5,
+      "row": 8,
+      "col": 1,
+      "text": "-0.000033",
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "index": 150
+    },
+    {
+      "kind": "heading",
+      "level": 2,
+      "text": "3.6 Uncertainty",
+      "section": "3. Methods",
+      "subsection": "3.6 Uncertainty",
+      "index": 151
+    },
+    {
+      "kind": "paragraph",
+      "text": "Structural and parameter uncertainty were explored through pre-specified scenario analyses (Table 8). Probabilistic sensitivity analysis (PSA) is specified in the model, with gamma distributions for costs, beta distributions for utilities and proportions, Dirichlet distributions for subsequent-therapy shares and correlated multivariate normal distributions for the log-transformed Weibull parameters. PSA results are not included in this version of the report and will be provided in an addendum.",
+      "section": "3. Methods",
+      "subsection": "3.6 Uncertainty",
+      "index": 152
+    },
+    {
+      "kind": "heading",
+      "level": 1,
+      "text": "4. Results",
+      "section": "4. Results",
+      "subsection": null,
+      "index": 153
+    },
+    {
+      "kind": "heading",
+      "level": 2,
+      "text": "4.1 Base-case results",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 154
+    },
+    {
+      "kind": "paragraph",
+      "text": "Drug A increased discounted life years by 1.37 and QALYs by 0.875 compared with Drug B, at an additional cost of \u00a324,746. The base-case ICER is \u00a328,271 per QALY gained and \u00a318,033 per life year gained.",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 155
+    },
+    {
+      "kind": "caption",
+      "text": "Table 6. Base-case results (discounted)",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 156
+    },
+    {
+      "kind": "table_header",
+      "table": 6,
+      "row": 0,
+      "col": 0,
+      "text": "Outcome",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 157
+    },
+    {
+      "kind": "table_header",
+      "table": 6,
+      "row": 0,
+      "col": 1,
+      "text": "Drug A",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 158
+    },
+    {
+      "kind": "table_header",
+      "table": 6,
+      "row": 0,
+      "col": 2,
+      "text": "Drug B",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 159
+    },
+    {
+      "kind": "table_header",
+      "table": 6,
+      "row": 0,
+      "col": 3,
+      "text": "Incremental",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 160
+    },
+    {
+      "kind": "table_cell",
+      "table": 6,
+      "row": 1,
+      "col": 0,
+      "text": "Total costs",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 161
+    },
+    {
+      "kind": "table_cell",
+      "table": 6,
+      "row": 1,
+      "col": 1,
+      "text": "\u00a360,016",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 162
+    },
+    {
+      "kind": "table_cell",
+      "table": 6,
+      "row": 1,
+      "col": 2,
+      "text": "\u00a335,270",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 163
+    },
+    {
+      "kind": "table_cell",
+      "table": 6,
+      "row": 1,
+      "col": 3,
+      "text": "\u00a324,746",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 164
+    },
+    {
+      "kind": "table_cell",
+      "table": 6,
+      "row": 2,
+      "col": 0,
+      "text": "Life years",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 165
+    },
+    {
+      "kind": "table_cell",
+      "table": 6,
+      "row": 2,
+      "col": 1,
+      "text": "2.59",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 166
+    },
+    {
+      "kind": "table_cell",
+      "table": 6,
+      "row": 2,
+      "col": 2,
+      "text": "1.22",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 167
+    },
+    {
+      "kind": "table_cell",
+      "table": 6,
+      "row": 2,
+      "col": 3,
+      "text": "1.37",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 168
+    },
+    {
+      "kind": "table_cell",
+      "table": 6,
+      "row": 3,
+      "col": 0,
+      "text": "QALYs",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 169
+    },
+    {
+      "kind": "table_cell",
+      "table": 6,
+      "row": 3,
+      "col": 1,
+      "text": "1.669",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 170
+    },
+    {
+      "kind": "table_cell",
+      "table": 6,
+      "row": 3,
+      "col": 2,
+      "text": "0.794",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 171
+    },
+    {
+      "kind": "table_cell",
+      "table": 6,
+      "row": 3,
+      "col": 3,
+      "text": "0.875",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 172
+    },
+    {
+      "kind": "table_cell",
+      "table": 6,
+      "row": 4,
+      "col": 0,
+      "text": "ICER (cost per QALY gained)",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 173
+    },
+    {
+      "kind": "table_cell",
+      "table": 6,
+      "row": 4,
+      "col": 1,
+      "text": "",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 174
+    },
+    {
+      "kind": "table_cell",
+      "table": 6,
+      "row": 4,
+      "col": 2,
+      "text": "",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 175
+    },
+    {
+      "kind": "table_cell",
+      "table": 6,
+      "row": 4,
+      "col": 3,
+      "text": "\u00a328,271",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 176
+    },
+    {
+      "kind": "table_cell",
+      "table": 6,
+      "row": 5,
+      "col": 0,
+      "text": "Incremental NMB at upper threshold",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 177
+    },
+    {
+      "kind": "table_cell",
+      "table": 6,
+      "row": 5,
+      "col": 1,
+      "text": "",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 178
+    },
+    {
+      "kind": "table_cell",
+      "table": 6,
+      "row": 5,
+      "col": 2,
+      "text": "",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 179
+    },
+    {
+      "kind": "table_cell",
+      "table": 6,
+      "row": 5,
+      "col": 3,
+      "text": "\u00a31,514",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 180
+    },
+    {
+      "kind": "paragraph",
+      "text": "Note: figures in Tables 6 and 7 are rounded; incremental values and the ICER are calculated from unrounded results and may differ slightly from values recalculated from the rounded figures shown.",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 181
+    },
+    {
+      "kind": "paragraph",
+      "text": "Undiscounted, Drug A provided 2.90 life years versus 1.27 with Drug B.",
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "index": 182
+    },
+    {
+      "kind": "heading",
+      "level": 2,
+      "text": "4.2 Disaggregated costs",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 183
+    },
+    {
+      "kind": "paragraph",
+      "text": "Drug acquisition accounted for 30.5% of total costs in the Drug A arm, compared with 5.6% in the Drug B arm. The largest single contributor to incremental costs was drug acquisition (\u00a316,309). Lower subsequent therapy, adverse event and terminal care costs with Drug A partially offset its higher costs in other categories.",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 184
+    },
+    {
+      "kind": "caption",
+      "text": "Table 7. Disaggregated discounted costs (GBP)",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 185
+    },
+    {
+      "kind": "table_header",
+      "table": 7,
+      "row": 0,
+      "col": 0,
+      "text": "Category",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 186
+    },
+    {
+      "kind": "table_header",
+      "table": 7,
+      "row": 0,
+      "col": 1,
+      "text": "Drug A",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 187
+    },
+    {
+      "kind": "table_header",
+      "table": 7,
+      "row": 0,
+      "col": 2,
+      "text": "Drug B",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 188
+    },
+    {
+      "kind": "table_header",
+      "table": 7,
+      "row": 0,
+      "col": 3,
+      "text": "Incremental",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 189
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 1,
+      "col": 0,
+      "text": "Drug acquisition",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 190
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 1,
+      "col": 1,
+      "text": "\u00a318,278",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 191
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 1,
+      "col": 2,
+      "text": "\u00a31,969",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 192
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 1,
+      "col": 3,
+      "text": "\u00a316,309",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 193
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 2,
+      "col": 0,
+      "text": "Administration",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 194
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 2,
+      "col": 1,
+      "text": "\u00a34,157",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 195
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 2,
+      "col": 2,
+      "text": "\u00a31,413",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 196
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 2,
+      "col": 3,
+      "text": "\u00a32,745",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 197
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 3,
+      "col": 0,
+      "text": "Progression-free state",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 198
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 3,
+      "col": 1,
+      "text": "\u00a37,724",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 199
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 3,
+      "col": 2,
+      "text": "\u00a34,188",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 200
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 3,
+      "col": 3,
+      "text": "\u00a33,536",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 201
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 4,
+      "col": 0,
+      "text": "Progressed disease state",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 202
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 4,
+      "col": 1,
+      "text": "\u00a319,289",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 203
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 4,
+      "col": 2,
+      "text": "\u00a38,243",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 204
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 4,
+      "col": 3,
+      "text": "\u00a311,047",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 205
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 5,
+      "col": 0,
+      "text": "Terminal care",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 206
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 5,
+      "col": 1,
+      "text": "\u00a35,920",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 207
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 5,
+      "col": 2,
+      "text": "\u00a36,227",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 208
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 5,
+      "col": 3,
+      "text": "-\u00a3307",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 209
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 6,
+      "col": 0,
+      "text": "Subsequent therapy",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 210
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 6,
+      "col": 1,
+      "text": "\u00a33,498",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 211
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 6,
+      "col": 2,
+      "text": "\u00a310,832",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 212
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 6,
+      "col": 3,
+      "text": "-\u00a37,334",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 213
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 7,
+      "col": 0,
+      "text": "Adverse events",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 214
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 7,
+      "col": 1,
+      "text": "\u00a31,150",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 215
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 7,
+      "col": 2,
+      "text": "\u00a32,400",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 216
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 7,
+      "col": 3,
+      "text": "-\u00a31,250",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 217
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 8,
+      "col": 0,
+      "text": "Total",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 218
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 8,
+      "col": 1,
+      "text": "\u00a360,016",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 219
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 8,
+      "col": 2,
+      "text": "\u00a335,270",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 220
+    },
+    {
+      "kind": "table_cell",
+      "table": 7,
+      "row": 8,
+      "col": 3,
+      "text": "\u00a324,746",
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "index": 221
+    },
+    {
+      "kind": "heading",
+      "level": 2,
+      "text": "4.3 Scenario analyses",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 222
+    },
+    {
+      "kind": "paragraph",
+      "text": "Table 8 presents the results of the scenario analyses. Removing the stopping rule for Drug A had the largest effect on the ICER, followed by setting Drug A time on treatment equal to PFS and the alternative utility values. The ICER was lower than in the base case only with the lower discount rate, removing the general-population mortality constraint and removing the age adjustment of utilities.",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 223
+    },
+    {
+      "kind": "caption",
+      "text": "Table 8. Scenario analyses",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 224
+    },
+    {
+      "kind": "table_header",
+      "table": 8,
+      "row": 0,
+      "col": 0,
+      "text": "Scenario",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 225
+    },
+    {
+      "kind": "table_header",
+      "table": 8,
+      "row": 0,
+      "col": 1,
+      "text": "Setting",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 226
+    },
+    {
+      "kind": "table_header",
+      "table": 8,
+      "row": 0,
+      "col": 2,
+      "text": "Incremental costs",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 227
+    },
+    {
+      "kind": "table_header",
+      "table": 8,
+      "row": 0,
+      "col": 3,
+      "text": "Incremental QALYs",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 228
+    },
+    {
+      "kind": "table_header",
+      "table": 8,
+      "row": 0,
+      "col": 4,
+      "text": "ICER",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 229
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 1,
+      "col": 0,
+      "text": "Base case",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 230
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 1,
+      "col": 1,
+      "text": "-",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 231
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 1,
+      "col": 2,
+      "text": "\u00a324,746",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 232
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 1,
+      "col": 3,
+      "text": "0.875",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 233
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 1,
+      "col": 4,
+      "text": "\u00a328,271",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 234
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 2,
+      "col": 0,
+      "text": "Lower discount rate (costs and outcomes)",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 235
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 2,
+      "col": 1,
+      "text": "1.5%",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 236
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 2,
+      "col": 2,
+      "text": "\u00a326,725",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 237
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 2,
+      "col": 3,
+      "text": "0.957",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 238
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 2,
+      "col": 4,
+      "text": "\u00a327,924",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 239
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 3,
+      "col": 0,
+      "text": "Shorter time horizon",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 240
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 3,
+      "col": 1,
+      "text": "20 years",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 241
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 3,
+      "col": 2,
+      "text": "\u00a324,646",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 242
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 3,
+      "col": 3,
+      "text": "0.872",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 243
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 3,
+      "col": 4,
+      "text": "\u00a328,279",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 244
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 4,
+      "col": 0,
+      "text": "Alternative utility values (PF / PD)",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 245
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 4,
+      "col": 1,
+      "text": "0.72 / 0.55",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 246
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 4,
+      "col": 2,
+      "text": "\u00a324,746",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 247
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 4,
+      "col": 3,
+      "text": "0.817",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 248
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 4,
+      "col": 4,
+      "text": "\u00a330,270",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 249
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 5,
+      "col": 0,
+      "text": "No stopping rule for Drug A (maximum doses)",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 250
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 5,
+      "col": 1,
+      "text": "696 doses",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 251
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 5,
+      "col": 2,
+      "text": "\u00a327,844",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 252
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 5,
+      "col": 3,
+      "text": "0.875",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 253
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 5,
+      "col": 4,
+      "text": "\u00a331,811",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 254
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 6,
+      "col": 0,
+      "text": "Conservative Drug A OS extrapolation (Weibull scale)",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 255
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 6,
+      "col": 1,
+      "text": "28.00 months",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 256
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 6,
+      "col": 2,
+      "text": "\u00a321,283",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 257
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 6,
+      "col": 3,
+      "text": "0.705",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 258
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 6,
+      "col": 4,
+      "text": "\u00a330,205",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 259
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 7,
+      "col": 0,
+      "text": "No general-population mortality constraint",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 260
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 7,
+      "col": 1,
+      "text": "Not applied",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 261
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 7,
+      "col": 2,
+      "text": "\u00a324,746",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 262
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 7,
+      "col": 3,
+      "text": "0.875",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 263
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 7,
+      "col": 4,
+      "text": "\u00a328,271",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 264
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 8,
+      "col": 0,
+      "text": "No age adjustment of utilities",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 265
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 8,
+      "col": 1,
+      "text": "Not applied",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 266
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 8,
+      "col": 2,
+      "text": "\u00a324,746",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 267
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 8,
+      "col": 3,
+      "text": "0.898",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 268
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 8,
+      "col": 4,
+      "text": "\u00a327,553",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 269
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 9,
+      "col": 0,
+      "text": "Drug A time on treatment equal to PFS (Weibull shape / scale)",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 270
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 9,
+      "col": 1,
+      "text": "0.95 / 12.00 months",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 271
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 9,
+      "col": 2,
+      "text": "\u00a327,597",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 272
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 9,
+      "col": 3,
+      "text": "0.875",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 273
+    },
+    {
+      "kind": "table_cell",
+      "table": 8,
+      "row": 9,
+      "col": 4,
+      "text": "\u00a331,528",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 274
+    },
+    {
+      "kind": "paragraph",
+      "text": "The ICER exceeded \u00a330,000 per QALY with the alternative utility values (\u00a330,270), removing the stopping rule for Drug A (\u00a331,811), the conservative OS extrapolation (\u00a330,205) and setting Drug A time on treatment equal to PFS (\u00a331,528), and remained below it in all other scenarios.",
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "index": 275
+    },
+    {
+      "kind": "heading",
+      "level": 1,
+      "text": "5. Model validation",
+      "section": "5. Model validation",
+      "subsection": null,
+      "index": 276
+    },
+    {
+      "kind": "paragraph",
+      "text": "The model was quality-assured using a checklist covering input transcription, formula consistency between arms, and extreme-value testing. Both treatment arms use identical formula layouts that differ only in the arm-specific parameter block. State membership sums to one in every cycle by construction. The time horizon is sufficient for the modelled cohort, with fewer than 0.1% of patients in either arm alive at the end of the horizon. The deterministic results were reproduced to within numerical precision by an independent implementation of the model in Python.",
+      "section": "5. Model validation",
+      "subsection": null,
+      "index": 277
+    },
+    {
+      "kind": "paragraph",
+      "text": "The general-population mortality constraint was active in 312 weekly cycles in the Drug A arm, from age 96, when 0.02% of patients remained alive, and was not active in the Drug B arm; its effect on the ICER was negligible (Table 8).",
+      "section": "5. Model validation",
+      "subsection": null,
+      "index": 278
+    },
+    {
+      "kind": "paragraph",
+      "text": "Face validity was assessed by comparing modelled medians with the trial Kaplan-Meier estimates. Modelled medians were within the confidence intervals of the observed medians for all six curves.",
+      "section": "5. Model validation",
+      "subsection": null,
+      "index": 279
+    },
+    {
+      "kind": "heading",
+      "level": 1,
+      "text": "6. Discussion",
+      "section": "6. Discussion",
+      "subsection": null,
+      "index": 280
+    },
+    {
+      "kind": "paragraph",
+      "text": "The analysis indicates that Drug A provides substantial health gains relative to Drug B, driven mainly by longer overall survival. The additional costs arise from drug acquisition and administration during the treatment period and from health state costs accumulated over the longer survival period, partly offset by lower subsequent therapy costs.",
+      "section": "6. Discussion",
+      "subsection": null,
+      "index": 281
+    },
+    {
+      "kind": "paragraph",
+      "text": "Several limitations should be noted.",
+      "section": "6. Discussion",
+      "subsection": null,
+      "index": 282
+    },
+    {
+      "kind": "list_item",
+      "text": "Independent Weibull models were fitted to each arm. Alternative distributions were not explored in this version of the report, and long-term extrapolation of OS is the main source of structural uncertainty.",
+      "section": "6. Discussion",
+      "subsection": null,
+      "index": 283
+    },
+    {
+      "kind": "list_item",
+      "text": "Progression events are approximated from the decline in the PF proportion using a constant share of deaths among PFS events; this share is likely to increase at older ages.",
+      "section": "6. Discussion",
+      "subsection": null,
+      "index": 284
+    },
+    {
+      "kind": "list_item",
+      "text": "Subsequent therapies are costed as one-off courses at progression, without their effect on survival beyond that observed in the trial.",
+      "section": "6. Discussion",
+      "subsection": null,
+      "index": 285
+    },
+    {
+      "kind": "list_item",
+      "text": "Vial sharing was not considered, which may overestimate drug costs for Drug A in centres that share vials.",
+      "section": "6. Discussion",
+      "subsection": null,
+      "index": 286
+    },
+    {
+      "kind": "list_item",
+      "text": "The partitioned survival structure does not explicitly model the relationship between progression and death, as discussed in NICE DSU guidance [2].",
+      "section": "6. Discussion",
+      "subsection": null,
+      "index": 287
+    },
+    {
+      "kind": "paragraph",
+      "text": "The base-case ICER lies close to the upper end of the threshold range, so plausible changes in key assumptions move it above that threshold. The stopping rule is a key assumption and should be reflected in the commissioning arrangements for Drug A.",
+      "section": "6. Discussion",
+      "subsection": null,
+      "index": 288
+    },
+    {
+      "kind": "heading",
+      "level": 1,
+      "text": "7. Conclusion",
+      "section": "7. Conclusion",
+      "subsection": null,
+      "index": 289
+    },
+    {
+      "kind": "paragraph",
+      "text": "Drug A is associated with an ICER of \u00a328,271 per QALY gained compared with Drug B. This is below the threshold of \u00a330,000 per QALY gained and within the range of \u00a320,000 to \u00a330,000 per QALY that NICE normally considers to represent a cost-effective use of NHS resources. Drug A can therefore be considered a cost-effective option for adults with previously untreated advanced synthetic carcinoma in the NHS, with the PAS discount and the stopping rule in place.",
+      "section": "7. Conclusion",
+      "subsection": null,
+      "index": 290
+    },
+    {
+      "kind": "heading",
+      "level": 1,
+      "text": "References",
+      "section": "References",
+      "subsection": null,
+      "index": 291
+    },
+    {
+      "kind": "reference",
+      "text": "[1] National Institute for Health and Care Excellence. NICE health technology evaluations: the manual (PMG36). 2022.",
+      "section": "References",
+      "subsection": null,
+      "index": 292
+    },
+    {
+      "kind": "reference",
+      "text": "[2] Woods B, Sideris E, Palmer S, Latimer N, Soares M. NICE DSU Technical Support Document 19: Partitioned survival analysis for decision modelling in health care: a critical review. 2017.",
+      "section": "References",
+      "subsection": null,
+      "index": 293
+    },
+    {
+      "kind": "reference",
+      "text": "[3] Latimer N. NICE DSU Technical Support Document 14: Survival analysis for economic evaluations alongside clinical trials. 2011 (updated 2013).",
+      "section": "References",
+      "subsection": null,
+      "index": 294
+    }
+  ],
+  "tokens": [
+    {
+      "token": "40",
+      "block": 5,
+      "start": 382,
+      "end": 384,
+      "section": "1. Executive summary",
+      "subsection": null,
+      "value": 40.0,
+      "decimals": 0,
+      "kind": "plain"
+    },
+    {
+      "token": "3.5%",
+      "block": 5,
+      "start": 430,
+      "end": 434,
+      "section": "1. Executive summary",
+      "subsection": null,
+      "value": 3.5,
+      "decimals": 1,
+      "kind": "percent"
+    },
+    {
+      "token": "\u00a360,016",
+      "block": 6,
+      "start": 71,
+      "end": 78,
+      "section": "1. Executive summary",
+      "subsection": null,
+      "value": 60016.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "1.669",
+      "block": 6,
+      "start": 83,
+      "end": 88,
+      "section": "1. Executive summary",
+      "subsection": null,
+      "value": 1.669,
+      "decimals": 3,
+      "kind": "plain"
+    },
+    {
+      "token": "\u00a335,270",
+      "block": 6,
+      "start": 110,
+      "end": 117,
+      "section": "1. Executive summary",
+      "subsection": null,
+      "value": 35270.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "0.794",
+      "block": 6,
+      "start": 122,
+      "end": 127,
+      "section": "1. Executive summary",
+      "subsection": null,
+      "value": 0.794,
+      "decimals": 3,
+      "kind": "plain"
+    },
+    {
+      "token": "\u00a324,746",
+      "block": 6,
+      "start": 171,
+      "end": 178,
+      "section": "1. Executive summary",
+      "subsection": null,
+      "value": 24746.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "0.875",
+      "block": 6,
+      "start": 206,
+      "end": 211,
+      "section": "1. Executive summary",
+      "subsection": null,
+      "value": 0.875,
+      "decimals": 3,
+      "kind": "plain"
+    },
+    {
+      "token": "\u00a328,271",
+      "block": 6,
+      "start": 276,
+      "end": 283,
+      "section": "1. Executive summary",
+      "subsection": null,
+      "value": 28271.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a330,000",
+      "block": 7,
+      "start": 59,
+      "end": 66,
+      "section": "1. Executive summary",
+      "subsection": null,
+      "value": 30000.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a31,514",
+      "block": 7,
+      "start": 148,
+      "end": 154,
+      "section": "1. Executive summary",
+      "subsection": null,
+      "value": 1514.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a320,000",
+      "block": 7,
+      "start": 159,
+      "end": 166,
+      "section": "1. Executive summary",
+      "subsection": null,
+      "value": 20000.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "3",
+      "block": 10,
+      "start": 350,
+      "end": 351,
+      "section": "2. Decision problem",
+      "subsection": null,
+      "value": 3.0,
+      "decimals": 0,
+      "kind": "plain"
+    },
+    {
+      "token": "3",
+      "block": 17,
+      "start": 27,
+      "end": 28,
+      "section": "2. Decision problem",
+      "subsection": null,
+      "value": 3.0,
+      "decimals": 0,
+      "kind": "plain"
+    },
+    {
+      "token": "3",
+      "block": 19,
+      "start": 33,
+      "end": 34,
+      "section": "2. Decision problem",
+      "subsection": null,
+      "value": 3.0,
+      "decimals": 0,
+      "kind": "plain"
+    },
+    {
+      "token": "7",
+      "block": 30,
+      "start": 33,
+      "end": 34,
+      "section": "3. Methods",
+      "subsection": "3.1 Model structure",
+      "value": 7.0,
+      "decimals": 0,
+      "kind": "plain"
+    },
+    {
+      "token": "40",
+      "block": 30,
+      "start": 62,
+      "end": 64,
+      "section": "3. Methods",
+      "subsection": "3.1 Model structure",
+      "value": 40.0,
+      "decimals": 0,
+      "kind": "plain"
+    },
+    {
+      "token": "62",
+      "block": 30,
+      "start": 119,
+      "end": 121,
+      "section": "3. Methods",
+      "subsection": "3.1 Model structure",
+      "value": 62.0,
+      "decimals": 0,
+      "kind": "plain"
+    },
+    {
+      "token": "60.0%",
+      "block": 30,
+      "start": 135,
+      "end": 140,
+      "section": "3. Methods",
+      "subsection": "3.1 Model structure",
+      "value": 60.0,
+      "decimals": 1,
+      "kind": "percent"
+    },
+    {
+      "token": "0.1%",
+      "block": 30,
+      "start": 270,
+      "end": 274,
+      "section": "3. Methods",
+      "subsection": "3.1 Model structure",
+      "value": 0.1,
+      "decimals": 1,
+      "kind": "percent"
+    },
+    {
+      "token": "3.5%",
+      "block": 32,
+      "start": 358,
+      "end": 362,
+      "section": "3. Methods",
+      "subsection": "3.1 Model structure",
+      "value": 3.5,
+      "decimals": 1,
+      "kind": "percent"
+    },
+    {
+      "token": "3.5%",
+      "block": 32,
+      "start": 367,
+      "end": 371,
+      "section": "3. Methods",
+      "subsection": "3.1 Model structure",
+      "value": 3.5,
+      "decimals": 1,
+      "kind": "percent"
+    },
+    {
+      "token": "0.95",
+      "block": 41,
+      "start": 0,
+      "end": 4,
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "value": 0.95,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "12.00",
+      "block": 42,
+      "start": 0,
+      "end": 5,
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "value": 12.0,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "8.2",
+      "block": 43,
+      "start": 0,
+      "end": 3,
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "value": 8.2,
+      "decimals": 1,
+      "kind": "plain"
+    },
+    {
+      "token": "0.85",
+      "block": 45,
+      "start": 0,
+      "end": 4,
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "value": 0.85,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "32.00",
+      "block": 46,
+      "start": 0,
+      "end": 5,
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "value": 32.0,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "20.8",
+      "block": 47,
+      "start": 0,
+      "end": 4,
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "value": 20.8,
+      "decimals": 1,
+      "kind": "plain"
+    },
+    {
+      "token": "0.90",
+      "block": 49,
+      "start": 0,
+      "end": 4,
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "value": 0.9,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "10.00",
+      "block": 50,
+      "start": 0,
+      "end": 5,
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "value": 10.0,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "6.7",
+      "block": 51,
+      "start": 0,
+      "end": 3,
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "value": 6.7,
+      "decimals": 1,
+      "kind": "plain"
+    },
+    {
+      "token": "1.25",
+      "block": 53,
+      "start": 0,
+      "end": 4,
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "value": 1.25,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "7.00",
+      "block": 54,
+      "start": 0,
+      "end": 4,
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "value": 7.0,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "5.2",
+      "block": 55,
+      "start": 0,
+      "end": 3,
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "value": 5.2,
+      "decimals": 1,
+      "kind": "plain"
+    },
+    {
+      "token": "1.15",
+      "block": 57,
+      "start": 0,
+      "end": 4,
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "value": 1.15,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "16.00",
+      "block": 58,
+      "start": 0,
+      "end": 5,
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "value": 16.0,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "11.6",
+      "block": 59,
+      "start": 0,
+      "end": 4,
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "value": 11.6,
+      "decimals": 1,
+      "kind": "plain"
+    },
+    {
+      "token": "1.40",
+      "block": 61,
+      "start": 0,
+      "end": 4,
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "value": 1.4,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "4.50",
+      "block": 62,
+      "start": 0,
+      "end": 4,
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "value": 4.5,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "3.5",
+      "block": 63,
+      "start": 0,
+      "end": 3,
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "value": 3.5,
+      "decimals": 1,
+      "kind": "plain"
+    },
+    {
+      "token": "20.8",
+      "block": 64,
+      "start": 35,
+      "end": 39,
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "value": 20.8,
+      "decimals": 1,
+      "kind": "plain"
+    },
+    {
+      "token": "11.6",
+      "block": 64,
+      "start": 63,
+      "end": 67,
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "value": 11.6,
+      "decimals": 1,
+      "kind": "plain"
+    },
+    {
+      "token": "8.2",
+      "block": 64,
+      "start": 103,
+      "end": 106,
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "value": 8.2,
+      "decimals": 1,
+      "kind": "plain"
+    },
+    {
+      "token": "5.2",
+      "block": 64,
+      "start": 111,
+      "end": 114,
+      "section": "3. Methods",
+      "subsection": "3.2 Survival extrapolation",
+      "value": 5.2,
+      "decimals": 1,
+      "kind": "plain"
+    },
+    {
+      "token": "3",
+      "block": 66,
+      "start": 342,
+      "end": 343,
+      "section": "3. Methods",
+      "subsection": "3.3 Treatment duration and dosing",
+      "value": 3.0,
+      "decimals": 0,
+      "kind": "plain"
+    },
+    {
+      "token": "35",
+      "block": 66,
+      "start": 367,
+      "end": 369,
+      "section": "3. Methods",
+      "subsection": "3.3 Treatment duration and dosing",
+      "value": 35.0,
+      "decimals": 0,
+      "kind": "plain"
+    },
+    {
+      "token": "3",
+      "block": 66,
+      "start": 456,
+      "end": 457,
+      "section": "3. Methods",
+      "subsection": "3.3 Treatment duration and dosing",
+      "value": 3.0,
+      "decimals": 0,
+      "kind": "plain"
+    },
+    {
+      "token": "6",
+      "block": 66,
+      "start": 481,
+      "end": 482,
+      "section": "3. Methods",
+      "subsection": "3.3 Treatment duration and dosing",
+      "value": 6.0,
+      "decimals": 0,
+      "kind": "plain"
+    },
+    {
+      "token": "2.00",
+      "block": 67,
+      "start": 19,
+      "end": 23,
+      "section": "3. Methods",
+      "subsection": "3.3 Treatment duration and dosing",
+      "value": 2.0,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "2.05",
+      "block": 67,
+      "start": 80,
+      "end": 84,
+      "section": "3. Methods",
+      "subsection": "3.3 Treatment duration and dosing",
+      "value": 2.05,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "76.0",
+      "block": 67,
+      "start": 187,
+      "end": 191,
+      "section": "3. Methods",
+      "subsection": "3.3 Treatment duration and dosing",
+      "value": 76.0,
+      "decimals": 1,
+      "kind": "plain"
+    },
+    {
+      "token": "16.0",
+      "block": 67,
+      "start": 218,
+      "end": 222,
+      "section": "3. Methods",
+      "subsection": "3.3 Treatment duration and dosing",
+      "value": 16.0,
+      "decimals": 1,
+      "kind": "plain"
+    },
+    {
+      "token": "500",
+      "block": 67,
+      "start": 261,
+      "end": 264,
+      "section": "3. Methods",
+      "subsection": "3.3 Treatment duration and dosing",
+      "value": 500.0,
+      "decimals": 0,
+      "kind": "plain"
+    },
+    {
+      "token": "5",
+      "block": 67,
+      "start": 269,
+      "end": 270,
+      "section": "3. Methods",
+      "subsection": "3.3 Treatment duration and dosing",
+      "value": 5.0,
+      "decimals": 0,
+      "kind": "plain"
+    },
+    {
+      "token": "95.0%",
+      "block": 67,
+      "start": 371,
+      "end": 376,
+      "section": "3. Methods",
+      "subsection": "3.3 Treatment duration and dosing",
+      "value": 95.0,
+      "decimals": 1,
+      "kind": "percent"
+    },
+    {
+      "token": "90.0%",
+      "block": 67,
+      "start": 392,
+      "end": 397,
+      "section": "3. Methods",
+      "subsection": "3.3 Treatment duration and dosing",
+      "value": 90.0,
+      "decimals": 1,
+      "kind": "percent"
+    },
+    {
+      "token": "13.70",
+      "block": 67,
+      "start": 480,
+      "end": 485,
+      "section": "3. Methods",
+      "subsection": "3.3 Treatment duration and dosing",
+      "value": 13.7,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "4.58",
+      "block": 67,
+      "start": 506,
+      "end": 510,
+      "section": "3. Methods",
+      "subsection": "3.3 Treatment duration and dosing",
+      "value": 4.58,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "2025",
+      "block": 70,
+      "start": 24,
+      "end": 28,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 2025.0,
+      "decimals": 0,
+      "kind": "plain"
+    },
+    {
+      "token": "\u00a3700",
+      "block": 76,
+      "start": 0,
+      "end": 4,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 700.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a31,435",
+      "block": 79,
+      "start": 0,
+      "end": 6,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 1435.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a396",
+      "block": 82,
+      "start": 0,
+      "end": 3,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 96.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a3480",
+      "block": 85,
+      "start": 0,
+      "end": 4,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 480.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a3310",
+      "block": 88,
+      "start": 0,
+      "end": 4,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 310.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a3310",
+      "block": 91,
+      "start": 0,
+      "end": 4,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 310.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a3150",
+      "block": 94,
+      "start": 0,
+      "end": 4,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 150.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a3230",
+      "block": 97,
+      "start": 0,
+      "end": 4,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 230.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a36,500",
+      "block": 100,
+      "start": 0,
+      "end": 6,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 6500.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a31,150",
+      "block": 103,
+      "start": 0,
+      "end": 6,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 1150.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a32,400",
+      "block": 106,
+      "start": 0,
+      "end": 6,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 2400.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "15.0%",
+      "block": 108,
+      "start": 293,
+      "end": 298,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 15.0,
+      "decimals": 1,
+      "kind": "percent"
+    },
+    {
+      "token": "12.0%",
+      "block": 108,
+      "start": 314,
+      "end": 319,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 12.0,
+      "decimals": 1,
+      "kind": "percent"
+    },
+    {
+      "token": "\u00a32,800",
+      "block": 115,
+      "start": 0,
+      "end": 6,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 2800.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "45.0%",
+      "block": 116,
+      "start": 0,
+      "end": 5,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 45.0,
+      "decimals": 1,
+      "kind": "percent"
+    },
+    {
+      "token": "30.0%",
+      "block": 117,
+      "start": 0,
+      "end": 5,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 30.0,
+      "decimals": 1,
+      "kind": "percent"
+    },
+    {
+      "token": "\u00a330,000",
+      "block": 119,
+      "start": 0,
+      "end": 7,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 30000.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "5.0%",
+      "block": 120,
+      "start": 0,
+      "end": 4,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 5.0,
+      "decimals": 1,
+      "kind": "percent"
+    },
+    {
+      "token": "35.0%",
+      "block": 121,
+      "start": 0,
+      "end": 5,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 35.0,
+      "decimals": 1,
+      "kind": "percent"
+    },
+    {
+      "token": "\u00a315,000",
+      "block": 123,
+      "start": 0,
+      "end": 7,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 15000.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "10.0%",
+      "block": 124,
+      "start": 0,
+      "end": 5,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 10.0,
+      "decimals": 1,
+      "kind": "percent"
+    },
+    {
+      "token": "8.0%",
+      "block": 125,
+      "start": 0,
+      "end": 4,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 8.0,
+      "decimals": 1,
+      "kind": "percent"
+    },
+    {
+      "token": "\u00a34,260",
+      "block": 128,
+      "start": 0,
+      "end": 6,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 4260.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a312,540",
+      "block": 129,
+      "start": 0,
+      "end": 7,
+      "section": "3. Methods",
+      "subsection": "3.4 Costs and resource use",
+      "value": 12540.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "0.75",
+      "block": 136,
+      "start": 0,
+      "end": 4,
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "value": 0.75,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "0.60",
+      "block": 138,
+      "start": 0,
+      "end": 4,
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "value": 0.6,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "0.008",
+      "block": 140,
+      "start": 0,
+      "end": 5,
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "value": 0.008,
+      "decimals": 3,
+      "kind": "plain"
+    },
+    {
+      "token": "0.015",
+      "block": 142,
+      "start": 0,
+      "end": 5,
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "value": 0.015,
+      "decimals": 3,
+      "kind": "plain"
+    },
+    {
+      "token": "0.95",
+      "block": 144,
+      "start": 0,
+      "end": 4,
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "value": 0.95,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "0.021000",
+      "block": 146,
+      "start": 0,
+      "end": 8,
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "value": 0.021,
+      "decimals": 6,
+      "kind": "plain"
+    },
+    {
+      "token": "-0.000260",
+      "block": 148,
+      "start": 0,
+      "end": 9,
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "value": -0.00026,
+      "decimals": 6,
+      "kind": "plain"
+    },
+    {
+      "token": "-0.000033",
+      "block": 150,
+      "start": 0,
+      "end": 9,
+      "section": "3. Methods",
+      "subsection": "3.5 Health-related quality of life",
+      "value": -3.3e-05,
+      "decimals": 6,
+      "kind": "plain"
+    },
+    {
+      "token": "1.37",
+      "block": 155,
+      "start": 42,
+      "end": 46,
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "value": 1.37,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "0.875",
+      "block": 155,
+      "start": 60,
+      "end": 65,
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "value": 0.875,
+      "decimals": 3,
+      "kind": "plain"
+    },
+    {
+      "token": "\u00a324,746",
+      "block": 155,
+      "start": 113,
+      "end": 120,
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "value": 24746.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a328,271",
+      "block": 155,
+      "start": 144,
+      "end": 151,
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "value": 28271.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a318,033",
+      "block": 155,
+      "start": 172,
+      "end": 179,
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "value": 18033.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a360,016",
+      "block": 162,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "value": 60016.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a335,270",
+      "block": 163,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "value": 35270.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a324,746",
+      "block": 164,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "value": 24746.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "2.59",
+      "block": 166,
+      "start": 0,
+      "end": 4,
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "value": 2.59,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "1.22",
+      "block": 167,
+      "start": 0,
+      "end": 4,
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "value": 1.22,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "1.37",
+      "block": 168,
+      "start": 0,
+      "end": 4,
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "value": 1.37,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "1.669",
+      "block": 170,
+      "start": 0,
+      "end": 5,
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "value": 1.669,
+      "decimals": 3,
+      "kind": "plain"
+    },
+    {
+      "token": "0.794",
+      "block": 171,
+      "start": 0,
+      "end": 5,
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "value": 0.794,
+      "decimals": 3,
+      "kind": "plain"
+    },
+    {
+      "token": "0.875",
+      "block": 172,
+      "start": 0,
+      "end": 5,
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "value": 0.875,
+      "decimals": 3,
+      "kind": "plain"
+    },
+    {
+      "token": "\u00a328,271",
+      "block": 176,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "value": 28271.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a31,514",
+      "block": 180,
+      "start": 0,
+      "end": 6,
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "value": 1514.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "2.90",
+      "block": 182,
+      "start": 30,
+      "end": 34,
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "value": 2.9,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "1.27",
+      "block": 182,
+      "start": 53,
+      "end": 57,
+      "section": "4. Results",
+      "subsection": "4.1 Base-case results",
+      "value": 1.27,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "30.5%",
+      "block": 184,
+      "start": 31,
+      "end": 36,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 30.5,
+      "decimals": 1,
+      "kind": "percent"
+    },
+    {
+      "token": "5.6%",
+      "block": 184,
+      "start": 85,
+      "end": 89,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 5.6,
+      "decimals": 1,
+      "kind": "percent"
+    },
+    {
+      "token": "\u00a316,309",
+      "block": 184,
+      "start": 183,
+      "end": 190,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 16309.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a318,278",
+      "block": 191,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 18278.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a31,969",
+      "block": 192,
+      "start": 0,
+      "end": 6,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 1969.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a316,309",
+      "block": 193,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 16309.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a34,157",
+      "block": 195,
+      "start": 0,
+      "end": 6,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 4157.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a31,413",
+      "block": 196,
+      "start": 0,
+      "end": 6,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 1413.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a32,745",
+      "block": 197,
+      "start": 0,
+      "end": 6,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 2745.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a37,724",
+      "block": 199,
+      "start": 0,
+      "end": 6,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 7724.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a34,188",
+      "block": 200,
+      "start": 0,
+      "end": 6,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 4188.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a33,536",
+      "block": 201,
+      "start": 0,
+      "end": 6,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 3536.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a319,289",
+      "block": 203,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 19289.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a38,243",
+      "block": 204,
+      "start": 0,
+      "end": 6,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 8243.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a311,047",
+      "block": 205,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 11047.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a35,920",
+      "block": 207,
+      "start": 0,
+      "end": 6,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 5920.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a36,227",
+      "block": 208,
+      "start": 0,
+      "end": 6,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 6227.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "-\u00a3307",
+      "block": 209,
+      "start": 0,
+      "end": 5,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": -307.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a33,498",
+      "block": 211,
+      "start": 0,
+      "end": 6,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 3498.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a310,832",
+      "block": 212,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 10832.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "-\u00a37,334",
+      "block": 213,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": -7334.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a31,150",
+      "block": 215,
+      "start": 0,
+      "end": 6,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 1150.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a32,400",
+      "block": 216,
+      "start": 0,
+      "end": 6,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 2400.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "-\u00a31,250",
+      "block": 217,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": -1250.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a360,016",
+      "block": 219,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 60016.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a335,270",
+      "block": 220,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 35270.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a324,746",
+      "block": 221,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.2 Disaggregated costs",
+      "value": 24746.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a324,746",
+      "block": 232,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 24746.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "0.875",
+      "block": 233,
+      "start": 0,
+      "end": 5,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 0.875,
+      "decimals": 3,
+      "kind": "plain"
+    },
+    {
+      "token": "\u00a328,271",
+      "block": 234,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 28271.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "1.5%",
+      "block": 236,
+      "start": 0,
+      "end": 4,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 1.5,
+      "decimals": 1,
+      "kind": "percent"
+    },
+    {
+      "token": "\u00a326,725",
+      "block": 237,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 26725.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "0.957",
+      "block": 238,
+      "start": 0,
+      "end": 5,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 0.957,
+      "decimals": 3,
+      "kind": "plain"
+    },
+    {
+      "token": "\u00a327,924",
+      "block": 239,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 27924.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "20",
+      "block": 241,
+      "start": 0,
+      "end": 2,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 20.0,
+      "decimals": 0,
+      "kind": "plain"
+    },
+    {
+      "token": "\u00a324,646",
+      "block": 242,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 24646.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "0.872",
+      "block": 243,
+      "start": 0,
+      "end": 5,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 0.872,
+      "decimals": 3,
+      "kind": "plain"
+    },
+    {
+      "token": "\u00a328,279",
+      "block": 244,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 28279.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "0.72",
+      "block": 246,
+      "start": 0,
+      "end": 4,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 0.72,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "0.55",
+      "block": 246,
+      "start": 7,
+      "end": 11,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 0.55,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "\u00a324,746",
+      "block": 247,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 24746.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "0.817",
+      "block": 248,
+      "start": 0,
+      "end": 5,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 0.817,
+      "decimals": 3,
+      "kind": "plain"
+    },
+    {
+      "token": "\u00a330,270",
+      "block": 249,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 30270.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "696",
+      "block": 251,
+      "start": 0,
+      "end": 3,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 696.0,
+      "decimals": 0,
+      "kind": "plain"
+    },
+    {
+      "token": "\u00a327,844",
+      "block": 252,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 27844.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "0.875",
+      "block": 253,
+      "start": 0,
+      "end": 5,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 0.875,
+      "decimals": 3,
+      "kind": "plain"
+    },
+    {
+      "token": "\u00a331,811",
+      "block": 254,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 31811.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "28.00",
+      "block": 256,
+      "start": 0,
+      "end": 5,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 28.0,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "\u00a321,283",
+      "block": 257,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 21283.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "0.705",
+      "block": 258,
+      "start": 0,
+      "end": 5,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 0.705,
+      "decimals": 3,
+      "kind": "plain"
+    },
+    {
+      "token": "\u00a330,205",
+      "block": 259,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 30205.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a324,746",
+      "block": 262,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 24746.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "0.875",
+      "block": 263,
+      "start": 0,
+      "end": 5,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 0.875,
+      "decimals": 3,
+      "kind": "plain"
+    },
+    {
+      "token": "\u00a328,271",
+      "block": 264,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 28271.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a324,746",
+      "block": 267,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 24746.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "0.898",
+      "block": 268,
+      "start": 0,
+      "end": 5,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 0.898,
+      "decimals": 3,
+      "kind": "plain"
+    },
+    {
+      "token": "\u00a327,553",
+      "block": 269,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 27553.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "0.95",
+      "block": 271,
+      "start": 0,
+      "end": 4,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 0.95,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "12.00",
+      "block": 271,
+      "start": 7,
+      "end": 12,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 12.0,
+      "decimals": 2,
+      "kind": "plain"
+    },
+    {
+      "token": "\u00a327,597",
+      "block": 272,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 27597.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "0.875",
+      "block": 273,
+      "start": 0,
+      "end": 5,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 0.875,
+      "decimals": 3,
+      "kind": "plain"
+    },
+    {
+      "token": "\u00a331,528",
+      "block": 274,
+      "start": 0,
+      "end": 7,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 31528.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a330,000",
+      "block": 275,
+      "start": 18,
+      "end": 25,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 30000.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a330,270",
+      "block": 275,
+      "start": 72,
+      "end": 79,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 30270.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a331,811",
+      "block": 275,
+      "start": 121,
+      "end": 128,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 31811.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a330,205",
+      "block": 275,
+      "start": 166,
+      "end": 173,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 30205.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a331,528",
+      "block": 275,
+      "start": 226,
+      "end": 233,
+      "section": "4. Results",
+      "subsection": "4.3 Scenario analyses",
+      "value": 31528.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "0.1%",
+      "block": 277,
+      "start": 376,
+      "end": 380,
+      "section": "5. Model validation",
+      "subsection": null,
+      "value": 0.1,
+      "decimals": 1,
+      "kind": "percent"
+    },
+    {
+      "token": "312",
+      "block": 278,
+      "start": 58,
+      "end": 61,
+      "section": "5. Model validation",
+      "subsection": null,
+      "value": 312.0,
+      "decimals": 0,
+      "kind": "plain"
+    },
+    {
+      "token": "96",
+      "block": 278,
+      "start": 104,
+      "end": 106,
+      "section": "5. Model validation",
+      "subsection": null,
+      "value": 96.0,
+      "decimals": 0,
+      "kind": "plain"
+    },
+    {
+      "token": "0.02%",
+      "block": 278,
+      "start": 113,
+      "end": 118,
+      "section": "5. Model validation",
+      "subsection": null,
+      "value": 0.02,
+      "decimals": 2,
+      "kind": "percent"
+    },
+    {
+      "token": "\u00a328,271",
+      "block": 290,
+      "start": 37,
+      "end": 44,
+      "section": "7. Conclusion",
+      "subsection": null,
+      "value": 28271.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a330,000",
+      "block": 290,
+      "start": 114,
+      "end": 121,
+      "section": "7. Conclusion",
+      "subsection": null,
+      "value": 30000.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a320,000",
+      "block": 290,
+      "start": 162,
+      "end": 169,
+      "section": "7. Conclusion",
+      "subsection": null,
+      "value": 20000.0,
+      "decimals": 0,
+      "kind": "currency"
+    },
+    {
+      "token": "\u00a330,000",
+      "block": 290,
+      "start": 173,
+      "end": 180,
+      "section": "7. Conclusion",
+      "subsection": null,
+      "value": 30000.0,
+      "decimals": 0,
+      "kind": "currency"
+    }
+  ]
+}

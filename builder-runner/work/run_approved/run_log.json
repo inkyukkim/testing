@@ -1,0 +1,40 @@
+{
+  "started": "2026-11-05T01:56:00+00:00",
+  "spec": "approved/mapping_spec.json",
+  "inputs": {
+    "model": {
+      "path": "/home/user/testing/builder-runner/fixtures/global_model.xlsx",
+      "sha256": "27082831448502afa8e651cbb4d286f03fa01409c45019d94a5a8dd64b1d2a37"
+    },
+    "local_inputs": {
+      "path": "/home/user/testing/builder-runner/fixtures/adaptation_input_KR.xlsx",
+      "sha256": "f73d4859f91eeda88601e0ec08304662592f4cd92ddbf2ce313b0cdd04813127"
+    },
+    "gap_register": {
+      "path": "/home/user/testing/builder-runner/approved/gap_register.yaml",
+      "sha256": "cecac2e4e1dda415a425ecd6931f7d3b74558ac4c3392d25e01c7aeb55577fb7"
+    },
+    "spec": {
+      "path": "approved/mapping_spec.json",
+      "sha256": "677060273a70e0ef3939efac5141049da43a57ccfa046592b2ae2cc26795e856"
+    },
+    "conventions": {
+      "path": "/home/user/testing/builder-runner/fixtures/global_model.conventions.yaml",
+      "sha256": "fb05a908751416e9587ddbd934157b6d9729e927a7c00ef746814e4d9368876b"
+    }
+  },
+  "tools": {
+    "python": "3.13.18",
+    "openpyxl": "3.1.5",
+    "numpy": "2.5.3",
+    "libreoffice": "LibreOffice 24.2.7.2 420(Build:2)",
+    "registry_version": 1,
+    "git_commit": "fbe3f4e8f4e8c29cae7a2935a18be339a79729ae",
+    "git_dirty": true
+  },
+  "status": "blocked",
+  "finished": "2026-11-05T01:56:00+00:00",
+  "blocking_gaps": [
+    "GAP-001"
+  ]
+}

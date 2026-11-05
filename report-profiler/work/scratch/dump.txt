@@ -1,0 +1,368 @@
+#0 b5 [40] unique :: es a three-state partitioned survival model with weekly cycles over a lifetime horizon of 40 years, with costs and outcomes discount
+     -> time_horizon_years@base
+#1 b5 [3.5%] ambiguous ::  weekly cycles over a lifetime horizon of 40 years, with costs and outcomes discounted at 3.5% per annum.
+     -> dr_costs@base | dr_outcomes@base
+#2 b6 [£60,016] ambiguous :: In the base case, Drug A was associated with total discounted costs of £60,016 and 1.669 QALYs, compared with £35,270 
+     -> res_int_total_cost@base | res_int_total_cost@SC6
+#3 b6 [1.669] ambiguous :: In the base case, Drug A was associated with total discounted costs of £60,016 and 1.669 QALYs, compared with £35,270 and 0.794 
+     -> res_int_qaly_disc@base | res_int_qaly_disc@SC6
+#4 b6 [£35,270] ambiguous :: ug A was associated with total discounted costs of £60,016 and 1.669 QALYs, compared with £35,270 and 0.794 QALYs for Drug B. The increme
+     -> res_comp_total_cost@base | res_comp_total_cost@SC2
+#5 b6 [0.794] ambiguous :: ociated with total discounted costs of £60,016 and 1.669 QALYs, compared with £35,270 and 0.794 QALYs for Drug B. The incremental cost 
+     -> res_comp_qaly_disc@base | res_comp_qaly_disc@SC2
+#6 b6 [£24,746] ambiguous :: d 1.669 QALYs, compared with £35,270 and 0.794 QALYs for Drug B. The incremental cost was £24,746 for an incremental gain of 0.875 QALYs,
+     -> res_inc_total_cost@base | res_inc_total_cost@SC6
+#7 b6 [0.875] ambiguous :: 0 and 0.794 QALYs for Drug B. The incremental cost was £24,746 for an incremental gain of 0.875 QALYs, giving an incremental cost-effec
+     -> res_inc_qaly_disc@base | res_inc_qaly_disc@SC6
+#8 b6 [£28,271] ambiguous :: incremental gain of 0.875 QALYs, giving an incremental cost-effectiveness ratio (ICER) of £28,271 per QALY gained.
+     -> res_icer@base | res_icer@SC6
+#9 b7 [£30,000] ambiguous :: At the upper end of the range normally considered by NICE (£30,000 per QALY), Drug A is cost-effective, wi
+     -> st_cost_2@base | wtp_threshold@base
+#10 b7 [£1,514] ambiguous :: (£30,000 per QALY), Drug A is cost-effective, with an incremental net monetary benefit of £1,514. At £20,000 per QALY, Drug A is not cos
+     -> res_inc_nmb@base | res_inc_nmb@SC6
+#11 b7 [£20,000] unique :: r QALY), Drug A is cost-effective, with an incremental net monetary benefit of £1,514. At £20,000 per QALY, Drug A is not cost-effective.
+     -> wtp_threshold_lower@base
+#12 b10 [3] ambiguous :: care in the NHS. Drug A is a hypothetical targeted agent administered intravenously every 3 weeks.
+     -> calc_comp_interval_cycles@base | calc_int_interval_cycles@base | comp_admin_interval_weeks@base | int_admin_interval_weeks@base | res_comp_median_tot@base | res_int_ly_disc@base | res_int_ly_undisc@base | res_int_ly_disc@SC1 | res_int_ly_disc@SC2 | res_int_ly_undisc@SC2 | res_int_ly_undisc@SC5 | res_int_ly_disc@SC6 | res_int_ly_undisc@SC6
+#13 b17 [3] ambiguous :: T1 r2c1 row='Intervention' col='None'
+     -> calc_comp_interval_cycles@base | calc_int_interval_cycles@base | comp_admin_interval_weeks@base | int_admin_interval_weeks@base | res_comp_median_tot@base | res_int_ly_disc@base | res_int_ly_undisc@base | res_int_ly_disc@SC1 | res_int_ly_disc@SC2 | res_int_ly_undisc@SC2 | res_int_ly_undisc@SC5 | res_int_ly_disc@SC6 | res_int_ly_undisc@SC6
+#14 b19 [3] ambiguous :: T1 r3c1 row='Comparator' col='None'
+     -> calc_comp_interval_cycles@base | calc_int_interval_cycles@base | comp_admin_interval_weeks@base | int_admin_interval_weeks@base | res_comp_median_tot@base | res_int_ly_disc@base | res_int_ly_undisc@base | res_int_ly_disc@SC1 | res_int_ly_disc@SC2 | res_int_ly_undisc@SC2 | res_int_ly_undisc@SC5 | res_int_ly_disc@SC6 | res_int_ly_undisc@SC6
+#15 b30 [7] ambiguous :: The model uses a cycle length of 7 days and a time horizon of 40 years. Th
+     -> comp_pfs_scale@base | cycle_length_days@base | res_int_median_tot@base
+#16 b30 [40] unique :: The model uses a cycle length of 7 days and a time horizon of 40 years. The modelled cohort has a mean s
+     -> time_horizon_years@base
+#17 b30 [62] unique ::  of 7 days and a time horizon of 40 years. The modelled cohort has a mean starting age of 62 years and is 60.0% male. The horizon ca
+     -> baseline_age@base
+#18 b30 [60.0%] ambiguous ::  time horizon of 40 years. The modelled cohort has a mean starting age of 62 years and is 60.0% male. The horizon captures virtually al
+     -> calc_int_st_share_sum@base | prop_male@base | u_pd@base
+#19 b30 [0.1%] unique :: l survival in both arms; the modelled proportion alive at the end of the horizon is below 0.1% in each arm.
+     -> lifetime_check_tol@base
+#20 b32 [3.5%] ambiguous :: se and are not half-cycle corrected. Costs and outcomes are discounted at annual rates of 3.5% and 3.5% respectively, in line with the
+     -> dr_costs@base | dr_outcomes@base
+#21 b32 [3.5%] ambiguous :: e not half-cycle corrected. Costs and outcomes are discounted at annual rates of 3.5% and 3.5% respectively, in line with the referenc
+     -> dr_costs@base | dr_outcomes@base
+#22 b41 [0.95] ambiguous :: T2 r1c1 row='Drug A, PFS' col='None'
+     -> gpu_intercept@base | int_pfs_shape@base | int_rdi@base | int_tot_shape@SC8
+#23 b42 [12.00] ambiguous :: T2 r1c2 row='Drug A, PFS' col='None'
+     -> int_pfs_scale@base | int_tot_scale@SC8
+#24 b43 [8.2] ambiguous :: T2 r1c3 row='Drug A, PFS' col='None'
+     -> res_int_median_pfs@base | res_int_median_tot@SC8
+#25 b45 [0.85] unique :: T2 r2c1 row='Drug A, OS' col='None'
+     -> int_os_shape@base
+#26 b46 [32.00] unique :: T2 r2c2 row='Drug A, OS' col='None'
+     -> int_os_scale@base
+#27 b47 [20.8] unique :: T2 r2c3 row='Drug A, OS' col='None'
+     -> res_int_median_os@base
+#28 b49 [0.90] ambiguous :: T2 r3c1 row='Drug A, ToT' col='None'
+     -> comp_rdi@base | int_tot_shape@base | res_inc_qaly_disc@SC7
+#29 b50 [10.00] unique :: T2 r3c2 row='Drug A, ToT' col='None'
+     -> int_tot_scale@base
+#30 b51 [6.7] unique :: T2 r3c3 row='Drug A, ToT' col='None'
+     -> res_int_median_tot@base
+#31 b53 [1.25] ambiguous :: T2 r4c1 row='Drug B, PFS' col='None'
+     -> comp_pfs_shape@base | res_comp_ly_disc@SC1
+#32 b54 [7.00] ambiguous :: T2 r4c2 row='Drug B, PFS' col='None'
+     -> comp_pfs_scale@base | cycle_length_days@base
+#33 b55 [5.2] unique :: T2 r4c3 row='Drug B, PFS' col='None'
+     -> res_comp_median_pfs@base
+#34 b57 [1.15] unique :: T2 r5c1 row='Drug B, OS' col='None'
+     -> comp_os_shape@base
+#35 b58 [16.00] ambiguous :: T2 r5c2 row='Drug B, OS' col='None'
+     -> comp_os_scale@base | weight_sd_kg@base
+#36 b59 [11.6] unique :: T2 r5c3 row='Drug B, OS' col='None'
+     -> res_comp_median_os@base
+#37 b61 [1.40] unique :: T2 r6c1 row='Drug B, ToT' col='None'
+     -> comp_tot_shape@base
+#38 b62 [4.50] unique :: T2 r6c2 row='Drug B, ToT' col='None'
+     -> comp_tot_scale@base
+#39 b63 [3.5] unique :: T2 r6c3 row='Drug B, ToT' col='None'
+     -> res_comp_median_tot@base
+#40 b64 [20.8] unique :: Median OS of the fitted curves was 20.8 months with Drug A and 11.6 months with
+     -> res_int_median_os@base
+#41 b64 [11.6] unique :: Median OS of the fitted curves was 20.8 months with Drug A and 11.6 months with Drug B. Median PFS was 8.2 
+     -> res_comp_median_os@base
+#42 b64 [8.2] ambiguous :: the fitted curves was 20.8 months with Drug A and 11.6 months with Drug B. Median PFS was 8.2 and 5.2 months, respectively. The fitte
+     -> res_int_median_pfs@base | res_int_median_tot@SC8
+#43 b64 [5.2] unique :: ed curves was 20.8 months with Drug A and 11.6 months with Drug B. Median PFS was 8.2 and 5.2 months, respectively. The fitted PFS an
+     -> res_comp_median_pfs@base
+#44 b66 [3] ambiguous ::  the proportion of patients on treatment at the start of that week. Drug A is given every 3 weeks for a maximum of 35 doses, consis
+     -> calc_comp_interval_cycles@base | calc_int_interval_cycles@base | comp_admin_interval_weeks@base | int_admin_interval_weeks@base | res_comp_median_tot@base | res_int_ly_disc@base | res_int_ly_undisc@base | res_int_ly_disc@SC1 | res_int_ly_disc@SC2 | res_int_ly_undisc@SC2 | res_int_ly_undisc@SC5 | res_int_ly_disc@SC6 | res_int_ly_undisc@SC6
+#45 b66 [35] unique :: ts on treatment at the start of that week. Drug A is given every 3 weeks for a maximum of 35 doses, consistent with the stopping rul
+     -> int_max_doses@base
+#46 b66 [3] ambiguous ::  35 doses, consistent with the stopping rule in the trial protocol. Drug B is given every 3 weeks for a maximum of 6 doses.
+     -> calc_comp_interval_cycles@base | calc_int_interval_cycles@base | comp_admin_interval_weeks@base | int_admin_interval_weeks@base | res_comp_median_tot@base | res_int_ly_disc@base | res_int_ly_undisc@base | res_int_ly_disc@SC1 | res_int_ly_disc@SC2 | res_int_ly_undisc@SC2 | res_int_ly_undisc@SC5 | res_int_ly_disc@SC6 | res_int_ly_undisc@SC6
+#47 b66 [6] unique :: h the stopping rule in the trial protocol. Drug B is given every 3 weeks for a maximum of 6 doses.
+     -> comp_max_doses@base
+#48 b67 [2.00] unique :: Drug A is dosed at 2.00 mg/kg. The expected number of vials per
+     -> int_dose_mg@base
+#49 b67 [2.05] ambiguous :: Drug A is dosed at 2.00 mg/kg. The expected number of vials per administration (2.05) accounts for wastage, assuming no vial
+     -> calc_int_expected_vials@base | res_int_expected_vials@base
+#50 b67 [76.0] unique :: r wastage, assuming no vial sharing and a lognormal distribution of body weight with mean 76.0 kg and standard deviation 16.0 kg. Drug
+     -> weight_mean_kg@base
+#51 b67 [16.0] ambiguous :: ring and a lognormal distribution of body weight with mean 76.0 kg and standard deviation 16.0 kg. Drug B is given at a flat dose of 5
+     -> comp_os_scale@base | weight_sd_kg@base
+#52 b67 [500] unique :: eight with mean 76.0 kg and standard deviation 16.0 kg. Drug B is given at a flat dose of 500 mg (5 vials). Drug acquisition costs ar
+     -> comp_dose_mg@base
+#53 b67 [5] ambiguous :: th mean 76.0 kg and standard deviation 16.0 kg. Drug B is given at a flat dose of 500 mg (5 vials). Drug acquisition costs are mult
+     -> calc_comp_expected_vials@base | res_comp_expected_vials@base | res_comp_median_pfs@base | res_comp_n_doses@base
+#54 b67 [95.0%] ambiguous :: ug acquisition costs are multiplied by the relative dose intensity observed in the trial (95.0% for Drug A and 90.0% for Drug B); admin
+     -> gpu_intercept@base | int_pfs_shape@base | int_rdi@base | int_tot_shape@SC8
+#55 b67 [90.0%] ambiguous :: are multiplied by the relative dose intensity observed in the trial (95.0% for Drug A and 90.0% for Drug B); administration costs are n
+     -> comp_rdi@base | int_tot_shape@base
+#56 b67 [13.70] unique :: d 90.0% for Drug B); administration costs are not adjusted. Patients received an expected 13.70 doses of Drug A and 4.58 doses of Drug 
+     -> res_int_n_doses@base
+#57 b67 [4.58] unique :: istration costs are not adjusted. Patients received an expected 13.70 doses of Drug A and 4.58 doses of Drug B.
+     -> res_comp_n_doses@base
+#58 b70 [2025] unique :: All costs are in GBP at 2025 prices.
+     -> price_year@base
+#59 b76 [£700] unique :: T3 r1c1 row='Drug A net price per vial' col='None'
+     -> int_vial_price@base
+#60 b79 [£1,435] ambiguous :: T3 r2c1 row='Drug A drug cost per administration (expected vials)' col='None'
+     -> calc_int_drug_cost_per_admin@base | res_int_drug_cost_per_admin@base
+#61 b82 [£96] ambiguous :: T3 r3c1 row='Drug B price per vial' col='None'
+     -> comp_vial_price@base | res_int_gpm_first_bind_age@base
+#62 b85 [£480] ambiguous :: T3 r4c1 row='Drug B drug cost per administration' col='None'
+     -> calc_comp_drug_cost_per_admin@base | res_comp_drug_cost_per_admin@base
+#63 b88 [£310] ambiguous :: T3 r5c1 row='Administration cost, Drug A' col='None'
+     -> comp_admin_cost_per_admin@base | int_admin_cost_per_admin@base
+#64 b91 [£310] ambiguous :: T3 r6c1 row='Administration cost, Drug B' col='None'
+     -> comp_admin_cost_per_admin@base | int_admin_cost_per_admin@base
+#65 b94 [£150] unique :: T3 r7c1 row='Progression-free health state' col='None'
+     -> c_pf_week@base
+#66 b97 [£230] unique :: T3 r8c1 row='Progressed disease health state' col='None'
+     -> c_pd_week@base
+#67 b100 [£6,500] unique :: T3 r9c1 row='Terminal care' col='None'
+     -> c_terminal@base
+#68 b103 [£1,150] ambiguous :: T3 r10c1 row='Adverse events, Drug A' col='None'
+     -> int_ae_cost@base | res_int_cost_ae@base
+#69 b106 [£2,400] ambiguous :: T3 r11c1 row='Adverse events, Drug B' col='None'
+     -> comp_ae_cost@base | res_comp_cost_ae@base
+#70 b108 [15.0%] unique :: rom the decline in the PF proportion, excluding the share of PFS events that were deaths (15.0% for Drug A and 12.0% for Drug B).
+     -> int_p_death_first_pfs@base
+#71 b108 [12.0%] unique :: e PF proportion, excluding the share of PFS events that were deaths (15.0% for Drug A and 12.0% for Drug B).
+     -> comp_p_death_first_pfs@base
+#72 b115 [£2,800] unique :: T4 r1c1 row='Docetaxel-based chemotherapy' col='None'
+     -> st_cost_1@base
+#73 b116 [45.0%] unique :: T4 r1c2 row='Docetaxel-based chemotherapy' col='None'
+     -> int_st_share_1@base
+#74 b117 [30.0%] unique :: T4 r1c3 row='Docetaxel-based chemotherapy' col='None'
+     -> comp_st_share_1@base
+#75 b119 [£30,000] ambiguous :: T4 r2c1 row='Immunotherapy' col='None'
+     -> st_cost_2@base | wtp_threshold@base
+#76 b120 [5.0%] unique :: T4 r2c2 row='Immunotherapy' col='None'
+     -> int_st_share_2@base
+#77 b121 [35.0%] unique :: T4 r2c3 row='Immunotherapy' col='None'
+     -> comp_st_share_2@base
+#78 b123 [£15,000] unique :: T4 r3c1 row='Other targeted therapy' col='None'
+     -> st_cost_3@base
+#79 b124 [10.0%] unique :: T4 r3c2 row='Other targeted therapy' col='None'
+     -> int_st_share_3@base
+#80 b125 [8.0%] unique :: T4 r3c3 row='Other targeted therapy' col='None'
+     -> comp_st_share_3@base
+#81 b128 [£4,260] ambiguous :: T4 r4c2 row='Cost per progression' col='None'
+     -> calc_int_st_cost_per_progression@base | res_int_st_cost_per_progression@base
+#82 b129 [£12,540] ambiguous :: T4 r4c3 row='Cost per progression' col='None'
+     -> calc_comp_st_cost_per_progression@base | res_comp_st_cost_per_progression@base
+#83 b136 [0.75] unique :: T5 r1c1 row='Progression-free' col='None'
+     -> u_pf@base
+#84 b138 [0.60] ambiguous :: T5 r2c1 row='Progressed disease' col='None'
+     -> calc_int_st_share_sum@base | prop_male@base | u_pd@base
+#85 b140 [0.008] unique :: T5 r3c1 row='AE QALY loss, Drug A' col='None'
+     -> int_ae_qaly_loss@base
+#86 b142 [0.015] ambiguous :: T5 r4c1 row='AE QALY loss, Drug B' col='None'
+     -> comp_ae_qaly_loss@base | dr_costs@SC1 | dr_outcomes@SC1
+#87 b144 [0.95] ambiguous :: T5 r5c1 row='Population norms: intercept' col='None'
+     -> gpu_intercept@base | int_pfs_shape@base | int_rdi@base | int_tot_shape@SC8
+#88 b146 [0.021000] unique :: T5 r6c1 row='Population norms: male' col='None'
+     -> gpu_male@base
+#89 b148 [-0.000260] unique :: T5 r7c1 row='Population norms: age' col='None'
+     -> gpu_age@base
+#90 b150 [-0.000033] unique :: T5 r8c1 row='Population norms: age squared' col='None'
+     -> gpu_age2@base
+#91 b155 [1.37] ambiguous :: Drug A increased discounted life years by 1.37 and QALYs by 0.875 compared with Drug B
+     -> res_inc_ly_disc@base | res_inc_ly_disc@SC6
+#92 b155 [0.875] ambiguous :: Drug A increased discounted life years by 1.37 and QALYs by 0.875 compared with Drug B, at an additional 
+     -> res_inc_qaly_disc@base | res_inc_qaly_disc@SC6
+#93 b155 [£24,746] ambiguous :: nted life years by 1.37 and QALYs by 0.875 compared with Drug B, at an additional cost of £24,746. The base-case ICER is £28,271 per QALY
+     -> res_inc_total_cost@base | res_inc_total_cost@SC6
+#94 b155 [£28,271] ambiguous :: Ys by 0.875 compared with Drug B, at an additional cost of £24,746. The base-case ICER is £28,271 per QALY gained and £18,033 per life ye
+     -> res_icer@base | res_icer@SC6
+#95 b155 [£18,033] ambiguous :: ug B, at an additional cost of £24,746. The base-case ICER is £28,271 per QALY gained and £18,033 per life year gained.
+     -> res_icer_ly@base | res_icer_ly@SC6
+#96 b162 [£60,016] ambiguous :: T6 r1c1 row='Total costs' col='None'
+     -> res_int_total_cost@base | res_int_total_cost@SC6
+#97 b163 [£35,270] ambiguous :: T6 r1c2 row='Total costs' col='None'
+     -> res_comp_total_cost@base | res_comp_total_cost@SC2
+#98 b164 [£24,746] ambiguous :: T6 r1c3 row='Total costs' col='None'
+     -> res_inc_total_cost@base | res_inc_total_cost@SC6
+#99 b166 [2.59] ambiguous :: T6 r2c1 row='Life years' col='None'
+     -> res_int_ly_disc@base | res_int_ly_disc@SC2 | res_int_ly_disc@SC6
+#100 b167 [1.22] ambiguous :: T6 r2c2 row='Life years' col='None'
+     -> res_comp_ly_disc@base | res_comp_ly_disc@SC2
+#101 b168 [1.37] ambiguous :: T6 r2c3 row='Life years' col='None'
+     -> res_inc_ly_disc@base | res_inc_ly_disc@SC6
+#102 b170 [1.669] ambiguous :: T6 r3c1 row='QALYs' col='None'
+     -> res_int_qaly_disc@base | res_int_qaly_disc@SC6
+#103 b171 [0.794] ambiguous :: T6 r3c2 row='QALYs' col='None'
+     -> res_comp_qaly_disc@base | res_comp_qaly_disc@SC2
+#104 b172 [0.875] ambiguous :: T6 r3c3 row='QALYs' col='None'
+     -> res_inc_qaly_disc@base | res_inc_qaly_disc@SC6
+#105 b176 [£28,271] ambiguous :: T6 r4c3 row='ICER (cost per QALY gained)' col='None'
+     -> res_icer@base | res_icer@SC6
+#106 b180 [£1,514] ambiguous :: T6 r5c3 row='Incremental NMB at upper threshold' col='None'
+     -> res_inc_nmb@base | res_inc_nmb@SC6
+#107 b182 [2.90] ambiguous :: Undiscounted, Drug A provided 2.90 life years versus 1.27 with Drug B.
+     -> res_int_ly_undisc@base | res_int_ly_undisc@SC6
+#108 b182 [1.27] ambiguous :: Undiscounted, Drug A provided 2.90 life years versus 1.27 with Drug B.
+     -> res_comp_ly_undisc@base | res_comp_ly_undisc@SC2 | res_inc_ly_undisc@SC5
+#109 b184 [30.5%] ambiguous :: Drug acquisition accounted for 30.5% of total costs in the Drug A arm, compa
+     -> res_int_drug_share@base | res_int_drug_share@SC2 | res_int_drug_share@SC6
+#110 b184 [5.6%] ambiguous :: Drug acquisition accounted for 30.5% of total costs in the Drug A arm, compared with 5.6% in the Drug B arm. The largest single c
+     -> res_comp_drug_share@base | res_comp_drug_share@SC2
+#111 b184 [£16,309] unique :: the Drug B arm. The largest single contributor to incremental costs was drug acquisition (£16,309). Lower subsequent therapy, adverse eve
+     -> res_inc_cost_drug@base
+#112 b191 [£18,278] unique :: T7 r1c1 row='Drug acquisition' col='None'
+     -> res_int_cost_drug@base
+#113 b192 [£1,969] unique :: T7 r1c2 row='Drug acquisition' col='None'
+     -> res_comp_cost_drug@base
+#114 b193 [£16,309] unique :: T7 r1c3 row='Drug acquisition' col='None'
+     -> res_inc_cost_drug@base
+#115 b195 [£4,157] unique :: T7 r2c1 row='Administration' col='None'
+     -> res_int_cost_admin@base
+#116 b196 [£1,413] unique :: T7 r2c2 row='Administration' col='None'
+     -> res_comp_cost_admin@base
+#117 b197 [£2,745] unique :: T7 r2c3 row='Administration' col='None'
+     -> res_inc_cost_admin@base
+#118 b199 [£7,724] ambiguous :: T7 r3c1 row='Progression-free state' col='None'
+     -> res_int_cost_pf_state@base | res_int_cost_pf_state@SC2
+#119 b200 [£4,188] unique :: T7 r3c2 row='Progression-free state' col='None'
+     -> res_comp_cost_pf_state@base
+#120 b201 [£3,536] ambiguous :: T7 r3c3 row='Progression-free state' col='None'
+     -> res_inc_cost_pf_state@base | res_inc_cost_pf_state@SC2
+#121 b203 [£19,289] ambiguous :: T7 r4c1 row='Progressed disease state' col='None'
+     -> res_int_cost_pd_state@base | res_int_cost_pd_state@SC6
+#122 b204 [£8,243] ambiguous :: T7 r4c2 row='Progressed disease state' col='None'
+     -> res_comp_cost_pd_state@base | res_comp_cost_pd_state@SC2
+#123 b205 [£11,047] ambiguous :: T7 r4c3 row='Progressed disease state' col='None'
+     -> res_inc_cost_pd_state@base | res_inc_cost_pd_state@SC6
+#124 b207 [£5,920] ambiguous :: T7 r5c1 row='Terminal care' col='None'
+     -> res_int_cost_terminal@base | res_int_cost_terminal@SC6
+#125 b208 [£6,227] ambiguous :: T7 r5c2 row='Terminal care' col='None'
+     -> res_comp_cost_terminal@base | res_comp_cost_terminal@SC2
+#126 b209 [-£307] ambiguous :: T7 r5c3 row='Terminal care' col='None'
+     -> res_inc_cost_terminal@base | res_inc_cost_terminal@SC6
+#127 b211 [£3,498] ambiguous :: T7 r6c1 row='Subsequent therapy' col='None'
+     -> res_int_cost_st@base | res_int_cost_st@SC2
+#128 b212 [£10,832] unique :: T7 r6c2 row='Subsequent therapy' col='None'
+     -> res_comp_cost_st@base
+#129 b213 [-£7,334] ambiguous :: T7 r6c3 row='Subsequent therapy' col='None'
+     -> res_inc_cost_st@base | res_inc_cost_st@SC2
+#130 b215 [£1,150] ambiguous :: T7 r7c1 row='Adverse events' col='None'
+     -> int_ae_cost@base | res_int_cost_ae@base
+#131 b216 [£2,400] ambiguous :: T7 r7c2 row='Adverse events' col='None'
+     -> comp_ae_cost@base | res_comp_cost_ae@base
+#132 b217 [-£1,250] unique :: T7 r7c3 row='Adverse events' col='None'
+     -> res_inc_cost_ae@base
+#133 b219 [£60,016] ambiguous :: T7 r8c1 row='Total' col='None'
+     -> res_int_total_cost@base | res_int_total_cost@SC6
+#134 b220 [£35,270] ambiguous :: T7 r8c2 row='Total' col='None'
+     -> res_comp_total_cost@base | res_comp_total_cost@SC2
+#135 b221 [£24,746] ambiguous :: T7 r8c3 row='Total' col='None'
+     -> res_inc_total_cost@base | res_inc_total_cost@SC6
+#136 b232 [£24,746] ambiguous :: T8 r1c2 row='Base case' col='None'
+     -> res_inc_total_cost@base | res_inc_total_cost@SC6
+#137 b233 [0.875] ambiguous :: T8 r1c3 row='Base case' col='None'
+     -> res_inc_qaly_disc@base | res_inc_qaly_disc@SC6
+#138 b234 [£28,271] ambiguous :: T8 r1c4 row='Base case' col='None'
+     -> res_icer@base | res_icer@SC6
+#139 b236 [1.5%] ambiguous :: T8 r2c1 row='Lower discount rate (costs and outcomes)' col='None'
+     -> comp_ae_qaly_loss@base | dr_costs@SC1 | dr_outcomes@SC1
+#140 b237 [£26,725] unique :: T8 r2c2 row='Lower discount rate (costs and outcomes)' col='None'
+     -> res_inc_total_cost@SC1
+#141 b238 [0.957] unique :: T8 r2c3 row='Lower discount rate (costs and outcomes)' col='None'
+     -> res_inc_qaly_disc@SC1
+#142 b239 [£27,924] unique :: T8 r2c4 row='Lower discount rate (costs and outcomes)' col='None'
+     -> res_icer@SC1
+#143 b241 [20] unique :: T8 r3c1 row='Shorter time horizon' col='None'
+     -> time_horizon_years@SC2
+#144 b242 [£24,646] unique :: T8 r3c2 row='Shorter time horizon' col='None'
+     -> res_inc_total_cost@SC2
+#145 b243 [0.872] unique :: T8 r3c3 row='Shorter time horizon' col='None'
+     -> res_inc_qaly_disc@SC2
+#146 b244 [£28,279] unique :: T8 r3c4 row='Shorter time horizon' col='None'
+     -> res_icer@SC2
+#147 b246 [0.72] unique :: T8 r4c1 row='Alternative utility values (PF / PD)' col='None'
+     -> u_pf@SC3
+#148 b246 [0.55] unique :: T8 r4c1 row='Alternative utility values (PF / PD)' col='None'
+     -> u_pd@SC3
+#149 b247 [£24,746] ambiguous :: T8 r4c2 row='Alternative utility values (PF / PD)' col='None'
+     -> res_inc_total_cost@base | res_inc_total_cost@SC6
+#150 b248 [0.817] unique :: T8 r4c3 row='Alternative utility values (PF / PD)' col='None'
+     -> res_inc_qaly_disc@SC3
+#151 b249 [£30,270] unique :: T8 r4c4 row='Alternative utility values (PF / PD)' col='None'
+     -> res_icer@SC3
+#152 b251 [696] unique :: T8 r5c1 row='No stopping rule for Drug A (maximum doses)' col='None'
+     -> int_max_doses@SC4
+#153 b252 [£27,844] unique :: T8 r5c2 row='No stopping rule for Drug A (maximum doses)' col='None'
+     -> res_inc_total_cost@SC4
+#154 b253 [0.875] ambiguous :: T8 r5c3 row='No stopping rule for Drug A (maximum doses)' col='None'
+     -> res_inc_qaly_disc@base | res_inc_qaly_disc@SC6
+#155 b254 [£31,811] unique :: T8 r5c4 row='No stopping rule for Drug A (maximum doses)' col='None'
+     -> res_icer@SC4
+#156 b256 [28.00] unique :: T8 r6c1 row='Conservative Drug A OS extrapolation (Weibull scale)' col='None'
+     -> int_os_scale@SC5
+#157 b257 [£21,283] unique :: T8 r6c2 row='Conservative Drug A OS extrapolation (Weibull scale)' col='None'
+     -> res_inc_total_cost@SC5
+#158 b258 [0.705] unique :: T8 r6c3 row='Conservative Drug A OS extrapolation (Weibull scale)' col='None'
+     -> res_inc_qaly_disc@SC5
+#159 b259 [£30,205] unique :: T8 r6c4 row='Conservative Drug A OS extrapolation (Weibull scale)' col='None'
+     -> res_icer@SC5
+#160 b262 [£24,746] ambiguous :: T8 r7c2 row='No general-population mortality constraint' col='None'
+     -> res_inc_total_cost@base | res_inc_total_cost@SC6
+#161 b263 [0.875] ambiguous :: T8 r7c3 row='No general-population mortality constraint' col='None'
+     -> res_inc_qaly_disc@base | res_inc_qaly_disc@SC6
+#162 b264 [£28,271] ambiguous :: T8 r7c4 row='No general-population mortality constraint' col='None'
+     -> res_icer@base | res_icer@SC6
+#163 b267 [£24,746] ambiguous :: T8 r8c2 row='No age adjustment of utilities' col='None'
+     -> res_inc_total_cost@base | res_inc_total_cost@SC6
+#164 b268 [0.898] unique :: T8 r8c3 row='No age adjustment of utilities' col='None'
+     -> res_inc_qaly_disc@SC7
+#165 b269 [£27,553] unique :: T8 r8c4 row='No age adjustment of utilities' col='None'
+     -> res_icer@SC7
+#166 b271 [0.95] ambiguous :: T8 r9c1 row='Drug A time on treatment equal to PFS (Weibull shape / scale)' col='None'
+     -> gpu_intercept@base | int_pfs_shape@base | int_rdi@base | int_tot_shape@SC8
+#167 b271 [12.00] ambiguous :: T8 r9c1 row='Drug A time on treatment equal to PFS (Weibull shape / scale)' col='None'
+     -> int_pfs_scale@base | int_tot_scale@SC8
+#168 b272 [£27,597] unique :: T8 r9c2 row='Drug A time on treatment equal to PFS (Weibull shape / scale)' col='None'
+     -> res_inc_total_cost@SC8
+#169 b273 [0.875] ambiguous :: T8 r9c3 row='Drug A time on treatment equal to PFS (Weibull shape / scale)' col='None'
+     -> res_inc_qaly_disc@base | res_inc_qaly_disc@SC6
+#170 b274 [£31,528] unique :: T8 r9c4 row='Drug A time on treatment equal to PFS (Weibull shape / scale)' col='None'
+     -> res_icer@SC8
+#171 b275 [£30,000] ambiguous :: The ICER exceeded £30,000 per QALY with the alternative utility v
+     -> st_cost_2@base | wtp_threshold@base
+#172 b275 [£30,270] unique :: The ICER exceeded £30,000 per QALY with the alternative utility values (£30,270), removing the stopping rule for Drug A
+     -> res_icer@SC3
+#173 b275 [£31,811] unique :: ALY with the alternative utility values (£30,270), removing the stopping rule for Drug A (£31,811), the conservative OS extrapolation (£3
+     -> res_icer@SC4
+#174 b275 [£30,205] unique :: 270), removing the stopping rule for Drug A (£31,811), the conservative OS extrapolation (£30,205) and setting Drug A time on treatment e
+     -> res_icer@SC5
+#175 b275 [£31,528] unique :: onservative OS extrapolation (£30,205) and setting Drug A time on treatment equal to PFS (£31,528), and remained below it in all other sc
+     -> res_icer@SC8
+#176 b277 [0.1%] unique ::  by construction. The time horizon is sufficient for the modelled cohort, with fewer than 0.1% of patients in either arm alive at the 
+     -> lifetime_check_tol@base
+#177 b278 [312] unique :: The general-population mortality constraint was active in 312 weekly cycles in the Drug A arm, from a
+     -> res_int_gpm_bind_cycles@base
+#178 b278 [96] ambiguous :: pulation mortality constraint was active in 312 weekly cycles in the Drug A arm, from age 96, when 0.02% of patients remained alive,
+     -> comp_vial_price@base | res_int_gpm_first_bind_age@base
+#179 b278 [0.02%] unique :: mortality constraint was active in 312 weekly cycles in the Drug A arm, from age 96, when 0.02% of patients remained alive, and was not
+     -> res_int_gpm_first_bind_alive@base
+#180 b290 [£28,271] ambiguous :: Drug A is associated with an ICER of £28,271 per QALY gained compared with Drug B. T
+     -> res_icer@base | res_icer@SC6
+#181 b290 [£30,000] ambiguous :: h an ICER of £28,271 per QALY gained compared with Drug B. This is below the threshold of £30,000 per QALY gained and within the range of
+     -> st_cost_2@base | wtp_threshold@base
+#182 b290 [£20,000] unique :: th Drug B. This is below the threshold of £30,000 per QALY gained and within the range of £20,000 to £30,000 per QALY that NICE normally 
+     -> wtp_threshold_lower@base
+#183 b290 [£30,000] ambiguous :: This is below the threshold of £30,000 per QALY gained and within the range of £20,000 to £30,000 per QALY that NICE normally considers t
+     -> st_cost_2@base | wtp_threshold@base

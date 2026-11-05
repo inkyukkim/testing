@@ -1,0 +1,2898 @@
+[
+  {
+    "token": "40",
+    "block": 5,
+    "section": "1. Executive summary",
+    "candidates": [
+      {
+        "name": "time_horizon_years",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "3.5%",
+    "block": 5,
+    "section": "1. Executive summary",
+    "candidates": [
+      {
+        "name": "dr_costs",
+        "context": "base"
+      },
+      {
+        "name": "dr_outcomes",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a360,016",
+    "block": 6,
+    "section": "1. Executive summary",
+    "candidates": [
+      {
+        "name": "res_int_total_cost",
+        "context": "base"
+      },
+      {
+        "name": "res_int_total_cost",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "1.669",
+    "block": 6,
+    "section": "1. Executive summary",
+    "candidates": [
+      {
+        "name": "res_int_qaly_disc",
+        "context": "base"
+      },
+      {
+        "name": "res_int_qaly_disc",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a335,270",
+    "block": 6,
+    "section": "1. Executive summary",
+    "candidates": [
+      {
+        "name": "res_comp_total_cost",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_total_cost",
+        "context": "SC2"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "0.794",
+    "block": 6,
+    "section": "1. Executive summary",
+    "candidates": [
+      {
+        "name": "res_comp_qaly_disc",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_qaly_disc",
+        "context": "SC2"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a324,746",
+    "block": 6,
+    "section": "1. Executive summary",
+    "candidates": [
+      {
+        "name": "res_inc_total_cost",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_total_cost",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "0.875",
+    "block": 6,
+    "section": "1. Executive summary",
+    "candidates": [
+      {
+        "name": "res_inc_qaly_disc",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_qaly_disc",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a328,271",
+    "block": 6,
+    "section": "1. Executive summary",
+    "candidates": [
+      {
+        "name": "res_icer",
+        "context": "base"
+      },
+      {
+        "name": "res_icer",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a330,000",
+    "block": 7,
+    "section": "1. Executive summary",
+    "candidates": [
+      {
+        "name": "st_cost_2",
+        "context": "base"
+      },
+      {
+        "name": "wtp_threshold",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a31,514",
+    "block": 7,
+    "section": "1. Executive summary",
+    "candidates": [
+      {
+        "name": "res_inc_nmb",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_nmb",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a320,000",
+    "block": 7,
+    "section": "1. Executive summary",
+    "candidates": [
+      {
+        "name": "wtp_threshold_lower",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "3",
+    "block": 10,
+    "section": "2. Decision problem",
+    "candidates": [
+      {
+        "name": "calc_comp_interval_cycles",
+        "context": "base"
+      },
+      {
+        "name": "calc_int_interval_cycles",
+        "context": "base"
+      },
+      {
+        "name": "comp_admin_interval_weeks",
+        "context": "base"
+      },
+      {
+        "name": "int_admin_interval_weeks",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_median_tot",
+        "context": "base"
+      },
+      {
+        "name": "res_int_ly_disc",
+        "context": "base"
+      },
+      {
+        "name": "res_int_ly_undisc",
+        "context": "base"
+      },
+      {
+        "name": "res_int_ly_disc",
+        "context": "SC1"
+      },
+      {
+        "name": "res_int_ly_disc",
+        "context": "SC2"
+      },
+      {
+        "name": "res_int_ly_undisc",
+        "context": "SC2"
+      },
+      {
+        "name": "res_int_ly_undisc",
+        "context": "SC5"
+      },
+      {
+        "name": "res_int_ly_disc",
+        "context": "SC6"
+      },
+      {
+        "name": "res_int_ly_undisc",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "3",
+    "block": 17,
+    "section": "2. Decision problem",
+    "candidates": [
+      {
+        "name": "calc_comp_interval_cycles",
+        "context": "base"
+      },
+      {
+        "name": "calc_int_interval_cycles",
+        "context": "base"
+      },
+      {
+        "name": "comp_admin_interval_weeks",
+        "context": "base"
+      },
+      {
+        "name": "int_admin_interval_weeks",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_median_tot",
+        "context": "base"
+      },
+      {
+        "name": "res_int_ly_disc",
+        "context": "base"
+      },
+      {
+        "name": "res_int_ly_undisc",
+        "context": "base"
+      },
+      {
+        "name": "res_int_ly_disc",
+        "context": "SC1"
+      },
+      {
+        "name": "res_int_ly_disc",
+        "context": "SC2"
+      },
+      {
+        "name": "res_int_ly_undisc",
+        "context": "SC2"
+      },
+      {
+        "name": "res_int_ly_undisc",
+        "context": "SC5"
+      },
+      {
+        "name": "res_int_ly_disc",
+        "context": "SC6"
+      },
+      {
+        "name": "res_int_ly_undisc",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "3",
+    "block": 19,
+    "section": "2. Decision problem",
+    "candidates": [
+      {
+        "name": "calc_comp_interval_cycles",
+        "context": "base"
+      },
+      {
+        "name": "calc_int_interval_cycles",
+        "context": "base"
+      },
+      {
+        "name": "comp_admin_interval_weeks",
+        "context": "base"
+      },
+      {
+        "name": "int_admin_interval_weeks",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_median_tot",
+        "context": "base"
+      },
+      {
+        "name": "res_int_ly_disc",
+        "context": "base"
+      },
+      {
+        "name": "res_int_ly_undisc",
+        "context": "base"
+      },
+      {
+        "name": "res_int_ly_disc",
+        "context": "SC1"
+      },
+      {
+        "name": "res_int_ly_disc",
+        "context": "SC2"
+      },
+      {
+        "name": "res_int_ly_undisc",
+        "context": "SC2"
+      },
+      {
+        "name": "res_int_ly_undisc",
+        "context": "SC5"
+      },
+      {
+        "name": "res_int_ly_disc",
+        "context": "SC6"
+      },
+      {
+        "name": "res_int_ly_undisc",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "7",
+    "block": 30,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "comp_pfs_scale",
+        "context": "base"
+      },
+      {
+        "name": "cycle_length_days",
+        "context": "base"
+      },
+      {
+        "name": "res_int_median_tot",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "40",
+    "block": 30,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "time_horizon_years",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "62",
+    "block": 30,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "baseline_age",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "60.0%",
+    "block": 30,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "calc_int_st_share_sum",
+        "context": "base"
+      },
+      {
+        "name": "prop_male",
+        "context": "base"
+      },
+      {
+        "name": "u_pd",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "0.1%",
+    "block": 30,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "lifetime_check_tol",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "3.5%",
+    "block": 32,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "dr_costs",
+        "context": "base"
+      },
+      {
+        "name": "dr_outcomes",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "3.5%",
+    "block": 32,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "dr_costs",
+        "context": "base"
+      },
+      {
+        "name": "dr_outcomes",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "0.95",
+    "block": 41,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "gpu_intercept",
+        "context": "base"
+      },
+      {
+        "name": "int_pfs_shape",
+        "context": "base"
+      },
+      {
+        "name": "int_rdi",
+        "context": "base"
+      },
+      {
+        "name": "int_tot_shape",
+        "context": "SC8"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "12.00",
+    "block": 42,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "int_pfs_scale",
+        "context": "base"
+      },
+      {
+        "name": "int_tot_scale",
+        "context": "SC8"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "8.2",
+    "block": 43,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "res_int_median_pfs",
+        "context": "base"
+      },
+      {
+        "name": "res_int_median_tot",
+        "context": "SC8"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "0.85",
+    "block": 45,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "int_os_shape",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "32.00",
+    "block": 46,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "int_os_scale",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "20.8",
+    "block": 47,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "res_int_median_os",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "0.90",
+    "block": 49,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "comp_rdi",
+        "context": "base"
+      },
+      {
+        "name": "int_tot_shape",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_qaly_disc",
+        "context": "SC7"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "10.00",
+    "block": 50,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "int_tot_scale",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "6.7",
+    "block": 51,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "res_int_median_tot",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "1.25",
+    "block": 53,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "comp_pfs_shape",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_ly_disc",
+        "context": "SC1"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "7.00",
+    "block": 54,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "comp_pfs_scale",
+        "context": "base"
+      },
+      {
+        "name": "cycle_length_days",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "5.2",
+    "block": 55,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "res_comp_median_pfs",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "1.15",
+    "block": 57,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "comp_os_shape",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "16.00",
+    "block": 58,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "comp_os_scale",
+        "context": "base"
+      },
+      {
+        "name": "weight_sd_kg",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "11.6",
+    "block": 59,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "res_comp_median_os",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "1.40",
+    "block": 61,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "comp_tot_shape",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "4.50",
+    "block": 62,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "comp_tot_scale",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "3.5",
+    "block": 63,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "res_comp_median_tot",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "20.8",
+    "block": 64,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "res_int_median_os",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "11.6",
+    "block": 64,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "res_comp_median_os",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "8.2",
+    "block": 64,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "res_int_median_pfs",
+        "context": "base"
+      },
+      {
+        "name": "res_int_median_tot",
+        "context": "SC8"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "5.2",
+    "block": 64,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "res_comp_median_pfs",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "3",
+    "block": 66,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "calc_comp_interval_cycles",
+        "context": "base"
+      },
+      {
+        "name": "calc_int_interval_cycles",
+        "context": "base"
+      },
+      {
+        "name": "comp_admin_interval_weeks",
+        "context": "base"
+      },
+      {
+        "name": "int_admin_interval_weeks",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_median_tot",
+        "context": "base"
+      },
+      {
+        "name": "res_int_ly_disc",
+        "context": "base"
+      },
+      {
+        "name": "res_int_ly_undisc",
+        "context": "base"
+      },
+      {
+        "name": "res_int_ly_disc",
+        "context": "SC1"
+      },
+      {
+        "name": "res_int_ly_disc",
+        "context": "SC2"
+      },
+      {
+        "name": "res_int_ly_undisc",
+        "context": "SC2"
+      },
+      {
+        "name": "res_int_ly_undisc",
+        "context": "SC5"
+      },
+      {
+        "name": "res_int_ly_disc",
+        "context": "SC6"
+      },
+      {
+        "name": "res_int_ly_undisc",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "35",
+    "block": 66,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "int_max_doses",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "3",
+    "block": 66,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "calc_comp_interval_cycles",
+        "context": "base"
+      },
+      {
+        "name": "calc_int_interval_cycles",
+        "context": "base"
+      },
+      {
+        "name": "comp_admin_interval_weeks",
+        "context": "base"
+      },
+      {
+        "name": "int_admin_interval_weeks",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_median_tot",
+        "context": "base"
+      },
+      {
+        "name": "res_int_ly_disc",
+        "context": "base"
+      },
+      {
+        "name": "res_int_ly_undisc",
+        "context": "base"
+      },
+      {
+        "name": "res_int_ly_disc",
+        "context": "SC1"
+      },
+      {
+        "name": "res_int_ly_disc",
+        "context": "SC2"
+      },
+      {
+        "name": "res_int_ly_undisc",
+        "context": "SC2"
+      },
+      {
+        "name": "res_int_ly_undisc",
+        "context": "SC5"
+      },
+      {
+        "name": "res_int_ly_disc",
+        "context": "SC6"
+      },
+      {
+        "name": "res_int_ly_undisc",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "6",
+    "block": 66,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "comp_max_doses",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "2.00",
+    "block": 67,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "int_dose_mg",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "2.05",
+    "block": 67,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "calc_int_expected_vials",
+        "context": "base"
+      },
+      {
+        "name": "res_int_expected_vials",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "76.0",
+    "block": 67,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "weight_mean_kg",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "16.0",
+    "block": 67,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "comp_os_scale",
+        "context": "base"
+      },
+      {
+        "name": "weight_sd_kg",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "500",
+    "block": 67,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "comp_dose_mg",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "5",
+    "block": 67,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "calc_comp_expected_vials",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_expected_vials",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_median_pfs",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_n_doses",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "95.0%",
+    "block": 67,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "gpu_intercept",
+        "context": "base"
+      },
+      {
+        "name": "int_pfs_shape",
+        "context": "base"
+      },
+      {
+        "name": "int_rdi",
+        "context": "base"
+      },
+      {
+        "name": "int_tot_shape",
+        "context": "SC8"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "90.0%",
+    "block": 67,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "comp_rdi",
+        "context": "base"
+      },
+      {
+        "name": "int_tot_shape",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "13.70",
+    "block": 67,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "res_int_n_doses",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "4.58",
+    "block": 67,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "res_comp_n_doses",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "2025",
+    "block": 70,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "price_year",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a3700",
+    "block": 76,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "int_vial_price",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a31,435",
+    "block": 79,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "calc_int_drug_cost_per_admin",
+        "context": "base"
+      },
+      {
+        "name": "res_int_drug_cost_per_admin",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a396",
+    "block": 82,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "comp_vial_price",
+        "context": "base"
+      },
+      {
+        "name": "res_int_gpm_first_bind_age",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a3480",
+    "block": 85,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "calc_comp_drug_cost_per_admin",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_drug_cost_per_admin",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a3310",
+    "block": 88,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "comp_admin_cost_per_admin",
+        "context": "base"
+      },
+      {
+        "name": "int_admin_cost_per_admin",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a3310",
+    "block": 91,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "comp_admin_cost_per_admin",
+        "context": "base"
+      },
+      {
+        "name": "int_admin_cost_per_admin",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a3150",
+    "block": 94,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "c_pf_week",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a3230",
+    "block": 97,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "c_pd_week",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a36,500",
+    "block": 100,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "c_terminal",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a31,150",
+    "block": 103,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "int_ae_cost",
+        "context": "base"
+      },
+      {
+        "name": "res_int_cost_ae",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a32,400",
+    "block": 106,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "comp_ae_cost",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_cost_ae",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "15.0%",
+    "block": 108,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "int_p_death_first_pfs",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "12.0%",
+    "block": 108,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "comp_p_death_first_pfs",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a32,800",
+    "block": 115,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "st_cost_1",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "45.0%",
+    "block": 116,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "int_st_share_1",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "30.0%",
+    "block": 117,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "comp_st_share_1",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a330,000",
+    "block": 119,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "st_cost_2",
+        "context": "base"
+      },
+      {
+        "name": "wtp_threshold",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "5.0%",
+    "block": 120,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "int_st_share_2",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "35.0%",
+    "block": 121,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "comp_st_share_2",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a315,000",
+    "block": 123,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "st_cost_3",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "10.0%",
+    "block": 124,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "int_st_share_3",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "8.0%",
+    "block": 125,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "comp_st_share_3",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a34,260",
+    "block": 128,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "calc_int_st_cost_per_progression",
+        "context": "base"
+      },
+      {
+        "name": "res_int_st_cost_per_progression",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a312,540",
+    "block": 129,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "calc_comp_st_cost_per_progression",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_st_cost_per_progression",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "0.75",
+    "block": 136,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "u_pf",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "0.60",
+    "block": 138,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "calc_int_st_share_sum",
+        "context": "base"
+      },
+      {
+        "name": "prop_male",
+        "context": "base"
+      },
+      {
+        "name": "u_pd",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "0.008",
+    "block": 140,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "int_ae_qaly_loss",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "0.015",
+    "block": 142,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "comp_ae_qaly_loss",
+        "context": "base"
+      },
+      {
+        "name": "dr_costs",
+        "context": "SC1"
+      },
+      {
+        "name": "dr_outcomes",
+        "context": "SC1"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "0.95",
+    "block": 144,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "gpu_intercept",
+        "context": "base"
+      },
+      {
+        "name": "int_pfs_shape",
+        "context": "base"
+      },
+      {
+        "name": "int_rdi",
+        "context": "base"
+      },
+      {
+        "name": "int_tot_shape",
+        "context": "SC8"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "0.021000",
+    "block": 146,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "gpu_male",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "-0.000260",
+    "block": 148,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "gpu_age",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "-0.000033",
+    "block": 150,
+    "section": "3. Methods",
+    "candidates": [
+      {
+        "name": "gpu_age2",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "1.37",
+    "block": 155,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_ly_disc",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_ly_disc",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "0.875",
+    "block": 155,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_qaly_disc",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_qaly_disc",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a324,746",
+    "block": 155,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_total_cost",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_total_cost",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a328,271",
+    "block": 155,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_icer",
+        "context": "base"
+      },
+      {
+        "name": "res_icer",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a318,033",
+    "block": 155,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_icer_ly",
+        "context": "base"
+      },
+      {
+        "name": "res_icer_ly",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a360,016",
+    "block": 162,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_int_total_cost",
+        "context": "base"
+      },
+      {
+        "name": "res_int_total_cost",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a335,270",
+    "block": 163,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_comp_total_cost",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_total_cost",
+        "context": "SC2"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a324,746",
+    "block": 164,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_total_cost",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_total_cost",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "2.59",
+    "block": 166,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_int_ly_disc",
+        "context": "base"
+      },
+      {
+        "name": "res_int_ly_disc",
+        "context": "SC2"
+      },
+      {
+        "name": "res_int_ly_disc",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "1.22",
+    "block": 167,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_comp_ly_disc",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_ly_disc",
+        "context": "SC2"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "1.37",
+    "block": 168,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_ly_disc",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_ly_disc",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "1.669",
+    "block": 170,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_int_qaly_disc",
+        "context": "base"
+      },
+      {
+        "name": "res_int_qaly_disc",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "0.794",
+    "block": 171,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_comp_qaly_disc",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_qaly_disc",
+        "context": "SC2"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "0.875",
+    "block": 172,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_qaly_disc",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_qaly_disc",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a328,271",
+    "block": 176,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_icer",
+        "context": "base"
+      },
+      {
+        "name": "res_icer",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a31,514",
+    "block": 180,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_nmb",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_nmb",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "2.90",
+    "block": 182,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_int_ly_undisc",
+        "context": "base"
+      },
+      {
+        "name": "res_int_ly_undisc",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "1.27",
+    "block": 182,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_comp_ly_undisc",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_ly_undisc",
+        "context": "SC2"
+      },
+      {
+        "name": "res_inc_ly_undisc",
+        "context": "SC5"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "30.5%",
+    "block": 184,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_int_drug_share",
+        "context": "base"
+      },
+      {
+        "name": "res_int_drug_share",
+        "context": "SC2"
+      },
+      {
+        "name": "res_int_drug_share",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "5.6%",
+    "block": 184,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_comp_drug_share",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_drug_share",
+        "context": "SC2"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a316,309",
+    "block": 184,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_cost_drug",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a318,278",
+    "block": 191,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_int_cost_drug",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a31,969",
+    "block": 192,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_comp_cost_drug",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a316,309",
+    "block": 193,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_cost_drug",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a34,157",
+    "block": 195,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_int_cost_admin",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a31,413",
+    "block": 196,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_comp_cost_admin",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a32,745",
+    "block": 197,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_cost_admin",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a37,724",
+    "block": 199,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_int_cost_pf_state",
+        "context": "base"
+      },
+      {
+        "name": "res_int_cost_pf_state",
+        "context": "SC2"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a34,188",
+    "block": 200,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_comp_cost_pf_state",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a33,536",
+    "block": 201,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_cost_pf_state",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_cost_pf_state",
+        "context": "SC2"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a319,289",
+    "block": 203,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_int_cost_pd_state",
+        "context": "base"
+      },
+      {
+        "name": "res_int_cost_pd_state",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a38,243",
+    "block": 204,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_comp_cost_pd_state",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_cost_pd_state",
+        "context": "SC2"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a311,047",
+    "block": 205,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_cost_pd_state",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_cost_pd_state",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a35,920",
+    "block": 207,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_int_cost_terminal",
+        "context": "base"
+      },
+      {
+        "name": "res_int_cost_terminal",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a36,227",
+    "block": 208,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_comp_cost_terminal",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_cost_terminal",
+        "context": "SC2"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "-\u00a3307",
+    "block": 209,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_cost_terminal",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_cost_terminal",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a33,498",
+    "block": 211,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_int_cost_st",
+        "context": "base"
+      },
+      {
+        "name": "res_int_cost_st",
+        "context": "SC2"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a310,832",
+    "block": 212,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_comp_cost_st",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "-\u00a37,334",
+    "block": 213,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_cost_st",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_cost_st",
+        "context": "SC2"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a31,150",
+    "block": 215,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "int_ae_cost",
+        "context": "base"
+      },
+      {
+        "name": "res_int_cost_ae",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a32,400",
+    "block": 216,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "comp_ae_cost",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_cost_ae",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "-\u00a31,250",
+    "block": 217,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_cost_ae",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a360,016",
+    "block": 219,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_int_total_cost",
+        "context": "base"
+      },
+      {
+        "name": "res_int_total_cost",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a335,270",
+    "block": 220,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_comp_total_cost",
+        "context": "base"
+      },
+      {
+        "name": "res_comp_total_cost",
+        "context": "SC2"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a324,746",
+    "block": 221,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_total_cost",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_total_cost",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a324,746",
+    "block": 232,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_total_cost",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_total_cost",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "0.875",
+    "block": 233,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_qaly_disc",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_qaly_disc",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a328,271",
+    "block": 234,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_icer",
+        "context": "base"
+      },
+      {
+        "name": "res_icer",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "1.5%",
+    "block": 236,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "comp_ae_qaly_loss",
+        "context": "base"
+      },
+      {
+        "name": "dr_costs",
+        "context": "SC1"
+      },
+      {
+        "name": "dr_outcomes",
+        "context": "SC1"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a326,725",
+    "block": 237,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_total_cost",
+        "context": "SC1"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "0.957",
+    "block": 238,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_qaly_disc",
+        "context": "SC1"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a327,924",
+    "block": 239,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_icer",
+        "context": "SC1"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "20",
+    "block": 241,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "time_horizon_years",
+        "context": "SC2"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a324,646",
+    "block": 242,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_total_cost",
+        "context": "SC2"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "0.872",
+    "block": 243,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_qaly_disc",
+        "context": "SC2"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a328,279",
+    "block": 244,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_icer",
+        "context": "SC2"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "0.72",
+    "block": 246,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "u_pf",
+        "context": "SC3"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "0.55",
+    "block": 246,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "u_pd",
+        "context": "SC3"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a324,746",
+    "block": 247,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_total_cost",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_total_cost",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "0.817",
+    "block": 248,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_qaly_disc",
+        "context": "SC3"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a330,270",
+    "block": 249,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_icer",
+        "context": "SC3"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "696",
+    "block": 251,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "int_max_doses",
+        "context": "SC4"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a327,844",
+    "block": 252,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_total_cost",
+        "context": "SC4"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "0.875",
+    "block": 253,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_qaly_disc",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_qaly_disc",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a331,811",
+    "block": 254,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_icer",
+        "context": "SC4"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "28.00",
+    "block": 256,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "int_os_scale",
+        "context": "SC5"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a321,283",
+    "block": 257,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_total_cost",
+        "context": "SC5"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "0.705",
+    "block": 258,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_qaly_disc",
+        "context": "SC5"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a330,205",
+    "block": 259,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_icer",
+        "context": "SC5"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a324,746",
+    "block": 262,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_total_cost",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_total_cost",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "0.875",
+    "block": 263,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_qaly_disc",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_qaly_disc",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a328,271",
+    "block": 264,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_icer",
+        "context": "base"
+      },
+      {
+        "name": "res_icer",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a324,746",
+    "block": 267,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_total_cost",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_total_cost",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "0.898",
+    "block": 268,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_qaly_disc",
+        "context": "SC7"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a327,553",
+    "block": 269,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_icer",
+        "context": "SC7"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "0.95",
+    "block": 271,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "gpu_intercept",
+        "context": "base"
+      },
+      {
+        "name": "int_pfs_shape",
+        "context": "base"
+      },
+      {
+        "name": "int_rdi",
+        "context": "base"
+      },
+      {
+        "name": "int_tot_shape",
+        "context": "SC8"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "12.00",
+    "block": 271,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "int_pfs_scale",
+        "context": "base"
+      },
+      {
+        "name": "int_tot_scale",
+        "context": "SC8"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a327,597",
+    "block": 272,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_total_cost",
+        "context": "SC8"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "0.875",
+    "block": 273,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_inc_qaly_disc",
+        "context": "base"
+      },
+      {
+        "name": "res_inc_qaly_disc",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a331,528",
+    "block": 274,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_icer",
+        "context": "SC8"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a330,000",
+    "block": 275,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "st_cost_2",
+        "context": "base"
+      },
+      {
+        "name": "wtp_threshold",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a330,270",
+    "block": 275,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_icer",
+        "context": "SC3"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a331,811",
+    "block": 275,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_icer",
+        "context": "SC4"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a330,205",
+    "block": 275,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_icer",
+        "context": "SC5"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a331,528",
+    "block": 275,
+    "section": "4. Results",
+    "candidates": [
+      {
+        "name": "res_icer",
+        "context": "SC8"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "0.1%",
+    "block": 277,
+    "section": "5. Model validation",
+    "candidates": [
+      {
+        "name": "lifetime_check_tol",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "312",
+    "block": 278,
+    "section": "5. Model validation",
+    "candidates": [
+      {
+        "name": "res_int_gpm_bind_cycles",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "96",
+    "block": 278,
+    "section": "5. Model validation",
+    "candidates": [
+      {
+        "name": "comp_vial_price",
+        "context": "base"
+      },
+      {
+        "name": "res_int_gpm_first_bind_age",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "0.02%",
+    "block": 278,
+    "section": "5. Model validation",
+    "candidates": [
+      {
+        "name": "res_int_gpm_first_bind_alive",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a328,271",
+    "block": 290,
+    "section": "7. Conclusion",
+    "candidates": [
+      {
+        "name": "res_icer",
+        "context": "base"
+      },
+      {
+        "name": "res_icer",
+        "context": "SC6"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a330,000",
+    "block": 290,
+    "section": "7. Conclusion",
+    "candidates": [
+      {
+        "name": "st_cost_2",
+        "context": "base"
+      },
+      {
+        "name": "wtp_threshold",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  },
+  {
+    "token": "\u00a320,000",
+    "block": 290,
+    "section": "7. Conclusion",
+    "candidates": [
+      {
+        "name": "wtp_threshold_lower",
+        "context": "base"
+      }
+    ],
+    "status": "unique"
+  },
+  {
+    "token": "\u00a330,000",
+    "block": 290,
+    "section": "7. Conclusion",
+    "candidates": [
+      {
+        "name": "st_cost_2",
+        "context": "base"
+      },
+      {
+        "name": "wtp_threshold",
+        "context": "base"
+      }
+    ],
+    "status": "ambiguous"
+  }
+]
