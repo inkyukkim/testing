@@ -90,7 +90,7 @@
   - The Report Verifier quotes the verifier's own failure message, which contains the tampered and the traced ICER. That is allowed, as tool output.
   - The Claims Analyst quotes two report excerpts verbatim, with GBP thresholds. This is borderline: it is a quote from a file, not tool output.
 
-**Findings from round 3 (fixed after the round; decisions D17–D19).**
+**Findings from round 3 (fixed after the round; decisions D17–D19, accepted).**
 
 | Found by | Finding | Fix |
 |----------|---------|-----|
