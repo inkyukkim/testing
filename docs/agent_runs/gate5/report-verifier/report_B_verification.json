@@ -1,0 +1,55 @@
+{
+  "overall": "fail",
+  "report": "reports/report_B.docx",
+  "draft": true,
+  "checks": [
+    {
+      "id": "R01",
+      "name": "trace",
+      "status": "fail",
+      "details": [
+        "position 8: report shows '\u20a932,462,800', provenance '\u20a932,462,855'"
+      ]
+    },
+    {
+      "id": "R02",
+      "name": "rounding",
+      "status": "pass",
+      "details": []
+    },
+    {
+      "id": "R03",
+      "name": "claims",
+      "status": "pass",
+      "details": []
+    },
+    {
+      "id": "R04",
+      "name": "jurisdiction",
+      "status": "fail",
+      "details": [
+        "block 29 (3. Methods): NICE reference case"
+      ]
+    },
+    {
+      "id": "R05",
+      "name": "retained",
+      "status": "fail",
+      "details": [
+        "prop_male (GAP-005): not listed in the report"
+      ]
+    },
+    {
+      "id": "R06",
+      "name": "status",
+      "status": "pass",
+      "details": []
+    },
+    {
+      "id": "R07",
+      "name": "currency",
+      "status": "pass",
+      "details": []
+    }
+  ]
+}

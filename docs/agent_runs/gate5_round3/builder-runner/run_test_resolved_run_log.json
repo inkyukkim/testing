@@ -1,0 +1,65 @@
+{
+  "started": "2026-11-05T01:56:08+00:00",
+  "spec": "approved_test_resolved/mapping_spec_resolved.json",
+  "inputs": {
+    "model": {
+      "path": "/home/user/testing/builder-runner/fixtures/global_model.xlsx",
+      "sha256": "27082831448502afa8e651cbb4d286f03fa01409c45019d94a5a8dd64b1d2a37"
+    },
+    "local_inputs": {
+      "path": "/home/user/testing/builder-runner/approved_test_resolved/adaptation_input_KR_resolved.xlsx",
+      "sha256": "27da8afac91d1f7b8aba35f77eb7516efc4cb43c4628333eacb8a3cc9f859663"
+    },
+    "gap_register": {
+      "path": "/home/user/testing/builder-runner/approved_test_resolved/gap_register_resolved.yaml",
+      "sha256": "7170678d08d811413e9785cea7d778af5e0e5d6d5905b3652e89dcc9828a2a5d"
+    },
+    "spec": {
+      "path": "approved_test_resolved/mapping_spec_resolved.json",
+      "sha256": "b089ff0da0c818ccfb464dd6a65bd1615daaea4543d2f563e6da922e0c0a12c9"
+    },
+    "conventions": {
+      "path": "/home/user/testing/builder-runner/fixtures/global_model.conventions.yaml",
+      "sha256": "fb05a908751416e9587ddbd934157b6d9729e927a7c00ef746814e4d9368876b"
+    }
+  },
+  "tools": {
+    "python": "3.13.18",
+    "openpyxl": "3.1.5",
+    "numpy": "2.5.3",
+    "libreoffice": "LibreOffice 24.2.7.2 420(Build:2)",
+    "registry_version": 1,
+    "git_commit": "fbe3f4e8f4e8c29cae7a2935a18be339a79729ae",
+    "git_dirty": true
+  },
+  "outputs": {
+    "adapted_model": {
+      "path": "work/run_test_resolved/adapted_model.xlsx",
+      "sha256": "aec7b6f5d275c32dbb623ac0ea7b75376e8abc94b3de4d506d81299eff02ff76"
+    },
+    "recalculated": {
+      "path": "/home/user/testing/builder-runner/work/run_test_resolved/recalc/adapted_model.xlsx",
+      "sha256": "f6f1b5fdb31e65cfd1e92eca92d55eac6bc9a64e0cb9807bffe72a273ba28d8b",
+      "note": "LibreOffice output embeds timestamps; hash identifies this run only"
+    },
+    "overrides": {
+      "path": "work/run_test_resolved/overrides.json",
+      "sha256": "ac1cbe26f79c0ad70fd01a38ce6ba6d76668c8ab864c5661a35c0f42010a4ffd"
+    }
+  },
+  "base_case": {
+    "res_icer": 32462854.965951,
+    "res_inc_total_cost": 29583081.6642301,
+    "res_inc_qaly_disc": 0.911290202148228,
+    "res_inc_ly_disc": 1.31113869210666,
+    "res_inc_nmb": 15981428.4431813,
+    "res_int_total_cost": 61876505.1575671,
+    "res_comp_total_cost": 32293423.493337,
+    "res_int_qaly_disc": 1.76425172857616,
+    "res_comp_qaly_disc": 0.852961526427931,
+    "res_below_wtp": "Yes",
+    "res_dominance": "More costly, more effective"
+  },
+  "status": "built",
+  "finished": "2026-11-05T01:56:20+00:00"
+}

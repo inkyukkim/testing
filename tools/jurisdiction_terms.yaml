@@ -1,0 +1,15 @@
+# Versioned list of jurisdiction-specific terms, read by tools/jurisdiction_lint.py.
+# Report Profiler: find them in the global report. Report Verifier: none may remain in a
+# localised report outside the References (unless a claim register entry allows it).
+version: 1
+jurisdictions:
+  UK:
+    agency: ["NICE", "National Institute for Health and Care Excellence", "NICE reference case",
+             "Decision Support Unit", "DSU"]
+    payer: ["NHS", "Personal Social Services", "PSS", "commissioning"]
+    pricing: ["patient access scheme", "PAS"]
+    unit_cost_source: ["eMIT", "electronic market information tool", "PSSRU", "NHS reference costs",
+                       "national reference costs"]
+    value_set: ["UK time trade-off value set", "UK value set", "UK population norms"]
+    currency: ["£", "GBP"]
+    geography: ["England", "United Kingdom", "UK"]

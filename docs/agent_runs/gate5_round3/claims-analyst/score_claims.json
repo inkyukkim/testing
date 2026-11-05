@@ -1,0 +1,92 @@
+{
+ "key_claims": 22,
+ "candidate_claims": 53,
+ "matched": 21,
+ "recall": 0.9545454545454546,
+ "precision": 0.39622641509433965,
+ "kind_agreement": 1.0,
+ "action_agreement": 0.9047619047619048,
+ "truth_agreement": 1.0,
+ "missed_key_claims": [
+  "C13"
+ ],
+ "extra_candidate_claims": [
+  "C01",
+  "C03",
+  "C04",
+  "C09",
+  "C11",
+  "C12",
+  "C14",
+  "C15",
+  "C16",
+  "C19",
+  "C20",
+  "C22",
+  "C23",
+  "C24",
+  "C27",
+  "C28",
+  "C29",
+  "C33",
+  "C35",
+  "C37",
+  "C38",
+  "C39",
+  "C40",
+  "C41",
+  "C42",
+  "C45",
+  "C46",
+  "C47",
+  "C48",
+  "C49",
+  "C51",
+  "C52"
+ ],
+ "critical": [],
+ "differences": [
+  {
+   "key": "C02",
+   "candidate": "C05",
+   "block": 7,
+   "kind": [
+    "threshold_comparison",
+    "threshold_comparison"
+   ],
+   "action": [
+    "reword",
+    "rerender"
+   ],
+   "truth_global": [
+    true,
+    true
+   ],
+   "truth_local": [
+    true,
+    true
+   ]
+  },
+  {
+   "key": "C21",
+   "candidate": "C50",
+   "block": 288,
+   "kind": [
+    "jurisdiction_specific",
+    "jurisdiction_specific"
+   ],
+   "action": [
+    "reword",
+    "human_review"
+   ],
+   "truth_global": [
+    "not_evaluable",
+    "not_evaluable"
+   ],
+   "truth_local": [
+    "not_evaluable",
+    "not_evaluable"
+   ]
+  }
+ ]
+}

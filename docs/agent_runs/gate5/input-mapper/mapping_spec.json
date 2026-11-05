@@ -1,0 +1,706 @@
+{
+  "schema_version": 1,
+  "note": "Input Mapper output for the Korean adaptation; references and declared operations only.",
+  "model": "fixtures/global_model.xlsx",
+  "local_inputs": "fixtures/adaptation_input_KR.xlsx",
+  "gap_register": "work/gap_register.yaml",
+  "mappings": [
+    {
+      "target": "country",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-S01"
+      },
+      "rationale": "Country of the adaptation from KR-S01."
+    },
+    {
+      "target": "currency_code",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-S02"
+      },
+      "rationale": "Currency KRW from KR-S02; all currency inputs are remapped from local sources, none converted."
+    },
+    {
+      "target": "price_year",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-S03"
+      },
+      "rationale": "Local price year from KR-S03."
+    },
+    {
+      "target": "perspective",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-S04"
+      },
+      "rationale": "Korean healthcare system perspective (insurer plus out-of-pocket, total cost) from KR-S04."
+    },
+    {
+      "target": "dr_costs",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-S05"
+      },
+      "rationale": "Korean guideline discount rate for costs from KR-S05 (note asks to verify against the current guideline)."
+    },
+    {
+      "target": "dr_outcomes",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-S06"
+      },
+      "rationale": "Korean guideline discount rate for outcomes from KR-S06 (note asks to verify against the current guideline)."
+    },
+    {
+      "target": "wtp_threshold",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-S07"
+      },
+      "rationale": "Korean reference ICER threshold from KR-S07; a reference value, not an official threshold."
+    },
+    {
+      "target": "wtp_threshold_lower",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-S07"
+      },
+      "rationale": "Korea has a single reference threshold instead of a range, so the lower bound is mapped from the same item KR-S07 (decision D09); the global bound is not kept."
+    },
+    {
+      "target": "cycle_length_days",
+      "status": "retained",
+      "operation": "retain_global",
+      "basis": "structural_setting",
+      "rationale": "Model cycle length is a structural setting of the global model; not a local input."
+    },
+    {
+      "target": "days_per_year",
+      "status": "retained",
+      "operation": "retain_global",
+      "basis": "structural_setting",
+      "rationale": "Calendar convention of the model; the per-month conversion of KR-C09 and KR-C10 is cross-checked against it by the tool."
+    },
+    {
+      "target": "time_horizon_years",
+      "status": "retained",
+      "operation": "retain_global",
+      "basis": "structural_setting",
+      "rationale": "KR-S08 states a lifetime horizon and asks to retain the global one; the label does not confirm the number of years, so it is retained as a structural setting."
+    },
+    {
+      "target": "lifetime_check_tol",
+      "status": "retained",
+      "operation": "retain_global",
+      "basis": "structural_setting",
+      "rationale": "QA tolerance of the model check, not a country input."
+    },
+    {
+      "target": "use_gpm_cap",
+      "status": "retained",
+      "operation": "retain_global",
+      "basis": "structural_setting",
+      "rationale": "Switch of the general-population mortality cap; base-case method choice retained (the cap now uses the Korean life table)."
+    },
+    {
+      "target": "use_age_util_adj",
+      "status": "retained",
+      "operation": "retain_global",
+      "basis": "structural_setting",
+      "rationale": "Switch of the utility age adjustment; base-case method choice retained (norms retained under GAP-006)."
+    },
+    {
+      "target": "psa_seed",
+      "status": "retained",
+      "operation": "retain_global",
+      "basis": "structural_setting",
+      "rationale": "PSA control setting on the placeholder sheet; not a country input."
+    },
+    {
+      "target": "psa_iterations",
+      "status": "retained",
+      "operation": "retain_global",
+      "basis": "structural_setting",
+      "rationale": "PSA control setting on the placeholder sheet; not a country input."
+    },
+    {
+      "target": "baseline_age",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-003",
+      "rationale": "No Korean baseline age supplied; trial baseline retained and flagged (GAP-003)."
+    },
+    {
+      "target": "prop_male",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-004",
+      "rationale": "KR-P03 is empty with a note that the trial population is assumed; retained and flagged (GAP-004)."
+    },
+    {
+      "target": "weight_mean_kg",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-P01"
+      },
+      "rationale": "Korean mean body weight of adults with advanced disease from KR-P01; drives mg/kg vial use."
+    },
+    {
+      "target": "weight_sd_kg",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-P02"
+      },
+      "rationale": "Korean SD of body weight from KR-P02; used in the lognormal vial calculation."
+    },
+    {
+      "target": "int_pfs_shape",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-002",
+      "rationale": "Trial efficacy or exposure parameter; transferable, retained global value tagged as a retained global input (GAP-002), as the Overview sheet instructs."
+    },
+    {
+      "target": "int_pfs_scale",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-002",
+      "rationale": "Trial efficacy or exposure parameter; transferable, retained global value tagged as a retained global input (GAP-002), as the Overview sheet instructs."
+    },
+    {
+      "target": "int_pfs_corr",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-002",
+      "rationale": "Trial efficacy or exposure parameter; transferable, retained global value tagged as a retained global input (GAP-002), as the Overview sheet instructs."
+    },
+    {
+      "target": "int_os_shape",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-002",
+      "rationale": "Trial efficacy or exposure parameter; transferable, retained global value tagged as a retained global input (GAP-002), as the Overview sheet instructs."
+    },
+    {
+      "target": "int_os_scale",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-002",
+      "rationale": "Trial efficacy or exposure parameter; transferable, retained global value tagged as a retained global input (GAP-002), as the Overview sheet instructs."
+    },
+    {
+      "target": "int_os_corr",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-002",
+      "rationale": "Trial efficacy or exposure parameter; transferable, retained global value tagged as a retained global input (GAP-002), as the Overview sheet instructs."
+    },
+    {
+      "target": "int_tot_shape",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-002",
+      "rationale": "Trial efficacy or exposure parameter; transferable, retained global value tagged as a retained global input (GAP-002), as the Overview sheet instructs."
+    },
+    {
+      "target": "int_tot_scale",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-002",
+      "rationale": "Trial efficacy or exposure parameter; transferable, retained global value tagged as a retained global input (GAP-002), as the Overview sheet instructs."
+    },
+    {
+      "target": "int_tot_corr",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-002",
+      "rationale": "Trial efficacy or exposure parameter; transferable, retained global value tagged as a retained global input (GAP-002), as the Overview sheet instructs."
+    },
+    {
+      "target": "int_p_death_first_pfs",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-002",
+      "rationale": "Trial efficacy or exposure parameter; transferable, retained global value tagged as a retained global input (GAP-002), as the Overview sheet instructs."
+    },
+    {
+      "target": "int_rdi",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-002",
+      "rationale": "Trial efficacy or exposure parameter; transferable, retained global value tagged as a retained global input (GAP-002), as the Overview sheet instructs."
+    },
+    {
+      "target": "comp_pfs_shape",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-002",
+      "rationale": "Trial efficacy or exposure parameter; transferable, retained global value tagged as a retained global input (GAP-002), as the Overview sheet instructs."
+    },
+    {
+      "target": "comp_pfs_scale",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-002",
+      "rationale": "Trial efficacy or exposure parameter; transferable, retained global value tagged as a retained global input (GAP-002), as the Overview sheet instructs."
+    },
+    {
+      "target": "comp_pfs_corr",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-002",
+      "rationale": "Trial efficacy or exposure parameter; transferable, retained global value tagged as a retained global input (GAP-002), as the Overview sheet instructs."
+    },
+    {
+      "target": "comp_os_shape",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-002",
+      "rationale": "Trial efficacy or exposure parameter; transferable, retained global value tagged as a retained global input (GAP-002), as the Overview sheet instructs."
+    },
+    {
+      "target": "comp_os_scale",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-002",
+      "rationale": "Trial efficacy or exposure parameter; transferable, retained global value tagged as a retained global input (GAP-002), as the Overview sheet instructs."
+    },
+    {
+      "target": "comp_os_corr",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-002",
+      "rationale": "Trial efficacy or exposure parameter; transferable, retained global value tagged as a retained global input (GAP-002), as the Overview sheet instructs."
+    },
+    {
+      "target": "comp_tot_shape",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-002",
+      "rationale": "Trial efficacy or exposure parameter; transferable, retained global value tagged as a retained global input (GAP-002), as the Overview sheet instructs."
+    },
+    {
+      "target": "comp_tot_scale",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-002",
+      "rationale": "Trial efficacy or exposure parameter; transferable, retained global value tagged as a retained global input (GAP-002), as the Overview sheet instructs."
+    },
+    {
+      "target": "comp_tot_corr",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-002",
+      "rationale": "Trial efficacy or exposure parameter; transferable, retained global value tagged as a retained global input (GAP-002), as the Overview sheet instructs."
+    },
+    {
+      "target": "comp_p_death_first_pfs",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-002",
+      "rationale": "Trial efficacy or exposure parameter; transferable, retained global value tagged as a retained global input (GAP-002), as the Overview sheet instructs."
+    },
+    {
+      "target": "comp_rdi",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-002",
+      "rationale": "Trial efficacy or exposure parameter; transferable, retained global value tagged as a retained global input (GAP-002), as the Overview sheet instructs."
+    },
+    {
+      "target": "int_dose_weight_based",
+      "status": "retained",
+      "operation": "retain_global",
+      "basis": "confirmed_by_local_text",
+      "confirm_in_source": {
+        "item": "KR-C02",
+        "field": "unit",
+        "pattern": "mg/kg"
+      },
+      "rationale": "Switch for weight-based dosing; the Korean label dose KR-C02 is stated in mg/kg, confirming weight-based dosing."
+    },
+    {
+      "target": "int_dose_mg",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-C02"
+      },
+      "rationale": "Drug A dose per kg from the Korean label, KR-C02 (no vial sharing, as in the model)."
+    },
+    {
+      "target": "int_vial_mg",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-C03"
+      },
+      "rationale": "Drug A vial size from the Korean label, KR-C03."
+    },
+    {
+      "target": "int_vial_price",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-C01"
+      },
+      "rationale": "Drug A price per vial from the Korean drug list, KR-C01. The global input is a net confidential-discount price; KR-C15 states no risk-sharing agreement applies, so the local list price is the correct local price."
+    },
+    {
+      "target": "int_admin_cost_per_admin",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-C08"
+      },
+      "rationale": "Korean chemotherapy infusion fee per visit, KR-C08, which applies to both arms."
+    },
+    {
+      "target": "int_admin_interval_weeks",
+      "status": "retained",
+      "operation": "retain_global",
+      "basis": "confirmed_by_local_text",
+      "confirm_in_source": {
+        "item": "KR-C04",
+        "field": "value",
+        "pattern": "Q{value}W"
+      },
+      "rationale": "Korean label schedule KR-C04 states the same three-weekly interval as the model; retained and checked against the text."
+    },
+    {
+      "target": "int_max_doses",
+      "status": "mapped",
+      "operation": "duration_to_doses",
+      "args": {
+        "source": "KR-C05",
+        "interval_weeks_from": "int_admin_interval_weeks",
+        "rule": "doses_starting_within"
+      },
+      "rationale": "Korean reimbursement caps Drug A treatment at a maximum duration in years (KR-C05); converted to a dose count with the model administration interval. Rule doses_starting_within: the first dose is at time zero, so every dose starting within the reimbursed period is counted."
+    },
+    {
+      "target": "int_ae_cost",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-C12"
+      },
+      "rationale": "Korean Drug A adverse event cost (one-off), KR-C12."
+    },
+    {
+      "target": "comp_dose_weight_based",
+      "status": "retained",
+      "operation": "retain_global",
+      "basis": "confirmed_by_local_text",
+      "confirm_in_source": {
+        "item": "KR-C07",
+        "field": "value",
+        "pattern": "mg flat"
+      },
+      "rationale": "Switch for weight-based dosing; KR-C07 states a flat dose, confirming flat dosing for Drug B."
+    },
+    {
+      "target": "comp_dose_mg",
+      "status": "retained",
+      "operation": "retain_global",
+      "basis": "confirmed_by_local_text",
+      "confirm_in_source": {
+        "item": "KR-C07",
+        "field": "value",
+        "pattern": "{value} mg flat"
+      },
+      "rationale": "Drug B flat dose stated in the Korean schedule KR-C07 equals the model value; retained and checked against the text."
+    },
+    {
+      "target": "comp_vial_mg",
+      "status": "retained",
+      "operation": "retain_global",
+      "basis": "confirmed_by_local_text",
+      "confirm_in_source": {
+        "item": "KR-C06",
+        "field": "item",
+        "pattern": "({value} mg)"
+      },
+      "rationale": "Drug B vial size is stated in the label of the Korean price item KR-C06 and equals the model value; retained and checked against the item label."
+    },
+    {
+      "target": "comp_vial_price",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-C06"
+      },
+      "rationale": "Drug B price per vial from the Korean drug list, KR-C06."
+    },
+    {
+      "target": "comp_admin_cost_per_admin",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-C08"
+      },
+      "rationale": "Korean chemotherapy infusion fee per visit, KR-C08, which applies to both arms."
+    },
+    {
+      "target": "comp_admin_interval_weeks",
+      "status": "retained",
+      "operation": "retain_global",
+      "basis": "confirmed_by_local_text",
+      "confirm_in_source": {
+        "item": "KR-C07",
+        "field": "value",
+        "pattern": "Q{value}W"
+      },
+      "rationale": "Korean schedule KR-C07 states the same three-weekly interval as the model; retained and checked against the text."
+    },
+    {
+      "target": "comp_max_doses",
+      "status": "retained",
+      "operation": "retain_global",
+      "basis": "confirmed_by_local_text",
+      "confirm_in_source": {
+        "item": "KR-C07",
+        "field": "value",
+        "pattern": "maximum {value} cycles"
+      },
+      "rationale": "Korean schedule KR-C07 states the same maximum number of treatment cycles (one dose per cycle) as the model dose cap; retained and checked against the text."
+    },
+    {
+      "target": "comp_ae_cost",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-C13"
+      },
+      "rationale": "Korean Drug B adverse event cost (one-off), KR-C13."
+    },
+    {
+      "target": "c_pf_week",
+      "status": "mapped",
+      "operation": "per_period_to_per_week",
+      "args": {
+        "source": "KR-C09",
+        "period": "month"
+      },
+      "rationale": "Korean progression-free state cost is per month (KR-C09); converted to per week by the tool from model days_per_year and the registry, cross-checked against the month length stated in the unit."
+    },
+    {
+      "target": "c_pd_week",
+      "status": "mapped",
+      "operation": "per_period_to_per_week",
+      "args": {
+        "source": "KR-C10",
+        "period": "month"
+      },
+      "rationale": "Korean progressed disease state cost is per month (KR-C10); converted to per week by the tool from model days_per_year and the registry, cross-checked against the month length stated in the unit."
+    },
+    {
+      "target": "c_terminal",
+      "status": "gap",
+      "gap_id": "GAP-001",
+      "rationale": "Korean terminal care cost KR-C11 is missing; a non-transferable local unit cost, so the pipeline is blocked (GAP-001). No UK value, conversion or zero."
+    },
+    {
+      "target": "st_cost_1",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-T01"
+      },
+      "rationale": "Model category docetaxel-based chemotherapy corresponds to the Korean category docetaxel, KR-T01 (drug plus administration per course)."
+    },
+    {
+      "target": "st_cost_2",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-T02"
+      },
+      "rationale": "Model category immunotherapy corresponds to the Korean category immune checkpoint inhibitor, KR-T02."
+    },
+    {
+      "target": "st_cost_3",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-T03"
+      },
+      "rationale": "Model category other targeted therapy corresponds to the Korean category other targeted agents, KR-T03."
+    },
+    {
+      "target": "int_st_share_1",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-T04"
+      },
+      "rationale": "Share of Drug A progressors receiving docetaxel, Korean expert panel KR-T04."
+    },
+    {
+      "target": "int_st_share_2",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-T05"
+      },
+      "rationale": "Share of Drug A progressors receiving an immune checkpoint inhibitor, KR-T05 (IO re-treatment not reimbursed in Korea)."
+    },
+    {
+      "target": "int_st_share_3",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-T06"
+      },
+      "rationale": "Share of Drug A progressors receiving other targeted agents, KR-T06."
+    },
+    {
+      "target": "comp_st_share_1",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-T07"
+      },
+      "rationale": "Share of Drug B progressors receiving docetaxel, KR-T07."
+    },
+    {
+      "target": "comp_st_share_2",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-T08"
+      },
+      "rationale": "Share of Drug B progressors receiving an immune checkpoint inhibitor, KR-T08."
+    },
+    {
+      "target": "comp_st_share_3",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-T09"
+      },
+      "rationale": "Share of Drug B progressors receiving other targeted agents, KR-T09."
+    },
+    {
+      "target": "u_pf",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-U01"
+      },
+      "rationale": "Korean progression-free utility, EQ-5D-5L Korean value set, KR-U01."
+    },
+    {
+      "target": "u_pd",
+      "status": "mapped",
+      "operation": "copy",
+      "args": {
+        "source": "KR-U02"
+      },
+      "rationale": "Korean progressed disease utility, EQ-5D-5L Korean value set, KR-U02."
+    },
+    {
+      "target": "int_ae_qaly_loss",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-005",
+      "rationale": "KR-U03 empty; global AE QALY loss retained and flagged (GAP-005)."
+    },
+    {
+      "target": "comp_ae_qaly_loss",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-005",
+      "rationale": "KR-U03 empty; global AE QALY loss retained and flagged (GAP-005)."
+    },
+    {
+      "target": "gpu_intercept",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-006",
+      "rationale": "Korean population utility norms KR-U04 not supplied; UK norms coefficient retained and flagged (GAP-006)."
+    },
+    {
+      "target": "gpu_male",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-006",
+      "rationale": "Korean population utility norms KR-U04 not supplied; UK norms coefficient retained and flagged (GAP-006)."
+    },
+    {
+      "target": "gpu_age",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-006",
+      "rationale": "Korean population utility norms KR-U04 not supplied; UK norms coefficient retained and flagged (GAP-006)."
+    },
+    {
+      "target": "gpu_age2",
+      "status": "retained",
+      "operation": "retain_global",
+      "gap_id": "GAP-006",
+      "rationale": "Korean population utility norms KR-U04 not supplied; UK norms coefficient retained and flagged (GAP-006)."
+    },
+    {
+      "target": "lt_age",
+      "status": "retained",
+      "operation": "retain_global",
+      "basis": "structural_setting",
+      "rationale": "Single-year age index of the model life table; structure retained, local rates are mapped onto it."
+    },
+    {
+      "target": "lt_qx_male",
+      "status": "mapped",
+      "operation": "mx_to_qx",
+      "args": {
+        "source": "KR-L01",
+        "method": "exponential",
+        "open_band": "carry_last_rate"
+      },
+      "rationale": "Korean male central death rates KR-L01 converted to qx by the exponential method (constant hazard within each year of age), open top band rate carried to older model ages; partial gap GAP-007.",
+      "gap_id": "GAP-007"
+    },
+    {
+      "target": "lt_qx_female",
+      "status": "mapped",
+      "operation": "mx_to_qx",
+      "args": {
+        "source": "KR-L02",
+        "method": "exponential",
+        "open_band": "carry_last_rate"
+      },
+      "rationale": "Korean female central death rates KR-L02 converted to qx by the exponential method (constant hazard within each year of age), open top band rate carried to older model ages; partial gap GAP-007.",
+      "gap_id": "GAP-007"
+    }
+  ],
+  "unused_local_items": [
+    {
+      "item": "KR-S08",
+      "reason": "Text label confirming a lifetime horizon; it does not state the number of years, so time_horizon_years is retained as a structural setting."
+    },
+    {
+      "item": "KR-S09",
+      "reason": "Reference exchange rate, marked for information only; using it to convert global inputs is prohibited."
+    },
+    {
+      "item": "KR-C14",
+      "reason": "Patient co-payment rate is informational; the perspective counts total cost regardless of payer, and the model has no co-payment input."
+    },
+    {
+      "item": "KR-C15",
+      "reason": "States that no risk-sharing agreement applies (list prices); supports using list prices KR-C01 and KR-C06, no model input of its own."
+    }
+  ]
+}

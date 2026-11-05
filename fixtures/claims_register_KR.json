@@ -1,0 +1,486 @@
+{
+  "schema_version": 1,
+  "note": "Answer key: expected Claims Analyst output for the KR adaptation of the UK report (synthetic). Truth values are filled by tools/claims.py.",
+  "report": "fixtures/global_report_UK.docx",
+  "model": "fixtures/global_model.xlsx",
+  "local_context": {
+    "country": "Republic of Korea",
+    "jurisdiction_from": "UK",
+    "adapted_model": "pending"
+  },
+  "claims": [
+    {
+      "claim_id": "C01",
+      "block": 5,
+      "excerpt": "from the perspective of the NHS and Personal Social Services",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "action": "reword",
+      "rationale": "Perspective becomes the local healthcare-system perspective (KR-S04).",
+      "jurisdiction_terms": [
+        "NHS",
+        "Personal Social Services",
+        "PSS",
+        "England"
+      ]
+    },
+    {
+      "claim_id": "C02",
+      "block": 7,
+      "excerpt": "Drug A is cost-effective",
+      "kind": "threshold_comparison",
+      "expression": {
+        "op": "all",
+        "of": [
+          {
+            "op": "sign",
+            "ref": "res_inc_qaly_disc",
+            "sign": "positive"
+          },
+          {
+            "op": "le",
+            "lhs": "res_icer",
+            "rhs": "wtp_threshold"
+          }
+        ]
+      },
+      "action": "reword",
+      "rationale": "Truth re-evaluated against the local reference value; the NICE range wording does not apply.",
+      "jurisdiction_terms": [
+        "NICE"
+      ]
+    },
+    {
+      "claim_id": "C03",
+      "block": 7,
+      "excerpt": "Drug A is not cost-effective",
+      "kind": "threshold_comparison",
+      "expression": {
+        "op": "gt",
+        "lhs": "res_icer",
+        "rhs": "wtp_threshold_lower"
+      },
+      "action": "remove",
+      "rationale": "The local setting has a single reference value, not a range (D09); a lower-bound statement has no meaning there."
+    },
+    {
+      "claim_id": "C04",
+      "block": 8,
+      "excerpt": "the ICER was most sensitive to",
+      "kind": "sensitivity_ranking",
+      "expression": {
+        "op": "rank_abs_change",
+        "refs": [
+          "res_icer@SC1",
+          "res_icer@SC2",
+          "res_icer@SC3",
+          "res_icer@SC4",
+          "res_icer@SC5",
+          "res_icer@SC6",
+          "res_icer@SC7",
+          "res_icer@SC8"
+        ],
+        "base": "res_icer",
+        "expect_order": [
+          "res_icer@SC4",
+          "res_icer@SC8"
+        ]
+      },
+      "action": "human_review",
+      "rationale": "The global scenario set holds UK-specific values (e.g. the NICE non-reference discount rate); a local scenario set must be specified before rankings are regenerated."
+    },
+    {
+      "claim_id": "C05",
+      "block": 10,
+      "excerpt": "is assumed to be the established standard of care in the NHS",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "action": "human_review",
+      "rationale": "Whether the comparator is the local standard of care is a clinical question for local experts; it determines whether the comparison is relevant at all.",
+      "jurisdiction_terms": [
+        "NHS"
+      ]
+    },
+    {
+      "claim_id": "C06",
+      "block": 26,
+      "excerpt": "The analysis follows the NICE reference case",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "action": "reword",
+      "rationale": "Replace with the local guideline and perspective (KR-S04).",
+      "jurisdiction_terms": [
+        "NICE reference case",
+        "NHS",
+        "PAS"
+      ]
+    },
+    {
+      "claim_id": "C07",
+      "block": 26,
+      "excerpt": "A confidential patient access scheme (PAS) discount is applied",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "action": "remove",
+      "rationale": "Local list prices are used and no risk-sharing agreement applies (KR-C15).",
+      "jurisdiction_terms": [
+        "patient access scheme",
+        "PAS"
+      ]
+    },
+    {
+      "claim_id": "C08",
+      "block": 34,
+      "excerpt": "following the NICE Decision Support Unit guidance on survival analysis",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "action": "reword",
+      "rationale": "Keep as a methods citation, not as an agency requirement; cite the local guideline's survival-analysis expectations alongside it.",
+      "jurisdiction_terms": [
+        "NICE",
+        "Decision Support Unit"
+      ]
+    },
+    {
+      "claim_id": "C09",
+      "block": 64,
+      "excerpt": "The fitted PFS and OS curves did not cross in either arm",
+      "kind": "model_check",
+      "expression": {
+        "op": "all",
+        "of": [
+          {
+            "op": "sign",
+            "ref": "check_cross_int",
+            "sign": "zero"
+          },
+          {
+            "op": "sign",
+            "ref": "check_cross_comp",
+            "sign": "zero"
+          }
+        ]
+      },
+      "action": "rerender",
+      "rationale": "Efficacy is retained, so the check is expected to hold; the renderer re-checks it locally."
+    },
+    {
+      "claim_id": "C10",
+      "block": 69,
+      "excerpt": "The cost of Drug B was taken from the electronic market information tool",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "action": "reword",
+      "rationale": "Cost sources become the local sources recorded in the input workbook (Source column).",
+      "jurisdiction_terms": [
+        "eMIT",
+        "PSSRU",
+        "NHS reference costs",
+        "PAS"
+      ]
+    },
+    {
+      "claim_id": "C11",
+      "block": 70,
+      "excerpt": "All costs are in GBP",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "action": "reword",
+      "rationale": "Currency and price year come from the local inputs (KR-S02, KR-S03).",
+      "jurisdiction_terms": [
+        "GBP"
+      ]
+    },
+    {
+      "claim_id": "C12",
+      "block": 131,
+      "excerpt": "valued using the UK time trade-off value set",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "action": "reword",
+      "rationale": "Local state utilities use the Korean value set (KR-U01, KR-U02); the retained UK AE disutility and population norms must be tagged as retained (GAP-002, GAP-003).",
+      "jurisdiction_terms": [
+        "UK time trade-off value set",
+        "NICE reference case",
+        "UK population norms"
+      ]
+    },
+    {
+      "claim_id": "C13",
+      "block": 152,
+      "excerpt": "PSA results are not included in this version",
+      "kind": "scope_statement",
+      "expression": null,
+      "action": "rerender",
+      "rationale": "Scope unchanged in the adaptation."
+    },
+    {
+      "claim_id": "C14",
+      "block": 181,
+      "excerpt": "may differ slightly from values recalculated",
+      "kind": "rounding_disclosure",
+      "expression": null,
+      "action": "rerender",
+      "rationale": "The renderer re-runs the rounding-interval check on the local tables and keeps the note only if required."
+    },
+    {
+      "claim_id": "C15",
+      "block": 184,
+      "excerpt": "The largest single contributor to incremental costs was",
+      "kind": "ranking",
+      "expression": {
+        "op": "argmax",
+        "refs": [
+          "res_inc_cost_drug",
+          "res_inc_cost_admin",
+          "res_inc_cost_pf_state",
+          "res_inc_cost_pd_state",
+          "res_inc_cost_terminal",
+          "res_inc_cost_st",
+          "res_inc_cost_ae"
+        ],
+        "expect": "res_inc_cost_drug"
+      },
+      "action": "regenerate",
+      "rationale": "Rebuilt from the local cost breakdown."
+    },
+    {
+      "claim_id": "C16",
+      "block": 184,
+      "excerpt": "partially offset its higher costs in other categories",
+      "kind": "ranking",
+      "expression": {
+        "op": "select",
+        "refs": [
+          "res_inc_cost_st",
+          "res_inc_cost_ae",
+          "res_inc_cost_terminal",
+          "res_inc_cost_drug",
+          "res_inc_cost_admin",
+          "res_inc_cost_pf_state",
+          "res_inc_cost_pd_state"
+        ],
+        "where": {
+          "op": "sign",
+          "sign": "negative"
+        },
+        "expect": [
+          "res_inc_cost_st",
+          "res_inc_cost_ae",
+          "res_inc_cost_terminal"
+        ]
+      },
+      "action": "regenerate",
+      "rationale": "Rebuilt from the signs of the local incremental costs."
+    },
+    {
+      "claim_id": "C17",
+      "block": 223,
+      "excerpt": "had the largest effect on the ICER",
+      "kind": "sensitivity_ranking",
+      "expression": {
+        "op": "all",
+        "of": [
+          {
+            "op": "rank_abs_change",
+            "refs": [
+              "res_icer@SC1",
+              "res_icer@SC2",
+              "res_icer@SC3",
+              "res_icer@SC4",
+              "res_icer@SC5",
+              "res_icer@SC6",
+              "res_icer@SC7",
+              "res_icer@SC8"
+            ],
+            "base": "res_icer",
+            "expect_order": [
+              "res_icer@SC4",
+              "res_icer@SC8",
+              "res_icer@SC3"
+            ]
+          },
+          {
+            "op": "select",
+            "refs": [
+              "res_icer@SC1",
+              "res_icer@SC2",
+              "res_icer@SC3",
+              "res_icer@SC4",
+              "res_icer@SC5",
+              "res_icer@SC6",
+              "res_icer@SC7",
+              "res_icer@SC8"
+            ],
+            "where": {
+              "op": "lt",
+              "rhs": "res_icer"
+            },
+            "expect": [
+              "res_icer@SC1",
+              "res_icer@SC6",
+              "res_icer@SC7"
+            ]
+          }
+        ]
+      },
+      "action": "human_review",
+      "rationale": "Depends on a local scenario set (see C03)."
+    },
+    {
+      "claim_id": "C18",
+      "block": 275,
+      "excerpt": "remained below it in all other scenarios",
+      "kind": "threshold_comparison",
+      "expression": {
+        "op": "select",
+        "refs": [
+          "res_below_wtp@SC1",
+          "res_below_wtp@SC2",
+          "res_below_wtp@SC3",
+          "res_below_wtp@SC4",
+          "res_below_wtp@SC5",
+          "res_below_wtp@SC6",
+          "res_below_wtp@SC7",
+          "res_below_wtp@SC8"
+        ],
+        "where": {
+          "op": "ne",
+          "rhs": {
+            "text": "Yes"
+          }
+        },
+        "expect": [
+          "res_below_wtp@SC3",
+          "res_below_wtp@SC4",
+          "res_below_wtp@SC5",
+          "res_below_wtp@SC8"
+        ]
+      },
+      "action": "human_review",
+      "rationale": "Depends on a local scenario set and the local reference value."
+    },
+    {
+      "claim_id": "C19",
+      "block": 278,
+      "excerpt": "its effect on the ICER was negligible",
+      "kind": "magnitude_judgement",
+      "expression": {
+        "op": "rel_change_below",
+        "a": "res_icer@SC6",
+        "b": "res_icer",
+        "tol": {
+          "registry": "negligible_rel_change"
+        }
+      },
+      "action": "human_review",
+      "rationale": "Under a Korean life table the cap may bind differently; the no-cap scenario must be run on the adapted model (switch via registry) before the wording is chosen."
+    },
+    {
+      "claim_id": "C20",
+      "block": 279,
+      "excerpt": "Modelled medians were within the confidence intervals",
+      "kind": "external_assertion_untraceable",
+      "expression": {
+        "op": "external"
+      },
+      "action": "human_review",
+      "rationale": "Refers to trial Kaplan-Meier confidence intervals that are not in the model; the efficacy is retained, so the statement can stay only if a person confirms the source."
+    },
+    {
+      "claim_id": "C21",
+      "block": 288,
+      "excerpt": "should be reflected in the commissioning arrangements",
+      "kind": "jurisdiction_specific",
+      "expression": null,
+      "action": "reword",
+      "rationale": "Commissioning is an NHS concept; the local equivalent is the reimbursement criteria (KR-C05).",
+      "jurisdiction_terms": [
+        "commissioning"
+      ]
+    },
+    {
+      "claim_id": "C22",
+      "block": 290,
+      "excerpt": "Drug A can therefore be considered a cost-effective option",
+      "kind": "overall_conclusion",
+      "expression": {
+        "op": "all",
+        "of": [
+          {
+            "op": "sign",
+            "ref": "res_inc_qaly_disc",
+            "sign": "positive"
+          },
+          {
+            "op": "le",
+            "lhs": "res_icer",
+            "rhs": "wtp_threshold"
+          }
+        ]
+      },
+      "action": "reword",
+      "rationale": "Truth re-evaluated against the local reference value; the conclusion must not cite the NICE range or NHS resources.",
+      "jurisdiction_terms": [
+        "NICE",
+        "NHS",
+        "PAS"
+      ]
+    },
+    {
+      "claim_id": "C23",
+      "block": 281,
+      "excerpt": "driven mainly by longer overall survival",
+      "kind": "magnitude_judgement",
+      "expression": {
+        "op": "external"
+      },
+      "action": "human_review",
+      "rationale": "Attributes the QALY gain to overall survival; the model has no cell that splits the gain by health state, so a person must confirm the attribution on the adapted model or the phrase is dropped (D20)."
+    },
+    {
+      "claim_id": "C24",
+      "block": 290,
+      "excerpt": "This is below the threshold of £30,000 per QALY gained",
+      "kind": "threshold_comparison",
+      "expression": {
+        "op": "le",
+        "lhs": "res_icer",
+        "rhs": "wtp_threshold"
+      },
+      "action": "reword",
+      "rationale": "Truth re-evaluated against the local reference value; it is a reference value, not an official threshold (D09), and the figure is re-rendered in the local currency.",
+      "jurisdiction_terms": [
+        "£"
+      ]
+    },
+    {
+      "claim_id": "C25",
+      "block": 290,
+      "excerpt": "within the range of £20,000 to £30,000 per QALY that NICE normally considers to represent a cost-effective use of NHS resources",
+      "kind": "threshold_comparison",
+      "expression": {
+        "op": "all",
+        "of": [
+          {
+            "op": "ge",
+            "lhs": "res_icer",
+            "rhs": "wtp_threshold_lower"
+          },
+          {
+            "op": "le",
+            "lhs": "res_icer",
+            "rhs": "wtp_threshold"
+          }
+        ]
+      },
+      "action": "remove",
+      "rationale": "The local setting has a single reference value, not a range (D09), and the sentence cites NICE and NHS resources.",
+      "jurisdiction_terms": [
+        "NICE",
+        "NHS",
+        "£"
+      ]
+    }
+  ]
+}

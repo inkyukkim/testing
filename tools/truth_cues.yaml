@@ -1,0 +1,22 @@
+# Versioned list of wording whose truth depends on model results (read by tools/render_report.py
+# and tools/claims.py). In a report template such wording must sit inside a claim conditional
+# ({{if Cxx}}, {{ifnot Cxx}}, {{ifany Cxx}}), so a tool, not the writer, decides whether it stays.
+# Patterns are case-insensitive regular expressions; "#" stands for a rendered placeholder.
+version: 1
+cues:
+  - pattern: 'cost[- ]effective(?!ness)'
+    meaning: cost-effectiveness verdict
+  - pattern: '\bdominan\w*|\bdominat\w*'
+    meaning: dominance verdict
+  - pattern: '\bdriven\b[^.]{0,30}\bby\b'
+    meaning: attribution of a result to a component
+  - pattern: '\b(?:mainly|largely|primarily|predominantly)\b'
+    meaning: attribution of a result to a component
+  - pattern: '\b(?:most|least) (?:influential|sensitive)\b'
+    meaning: sensitivity ranking
+  - pattern: '\brobust\b'
+    meaning: robustness judgement
+  - pattern: '\bnegligibl\w*'
+    meaning: magnitude judgement
+  - pattern: '\b(?:increas|decreas|reduc|improv|lower|rais)\w*\b[^.]{0,80}?\bby #'
+    meaning: signed change (direction depends on the sign of a result)

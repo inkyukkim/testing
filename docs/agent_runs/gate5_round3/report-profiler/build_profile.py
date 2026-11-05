@@ -1,0 +1,147 @@
+import json
+ex=json.load(open('work/report_extract.json'));M=json.load(open('work/matches.json'))
+lint=json.load(open('work/jurisdiction_lint.json'))
+B="base"
+R={}  # idx -> (name, ctx, reason)
+def s(i,n,c,r): R[i]=(n,c,r)
+s(0,'time_horizon_years',B,'lifetime horizon in executive summary')
+s(1,'dr_costs',B,'single rate stated for costs and outcomes; costs named first, as in the scenario file setting display convention')
+for i,n in [(2,'res_int_total_cost'),(3,'res_int_qaly_disc'),(4,'res_comp_total_cost'),(5,'res_comp_qaly_disc'),
+            (6,'res_inc_total_cost'),(7,'res_inc_qaly_disc'),(8,'res_icer'),(10,'res_inc_nmb')]:
+    s(i,n,B,'sentence opens with in the base case; arm and measure from wording')
+s(9,'wtp_threshold',B,'upper end of NICE threshold range per QALY')
+s(11,'wtp_threshold_lower',B,'lower threshold per QALY')
+s(12,'int_admin_interval_weeks',B,'Drug A administered every N weeks')
+s(13,'int_admin_interval_weeks',B,'decision problem Intervention row: Drug A every N weeks')
+s(14,'comp_admin_interval_weeks',B,'decision problem Comparator row: Drug B every N weeks')
+s(15,'cycle_length_days',B,'cycle length in days')
+s(16,'time_horizon_years',B,'time horizon in years')
+s(17,'baseline_age',B,'mean starting age')
+s(18,'prop_male',B,'proportion male of cohort')
+s(19,'lifetime_check_tol',B,'proportion alive at end of horizon below tolerance')
+s(20,'dr_costs',B,'first of respectively pair: costs')
+s(21,'dr_outcomes',B,'second of respectively pair: outcomes')
+s(22,'int_pfs_shape',B,'Weibull table, Drug A PFS row, Shape column')
+s(23,'int_pfs_scale',B,'Weibull table, Drug A PFS row, Scale column')
+s(24,'res_int_median_pfs',B,'Weibull table, Drug A PFS row, Median column')
+s(25,'int_os_shape',B,'Drug A OS row, Shape column')
+s(26,'int_os_scale',B,'Drug A OS row, Scale column')
+s(27,'res_int_median_os',B,'Drug A OS row, Median column')
+s(28,'int_tot_shape',B,'Drug A ToT row, Shape column')
+s(29,'int_tot_scale',B,'Drug A ToT row, Scale column')
+s(30,'res_int_median_tot',B,'Drug A ToT row, Median column')
+s(31,'comp_pfs_shape',B,'Drug B PFS row, Shape column')
+s(32,'comp_pfs_scale',B,'Drug B PFS row, Scale column')
+s(33,'res_comp_median_pfs',B,'Drug B PFS row, Median column')
+s(34,'comp_os_shape',B,'Drug B OS row, Shape column')
+s(35,'comp_os_scale',B,'Drug B OS row, Scale column')
+s(36,'res_comp_median_os',B,'Drug B OS row, Median column')
+s(37,'comp_tot_shape',B,'Drug B ToT row, Shape column')
+s(38,'comp_tot_scale',B,'Drug B ToT row, Scale column')
+s(39,'res_comp_median_tot',B,'Drug B ToT row, Median column')
+s(40,'res_int_median_os',B,'median OS with Drug A')
+s(41,'res_comp_median_os',B,'median OS with Drug B')
+s(42,'res_int_median_pfs',B,'median PFS, first of respectively pair: Drug A')
+s(43,'res_comp_median_pfs',B,'median PFS, second of respectively pair: Drug B')
+s(44,'int_admin_interval_weeks',B,'Drug A given every N weeks')
+s(45,'int_max_doses',B,'Drug A maximum doses, stopping rule')
+s(46,'comp_admin_interval_weeks',B,'Drug B given every N weeks')
+s(47,'comp_max_doses',B,'Drug B maximum doses')
+s(48,'int_dose_mg',B,'Drug A dose per kg')
+s(49,'res_int_expected_vials',B,'expected vials per administration for Drug A; reported output cell preferred over intermediate calc cell')
+s(50,'weight_mean_kg',B,'body weight mean')
+s(51,'weight_sd_kg',B,'body weight standard deviation')
+s(52,'comp_dose_mg',B,'Drug B flat dose')
+s(53,'res_comp_expected_vials',B,'vials for Drug B flat dose; reported output cell preferred over intermediate calc cell')
+s(54,'int_rdi',B,'relative dose intensity for Drug A')
+s(55,'comp_rdi',B,'relative dose intensity for Drug B')
+s(56,'res_int_n_doses',B,'expected doses of Drug A')
+s(57,'res_comp_n_doses',B,'expected doses of Drug B')
+s(58,'price_year',B,'price year of costs')
+s(59,'int_vial_price',B,'Drug A vial price row')
+s(60,'res_int_drug_cost_per_admin',B,'Drug A drug cost per administration row; reported output cell preferred over calc cell')
+s(61,'comp_vial_price',B,'Drug B price per vial row')
+s(62,'res_comp_drug_cost_per_admin',B,'Drug B drug cost per administration row; reported output cell preferred over calc cell')
+s(63,'int_admin_cost_per_admin',B,'administration cost row for Drug A')
+s(64,'comp_admin_cost_per_admin',B,'administration cost row for Drug B')
+s(65,'c_pf_week',B,'PF health state cost row')
+s(66,'c_pd_week',B,'PD health state cost row')
+s(67,'c_terminal',B,'terminal care cost row')
+s(68,'int_ae_cost',B,'cost inputs table, AE row for Drug A: input not result')
+s(69,'comp_ae_cost',B,'cost inputs table, AE row for Drug B: input not result')
+s(70,'int_p_death_first_pfs',B,'share of PFS events that were deaths, Drug A')
+s(71,'comp_p_death_first_pfs',B,'share of PFS events that were deaths, Drug B')
+s(72,'st_cost_1',B,'docetaxel course cost')
+s(73,'int_st_share_1',B,'docetaxel share after Drug A')
+s(74,'comp_st_share_1',B,'docetaxel share after Drug B')
+s(75,'st_cost_2',B,'subsequent therapy table, Immunotherapy row, Course cost column: not the threshold')
+s(76,'int_st_share_2',B,'immunotherapy share after Drug A')
+s(77,'comp_st_share_2',B,'immunotherapy share after Drug B')
+s(78,'st_cost_3',B,'other targeted therapy course cost')
+s(79,'int_st_share_3',B,'other targeted share after Drug A')
+s(80,'comp_st_share_3',B,'other targeted share after Drug B')
+s(81,'res_int_st_cost_per_progression',B,'cost per progression, Drug A column; reported output cell preferred over calc cell')
+s(82,'res_comp_st_cost_per_progression',B,'cost per progression, Drug B column; reported output cell preferred over calc cell')
+s(83,'u_pf',B,'utility table PF row')
+s(84,'u_pd',B,'utility table PD row')
+s(85,'int_ae_qaly_loss',B,'AE QALY loss Drug A row')
+s(86,'comp_ae_qaly_loss',B,'AE QALY loss Drug B row: not a discount rate')
+s(87,'gpu_intercept',B,'population norms intercept row')
+s(88,'gpu_male',B,'population norms male coefficient')
+s(89,'gpu_age',B,'population norms age coefficient')
+s(90,'gpu_age2',B,'population norms age squared coefficient')
+for i,n in [(91,'res_inc_ly_disc'),(92,'res_inc_qaly_disc'),(93,'res_inc_total_cost'),(94,'res_icer'),(95,'res_icer_ly')]:
+    s(i,n,B,'base-case results paragraph; incremental measure from wording')
+T6={96:'res_int_total_cost',97:'res_comp_total_cost',98:'res_inc_total_cost',99:'res_int_ly_disc',100:'res_comp_ly_disc',
+    101:'res_inc_ly_disc',102:'res_int_qaly_disc',103:'res_comp_qaly_disc',104:'res_inc_qaly_disc',105:'res_icer',106:'res_inc_nmb'}
+for i,n in T6.items(): s(i,n,B,'base-case results table; row measure and arm column')
+s(107,'res_int_ly_undisc',B,'undiscounted life years with Drug A')
+s(108,'res_comp_ly_undisc',B,'undiscounted life years with Drug B, base case: not an incremental value')
+s(109,'res_int_drug_share',B,'drug acquisition share of total costs, Drug A arm, base case')
+s(110,'res_comp_drug_share',B,'drug acquisition share of total costs, Drug B arm, base case')
+s(111,'res_inc_cost_drug',B,'incremental drug acquisition cost')
+T7={112:'res_int_cost_drug',113:'res_comp_cost_drug',114:'res_inc_cost_drug',115:'res_int_cost_admin',116:'res_comp_cost_admin',
+    117:'res_inc_cost_admin',118:'res_int_cost_pf_state',119:'res_comp_cost_pf_state',120:'res_inc_cost_pf_state',
+    121:'res_int_cost_pd_state',122:'res_comp_cost_pd_state',123:'res_inc_cost_pd_state',124:'res_int_cost_terminal',
+    125:'res_comp_cost_terminal',126:'res_inc_cost_terminal',127:'res_int_cost_st',128:'res_comp_cost_st',129:'res_inc_cost_st',
+    130:'res_int_cost_ae',131:'res_comp_cost_ae',132:'res_inc_cost_ae',133:'res_int_total_cost',134:'res_comp_total_cost',135:'res_inc_total_cost'}
+for i,n in T7.items(): s(i,n,B,'disaggregated base-case cost table; row category and arm column (result, not input)')
+s(136,'res_inc_total_cost',B,'scenario table Base case row')
+s(137,'res_inc_qaly_disc',B,'scenario table Base case row')
+s(138,'res_icer',B,'scenario table Base case row')
+s(139,'dr_costs','SC1','lower discount rate scenario row, Setting column; scenario file displays dr_costs for this setting')
+SC={140:('res_inc_total_cost','SC1'),141:('res_inc_qaly_disc','SC1'),142:('res_icer','SC1'),143:('time_horizon_years','SC2'),
+    144:('res_inc_total_cost','SC2'),145:('res_inc_qaly_disc','SC2'),146:('res_icer','SC2'),147:('u_pf','SC3'),148:('u_pd','SC3'),
+    150:('res_inc_qaly_disc','SC3'),151:('res_icer','SC3'),152:('int_max_doses','SC4'),153:('res_inc_total_cost','SC4'),
+    155:('res_icer','SC4'),156:('int_os_scale','SC5'),157:('res_inc_total_cost','SC5'),158:('res_inc_qaly_disc','SC5'),
+    159:('res_icer','SC5'),160:('res_inc_total_cost','SC6'),161:('res_inc_qaly_disc','SC6'),162:('res_icer','SC6'),
+    164:('res_inc_qaly_disc','SC7'),165:('res_icer','SC7'),166:('int_tot_shape','SC8'),167:('int_tot_scale','SC8'),
+    168:('res_inc_total_cost','SC8'),170:('res_icer','SC8')}
+for i,(n,c) in SC.items(): s(i,n,c,'scenario table row for this scenario; column gives measure')
+for i,n in [(149,'res_inc_total_cost'),(154,'res_inc_qaly_disc'),(163,'res_inc_total_cost'),(169,'res_inc_qaly_disc')]:
+    s(i,n,B,'scenario row whose override leaves this output equal to base; matcher lists only base for unchanged values')
+s(171,'wtp_threshold',B,'ICER compared against threshold per QALY')
+for i,c in [(172,'SC3'),(173,'SC4'),(174,'SC5'),(175,'SC8')]: s(i,'res_icer',c,'scenario named by its phrase before the value')
+s(176,'lifetime_check_tol',B,'fewer than tolerance alive at end of horizon')
+s(177,'res_int_gpm_bind_cycles',B,'cycles with mortality constraint active, Drug A')
+s(178,'res_int_gpm_first_bind_age',B,'age at which constraint first binds: not a vial price')
+s(179,'res_int_gpm_first_bind_alive',B,'proportion alive when constraint first binds')
+s(180,'res_icer',B,'conclusion: base-case ICER')
+s(181,'wtp_threshold',B,'threshold per QALY gained')
+s(182,'wtp_threshold_lower',B,'lower end of NICE range')
+s(183,'wtp_threshold',B,'upper end of NICE range')
+nums=[];unres=[]
+for i,(t,m) in enumerate(zip(ex['tokens'],M)):
+    if i in R:
+        n,c,r=R[i]
+        assert {'name':n,'context':c} in m['candidates'], (i,n,c)
+        nums.append(dict(token_index=i,block=t['block'],token=t['token'],name=n,context=c,reason=r))
+    else:
+        nums.append(dict(token_index=i,block=t['block'],token=t['token'],name=None,context=None,reason='no candidate fits'))
+        unres.append(dict(token_index=i,why='no candidate fits context'))
+secs=[]
+for b in ex['blocks']:
+    if b['kind']=='heading':
+        if b['subsection'] is None: secs.append(dict(block=b['index'],title=b['text'],subsections=[]))
+        else: secs[-1]['subsections'].append(dict(block=b['index'],title=b['text']))
+json.dump(dict(numerals=nums,unresolved=unres,sections=secs,jurisdiction_hits=lint),open('work/report_profile.json','w'),indent=2)

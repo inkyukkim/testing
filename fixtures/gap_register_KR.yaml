@@ -1,0 +1,150 @@
+# Gap register for the KR adaptation: answer key for the Input Mapper (Gate 1).
+# Synthetic. Classifications are the expected agent proposals; nothing has been approved
+# by a human yet, so the blocking gap (GAP-001) is open and the pipeline must stop.
+# Numbers never appear here: sources are defined names or item_ids.
+schema_version: 1
+adaptation:
+  model: fixtures/global_model.xlsx
+  local_inputs: fixtures/adaptation_input_KR.xlsx
+  country: Republic of Korea
+
+gaps:
+  - gap_id: GAP-001
+    target_names: [c_terminal]
+    source_items: [KR-C11]
+    description: Terminal care cost not supplied by the local affiliate ("local study pending").
+    class: non_transferable
+    handling: block
+    retained_source: null
+    rationale: >-
+      End-of-life resource use and unit costs are specific to the health system; the UK
+      value reflects NHS and PSS costs and cannot represent Korean practice. Terminal care
+      contributes to both arms, so any value moves both arms' totals and the ICER.
+    escalation_options:
+      - option_id: E1
+        action: obtain_local_data
+        description: Local claims analysis of end-of-life costs over the final months of life for the indication.
+      - option_id: E2
+        action: cite_local_literature
+        description: Published Korean estimate of end-of-life cancer care costs, inflated to the price year.
+      - option_id: E3
+        action: approved_method_change
+        description: Exclude terminal care from both arms with a scenario showing ICER sensitivity; requires HTA lead approval.
+    prohibited_options:
+      - Converting the UK value to KRW with the reference exchange rate (KR-S09) or PPP.
+      - Setting the cost to zero without an approved method change.
+    decided_by: {kind: agent, role: Input Mapper}
+    status: open
+    resolution: null
+
+  - gap_id: GAP-002
+    target_names: [int_ae_qaly_loss, comp_ae_qaly_loss]
+    source_items: [KR-U03]
+    description: No local estimate of adverse-event disutility.
+    class: partial
+    handling: retain_flagged
+    retained_source: [int_ae_qaly_loss, comp_ae_qaly_loss]
+    rationale: >-
+      AE incidence comes from the trial and transfers, but the disutilities were valued
+      with the UK EQ-5D-3L value set while the Korean state utilities (KR-U01, KR-U02)
+      use the Korean EQ-5D-5L value set. Mixing value sets is a methodological
+      inconsistency; the QALY loss is small, so it is flagged rather than blocked (D13).
+    escalation_options:
+      - option_id: E1
+        action: retain_with_scenario
+        description: Retain global values; scenario with AE disutility doubled.
+    decided_by: {kind: agent, role: Input Mapper}
+    status: open
+    resolution: null
+
+  - gap_id: GAP-003
+    target_names: [gpu_intercept, gpu_male, gpu_age, gpu_age2]
+    source_items: [KR-U04]
+    description: Korean general-population utility norms not supplied; age-adjustment multiplier uses UK norms.
+    class: partial
+    handling: retain_flagged
+    retained_source: [gpu_intercept, gpu_male, gpu_age, gpu_age2]
+    rationale: >-
+      Only the ratio gpu(age)/gpu(baseline) enters the model, so the age gradient partly
+      transfers, but Korean norms (EQ-5D-5L, Korean value set) have a different gradient
+      and level. Local state utilities (KR-U01, KR-U02) are on a different value set from
+      the UK regression.
+    escalation_options:
+      - option_id: E1
+        action: cite_local_literature
+        description: Korean EQ-5D-5L population norms by age and sex (regression or tabulated).
+      - option_id: E2
+        action: retain_with_scenario
+        description: Retain UK coefficients; scenario without age adjustment (use_age_util_adj switched off).
+    decided_by: {kind: agent, role: Input Mapper}
+    status: open
+    resolution: null
+
+  - gap_id: GAP-004
+    target_names: [lt_qx_male, lt_qx_female]
+    source_items: [KR-L01, KR-L02]
+    description: >-
+      Korean life table is published as central death rates (mx) and ends at an open
+      top-age band; the model needs qx for every single age on its lt_age grid.
+    class: partial
+    handling: retain_flagged
+    retained_source: [KR-L01, KR-L02]
+    rationale: >-
+      Single ages up to the open band transfer after an mx-to-qx conversion (method to be
+      declared, exponential or actuarial). Model ages above the open band have no local
+      value; applying the open-band rate is a local derivation, not a retained global value. Only a negligible share of the
+      cohort reaches these ages.
+    escalation_options:
+      - option_id: E1
+        action: approved_method_change
+        description: Apply the open-band rate to model ages above it and declare the mx-to-qx conversion in conventions.
+      - option_id: E2
+        action: obtain_local_data
+        description: Obtain single-age rates above the open band from the statistics office.
+    prohibited_options:
+      - Filling model ages above the open band with UK qx values.
+    decided_by: {kind: agent, role: Input Mapper}
+    status: open
+    resolution: null
+
+  - gap_id: GAP-005
+    target_names: [prop_male, baseline_age]
+    source_items: [KR-P03]
+    description: Proportion male and baseline age not supplied; trial population retained.
+    class: transferable
+    handling: retain_flagged
+    retained_source: [prop_male, baseline_age]
+    rationale: >-
+      Population characteristics of the trial cohort from which efficacy is taken. Both drive
+      the general-population mortality cap and the utility age multiplier, so a Korean
+      incident population that is older or differently composed would change results.
+      Flagged rather than tagged because both now weight Korean-specific inputs (D13).
+    escalation_options:
+      - option_id: E1
+        action: obtain_local_data
+        description: Sex distribution of the Korean incident population from the cancer registry.
+    decided_by: {kind: agent, role: Input Mapper}
+    status: open
+    resolution: null
+
+  - gap_id: GAP-006
+    target_names: [int_pfs_shape, int_pfs_scale, int_os_shape, int_os_scale, int_tot_shape, int_tot_scale,
+                   comp_pfs_shape, comp_pfs_scale, comp_os_shape, comp_os_scale, comp_tot_shape, comp_tot_scale,
+                   int_pfs_corr, int_os_corr, int_tot_corr, comp_pfs_corr, comp_os_corr, comp_tot_corr,
+                   int_p_death_first_pfs, comp_p_death_first_pfs, int_rdi, comp_rdi]
+    source_items: []
+    description: Clinical efficacy and treatment-exposure inputs retained from the global trial by design.
+    class: transferable
+    handling: retain_tagged
+    retained_source: [int_pfs_shape, int_pfs_scale, int_os_shape, int_os_scale, int_tot_shape, int_tot_scale, comp_pfs_shape, comp_pfs_scale, comp_os_shape, comp_os_scale, comp_tot_shape, comp_tot_scale, int_pfs_corr, int_os_corr, int_tot_corr, comp_pfs_corr, comp_os_corr, comp_tot_corr, int_p_death_first_pfs, comp_p_death_first_pfs, int_rdi, comp_rdi]
+    rationale: >-
+      The local affiliate states that clinical inputs are not supplied (Overview). Efficacy
+      is assumed transferable; general-population mortality is localised through the
+      life table.
+    escalation_options:
+      - option_id: E1
+        action: obtain_local_data
+        description: Assess applicability of trial efficacy to Korean patients (subgroup or registry evidence).
+    decided_by: {kind: agent, role: Input Mapper}
+    status: open
+    resolution: null

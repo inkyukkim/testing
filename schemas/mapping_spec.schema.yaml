@@ -1,0 +1,56 @@
+# JSON Schema (draft 2020-12) for mapping specs, written in YAML.
+# Produced by the Input Mapper; validated by tools/apply_mapping.py (schema + semantic checks).
+# A mapping spec contains references and choices only: item_ids, model names, registry
+# keys, operation names and declared methods. It never contains a numeric value.
+$schema: https://json-schema.org/draft/2020-12/schema
+title: Mapping spec
+type: object
+required: [schema_version, model, local_inputs, gap_register, mappings, unused_local_items]
+additionalProperties: false
+properties:
+  schema_version: {type: integer, enum: [1]}
+  note: {type: string}
+  model: {type: string, description: path relative to the repository root}
+  local_inputs: {type: string}
+  gap_register: {type: string}
+  mappings:
+    type: array
+    items:
+      type: object
+      required: [target, status, rationale]
+      additionalProperties: false
+      properties:
+        target: {type: string, description: defined name of a model input}
+        status: {type: string, enum: [mapped, retained, gap]}
+        operation: {type: string, enum: [copy, per_period_to_per_week, duration_to_doses, mx_to_qx, retain_global]}
+        args:
+          type: object
+          additionalProperties: false
+          properties:
+            source: {type: string, description: item_id in the local inputs}
+            period: {type: string, enum: [month]}
+            interval_weeks_from: {type: string, description: model input name}
+            rule: {type: string, enum: [doses_starting_within, complete_intervals_within]}
+            method: {type: string, enum: [exponential, actuarial]}
+            open_band: {type: string, enum: [carry_last_rate]}
+        gap_id: {type: string, pattern: "^GAP-[0-9]{3}$"}
+        basis: {type: string, enum: [structural_setting, confirmed_by_local_text]}
+        confirm_in_source:
+          type: object
+          required: [item, pattern]
+          additionalProperties: false
+          properties:
+            item: {type: string}
+            field: {type: string, enum: [value, unit, item]}
+            pattern: {type: string, description: "text that must occur in the field; {value} is replaced by the retained global value"}
+            means: {type: string, enum: [switch_on, switch_off], description: "required when a label (no {value}) confirms a switch; must equal the retained value"}
+        rationale: {type: string}
+  unused_local_items:
+    type: array
+    items:
+      type: object
+      required: [item, reason]
+      additionalProperties: false
+      properties:
+        item: {type: string}
+        reason: {type: string}

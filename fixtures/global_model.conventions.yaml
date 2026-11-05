@@ -1,0 +1,65 @@
+# Convention declaration for fixtures/global_model.xlsx ("Fixture A").
+# Read by tools/partsa_engine.py, which refuses any value it does not implement, and by
+# the Model Verifier, which compares these declarations with what the formulas do.
+# Keys and allowed values are documented in CLAUDE.md "Convention declarations".
+schema_version: 1
+model_id: fixture_A_global_UK
+workbook: fixtures/global_model.xlsx
+
+time:
+  cycle_length: weekly            # cycle_length_days named input
+  time_unit_survival: months      # Weibull parameters fitted on months
+  horizon: lifetime               # time_horizon_years named input
+
+survival:
+  form: weibull_aft               # S(t) = exp(-((t/scale)^shape))
+  endpoints: [pfs, os, tot]
+  pf_definition: min_pfs_os       # PF = MIN(S_PFS, S_OS) after the mortality cap
+  tot_constraint: capped_by_os    # ToT = MIN(S_ToT, S_OS capped); may exceed PFS (treatment beyond progression)
+
+general_population_mortality:
+  applied: true                   # switch: use_gpm_cap
+  method: per_cycle_hazard_max    # S(t+1) = S(t) * min(S_param(t+1)/S_param(t), S_gpm(t+1)/S_gpm(t))
+  applied_to: [pfs, os]
+  life_table_quantity: qx         # annual probability of death by single year of age
+  age_lookup: int_age_at_cycle_start
+  sex_mixing: weight_sex_specific_survival   # S_gpm = p_male*S_m + (1-p_male)*S_f (not averaged qx)
+
+utilities:
+  age_adjustment: multiplicative_general_population   # switch: use_age_util_adj
+  age_adjustment_formula: quadratic_age_sex           # gpu_intercept + gpu_male*p_male + gpu_age*age + gpu_age2*age^2
+  age_evaluated_at: cycle_midpoint
+  reference_age: baseline_age     # multiplier = gpu(age) / gpu(baseline_age)
+  ae_qaly_loss_age_adjusted: false
+
+discounting:
+  method: mid_cycle_continuous    # alternatives: annual_step (Fixture B, Gate 1)
+  rate_basis: annual_effective    # dr_costs, dr_outcomes
+  timing:
+    state_costs: cycle_midpoint
+    one_off_event_costs: cycle_midpoint      # terminal care, subsequent therapy
+    dosing_costs: cycle_start                # drug and administration, at time of dose
+    outcomes: cycle_midpoint
+    ae_at_baseline: undiscounted
+
+half_cycle_correction:
+  method: trapezoidal             # mean of state membership at cycle start and end
+  applied_to: [pf_state_cost, pd_state_cost, life_years, qalys]
+  not_applied_to: [drug_cost, admin_cost, terminal_care_cost, subsequent_therapy_cost, ae]
+
+dosing:
+  cost_timing: dosing_weeks_only  # costs only in cycles where a dose is due
+  population_treated: tot_at_cycle_start   # no HCC on dosing costs
+  schedule: fixed_interval        # admin_interval_weeks; dose 1 at cycle 0
+  stopping_rule: max_doses        # Drug A 35 doses Q3W; Drug B 6 doses Q3W
+  rdi_applied_to: [drug_cost]     # not to administration cost
+  rdi_basis: cost_after_vial_rounding
+  weight_based_vials: lognormal_moments_exact   # E[vials] = sum_k k*P(w in ((k-1)V/d, kV/d]); no vial sharing
+  flat_dose_vials: roundup
+
+one_off_incidence:
+  death: os_decrement             # S_OS(t) - S_OS(t+1), capped OS
+  progression: pf_decrement_times_one_minus_p_death_first   # (PF(t)-PF(t+1)) * (1 - p_death_first_pfs_event)
+  subsequent_therapy_trigger: progression
+  subsequent_therapy_costing: one_off_course_cost_by_share
+  terminal_care_trigger: death

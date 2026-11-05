@@ -1,0 +1,81 @@
+model: fixtures/global_model.xlsx
+note: Global model scenario definitions (human-authored inputs, like input cells). Read by scripts/build_global_report_uk.py
+  and tools/scenario_runner.py.
+scenarios:
+- id: SC1
+  label: Lower discount rate (costs and outcomes)
+  phrase: the lower discount rate
+  overrides:
+    dr_costs: 0.015
+    dr_outcomes: 0.015
+  setting_display:
+  - name: dr_costs
+    format: pct
+    unit: ''
+- id: SC2
+  label: Shorter time horizon
+  phrase: the shorter time horizon
+  overrides:
+    time_horizon_years: 20
+  setting_display:
+  - name: time_horizon_years
+    format: int
+    unit: ' years'
+- id: SC3
+  label: Alternative utility values (PF / PD)
+  phrase: the alternative utility values
+  overrides:
+    u_pf: 0.72
+    u_pd: 0.55
+  setting_display:
+  - name: u_pf
+    format: p2
+    unit: ''
+  - name: u_pd
+    format: p2
+    unit: ''
+- id: SC4
+  label: No stopping rule for Drug A (maximum doses)
+  phrase: removing the stopping rule for Drug A
+  overrides:
+    int_max_doses: 696
+  setting_display:
+  - name: int_max_doses
+    format: int
+    unit: ' doses'
+- id: SC5
+  label: Conservative Drug A OS extrapolation (Weibull scale)
+  phrase: the conservative OS extrapolation
+  overrides:
+    int_os_scale: 28
+  setting_display:
+  - name: int_os_scale
+    format: p2
+    unit: ' months'
+- id: SC6
+  label: No general-population mortality constraint
+  phrase: removing the general-population mortality constraint
+  overrides:
+    use_gpm_cap: 0
+  setting_display:
+  - text: Not applied
+- id: SC7
+  label: No age adjustment of utilities
+  phrase: removing the age adjustment of utilities
+  overrides:
+    use_age_util_adj: 0
+  setting_display:
+  - text: Not applied
+- id: SC8
+  label: Drug A time on treatment equal to PFS (Weibull shape / scale)
+  phrase: setting Drug A time on treatment equal to PFS
+  overrides:
+    int_tot_shape: 0.95
+    int_tot_scale: 12.0
+  setting_display:
+  - name: int_tot_shape
+    format: p2
+    unit: ''
+  - name: int_tot_scale
+    format: p2
+    unit: ' months'
