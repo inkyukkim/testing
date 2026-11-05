@@ -25,8 +25,12 @@ COMPARED = ("status", "operation", "gap_id", "basis")
 ARG_KEYS = ("source", "period", "rule", "interval_weeks_from", "method", "open_band")
 
 
+# Model names renamed after archived candidates were produced; old names are scored as the new ones.
+RENAMED = {"int_dose_mg": "int_dose", "comp_dose_mg": "comp_dose"}      # D17
+
+
 def _index(spec):
-    return {m["target"]: m for m in spec["mappings"]}
+    return {RENAMED.get(m["target"], m["target"]): m for m in spec["mappings"]}
 
 
 def _gap_view(m, register):
