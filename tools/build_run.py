@@ -45,6 +45,19 @@ def sha256(path) -> str:
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def git_state(root) -> tuple[str | None, bool | None]:
+    """(commit, dirty) of the repository holding the tools; (None, None) when unknown.
+    Outside a repository both are unknown: a missing commit must never read as a clean tree."""
+    try:
+        head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=root, capture_output=True, text=True)
+        if head.returncode != 0 or not head.stdout.strip():
+            return None, None
+        status = subprocess.run(["git", "status", "--porcelain"], cwd=root, capture_output=True, text=True)
+        return head.stdout.strip(), (bool(status.stdout.strip()) if status.returncode == 0 else None)
+    except OSError:
+        return None, None
+
+
 def _versions() -> dict:
     import numpy
     import openpyxl
@@ -52,11 +65,7 @@ def _versions() -> dict:
         lo = subprocess.run([soffice_binary(), "--version"], capture_output=True, text=True, timeout=60).stdout.strip()
     except Exception as e:  # noqa: BLE001 - recorded, recalc itself will fail loudly
         lo = f"unavailable: {e}"
-    try:
-        commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True).stdout.strip()
-        dirty = bool(subprocess.run(["git", "status", "--porcelain"], cwd=ROOT, capture_output=True, text=True).stdout.strip())
-    except Exception:  # noqa: BLE001
-        commit, dirty = None, None
+    commit, dirty = git_state(ROOT)
     return {"python": platform.python_version(), "openpyxl": openpyxl.__version__, "numpy": numpy.__version__,
             "libreoffice": lo, "registry_version": REGISTRY["version"], "git_commit": commit, "git_dirty": dirty}
 

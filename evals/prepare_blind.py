@@ -114,6 +114,7 @@ def prep_model_profiler(ws, keys):
     for k in ("state_costs", "one_off_event_costs", "dosing_costs", "outcomes"):
         conv = re.sub(rf"    {k}: \w+.*", f"    {k}: model_year", conv)
     conv = conv.replace("Fixture A", "the model").replace("fixtures/global_model.xlsx", "fixtures/model.xlsx")
+    conv = conv.replace("model_id: fixture_A_global_UK", "model_id: global_model")    # neutral id (no fixture hint)
     (ws / "fixtures" / "model.conventions.yaml").write_text(conv)
     keys["model-profiler"] = {"plants": {
         "P1": "Trace_Int AF (PF state cost) has a hidden literal uplift",
@@ -148,7 +149,9 @@ def prep_model_verifier(ws, keys):
     ws_c = wb["Inputs_Clinical"]
     cell = next(r[2] for r in ws_c.iter_rows(min_row=4) if r[1].value == "int_os_scale")
     cell.value = cell.value * 1.25                                             # changed retained input
-    wb.save(run_b / "adapted_model.xlsx")
+    from tools.workbook_io import exact_floats
+    with exact_floats():                                                       # no unintended ULP changes
+        wb.save(run_b / "adapted_model.xlsx")
     from tools.recalc import recalc
     shutil.rmtree(run_b / "recalc")
     recalc(run_b / "adapted_model.xlsx", run_b / "recalc")

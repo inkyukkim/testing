@@ -134,3 +134,11 @@ def test_scenarios_use_references_only(tmp_path):
     bad.write_text(yaml.safe_dump({"scenarios": [{"id": "X", "label": "typed number", "set": {"u_pd": {"value": 0.7}}}]}))
     with pytest.raises(ValueError):
         build_run(spec, tmp_path / "run2", bad)
+
+
+def test_git_state_unknown_outside_a_repository(tmp_path):
+    """Found by the blind Builder/Runner run: outside a repo, dirty read False (looked clean)."""
+    from tools.build_run import git_state
+    assert git_state(tmp_path) == (None, None)
+    commit, dirty = git_state(ROOT)
+    assert isinstance(commit, str) and len(commit) == 40 and isinstance(dirty, bool)
