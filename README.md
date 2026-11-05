@@ -112,7 +112,7 @@ The KR example is deliberately incomplete, so the pipeline stops at a blocking g
 
 ## Agent evaluations
 
-The agents have been evaluated in blind workspaces against answer keys and planted defects; see [`docs/gate2_agent_eval.md`](docs/gate2_agent_eval.md) and [`docs/gate5_agent_evals.md`](docs/gate5_agent_evals.md). Earlier rounds turned out not to be fully blind, because an agent started in this repository receives its `CLAUDE.md`. Fixture-specific notes and answer keys are therefore kept out of `CLAUDE.md`, in [`docs/fixture_notes.md`](docs/fixture_notes.md). **Do not give that file to an agent being evaluated.**
+The agents have been evaluated in blind workspaces against answer keys and planted defects; see [`docs/gate2_agent_eval.md`](docs/gate2_agent_eval.md) and [`docs/gate5_agent_evals.md`](docs/gate5_agent_evals.md). Earlier rounds turned out not to be fully blind, because an agent started in this repository receives its `CLAUDE.md`. Fixture-specific notes and answer keys are therefore kept out of `CLAUDE.md`, in [`docs/fixture_notes.md`](docs/fixture_notes.md). **Do not give that file to an agent being evaluated.** Round 3 ran in a separate session on a branch that held only the agent workspaces. Its results were within one to two items of the earlier rounds.
 
 ## Status and limitations
 

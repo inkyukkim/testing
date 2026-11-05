@@ -1,0 +1,49 @@
+{
+  "overall": "pass",
+  "report": "work/report_KR.docx",
+  "draft": true,
+  "checks": [
+    {
+      "id": "R01",
+      "name": "trace",
+      "status": "pass",
+      "details": []
+    },
+    {
+      "id": "R02",
+      "name": "rounding",
+      "status": "pass",
+      "details": []
+    },
+    {
+      "id": "R03",
+      "name": "claims",
+      "status": "pass",
+      "details": []
+    },
+    {
+      "id": "R04",
+      "name": "jurisdiction",
+      "status": "pass",
+      "details": []
+    },
+    {
+      "id": "R05",
+      "name": "retained",
+      "status": "pass",
+      "details": []
+    },
+    {
+      "id": "R06",
+      "name": "status",
+      "status": "pass",
+      "details": []
+    },
+    {
+      "id": "R07",
+      "name": "currency",
+      "status": "pass",
+      "details": []
+    }
+  ]
+}

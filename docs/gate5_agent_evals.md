@@ -2,9 +2,9 @@
 
 **Date:** 2026-11-05. **Harness:** `evals/prepare_blind.py`. **Scorers:** `tools/eval_mapping.py`, `tools/eval_report_profile.py`, `tools/eval_claims.py`, plus checklists for planted defects.
 
-**Round-2 outputs:** `docs/agent_runs/gate5/`. **Keys and plants:** `docs/agent_runs/gate5_keys.json`.
+**Outputs:** round 2 in `docs/agent_runs/gate5/`, round 3 in `docs/agent_runs/gate5_round3/`. **Keys and plants:** `docs/agent_runs/gate5_keys.json`, `docs/agent_runs/gate5_round3_keys.json`.
 
-## Headline: neither round is fully blind
+## Headline: rounds 1 and 2 were not fully blind; round 3 was
 
 **What leaked.** Every agent started in this repository received the CLAUDE.md that was **loaded when the orchestrating session started**. That copy had its "Fixture notes" section, which describes the KR traps, the answer keys' outcomes and Fixture A's conventions.
 
@@ -23,22 +23,22 @@
 - *Upper bounds:* the Input Mapper, Claims Analyst and Report Writer. Their scores may benefit from the hints.
 - *Partly affected:* the Report Profiler. CLAUDE.md gave counts, not mappings.
 
-**A truly blind round** needs a session that never loaded the old CLAUDE.md. See "Round 3" below.
+**Round 3** ran in a separate session on an orphan branch that held only the eight workspaces. Its scores match or come close to round 2, so the leaked hints did not inflate the earlier results in any way we can measure. See "Round 3" below.
 
 ## Results
 
-| Agent | Task | Round 1 | Round 2 |
-|-------|------|---------|---------|
-| Input Mapper | KR mapping spec + gap register vs answer key | (Gate 2 run) 77/81 → 80/81 after D13 | **81/81, no critical or minor differences** |
-| Model Profiler | find 4 planted defects (hidden literal, cross-arm RDI link, pasted constant, wrong discount declaration) | **4/4**; one item of supporting evidence came from leaked context | **4/4**, all evidence from the workspace (ReadMe sheet, profile fields) |
-| Builder/Runner | real spec (blocked) + test-resolved spec | correct; **found a tool bug** (git state) | correct; confirms the fix (commit and dirty both null) |
-| Model Verifier | clean run vs tampered run | correct accept/reject; reported 3 extra one-ULP differences, **which were real** (harness bug) | correct; only planted V02/V03/V08 |
-| Report Profiler | resolve 184 numerals (98 ambiguous) | **184/184**, but wrote a script outside its workspace | **184/184**, within workspace |
-| Claims Analyst | claims register vs 22-claim key | recall 100%, precision 50%, kind 100%, action 91%, truth 100%, 0 critical | recall 95.5% (missed C14 rounding note), precision 43%, kind 100%, action 95%, truth 100%, 0 critical |
-| Report Writer | own template → draft passing R01–R07 | pass, 134 numbers; **found a renderer bug** | pass on first render, 141 numbers, 0 numerals in template |
-| Report Verifier | clean draft vs tampered draft | correct: A pass but not acceptable as final; B reject on R01/R04/R05 | correct, same |
+| Agent | Task | Round 1 | Round 2 | Round 3 (blind) |
+|-------|------|---------|---------|-----------------|
+| Input Mapper | KR mapping spec + gap register vs answer key | (Gate 2 run) 77/81 → 80/81 after D13 | **81/81, no critical or minor differences** | 79/81, 0 critical; 2 differences: AE QALY losses classed `transferable` (key `partial`), both `retain_flagged` |
+| Model Profiler | find 4 planted defects (hidden literal, cross-arm RDI link, pasted constant, wrong discount declaration) | **4/4**; one item of supporting evidence came from leaked context | **4/4**, all evidence from the workspace (ReadMe sheet, profile fields) | **4/4**, all evidence cited from profile fields and formulas |
+| Builder/Runner | real spec (blocked) + test-resolved spec | correct; **found a tool bug** (git state) | correct; confirms the fix (commit and dirty both null) | correct; read `git_dirty: true` correctly as not reproducible from the commit |
+| Model Verifier | clean run vs tampered run | correct accept/reject; reported 3 extra one-ULP differences, **which were real** (harness bug) | correct; only planted V02/V03/V08 | correct; only planted V02/V03/V08 |
+| Report Profiler | resolve 184 numerals (98 ambiguous) | **184/184**, but wrote a script outside its workspace | **184/184**, within workspace | **184/184**, 98/98 ambiguous, within workspace |
+| Claims Analyst | claims register vs 22-claim key | recall 100%, precision 50%, kind 100%, action 91%, truth 100%, 0 critical | recall 95.5% (missed C14 rounding note), precision 43%, kind 100%, action 95%, truth 100%, 0 critical | recall 95.5% (missed C13 PSA scope note), precision 40% (53 claims), kind 100%, action 90%, truth 100%, 0 critical |
+| Report Writer | own template → draft passing R01–R07 | pass, 134 numbers; **found a renderer bug** | pass on first render, 141 numbers, 0 numerals in template | pass, 142 numbers, 0 numerals in template |
+| Report Verifier | clean draft vs tampered draft | correct: A pass but not acceptable as final; B reject on R01/R04/R05 | correct, same | correct: A pass; B reject on R01/R04/R05 |
 
-**Precision.** Low claims precision is not an error rate. Both Claims Analyst runs registered more claims than the key (44 and 49 against 22). Many additions are legitimate, for example "in line with the reference case", trial-protocol stopping rules and trial-based subsequent-therapy shares. The key is a minimum, not the full set.
+**Precision.** Low claims precision is not an error rate. Every Claims Analyst run registered more claims than the key (44, 49 and 53 against 22). Many additions are legitimate, for example "in line with the reference case", trial-protocol stopping rules and trial-based subsequent-therapy shares. The key is a minimum, not the full set.
 
 **Recurring discipline failure.** Agents **restate numbers in hand-back prose** even when their files are correct: the Gate 2 Input Mapper's miscounted summary, and the round-2 Report Writer and Claims Analyst quoting figures. Prompts and agent definitions must forbid this explicitly, and the orchestrator must only quote tool output.
 
@@ -60,11 +60,47 @@
 | Report Writer (r2) | life-table ranges have no label in the retained-inputs list | Open |
 | Report Verifier (r2) | provenance records a template path outside the workspace, which points at the answer-key template | Open: record template hash only |
 
-## Round 3 (proposed, not run)
+## Round 3: blind run
 
-A truly blind run needs agents in a session that never loaded the old CLAUDE.md:
-1. Push the eight workspaces (only) to an orphan branch, with no CLAUDE.md, fixtures or docs.
-2. Start a fresh cloud session on that branch, and run the eight agents there.
-3. Copy the outputs back and score them here with the same scorers.
+**Setup.**
+- `evals/prepare_blind.py` built the eight workspaces and `evals/tasks.py` wrote their prompts.
+- They were pushed to the orphan branch `eval/blind-round3` (commit `fbe3f4e`). That branch has no CLAUDE.md, fixtures, docs, tests or answer keys from `main`.
+- A fresh cloud session cloned only that branch and launched the eight agents from `ORCHESTRATOR.md`. Agent outputs were pushed to `eval/blind-round3-results` (`6904ce2`) and scored here with the same scorers as round 2.
 
-This needs the HEOR lead's approval, because it creates a branch on the repository and a new session.
+**Audit.**
+- The session's full event log was read: 211 assistant events and 121 tool calls.
+- No tool call ran git fetch or checkout, and none touched a path outside the agent's own workspace. The one flagged call was an agent reading its own harness tool-result file, which is harmless.
+- The hash snapshot of 313 protected workspace files is unchanged. All 86 changed files are agent outputs.
+- No hand-back, review or script mentions an answer key, `fixture_notes` or CLAUDE.md.
+- **Residual risk:** the answer keys still exist on other branches of the same repository. An agent could have fetched them, but the audit shows none did.
+
+**What changed relative to round 2.**
+- **Input Mapper: 79/81, down from 81/81, no critical difference.**
+  - Both AE QALY-loss inputs were classed `transferable / retain_flagged`; the key has `partial / retain_flagged`. Handling is the same, so the report outcome is unchanged.
+  - The agent's own rationale argues for `partial`: AE incidence transfers, but the losses are valued with a UK value set while local state utilities use a Korean one. That is a structure-transfers, calibration-is-local case, so the classification contradicts the rationale.
+  - The rest matches the key: the only block is terminal care, and the life table, population norms, baseline characteristics and trial efficacy are all handled as in the key. The register numbers gaps in a different order, which the scorer ignores.
+- **Claims Analyst: same profile as round 2.**
+  - It missed a different scope note (C13, "PSA results are not included", instead of C14).
+  - **C02 is the wrong action.** "Drug A is cost-effective" got `rerender` instead of `reword`. The agent's own rationale says the threshold-range wording must change, and its hand-back says so too, so this is an inconsistency rather than a misreading. The sentence also carries a GBP value, which `rerender` would keep.
+  - **C21 is more conservative than the key.** The commissioning sentence got `human_review` instead of `reword`.
+  - It correctly found both threshold claims that are false locally, at the lower threshold and for the range, and marked them `remove`.
+- **Builder/Runner.** Here the tools ran inside a git checkout, so `git_commit` is set. `git_dirty` is true because other agents were writing into the same checkout at the same time. The agent read this correctly: not reproducible from a commit.
+- **Hand-back discipline is much better.**
+  - No hand-back restates a model value in its own words.
+  - The Report Verifier quotes the verifier's own failure message, which contains the tampered and the traced ICER. That is allowed, as tool output.
+  - The Claims Analyst quotes two report excerpts verbatim, with GBP thresholds. This is borderline: it is a quote from a file, not tool output.
+
+**New findings from round 3 (open).**
+
+| Found by | Finding | Proposed fix |
+|----------|---------|--------------|
+| Claims Analyst, Report Writer | Two terms are unclear. Does `rerender` keep the sentence verbatim, even when it carries source-currency or source-jurisdiction wording? And R03 counts expression-less scope notes (C13, C14) as rerender claims. | Define `rerender` as "same sentence, new numbers, no banned terms" and add a K-rule rejecting `rerender` on an excerpt with jurisdiction hits. Give scope notes their own action, or exempt them from R03 coverage. |
+| Builder/Runner | `git_dirty` covers the whole checkout, so unrelated untracked files make every run non-reproducible. | Scope the dirty check to `tools/`, `schemas/` and the run's declared inputs. |
+| Input Mapper | `int_dose_mg` is labelled in mg but its unit is mg/kg. | Rename or relabel in the fixture generator (`scripts/build_global_model.py`). |
+| Input Mapper | No guidance on whether population characteristics (baseline age, sex mix) are `transferable` or `partial`. | Add a classification note to the Input Mapper instructions. Both rounds chose `transferable / retain_flagged`, as the key does. |
+| Input Mapper | Class contradicted rationale for AE QALY losses. | Add a `gap_register` lint: a rationale that mentions a local value set or local calibration while the class is `transferable` gets a REVIEW line. |
+
+**Conclusion.**
+- Blind scores are within one to two items of the exposed rounds for every agent.
+- The planted-defect agents (Model Profiler, Model Verifier, Report Verifier) and the Report Profiler were perfect in all three rounds.
+- The remaining weaknesses are judgement calls in the Input Mapper and the Claims Analyst. Each was caught by a deterministic scorer and none was critical. Those are the two hand-offs where the human sign-off matters most.

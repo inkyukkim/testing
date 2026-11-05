@@ -1,0 +1,2951 @@
+{
+  "document": "work/report_KR.docx",
+  "template": "work/report_template_KR.docx",
+  "model_run": "runs/kr_test",
+  "draft": true,
+  "blockers": [
+    "C04: open human review",
+    "C05: open human review",
+    "C17: open human review",
+    "C18: open human review",
+    "C19: open human review",
+    "C20: open human review"
+  ],
+  "currency": "KRW",
+  "rounding_footnote": true,
+  "claims_used": [
+    {
+      "claim": "C02",
+      "directive": "if",
+      "truth_local": true,
+      "kept": true
+    },
+    {
+      "claim": "C02",
+      "directive": "ifnot",
+      "truth_local": true,
+      "kept": false
+    },
+    {
+      "claim": "C04",
+      "directive": "review"
+    },
+    {
+      "claim": "C05",
+      "directive": "review"
+    },
+    {
+      "claim": "C09",
+      "directive": "if",
+      "truth_local": true,
+      "kept": true
+    },
+    {
+      "claim": "C09",
+      "directive": "ifnot",
+      "truth_local": true,
+      "kept": false
+    },
+    {
+      "directive": "rounding_note"
+    },
+    {
+      "claim": "C16",
+      "directive": "ifany",
+      "truth_local": true,
+      "kept": true
+    },
+    {
+      "claim": "C15",
+      "directive": "label"
+    },
+    {
+      "claim": "C16",
+      "directive": "labels"
+    },
+    {
+      "claim": "C17",
+      "directive": "review"
+    },
+    {
+      "claim": "C18",
+      "directive": "review"
+    },
+    {
+      "claim": "C19",
+      "directive": "review"
+    },
+    {
+      "claim": "C20",
+      "directive": "review"
+    },
+    {
+      "claim": "C16",
+      "directive": "ifany",
+      "truth_local": true,
+      "kept": true
+    },
+    {
+      "claim": "C15",
+      "directive": "label"
+    },
+    {
+      "claim": "C16",
+      "directive": "labels"
+    },
+    {
+      "claim": "C22",
+      "directive": "if",
+      "truth_local": true,
+      "kept": true
+    },
+    {
+      "claim": "C22",
+      "directive": "ifnot",
+      "truth_local": true,
+      "kept": false
+    }
+  ],
+  "numbers": [
+    {
+      "id": "N001",
+      "section": "1. Executive summary",
+      "display": "40",
+      "value": 40,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "time_horizon_years",
+        "sheet": "Inputs_Settings",
+        "cell": "C10",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N002",
+      "section": "1. Executive summary",
+      "display": "4.5%",
+      "value": 0.045,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "dr_costs",
+        "sheet": "Inputs_Settings",
+        "cell": "C11",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N003",
+      "section": "1. Executive summary",
+      "display": "4.5%",
+      "value": 0.045,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "dr_outcomes",
+        "sheet": "Inputs_Settings",
+        "cell": "C12",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N004",
+      "section": "1. Executive summary",
+      "display": "\u20a961,876,505",
+      "value": 61876505.1575671,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_total_cost",
+        "sheet": "Results",
+        "cell": "B12",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N005",
+      "section": "1. Executive summary",
+      "display": "1.764",
+      "value": 1.76425172857616,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_qaly_disc",
+        "sheet": "Results",
+        "cell": "B16",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N006",
+      "section": "1. Executive summary",
+      "display": "\u20a932,293,423",
+      "value": 32293423.493337,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_total_cost",
+        "sheet": "Results",
+        "cell": "C12",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N007",
+      "section": "1. Executive summary",
+      "display": "0.853",
+      "value": 0.852961526427931,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_qaly_disc",
+        "sheet": "Results",
+        "cell": "C16",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N008",
+      "section": "1. Executive summary",
+      "display": "\u20a929,583,082",
+      "value": 29583081.6642301,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_inc_total_cost",
+        "sheet": "Results",
+        "cell": "D12",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N009",
+      "section": "1. Executive summary",
+      "display": "0.911",
+      "value": 0.911290202148228,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_inc_qaly_disc",
+        "sheet": "Results",
+        "cell": "D16",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N010",
+      "section": "1. Executive summary",
+      "display": "\u20a932,462,855",
+      "value": 32462854.965951,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_icer",
+        "sheet": "Results",
+        "cell": "D19",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N011",
+      "section": "1. Executive summary",
+      "display": "\u20a950,000,000",
+      "value": 50000000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "wtp_threshold",
+        "sheet": "Inputs_Settings",
+        "cell": "C13",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N012",
+      "section": "1. Executive summary",
+      "display": "\u20a915,981,428",
+      "value": 15981428.4431813,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_inc_nmb",
+        "sheet": "Results",
+        "cell": "D21",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N013",
+      "section": "2. Decision problem",
+      "display": "3",
+      "value": 3,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "int_admin_interval_weeks",
+        "sheet": "Inputs_Costs",
+        "cell": "C9",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N014",
+      "section": "2. Decision problem",
+      "display": "3",
+      "value": 3,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "int_admin_interval_weeks",
+        "sheet": "Inputs_Costs",
+        "cell": "C9",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N015",
+      "section": "2. Decision problem",
+      "display": "3",
+      "value": 3,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "comp_admin_interval_weeks",
+        "sheet": "Inputs_Costs",
+        "cell": "C17",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N016",
+      "section": "3. Methods",
+      "display": "7",
+      "value": 7,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "cycle_length_days",
+        "sheet": "Inputs_Settings",
+        "cell": "C8",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N017",
+      "section": "3. Methods",
+      "display": "40",
+      "value": 40,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "time_horizon_years",
+        "sheet": "Inputs_Settings",
+        "cell": "C10",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N018",
+      "section": "3. Methods",
+      "display": "62",
+      "value": 62,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "baseline_age",
+        "sheet": "Inputs_Population",
+        "cell": "C4",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N019",
+      "section": "3. Methods",
+      "display": "60.0%",
+      "value": 0.6,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "prop_male",
+        "sheet": "Inputs_Population",
+        "cell": "C5",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N020",
+      "section": "3. Methods",
+      "display": "0.1%",
+      "value": 0.001,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "lifetime_check_tol",
+        "sheet": "Inputs_Settings",
+        "cell": "C15",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N021",
+      "section": "3. Methods",
+      "display": "4.5%",
+      "value": 0.045,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "dr_costs",
+        "sheet": "Inputs_Settings",
+        "cell": "C11",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N022",
+      "section": "3. Methods",
+      "display": "4.5%",
+      "value": 0.045,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "dr_outcomes",
+        "sheet": "Inputs_Settings",
+        "cell": "C12",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N023",
+      "section": "3. Methods",
+      "display": "0.95",
+      "value": 0.95,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "int_pfs_shape",
+        "sheet": "Inputs_Clinical",
+        "cell": "C4",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N024",
+      "section": "3. Methods",
+      "display": "12.00",
+      "value": 12,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "int_pfs_scale",
+        "sheet": "Inputs_Clinical",
+        "cell": "C5",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N025",
+      "section": "3. Methods",
+      "display": "8.2",
+      "value": 8.1588528378101,
+      "format": {
+        "scale": 1,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_median_pfs",
+        "sheet": "Results",
+        "cell": "B28",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N026",
+      "section": "3. Methods",
+      "display": "0.85",
+      "value": 0.85,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "int_os_shape",
+        "sheet": "Inputs_Clinical",
+        "cell": "C7",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N027",
+      "section": "3. Methods",
+      "display": "32.00",
+      "value": 32,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "int_os_scale",
+        "sheet": "Inputs_Clinical",
+        "cell": "C8",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N028",
+      "section": "3. Methods",
+      "display": "20.8",
+      "value": 20.7914996296576,
+      "format": {
+        "scale": 1,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_median_os",
+        "sheet": "Results",
+        "cell": "B29",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N029",
+      "section": "3. Methods",
+      "display": "0.90",
+      "value": 0.9,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "int_tot_shape",
+        "sheet": "Inputs_Clinical",
+        "cell": "C10",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N030",
+      "section": "3. Methods",
+      "display": "10.00",
+      "value": 10,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "int_tot_scale",
+        "sheet": "Inputs_Clinical",
+        "cell": "C11",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N031",
+      "section": "3. Methods",
+      "display": "6.7",
+      "value": 6.65486731874355,
+      "format": {
+        "scale": 1,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_median_tot",
+        "sheet": "Results",
+        "cell": "B30",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N032",
+      "section": "3. Methods",
+      "display": "1.25",
+      "value": 1.25,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "comp_pfs_shape",
+        "sheet": "Inputs_Clinical",
+        "cell": "C15",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N033",
+      "section": "3. Methods",
+      "display": "7.00",
+      "value": 7,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "comp_pfs_scale",
+        "sheet": "Inputs_Clinical",
+        "cell": "C16",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N034",
+      "section": "3. Methods",
+      "display": "5.2",
+      "value": 5.22105669076932,
+      "format": {
+        "scale": 1,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_median_pfs",
+        "sheet": "Results",
+        "cell": "C28",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N035",
+      "section": "3. Methods",
+      "display": "1.15",
+      "value": 1.15,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "comp_os_shape",
+        "sheet": "Inputs_Clinical",
+        "cell": "C18",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N036",
+      "section": "3. Methods",
+      "display": "16.00",
+      "value": 16,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "comp_os_scale",
+        "sheet": "Inputs_Clinical",
+        "cell": "C19",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N037",
+      "section": "3. Methods",
+      "display": "11.6",
+      "value": 11.6334181899355,
+      "format": {
+        "scale": 1,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_median_os",
+        "sheet": "Results",
+        "cell": "C29",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N038",
+      "section": "3. Methods",
+      "display": "1.40",
+      "value": 1.4,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "comp_tot_shape",
+        "sheet": "Inputs_Clinical",
+        "cell": "C21",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N039",
+      "section": "3. Methods",
+      "display": "4.50",
+      "value": 4.5,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "comp_tot_scale",
+        "sheet": "Inputs_Clinical",
+        "cell": "C22",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N040",
+      "section": "3. Methods",
+      "display": "3.5",
+      "value": 3.46350974984635,
+      "format": {
+        "scale": 1,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_median_tot",
+        "sheet": "Results",
+        "cell": "C30",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N041",
+      "section": "3. Methods",
+      "display": "20.8",
+      "value": 20.7914996296576,
+      "format": {
+        "scale": 1,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_median_os",
+        "sheet": "Results",
+        "cell": "B29",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N042",
+      "section": "3. Methods",
+      "display": "11.6",
+      "value": 11.6334181899355,
+      "format": {
+        "scale": 1,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_median_os",
+        "sheet": "Results",
+        "cell": "C29",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N043",
+      "section": "3. Methods",
+      "display": "8.2",
+      "value": 8.1588528378101,
+      "format": {
+        "scale": 1,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_median_pfs",
+        "sheet": "Results",
+        "cell": "B28",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N044",
+      "section": "3. Methods",
+      "display": "5.2",
+      "value": 5.22105669076932,
+      "format": {
+        "scale": 1,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_median_pfs",
+        "sheet": "Results",
+        "cell": "C28",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N045",
+      "section": "3. Methods",
+      "display": "3",
+      "value": 3,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "int_admin_interval_weeks",
+        "sheet": "Inputs_Costs",
+        "cell": "C9",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N046",
+      "section": "3. Methods",
+      "display": "35",
+      "value": 35,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "int_max_doses",
+        "sheet": "Inputs_Costs",
+        "cell": "C10",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N047",
+      "section": "3. Methods",
+      "display": "3",
+      "value": 3,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "comp_admin_interval_weeks",
+        "sheet": "Inputs_Costs",
+        "cell": "C17",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N048",
+      "section": "3. Methods",
+      "display": "6",
+      "value": 6,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "comp_max_doses",
+        "sheet": "Inputs_Costs",
+        "cell": "C18",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N049",
+      "section": "3. Methods",
+      "display": "2.00",
+      "value": 2,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "int_dose_mg",
+        "sheet": "Inputs_Costs",
+        "cell": "C5",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N050",
+      "section": "3. Methods",
+      "display": "1.91",
+      "value": 1.91144085616431,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_expected_vials",
+        "sheet": "Results",
+        "cell": "B33",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N051",
+      "section": "3. Methods",
+      "display": "64.5",
+      "value": 64.5,
+      "format": {
+        "scale": 1,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "weight_mean_kg",
+        "sheet": "Inputs_Population",
+        "cell": "C6",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N052",
+      "section": "3. Methods",
+      "display": "11.8",
+      "value": 11.8,
+      "format": {
+        "scale": 1,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "weight_sd_kg",
+        "sheet": "Inputs_Population",
+        "cell": "C7",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N053",
+      "section": "3. Methods",
+      "display": "500",
+      "value": 500,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "comp_dose_mg",
+        "sheet": "Inputs_Costs",
+        "cell": "C13",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N054",
+      "section": "3. Methods",
+      "display": "5",
+      "value": 5,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_expected_vials",
+        "sheet": "Results",
+        "cell": "C33",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N055",
+      "section": "3. Methods",
+      "display": "95.0%",
+      "value": 0.95,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "int_rdi",
+        "sheet": "Inputs_Clinical",
+        "cell": "C14",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N056",
+      "section": "3. Methods",
+      "display": "90.0%",
+      "value": 0.9,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "comp_rdi",
+        "sheet": "Inputs_Clinical",
+        "cell": "C25",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N057",
+      "section": "3. Methods",
+      "display": "13.70",
+      "value": 13.7027892335242,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_n_doses",
+        "sheet": "Results",
+        "cell": "B32",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N058",
+      "section": "3. Methods",
+      "display": "4.58",
+      "value": 4.575841458571,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_n_doses",
+        "sheet": "Results",
+        "cell": "C32",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N059",
+      "section": "3. Methods",
+      "display": "2025",
+      "value": 2025,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": "",
+        "grouping": false
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "price_year",
+        "sheet": "Inputs_Settings",
+        "cell": "C6",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N060",
+      "section": "3. Methods",
+      "display": "\u20a91,050,000",
+      "value": 1050000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "int_vial_price",
+        "sheet": "Inputs_Costs",
+        "cell": "C7",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N061",
+      "section": "3. Methods",
+      "display": "\u20a92,007,013",
+      "value": 2007012.89897253,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_drug_cost_per_admin",
+        "sheet": "Results",
+        "cell": "B34",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N062",
+      "section": "3. Methods",
+      "display": "\u20a984,000",
+      "value": 84000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "comp_vial_price",
+        "sheet": "Inputs_Costs",
+        "cell": "C15",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N063",
+      "section": "3. Methods",
+      "display": "\u20a9420,000",
+      "value": 420000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_drug_cost_per_admin",
+        "sheet": "Results",
+        "cell": "C34",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N064",
+      "section": "3. Methods",
+      "display": "\u20a995,000",
+      "value": 95000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "int_admin_cost_per_admin",
+        "sheet": "Inputs_Costs",
+        "cell": "C8",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N065",
+      "section": "3. Methods",
+      "display": "\u20a995,000",
+      "value": 95000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "comp_admin_cost_per_admin",
+        "sheet": "Inputs_Costs",
+        "cell": "C16",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N066",
+      "section": "3. Methods",
+      "display": "\u20a9137,988",
+      "value": 137987.679671458,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "c_pf_week",
+        "sheet": "Inputs_Costs",
+        "cell": "C20",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N067",
+      "section": "3. Methods",
+      "display": "\u20a9241,478",
+      "value": 241478.439425051,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "c_pd_week",
+        "sheet": "Inputs_Costs",
+        "cell": "C21",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N068",
+      "section": "3. Methods",
+      "display": "\u20a94,500,000",
+      "value": 4500000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "c_terminal",
+        "sheet": "Inputs_Costs",
+        "cell": "C22",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N069",
+      "section": "3. Methods",
+      "display": "\u20a91,600,000",
+      "value": 1600000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "int_ae_cost",
+        "sheet": "Inputs_Costs",
+        "cell": "C11",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N070",
+      "section": "3. Methods",
+      "display": "\u20a93,100,000",
+      "value": 3100000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "comp_ae_cost",
+        "sheet": "Inputs_Costs",
+        "cell": "C19",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N071",
+      "section": "3. Methods",
+      "display": "15.0%",
+      "value": 0.15,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "int_p_death_first_pfs",
+        "sheet": "Inputs_Clinical",
+        "cell": "C13",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N072",
+      "section": "3. Methods",
+      "display": "12.0%",
+      "value": 0.12,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "comp_p_death_first_pfs",
+        "sheet": "Inputs_Clinical",
+        "cell": "C24",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N073",
+      "section": "3. Methods",
+      "display": "\u20a93,900,000",
+      "value": 3900000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "st_cost_1",
+        "sheet": "Inputs_Costs",
+        "cell": "C23",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N074",
+      "section": "3. Methods",
+      "display": "55.0%",
+      "value": 0.55,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "int_st_share_1",
+        "sheet": "Inputs_Costs",
+        "cell": "C26",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N075",
+      "section": "3. Methods",
+      "display": "35.0%",
+      "value": 0.35,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "comp_st_share_1",
+        "sheet": "Inputs_Costs",
+        "cell": "C29",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N076",
+      "section": "3. Methods",
+      "display": "\u20a938,000,000",
+      "value": 38000000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "st_cost_2",
+        "sheet": "Inputs_Costs",
+        "cell": "C24",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N077",
+      "section": "3. Methods",
+      "display": "0.0%",
+      "value": 0,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "int_st_share_2",
+        "sheet": "Inputs_Costs",
+        "cell": "C27",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N078",
+      "section": "3. Methods",
+      "display": "25.0%",
+      "value": 0.25,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "comp_st_share_2",
+        "sheet": "Inputs_Costs",
+        "cell": "C30",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N079",
+      "section": "3. Methods",
+      "display": "\u20a921,000,000",
+      "value": 21000000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "st_cost_3",
+        "sheet": "Inputs_Costs",
+        "cell": "C25",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N080",
+      "section": "3. Methods",
+      "display": "8.0%",
+      "value": 0.08,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "int_st_share_3",
+        "sheet": "Inputs_Costs",
+        "cell": "C28",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N081",
+      "section": "3. Methods",
+      "display": "6.0%",
+      "value": 0.06,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "comp_st_share_3",
+        "sheet": "Inputs_Costs",
+        "cell": "C31",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N082",
+      "section": "3. Methods",
+      "display": "\u20a93,825,000",
+      "value": 3825000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_st_cost_per_progression",
+        "sheet": "Results",
+        "cell": "B35",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N083",
+      "section": "3. Methods",
+      "display": "\u20a912,125,000",
+      "value": 12125000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_st_cost_per_progression",
+        "sheet": "Results",
+        "cell": "C35",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N084",
+      "section": "3. Methods",
+      "display": "0.80",
+      "value": 0.8,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "u_pf",
+        "sheet": "Inputs_Utilities",
+        "cell": "C4",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N085",
+      "section": "3. Methods",
+      "display": "0.66",
+      "value": 0.66,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "u_pd",
+        "sheet": "Inputs_Utilities",
+        "cell": "C5",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N086",
+      "section": "3. Methods",
+      "display": "0.008",
+      "value": 0.008,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "int_ae_qaly_loss",
+        "sheet": "Inputs_Utilities",
+        "cell": "C6",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N087",
+      "section": "3. Methods",
+      "display": "0.015",
+      "value": 0.015,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "comp_ae_qaly_loss",
+        "sheet": "Inputs_Utilities",
+        "cell": "C7",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N088",
+      "section": "3. Methods",
+      "display": "0.95",
+      "value": 0.95,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "gpu_intercept",
+        "sheet": "Inputs_Utilities",
+        "cell": "C8",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N089",
+      "section": "3. Methods",
+      "display": "0.021000",
+      "value": 0.021,
+      "format": {
+        "scale": 1,
+        "decimals": 6,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "gpu_male",
+        "sheet": "Inputs_Utilities",
+        "cell": "C9",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N090",
+      "section": "3. Methods",
+      "display": "-0.000260",
+      "value": -0.00026,
+      "format": {
+        "scale": 1,
+        "decimals": 6,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "gpu_age",
+        "sheet": "Inputs_Utilities",
+        "cell": "C10",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N091",
+      "section": "3. Methods",
+      "display": "-0.000033",
+      "value": -3.3e-05,
+      "format": {
+        "scale": 1,
+        "decimals": 6,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "gpu_age2",
+        "sheet": "Inputs_Utilities",
+        "cell": "C11",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N092",
+      "section": "4. Results",
+      "display": "1.31",
+      "value": 1.31113869210666,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_inc_ly_disc",
+        "sheet": "Results",
+        "cell": "D14",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N093",
+      "section": "4. Results",
+      "display": "0.911",
+      "value": 0.911290202148228,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_inc_qaly_disc",
+        "sheet": "Results",
+        "cell": "D16",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N094",
+      "section": "4. Results",
+      "display": "\u20a929,583,082",
+      "value": 29583081.6642301,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_inc_total_cost",
+        "sheet": "Results",
+        "cell": "D12",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N095",
+      "section": "4. Results",
+      "display": "\u20a932,462,855",
+      "value": 32462854.965951,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_icer",
+        "sheet": "Results",
+        "cell": "D19",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N096",
+      "section": "4. Results",
+      "display": "\u20a922,562,893",
+      "value": 22562892.7300572,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_icer_ly",
+        "sheet": "Results",
+        "cell": "D20",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N097",
+      "section": "4. Results",
+      "display": "\u20a961,876,505",
+      "value": 61876505.1575671,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_total_cost",
+        "sheet": "Results",
+        "cell": "B12",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N098",
+      "section": "4. Results",
+      "display": "\u20a932,293,423",
+      "value": 32293423.493337,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_total_cost",
+        "sheet": "Results",
+        "cell": "C12",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N099",
+      "section": "4. Results",
+      "display": "\u20a929,583,082",
+      "value": 29583081.6642301,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_inc_total_cost",
+        "sheet": "Results",
+        "cell": "D12",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N100",
+      "section": "4. Results",
+      "display": "2.52",
+      "value": 2.52045932474254,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_ly_disc",
+        "sheet": "Results",
+        "cell": "B14",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N101",
+      "section": "4. Results",
+      "display": "1.21",
+      "value": 1.20932063263588,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_ly_disc",
+        "sheet": "Results",
+        "cell": "C14",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N102",
+      "section": "4. Results",
+      "display": "1.31",
+      "value": 1.31113869210666,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_inc_ly_disc",
+        "sheet": "Results",
+        "cell": "D14",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N103",
+      "section": "4. Results",
+      "display": "1.764",
+      "value": 1.76425172857616,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_qaly_disc",
+        "sheet": "Results",
+        "cell": "B16",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N104",
+      "section": "4. Results",
+      "display": "0.853",
+      "value": 0.852961526427931,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_qaly_disc",
+        "sheet": "Results",
+        "cell": "C16",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N105",
+      "section": "4. Results",
+      "display": "0.911",
+      "value": 0.911290202148228,
+      "format": {
+        "scale": 1,
+        "decimals": 3,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_inc_qaly_disc",
+        "sheet": "Results",
+        "cell": "D16",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N106",
+      "section": "4. Results",
+      "display": "\u20a932,462,855",
+      "value": 32462854.965951,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_icer",
+        "sheet": "Results",
+        "cell": "D19",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N107",
+      "section": "4. Results",
+      "display": "\u20a915,981,428",
+      "value": 15981428.4431813,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_inc_nmb",
+        "sheet": "Results",
+        "cell": "D21",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N108",
+      "section": "4. Results",
+      "display": "2.90",
+      "value": 2.90099201961196,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_ly_undisc",
+        "sheet": "Results",
+        "cell": "B13",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N109",
+      "section": "4. Results",
+      "display": "1.27",
+      "value": 1.26894422557401,
+      "format": {
+        "scale": 1,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_ly_undisc",
+        "sheet": "Results",
+        "cell": "C13",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N110",
+      "section": "4. Results",
+      "display": "41.1%",
+      "value": 0.410761293338791,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_drug_share",
+        "sheet": "Results",
+        "cell": "B36",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N111",
+      "section": "4. Results",
+      "display": "5.3%",
+      "value": 0.0532763988528449,
+      "format": {
+        "scale": 100,
+        "decimals": 1,
+        "prefix": "",
+        "suffix": "%",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_drug_share",
+        "sheet": "Results",
+        "cell": "C36",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N112",
+      "section": "4. Results",
+      "display": "\u20a923,695,996",
+      "value": 23695995.9754518,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_inc_cost_drug",
+        "sheet": "Results",
+        "cell": "D5",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N113",
+      "section": "4. Results",
+      "display": "\u20a925,416,473",
+      "value": 25416473.2858066,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_cost_drug",
+        "sheet": "Results",
+        "cell": "B5",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N114",
+      "section": "4. Results",
+      "display": "\u20a91,720,477",
+      "value": 1720477.31035486,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_cost_drug",
+        "sheet": "Results",
+        "cell": "C5",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N115",
+      "section": "4. Results",
+      "display": "\u20a923,695,996",
+      "value": 23695995.9754518,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_inc_cost_drug",
+        "sheet": "Results",
+        "cell": "D5",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N116",
+      "section": "4. Results",
+      "display": "\u20a91,266,383",
+      "value": 1266383.15572453,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_cost_admin",
+        "sheet": "Results",
+        "cell": "B6",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N117",
+      "section": "4. Results",
+      "display": "\u20a9432,395",
+      "value": 432395.091226749,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_cost_admin",
+        "sheet": "Results",
+        "cell": "C6",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N118",
+      "section": "4. Results",
+      "display": "\u20a9833,988",
+      "value": 833988.064497777,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_inc_cost_admin",
+        "sheet": "Results",
+        "cell": "D6",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N119",
+      "section": "4. Results",
+      "display": "\u20a97,035,052",
+      "value": 7035051.6541972,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_cost_pf_state",
+        "sheet": "Results",
+        "cell": "B7",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N120",
+      "section": "4. Results",
+      "display": "\u20a93,836,154",
+      "value": 3836154.16993051,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_cost_pf_state",
+        "sheet": "Results",
+        "cell": "C7",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N121",
+      "section": "4. Results",
+      "display": "\u20a93,198,897",
+      "value": 3198897.48426669,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_inc_cost_pf_state",
+        "sheet": "Results",
+        "cell": "D7",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N122",
+      "section": "4. Results",
+      "display": "\u20a919,446,447",
+      "value": 19446447.0969109,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_cost_pd_state",
+        "sheet": "Results",
+        "cell": "B8",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N123",
+      "section": "4. Results",
+      "display": "\u20a98,524,170",
+      "value": 8524170.17383374,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_cost_pd_state",
+        "sheet": "Results",
+        "cell": "C8",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N124",
+      "section": "4. Results",
+      "display": "\u20a910,922,277",
+      "value": 10922276.9230772,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_inc_cost_pd_state",
+        "sheet": "Results",
+        "cell": "D8",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N125",
+      "section": "4. Results",
+      "display": "\u20a94,000,732",
+      "value": 4000731.56941034,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_cost_terminal",
+        "sheet": "Results",
+        "cell": "B9",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N126",
+      "section": "4. Results",
+      "display": "\u20a94,260,462",
+      "value": 4260462.23917838,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_cost_terminal",
+        "sheet": "Results",
+        "cell": "C9",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N127",
+      "section": "4. Results",
+      "display": "-\u20a9259,731",
+      "value": -259730.669768038,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_inc_cost_terminal",
+        "sheet": "Results",
+        "cell": "D9",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N128",
+      "section": "4. Results",
+      "display": "\u20a93,111,418",
+      "value": 3111418.39551748,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_cost_st",
+        "sheet": "Results",
+        "cell": "B10",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N129",
+      "section": "4. Results",
+      "display": "\u20a910,419,765",
+      "value": 10419764.5088128,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_cost_st",
+        "sheet": "Results",
+        "cell": "C10",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N130",
+      "section": "4. Results",
+      "display": "-\u20a97,308,346",
+      "value": -7308346.11329531,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_inc_cost_st",
+        "sheet": "Results",
+        "cell": "D10",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N131",
+      "section": "4. Results",
+      "display": "\u20a91,600,000",
+      "value": 1600000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_cost_ae",
+        "sheet": "Results",
+        "cell": "B11",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N132",
+      "section": "4. Results",
+      "display": "\u20a93,100,000",
+      "value": 3100000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_cost_ae",
+        "sheet": "Results",
+        "cell": "C11",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N133",
+      "section": "4. Results",
+      "display": "-\u20a91,500,000",
+      "value": -1500000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_inc_cost_ae",
+        "sheet": "Results",
+        "cell": "D11",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N134",
+      "section": "4. Results",
+      "display": "\u20a961,876,505",
+      "value": 61876505.1575671,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_total_cost",
+        "sheet": "Results",
+        "cell": "B12",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N135",
+      "section": "4. Results",
+      "display": "\u20a932,293,423",
+      "value": 32293423.493337,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_total_cost",
+        "sheet": "Results",
+        "cell": "C12",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N136",
+      "section": "4. Results",
+      "display": "\u20a929,583,082",
+      "value": 29583081.6642301,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_inc_total_cost",
+        "sheet": "Results",
+        "cell": "D12",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N137",
+      "section": "5. Model validation",
+      "display": "260",
+      "value": 260,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_gpm_bind_cycles",
+        "sheet": "Results",
+        "cell": "B37",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N138",
+      "section": "5. Model validation",
+      "display": "97",
+      "value": 97.0143737166324,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_gpm_first_bind_age",
+        "sheet": "Results",
+        "cell": "B38",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N139",
+      "section": "5. Model validation",
+      "display": "0.01%",
+      "value": 0.000133219079133251,
+      "format": {
+        "scale": 100,
+        "decimals": 2,
+        "prefix": "",
+        "suffix": "%",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_int_gpm_first_bind_alive",
+        "sheet": "Results",
+        "cell": "B39",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N140",
+      "section": "5. Model validation",
+      "display": "0",
+      "value": 0,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_comp_gpm_bind_cycles",
+        "sheet": "Results",
+        "cell": "C37",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N141",
+      "section": "7. Conclusion",
+      "display": "\u20a932,462,855",
+      "value": 32462854.965951,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "res_icer",
+        "sheet": "Results",
+        "cell": "D19",
+        "scenario": null
+      }
+    },
+    {
+      "id": "N142",
+      "section": "7. Conclusion",
+      "display": "\u20a950,000,000",
+      "value": 50000000,
+      "format": {
+        "scale": 1,
+        "decimals": 0,
+        "prefix": "\u20a9",
+        "suffix": "",
+        "grouping": true
+      },
+      "source": {
+        "workbook": "runs/kr_test/recalc/adapted_model.xlsx",
+        "name": "wtp_threshold",
+        "sheet": "Inputs_Settings",
+        "cell": "C13",
+        "scenario": null
+      }
+    }
+  ]
+}

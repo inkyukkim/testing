@@ -1,0 +1,2315 @@
+{
+  "numerals": [
+    {
+      "token_index": 0,
+      "block": 5,
+      "token": "40",
+      "name": "time_horizon_years",
+      "context": "base",
+      "reason": "lifetime horizon in executive summary"
+    },
+    {
+      "token_index": 1,
+      "block": 5,
+      "token": "3.5%",
+      "name": "dr_costs",
+      "context": "base",
+      "reason": "single rate stated for costs and outcomes; costs named first, as in the scenario file setting display convention"
+    },
+    {
+      "token_index": 2,
+      "block": 6,
+      "token": "\u00a360,016",
+      "name": "res_int_total_cost",
+      "context": "base",
+      "reason": "sentence opens with in the base case; arm and measure from wording"
+    },
+    {
+      "token_index": 3,
+      "block": 6,
+      "token": "1.669",
+      "name": "res_int_qaly_disc",
+      "context": "base",
+      "reason": "sentence opens with in the base case; arm and measure from wording"
+    },
+    {
+      "token_index": 4,
+      "block": 6,
+      "token": "\u00a335,270",
+      "name": "res_comp_total_cost",
+      "context": "base",
+      "reason": "sentence opens with in the base case; arm and measure from wording"
+    },
+    {
+      "token_index": 5,
+      "block": 6,
+      "token": "0.794",
+      "name": "res_comp_qaly_disc",
+      "context": "base",
+      "reason": "sentence opens with in the base case; arm and measure from wording"
+    },
+    {
+      "token_index": 6,
+      "block": 6,
+      "token": "\u00a324,746",
+      "name": "res_inc_total_cost",
+      "context": "base",
+      "reason": "sentence opens with in the base case; arm and measure from wording"
+    },
+    {
+      "token_index": 7,
+      "block": 6,
+      "token": "0.875",
+      "name": "res_inc_qaly_disc",
+      "context": "base",
+      "reason": "sentence opens with in the base case; arm and measure from wording"
+    },
+    {
+      "token_index": 8,
+      "block": 6,
+      "token": "\u00a328,271",
+      "name": "res_icer",
+      "context": "base",
+      "reason": "sentence opens with in the base case; arm and measure from wording"
+    },
+    {
+      "token_index": 9,
+      "block": 7,
+      "token": "\u00a330,000",
+      "name": "wtp_threshold",
+      "context": "base",
+      "reason": "upper end of NICE threshold range per QALY"
+    },
+    {
+      "token_index": 10,
+      "block": 7,
+      "token": "\u00a31,514",
+      "name": "res_inc_nmb",
+      "context": "base",
+      "reason": "sentence opens with in the base case; arm and measure from wording"
+    },
+    {
+      "token_index": 11,
+      "block": 7,
+      "token": "\u00a320,000",
+      "name": "wtp_threshold_lower",
+      "context": "base",
+      "reason": "lower threshold per QALY"
+    },
+    {
+      "token_index": 12,
+      "block": 10,
+      "token": "3",
+      "name": "int_admin_interval_weeks",
+      "context": "base",
+      "reason": "Drug A administered every N weeks"
+    },
+    {
+      "token_index": 13,
+      "block": 17,
+      "token": "3",
+      "name": "int_admin_interval_weeks",
+      "context": "base",
+      "reason": "decision problem Intervention row: Drug A every N weeks"
+    },
+    {
+      "token_index": 14,
+      "block": 19,
+      "token": "3",
+      "name": "comp_admin_interval_weeks",
+      "context": "base",
+      "reason": "decision problem Comparator row: Drug B every N weeks"
+    },
+    {
+      "token_index": 15,
+      "block": 30,
+      "token": "7",
+      "name": "cycle_length_days",
+      "context": "base",
+      "reason": "cycle length in days"
+    },
+    {
+      "token_index": 16,
+      "block": 30,
+      "token": "40",
+      "name": "time_horizon_years",
+      "context": "base",
+      "reason": "time horizon in years"
+    },
+    {
+      "token_index": 17,
+      "block": 30,
+      "token": "62",
+      "name": "baseline_age",
+      "context": "base",
+      "reason": "mean starting age"
+    },
+    {
+      "token_index": 18,
+      "block": 30,
+      "token": "60.0%",
+      "name": "prop_male",
+      "context": "base",
+      "reason": "proportion male of cohort"
+    },
+    {
+      "token_index": 19,
+      "block": 30,
+      "token": "0.1%",
+      "name": "lifetime_check_tol",
+      "context": "base",
+      "reason": "proportion alive at end of horizon below tolerance"
+    },
+    {
+      "token_index": 20,
+      "block": 32,
+      "token": "3.5%",
+      "name": "dr_costs",
+      "context": "base",
+      "reason": "first of respectively pair: costs"
+    },
+    {
+      "token_index": 21,
+      "block": 32,
+      "token": "3.5%",
+      "name": "dr_outcomes",
+      "context": "base",
+      "reason": "second of respectively pair: outcomes"
+    },
+    {
+      "token_index": 22,
+      "block": 41,
+      "token": "0.95",
+      "name": "int_pfs_shape",
+      "context": "base",
+      "reason": "Weibull table, Drug A PFS row, Shape column"
+    },
+    {
+      "token_index": 23,
+      "block": 42,
+      "token": "12.00",
+      "name": "int_pfs_scale",
+      "context": "base",
+      "reason": "Weibull table, Drug A PFS row, Scale column"
+    },
+    {
+      "token_index": 24,
+      "block": 43,
+      "token": "8.2",
+      "name": "res_int_median_pfs",
+      "context": "base",
+      "reason": "Weibull table, Drug A PFS row, Median column"
+    },
+    {
+      "token_index": 25,
+      "block": 45,
+      "token": "0.85",
+      "name": "int_os_shape",
+      "context": "base",
+      "reason": "Drug A OS row, Shape column"
+    },
+    {
+      "token_index": 26,
+      "block": 46,
+      "token": "32.00",
+      "name": "int_os_scale",
+      "context": "base",
+      "reason": "Drug A OS row, Scale column"
+    },
+    {
+      "token_index": 27,
+      "block": 47,
+      "token": "20.8",
+      "name": "res_int_median_os",
+      "context": "base",
+      "reason": "Drug A OS row, Median column"
+    },
+    {
+      "token_index": 28,
+      "block": 49,
+      "token": "0.90",
+      "name": "int_tot_shape",
+      "context": "base",
+      "reason": "Drug A ToT row, Shape column"
+    },
+    {
+      "token_index": 29,
+      "block": 50,
+      "token": "10.00",
+      "name": "int_tot_scale",
+      "context": "base",
+      "reason": "Drug A ToT row, Scale column"
+    },
+    {
+      "token_index": 30,
+      "block": 51,
+      "token": "6.7",
+      "name": "res_int_median_tot",
+      "context": "base",
+      "reason": "Drug A ToT row, Median column"
+    },
+    {
+      "token_index": 31,
+      "block": 53,
+      "token": "1.25",
+      "name": "comp_pfs_shape",
+      "context": "base",
+      "reason": "Drug B PFS row, Shape column"
+    },
+    {
+      "token_index": 32,
+      "block": 54,
+      "token": "7.00",
+      "name": "comp_pfs_scale",
+      "context": "base",
+      "reason": "Drug B PFS row, Scale column"
+    },
+    {
+      "token_index": 33,
+      "block": 55,
+      "token": "5.2",
+      "name": "res_comp_median_pfs",
+      "context": "base",
+      "reason": "Drug B PFS row, Median column"
+    },
+    {
+      "token_index": 34,
+      "block": 57,
+      "token": "1.15",
+      "name": "comp_os_shape",
+      "context": "base",
+      "reason": "Drug B OS row, Shape column"
+    },
+    {
+      "token_index": 35,
+      "block": 58,
+      "token": "16.00",
+      "name": "comp_os_scale",
+      "context": "base",
+      "reason": "Drug B OS row, Scale column"
+    },
+    {
+      "token_index": 36,
+      "block": 59,
+      "token": "11.6",
+      "name": "res_comp_median_os",
+      "context": "base",
+      "reason": "Drug B OS row, Median column"
+    },
+    {
+      "token_index": 37,
+      "block": 61,
+      "token": "1.40",
+      "name": "comp_tot_shape",
+      "context": "base",
+      "reason": "Drug B ToT row, Shape column"
+    },
+    {
+      "token_index": 38,
+      "block": 62,
+      "token": "4.50",
+      "name": "comp_tot_scale",
+      "context": "base",
+      "reason": "Drug B ToT row, Scale column"
+    },
+    {
+      "token_index": 39,
+      "block": 63,
+      "token": "3.5",
+      "name": "res_comp_median_tot",
+      "context": "base",
+      "reason": "Drug B ToT row, Median column"
+    },
+    {
+      "token_index": 40,
+      "block": 64,
+      "token": "20.8",
+      "name": "res_int_median_os",
+      "context": "base",
+      "reason": "median OS with Drug A"
+    },
+    {
+      "token_index": 41,
+      "block": 64,
+      "token": "11.6",
+      "name": "res_comp_median_os",
+      "context": "base",
+      "reason": "median OS with Drug B"
+    },
+    {
+      "token_index": 42,
+      "block": 64,
+      "token": "8.2",
+      "name": "res_int_median_pfs",
+      "context": "base",
+      "reason": "median PFS, first of respectively pair: Drug A"
+    },
+    {
+      "token_index": 43,
+      "block": 64,
+      "token": "5.2",
+      "name": "res_comp_median_pfs",
+      "context": "base",
+      "reason": "median PFS, second of respectively pair: Drug B"
+    },
+    {
+      "token_index": 44,
+      "block": 66,
+      "token": "3",
+      "name": "int_admin_interval_weeks",
+      "context": "base",
+      "reason": "Drug A given every N weeks"
+    },
+    {
+      "token_index": 45,
+      "block": 66,
+      "token": "35",
+      "name": "int_max_doses",
+      "context": "base",
+      "reason": "Drug A maximum doses, stopping rule"
+    },
+    {
+      "token_index": 46,
+      "block": 66,
+      "token": "3",
+      "name": "comp_admin_interval_weeks",
+      "context": "base",
+      "reason": "Drug B given every N weeks"
+    },
+    {
+      "token_index": 47,
+      "block": 66,
+      "token": "6",
+      "name": "comp_max_doses",
+      "context": "base",
+      "reason": "Drug B maximum doses"
+    },
+    {
+      "token_index": 48,
+      "block": 67,
+      "token": "2.00",
+      "name": "int_dose_mg",
+      "context": "base",
+      "reason": "Drug A dose per kg"
+    },
+    {
+      "token_index": 49,
+      "block": 67,
+      "token": "2.05",
+      "name": "res_int_expected_vials",
+      "context": "base",
+      "reason": "expected vials per administration for Drug A; reported output cell preferred over intermediate calc cell"
+    },
+    {
+      "token_index": 50,
+      "block": 67,
+      "token": "76.0",
+      "name": "weight_mean_kg",
+      "context": "base",
+      "reason": "body weight mean"
+    },
+    {
+      "token_index": 51,
+      "block": 67,
+      "token": "16.0",
+      "name": "weight_sd_kg",
+      "context": "base",
+      "reason": "body weight standard deviation"
+    },
+    {
+      "token_index": 52,
+      "block": 67,
+      "token": "500",
+      "name": "comp_dose_mg",
+      "context": "base",
+      "reason": "Drug B flat dose"
+    },
+    {
+      "token_index": 53,
+      "block": 67,
+      "token": "5",
+      "name": "res_comp_expected_vials",
+      "context": "base",
+      "reason": "vials for Drug B flat dose; reported output cell preferred over intermediate calc cell"
+    },
+    {
+      "token_index": 54,
+      "block": 67,
+      "token": "95.0%",
+      "name": "int_rdi",
+      "context": "base",
+      "reason": "relative dose intensity for Drug A"
+    },
+    {
+      "token_index": 55,
+      "block": 67,
+      "token": "90.0%",
+      "name": "comp_rdi",
+      "context": "base",
+      "reason": "relative dose intensity for Drug B"
+    },
+    {
+      "token_index": 56,
+      "block": 67,
+      "token": "13.70",
+      "name": "res_int_n_doses",
+      "context": "base",
+      "reason": "expected doses of Drug A"
+    },
+    {
+      "token_index": 57,
+      "block": 67,
+      "token": "4.58",
+      "name": "res_comp_n_doses",
+      "context": "base",
+      "reason": "expected doses of Drug B"
+    },
+    {
+      "token_index": 58,
+      "block": 70,
+      "token": "2025",
+      "name": "price_year",
+      "context": "base",
+      "reason": "price year of costs"
+    },
+    {
+      "token_index": 59,
+      "block": 76,
+      "token": "\u00a3700",
+      "name": "int_vial_price",
+      "context": "base",
+      "reason": "Drug A vial price row"
+    },
+    {
+      "token_index": 60,
+      "block": 79,
+      "token": "\u00a31,435",
+      "name": "res_int_drug_cost_per_admin",
+      "context": "base",
+      "reason": "Drug A drug cost per administration row; reported output cell preferred over calc cell"
+    },
+    {
+      "token_index": 61,
+      "block": 82,
+      "token": "\u00a396",
+      "name": "comp_vial_price",
+      "context": "base",
+      "reason": "Drug B price per vial row"
+    },
+    {
+      "token_index": 62,
+      "block": 85,
+      "token": "\u00a3480",
+      "name": "res_comp_drug_cost_per_admin",
+      "context": "base",
+      "reason": "Drug B drug cost per administration row; reported output cell preferred over calc cell"
+    },
+    {
+      "token_index": 63,
+      "block": 88,
+      "token": "\u00a3310",
+      "name": "int_admin_cost_per_admin",
+      "context": "base",
+      "reason": "administration cost row for Drug A"
+    },
+    {
+      "token_index": 64,
+      "block": 91,
+      "token": "\u00a3310",
+      "name": "comp_admin_cost_per_admin",
+      "context": "base",
+      "reason": "administration cost row for Drug B"
+    },
+    {
+      "token_index": 65,
+      "block": 94,
+      "token": "\u00a3150",
+      "name": "c_pf_week",
+      "context": "base",
+      "reason": "PF health state cost row"
+    },
+    {
+      "token_index": 66,
+      "block": 97,
+      "token": "\u00a3230",
+      "name": "c_pd_week",
+      "context": "base",
+      "reason": "PD health state cost row"
+    },
+    {
+      "token_index": 67,
+      "block": 100,
+      "token": "\u00a36,500",
+      "name": "c_terminal",
+      "context": "base",
+      "reason": "terminal care cost row"
+    },
+    {
+      "token_index": 68,
+      "block": 103,
+      "token": "\u00a31,150",
+      "name": "int_ae_cost",
+      "context": "base",
+      "reason": "cost inputs table, AE row for Drug A: input not result"
+    },
+    {
+      "token_index": 69,
+      "block": 106,
+      "token": "\u00a32,400",
+      "name": "comp_ae_cost",
+      "context": "base",
+      "reason": "cost inputs table, AE row for Drug B: input not result"
+    },
+    {
+      "token_index": 70,
+      "block": 108,
+      "token": "15.0%",
+      "name": "int_p_death_first_pfs",
+      "context": "base",
+      "reason": "share of PFS events that were deaths, Drug A"
+    },
+    {
+      "token_index": 71,
+      "block": 108,
+      "token": "12.0%",
+      "name": "comp_p_death_first_pfs",
+      "context": "base",
+      "reason": "share of PFS events that were deaths, Drug B"
+    },
+    {
+      "token_index": 72,
+      "block": 115,
+      "token": "\u00a32,800",
+      "name": "st_cost_1",
+      "context": "base",
+      "reason": "docetaxel course cost"
+    },
+    {
+      "token_index": 73,
+      "block": 116,
+      "token": "45.0%",
+      "name": "int_st_share_1",
+      "context": "base",
+      "reason": "docetaxel share after Drug A"
+    },
+    {
+      "token_index": 74,
+      "block": 117,
+      "token": "30.0%",
+      "name": "comp_st_share_1",
+      "context": "base",
+      "reason": "docetaxel share after Drug B"
+    },
+    {
+      "token_index": 75,
+      "block": 119,
+      "token": "\u00a330,000",
+      "name": "st_cost_2",
+      "context": "base",
+      "reason": "subsequent therapy table, Immunotherapy row, Course cost column: not the threshold"
+    },
+    {
+      "token_index": 76,
+      "block": 120,
+      "token": "5.0%",
+      "name": "int_st_share_2",
+      "context": "base",
+      "reason": "immunotherapy share after Drug A"
+    },
+    {
+      "token_index": 77,
+      "block": 121,
+      "token": "35.0%",
+      "name": "comp_st_share_2",
+      "context": "base",
+      "reason": "immunotherapy share after Drug B"
+    },
+    {
+      "token_index": 78,
+      "block": 123,
+      "token": "\u00a315,000",
+      "name": "st_cost_3",
+      "context": "base",
+      "reason": "other targeted therapy course cost"
+    },
+    {
+      "token_index": 79,
+      "block": 124,
+      "token": "10.0%",
+      "name": "int_st_share_3",
+      "context": "base",
+      "reason": "other targeted share after Drug A"
+    },
+    {
+      "token_index": 80,
+      "block": 125,
+      "token": "8.0%",
+      "name": "comp_st_share_3",
+      "context": "base",
+      "reason": "other targeted share after Drug B"
+    },
+    {
+      "token_index": 81,
+      "block": 128,
+      "token": "\u00a34,260",
+      "name": "res_int_st_cost_per_progression",
+      "context": "base",
+      "reason": "cost per progression, Drug A column; reported output cell preferred over calc cell"
+    },
+    {
+      "token_index": 82,
+      "block": 129,
+      "token": "\u00a312,540",
+      "name": "res_comp_st_cost_per_progression",
+      "context": "base",
+      "reason": "cost per progression, Drug B column; reported output cell preferred over calc cell"
+    },
+    {
+      "token_index": 83,
+      "block": 136,
+      "token": "0.75",
+      "name": "u_pf",
+      "context": "base",
+      "reason": "utility table PF row"
+    },
+    {
+      "token_index": 84,
+      "block": 138,
+      "token": "0.60",
+      "name": "u_pd",
+      "context": "base",
+      "reason": "utility table PD row"
+    },
+    {
+      "token_index": 85,
+      "block": 140,
+      "token": "0.008",
+      "name": "int_ae_qaly_loss",
+      "context": "base",
+      "reason": "AE QALY loss Drug A row"
+    },
+    {
+      "token_index": 86,
+      "block": 142,
+      "token": "0.015",
+      "name": "comp_ae_qaly_loss",
+      "context": "base",
+      "reason": "AE QALY loss Drug B row: not a discount rate"
+    },
+    {
+      "token_index": 87,
+      "block": 144,
+      "token": "0.95",
+      "name": "gpu_intercept",
+      "context": "base",
+      "reason": "population norms intercept row"
+    },
+    {
+      "token_index": 88,
+      "block": 146,
+      "token": "0.021000",
+      "name": "gpu_male",
+      "context": "base",
+      "reason": "population norms male coefficient"
+    },
+    {
+      "token_index": 89,
+      "block": 148,
+      "token": "-0.000260",
+      "name": "gpu_age",
+      "context": "base",
+      "reason": "population norms age coefficient"
+    },
+    {
+      "token_index": 90,
+      "block": 150,
+      "token": "-0.000033",
+      "name": "gpu_age2",
+      "context": "base",
+      "reason": "population norms age squared coefficient"
+    },
+    {
+      "token_index": 91,
+      "block": 155,
+      "token": "1.37",
+      "name": "res_inc_ly_disc",
+      "context": "base",
+      "reason": "base-case results paragraph; incremental measure from wording"
+    },
+    {
+      "token_index": 92,
+      "block": 155,
+      "token": "0.875",
+      "name": "res_inc_qaly_disc",
+      "context": "base",
+      "reason": "base-case results paragraph; incremental measure from wording"
+    },
+    {
+      "token_index": 93,
+      "block": 155,
+      "token": "\u00a324,746",
+      "name": "res_inc_total_cost",
+      "context": "base",
+      "reason": "base-case results paragraph; incremental measure from wording"
+    },
+    {
+      "token_index": 94,
+      "block": 155,
+      "token": "\u00a328,271",
+      "name": "res_icer",
+      "context": "base",
+      "reason": "base-case results paragraph; incremental measure from wording"
+    },
+    {
+      "token_index": 95,
+      "block": 155,
+      "token": "\u00a318,033",
+      "name": "res_icer_ly",
+      "context": "base",
+      "reason": "base-case results paragraph; incremental measure from wording"
+    },
+    {
+      "token_index": 96,
+      "block": 162,
+      "token": "\u00a360,016",
+      "name": "res_int_total_cost",
+      "context": "base",
+      "reason": "base-case results table; row measure and arm column"
+    },
+    {
+      "token_index": 97,
+      "block": 163,
+      "token": "\u00a335,270",
+      "name": "res_comp_total_cost",
+      "context": "base",
+      "reason": "base-case results table; row measure and arm column"
+    },
+    {
+      "token_index": 98,
+      "block": 164,
+      "token": "\u00a324,746",
+      "name": "res_inc_total_cost",
+      "context": "base",
+      "reason": "base-case results table; row measure and arm column"
+    },
+    {
+      "token_index": 99,
+      "block": 166,
+      "token": "2.59",
+      "name": "res_int_ly_disc",
+      "context": "base",
+      "reason": "base-case results table; row measure and arm column"
+    },
+    {
+      "token_index": 100,
+      "block": 167,
+      "token": "1.22",
+      "name": "res_comp_ly_disc",
+      "context": "base",
+      "reason": "base-case results table; row measure and arm column"
+    },
+    {
+      "token_index": 101,
+      "block": 168,
+      "token": "1.37",
+      "name": "res_inc_ly_disc",
+      "context": "base",
+      "reason": "base-case results table; row measure and arm column"
+    },
+    {
+      "token_index": 102,
+      "block": 170,
+      "token": "1.669",
+      "name": "res_int_qaly_disc",
+      "context": "base",
+      "reason": "base-case results table; row measure and arm column"
+    },
+    {
+      "token_index": 103,
+      "block": 171,
+      "token": "0.794",
+      "name": "res_comp_qaly_disc",
+      "context": "base",
+      "reason": "base-case results table; row measure and arm column"
+    },
+    {
+      "token_index": 104,
+      "block": 172,
+      "token": "0.875",
+      "name": "res_inc_qaly_disc",
+      "context": "base",
+      "reason": "base-case results table; row measure and arm column"
+    },
+    {
+      "token_index": 105,
+      "block": 176,
+      "token": "\u00a328,271",
+      "name": "res_icer",
+      "context": "base",
+      "reason": "base-case results table; row measure and arm column"
+    },
+    {
+      "token_index": 106,
+      "block": 180,
+      "token": "\u00a31,514",
+      "name": "res_inc_nmb",
+      "context": "base",
+      "reason": "base-case results table; row measure and arm column"
+    },
+    {
+      "token_index": 107,
+      "block": 182,
+      "token": "2.90",
+      "name": "res_int_ly_undisc",
+      "context": "base",
+      "reason": "undiscounted life years with Drug A"
+    },
+    {
+      "token_index": 108,
+      "block": 182,
+      "token": "1.27",
+      "name": "res_comp_ly_undisc",
+      "context": "base",
+      "reason": "undiscounted life years with Drug B, base case: not an incremental value"
+    },
+    {
+      "token_index": 109,
+      "block": 184,
+      "token": "30.5%",
+      "name": "res_int_drug_share",
+      "context": "base",
+      "reason": "drug acquisition share of total costs, Drug A arm, base case"
+    },
+    {
+      "token_index": 110,
+      "block": 184,
+      "token": "5.6%",
+      "name": "res_comp_drug_share",
+      "context": "base",
+      "reason": "drug acquisition share of total costs, Drug B arm, base case"
+    },
+    {
+      "token_index": 111,
+      "block": 184,
+      "token": "\u00a316,309",
+      "name": "res_inc_cost_drug",
+      "context": "base",
+      "reason": "incremental drug acquisition cost"
+    },
+    {
+      "token_index": 112,
+      "block": 191,
+      "token": "\u00a318,278",
+      "name": "res_int_cost_drug",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 113,
+      "block": 192,
+      "token": "\u00a31,969",
+      "name": "res_comp_cost_drug",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 114,
+      "block": 193,
+      "token": "\u00a316,309",
+      "name": "res_inc_cost_drug",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 115,
+      "block": 195,
+      "token": "\u00a34,157",
+      "name": "res_int_cost_admin",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 116,
+      "block": 196,
+      "token": "\u00a31,413",
+      "name": "res_comp_cost_admin",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 117,
+      "block": 197,
+      "token": "\u00a32,745",
+      "name": "res_inc_cost_admin",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 118,
+      "block": 199,
+      "token": "\u00a37,724",
+      "name": "res_int_cost_pf_state",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 119,
+      "block": 200,
+      "token": "\u00a34,188",
+      "name": "res_comp_cost_pf_state",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 120,
+      "block": 201,
+      "token": "\u00a33,536",
+      "name": "res_inc_cost_pf_state",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 121,
+      "block": 203,
+      "token": "\u00a319,289",
+      "name": "res_int_cost_pd_state",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 122,
+      "block": 204,
+      "token": "\u00a38,243",
+      "name": "res_comp_cost_pd_state",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 123,
+      "block": 205,
+      "token": "\u00a311,047",
+      "name": "res_inc_cost_pd_state",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 124,
+      "block": 207,
+      "token": "\u00a35,920",
+      "name": "res_int_cost_terminal",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 125,
+      "block": 208,
+      "token": "\u00a36,227",
+      "name": "res_comp_cost_terminal",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 126,
+      "block": 209,
+      "token": "-\u00a3307",
+      "name": "res_inc_cost_terminal",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 127,
+      "block": 211,
+      "token": "\u00a33,498",
+      "name": "res_int_cost_st",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 128,
+      "block": 212,
+      "token": "\u00a310,832",
+      "name": "res_comp_cost_st",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 129,
+      "block": 213,
+      "token": "-\u00a37,334",
+      "name": "res_inc_cost_st",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 130,
+      "block": 215,
+      "token": "\u00a31,150",
+      "name": "res_int_cost_ae",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 131,
+      "block": 216,
+      "token": "\u00a32,400",
+      "name": "res_comp_cost_ae",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 132,
+      "block": 217,
+      "token": "-\u00a31,250",
+      "name": "res_inc_cost_ae",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 133,
+      "block": 219,
+      "token": "\u00a360,016",
+      "name": "res_int_total_cost",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 134,
+      "block": 220,
+      "token": "\u00a335,270",
+      "name": "res_comp_total_cost",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 135,
+      "block": 221,
+      "token": "\u00a324,746",
+      "name": "res_inc_total_cost",
+      "context": "base",
+      "reason": "disaggregated base-case cost table; row category and arm column (result, not input)"
+    },
+    {
+      "token_index": 136,
+      "block": 232,
+      "token": "\u00a324,746",
+      "name": "res_inc_total_cost",
+      "context": "base",
+      "reason": "scenario table Base case row"
+    },
+    {
+      "token_index": 137,
+      "block": 233,
+      "token": "0.875",
+      "name": "res_inc_qaly_disc",
+      "context": "base",
+      "reason": "scenario table Base case row"
+    },
+    {
+      "token_index": 138,
+      "block": 234,
+      "token": "\u00a328,271",
+      "name": "res_icer",
+      "context": "base",
+      "reason": "scenario table Base case row"
+    },
+    {
+      "token_index": 139,
+      "block": 236,
+      "token": "1.5%",
+      "name": "dr_costs",
+      "context": "SC1",
+      "reason": "lower discount rate scenario row, Setting column; scenario file displays dr_costs for this setting"
+    },
+    {
+      "token_index": 140,
+      "block": 237,
+      "token": "\u00a326,725",
+      "name": "res_inc_total_cost",
+      "context": "SC1",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 141,
+      "block": 238,
+      "token": "0.957",
+      "name": "res_inc_qaly_disc",
+      "context": "SC1",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 142,
+      "block": 239,
+      "token": "\u00a327,924",
+      "name": "res_icer",
+      "context": "SC1",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 143,
+      "block": 241,
+      "token": "20",
+      "name": "time_horizon_years",
+      "context": "SC2",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 144,
+      "block": 242,
+      "token": "\u00a324,646",
+      "name": "res_inc_total_cost",
+      "context": "SC2",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 145,
+      "block": 243,
+      "token": "0.872",
+      "name": "res_inc_qaly_disc",
+      "context": "SC2",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 146,
+      "block": 244,
+      "token": "\u00a328,279",
+      "name": "res_icer",
+      "context": "SC2",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 147,
+      "block": 246,
+      "token": "0.72",
+      "name": "u_pf",
+      "context": "SC3",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 148,
+      "block": 246,
+      "token": "0.55",
+      "name": "u_pd",
+      "context": "SC3",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 149,
+      "block": 247,
+      "token": "\u00a324,746",
+      "name": "res_inc_total_cost",
+      "context": "base",
+      "reason": "scenario row whose override leaves this output equal to base; matcher lists only base for unchanged values"
+    },
+    {
+      "token_index": 150,
+      "block": 248,
+      "token": "0.817",
+      "name": "res_inc_qaly_disc",
+      "context": "SC3",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 151,
+      "block": 249,
+      "token": "\u00a330,270",
+      "name": "res_icer",
+      "context": "SC3",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 152,
+      "block": 251,
+      "token": "696",
+      "name": "int_max_doses",
+      "context": "SC4",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 153,
+      "block": 252,
+      "token": "\u00a327,844",
+      "name": "res_inc_total_cost",
+      "context": "SC4",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 154,
+      "block": 253,
+      "token": "0.875",
+      "name": "res_inc_qaly_disc",
+      "context": "base",
+      "reason": "scenario row whose override leaves this output equal to base; matcher lists only base for unchanged values"
+    },
+    {
+      "token_index": 155,
+      "block": 254,
+      "token": "\u00a331,811",
+      "name": "res_icer",
+      "context": "SC4",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 156,
+      "block": 256,
+      "token": "28.00",
+      "name": "int_os_scale",
+      "context": "SC5",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 157,
+      "block": 257,
+      "token": "\u00a321,283",
+      "name": "res_inc_total_cost",
+      "context": "SC5",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 158,
+      "block": 258,
+      "token": "0.705",
+      "name": "res_inc_qaly_disc",
+      "context": "SC5",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 159,
+      "block": 259,
+      "token": "\u00a330,205",
+      "name": "res_icer",
+      "context": "SC5",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 160,
+      "block": 262,
+      "token": "\u00a324,746",
+      "name": "res_inc_total_cost",
+      "context": "SC6",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 161,
+      "block": 263,
+      "token": "0.875",
+      "name": "res_inc_qaly_disc",
+      "context": "SC6",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 162,
+      "block": 264,
+      "token": "\u00a328,271",
+      "name": "res_icer",
+      "context": "SC6",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 163,
+      "block": 267,
+      "token": "\u00a324,746",
+      "name": "res_inc_total_cost",
+      "context": "base",
+      "reason": "scenario row whose override leaves this output equal to base; matcher lists only base for unchanged values"
+    },
+    {
+      "token_index": 164,
+      "block": 268,
+      "token": "0.898",
+      "name": "res_inc_qaly_disc",
+      "context": "SC7",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 165,
+      "block": 269,
+      "token": "\u00a327,553",
+      "name": "res_icer",
+      "context": "SC7",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 166,
+      "block": 271,
+      "token": "0.95",
+      "name": "int_tot_shape",
+      "context": "SC8",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 167,
+      "block": 271,
+      "token": "12.00",
+      "name": "int_tot_scale",
+      "context": "SC8",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 168,
+      "block": 272,
+      "token": "\u00a327,597",
+      "name": "res_inc_total_cost",
+      "context": "SC8",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 169,
+      "block": 273,
+      "token": "0.875",
+      "name": "res_inc_qaly_disc",
+      "context": "base",
+      "reason": "scenario row whose override leaves this output equal to base; matcher lists only base for unchanged values"
+    },
+    {
+      "token_index": 170,
+      "block": 274,
+      "token": "\u00a331,528",
+      "name": "res_icer",
+      "context": "SC8",
+      "reason": "scenario table row for this scenario; column gives measure"
+    },
+    {
+      "token_index": 171,
+      "block": 275,
+      "token": "\u00a330,000",
+      "name": "wtp_threshold",
+      "context": "base",
+      "reason": "ICER compared against threshold per QALY"
+    },
+    {
+      "token_index": 172,
+      "block": 275,
+      "token": "\u00a330,270",
+      "name": "res_icer",
+      "context": "SC3",
+      "reason": "scenario named by its phrase before the value"
+    },
+    {
+      "token_index": 173,
+      "block": 275,
+      "token": "\u00a331,811",
+      "name": "res_icer",
+      "context": "SC4",
+      "reason": "scenario named by its phrase before the value"
+    },
+    {
+      "token_index": 174,
+      "block": 275,
+      "token": "\u00a330,205",
+      "name": "res_icer",
+      "context": "SC5",
+      "reason": "scenario named by its phrase before the value"
+    },
+    {
+      "token_index": 175,
+      "block": 275,
+      "token": "\u00a331,528",
+      "name": "res_icer",
+      "context": "SC8",
+      "reason": "scenario named by its phrase before the value"
+    },
+    {
+      "token_index": 176,
+      "block": 277,
+      "token": "0.1%",
+      "name": "lifetime_check_tol",
+      "context": "base",
+      "reason": "fewer than tolerance alive at end of horizon"
+    },
+    {
+      "token_index": 177,
+      "block": 278,
+      "token": "312",
+      "name": "res_int_gpm_bind_cycles",
+      "context": "base",
+      "reason": "cycles with mortality constraint active, Drug A"
+    },
+    {
+      "token_index": 178,
+      "block": 278,
+      "token": "96",
+      "name": "res_int_gpm_first_bind_age",
+      "context": "base",
+      "reason": "age at which constraint first binds: not a vial price"
+    },
+    {
+      "token_index": 179,
+      "block": 278,
+      "token": "0.02%",
+      "name": "res_int_gpm_first_bind_alive",
+      "context": "base",
+      "reason": "proportion alive when constraint first binds"
+    },
+    {
+      "token_index": 180,
+      "block": 290,
+      "token": "\u00a328,271",
+      "name": "res_icer",
+      "context": "base",
+      "reason": "conclusion: base-case ICER"
+    },
+    {
+      "token_index": 181,
+      "block": 290,
+      "token": "\u00a330,000",
+      "name": "wtp_threshold",
+      "context": "base",
+      "reason": "threshold per QALY gained"
+    },
+    {
+      "token_index": 182,
+      "block": 290,
+      "token": "\u00a320,000",
+      "name": "wtp_threshold_lower",
+      "context": "base",
+      "reason": "lower end of NICE range"
+    },
+    {
+      "token_index": 183,
+      "block": 290,
+      "token": "\u00a330,000",
+      "name": "wtp_threshold",
+      "context": "base",
+      "reason": "upper end of NICE range"
+    }
+  ],
+  "unresolved": [],
+  "sections": [
+    {
+      "block": 4,
+      "title": "1. Executive summary",
+      "subsections": []
+    },
+    {
+      "block": 9,
+      "title": "2. Decision problem",
+      "subsections": []
+    },
+    {
+      "block": 27,
+      "title": "3. Methods",
+      "subsections": [
+        {
+          "block": 28,
+          "title": "3.1 Model structure"
+        },
+        {
+          "block": 33,
+          "title": "3.2 Survival extrapolation"
+        },
+        {
+          "block": 65,
+          "title": "3.3 Treatment duration and dosing"
+        },
+        {
+          "block": 68,
+          "title": "3.4 Costs and resource use"
+        },
+        {
+          "block": 130,
+          "title": "3.5 Health-related quality of life"
+        },
+        {
+          "block": 151,
+          "title": "3.6 Uncertainty"
+        }
+      ]
+    },
+    {
+      "block": 153,
+      "title": "4. Results",
+      "subsections": [
+        {
+          "block": 154,
+          "title": "4.1 Base-case results"
+        },
+        {
+          "block": 183,
+          "title": "4.2 Disaggregated costs"
+        },
+        {
+          "block": 222,
+          "title": "4.3 Scenario analyses"
+        }
+      ]
+    },
+    {
+      "block": 276,
+      "title": "5. Model validation",
+      "subsections": []
+    },
+    {
+      "block": 280,
+      "title": "6. Discussion",
+      "subsections": []
+    },
+    {
+      "block": 289,
+      "title": "7. Conclusion",
+      "subsections": []
+    },
+    {
+      "block": 291,
+      "title": "References",
+      "subsections": []
+    }
+  ],
+  "jurisdiction_hits": [
+    {
+      "block": 1,
+      "kind": "title",
+      "section": null,
+      "term": "United Kingdom",
+      "category": "geography"
+    },
+    {
+      "block": 5,
+      "kind": "paragraph",
+      "section": "1. Executive summary",
+      "term": "Personal Social Services",
+      "category": "payer"
+    },
+    {
+      "block": 5,
+      "kind": "paragraph",
+      "section": "1. Executive summary",
+      "term": "NHS",
+      "category": "payer"
+    },
+    {
+      "block": 5,
+      "kind": "paragraph",
+      "section": "1. Executive summary",
+      "term": "PSS",
+      "category": "payer"
+    },
+    {
+      "block": 5,
+      "kind": "paragraph",
+      "section": "1. Executive summary",
+      "term": "England",
+      "category": "geography"
+    },
+    {
+      "block": 6,
+      "kind": "paragraph",
+      "section": "1. Executive summary",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 7,
+      "kind": "paragraph",
+      "section": "1. Executive summary",
+      "term": "NICE",
+      "category": "agency"
+    },
+    {
+      "block": 7,
+      "kind": "paragraph",
+      "section": "1. Executive summary",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 10,
+      "kind": "paragraph",
+      "section": "2. Decision problem",
+      "term": "NHS",
+      "category": "payer"
+    },
+    {
+      "block": 23,
+      "kind": "table_cell",
+      "section": "2. Decision problem",
+      "term": "NHS",
+      "category": "payer"
+    },
+    {
+      "block": 23,
+      "kind": "table_cell",
+      "section": "2. Decision problem",
+      "term": "PSS",
+      "category": "payer"
+    },
+    {
+      "block": 26,
+      "kind": "paragraph",
+      "section": "2. Decision problem",
+      "term": "NICE reference case",
+      "category": "agency"
+    },
+    {
+      "block": 26,
+      "kind": "paragraph",
+      "section": "2. Decision problem",
+      "term": "NHS",
+      "category": "payer"
+    },
+    {
+      "block": 26,
+      "kind": "paragraph",
+      "section": "2. Decision problem",
+      "term": "patient access scheme",
+      "category": "pricing"
+    },
+    {
+      "block": 26,
+      "kind": "paragraph",
+      "section": "2. Decision problem",
+      "term": "PAS",
+      "category": "pricing"
+    },
+    {
+      "block": 26,
+      "kind": "paragraph",
+      "section": "2. Decision problem",
+      "term": "national reference costs",
+      "category": "unit_cost_source"
+    },
+    {
+      "block": 34,
+      "kind": "paragraph",
+      "section": "3. Methods",
+      "term": "Decision Support Unit",
+      "category": "agency"
+    },
+    {
+      "block": 34,
+      "kind": "paragraph",
+      "section": "3. Methods",
+      "term": "NICE",
+      "category": "agency"
+    },
+    {
+      "block": 69,
+      "kind": "paragraph",
+      "section": "3. Methods",
+      "term": "NHS",
+      "category": "payer"
+    },
+    {
+      "block": 69,
+      "kind": "paragraph",
+      "section": "3. Methods",
+      "term": "PAS",
+      "category": "pricing"
+    },
+    {
+      "block": 69,
+      "kind": "paragraph",
+      "section": "3. Methods",
+      "term": "electronic market information tool",
+      "category": "unit_cost_source"
+    },
+    {
+      "block": 69,
+      "kind": "paragraph",
+      "section": "3. Methods",
+      "term": "NHS reference costs",
+      "category": "unit_cost_source"
+    },
+    {
+      "block": 69,
+      "kind": "paragraph",
+      "section": "3. Methods",
+      "term": "PSSRU",
+      "category": "unit_cost_source"
+    },
+    {
+      "block": 69,
+      "kind": "paragraph",
+      "section": "3. Methods",
+      "term": "eMIT",
+      "category": "unit_cost_source"
+    },
+    {
+      "block": 70,
+      "kind": "paragraph",
+      "section": "3. Methods",
+      "term": "GBP",
+      "category": "currency"
+    },
+    {
+      "block": 76,
+      "kind": "table_cell",
+      "section": "3. Methods",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 79,
+      "kind": "table_cell",
+      "section": "3. Methods",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 82,
+      "kind": "table_cell",
+      "section": "3. Methods",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 85,
+      "kind": "table_cell",
+      "section": "3. Methods",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 88,
+      "kind": "table_cell",
+      "section": "3. Methods",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 91,
+      "kind": "table_cell",
+      "section": "3. Methods",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 94,
+      "kind": "table_cell",
+      "section": "3. Methods",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 97,
+      "kind": "table_cell",
+      "section": "3. Methods",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 100,
+      "kind": "table_cell",
+      "section": "3. Methods",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 103,
+      "kind": "table_cell",
+      "section": "3. Methods",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 106,
+      "kind": "table_cell",
+      "section": "3. Methods",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 115,
+      "kind": "table_cell",
+      "section": "3. Methods",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 119,
+      "kind": "table_cell",
+      "section": "3. Methods",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 123,
+      "kind": "table_cell",
+      "section": "3. Methods",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 128,
+      "kind": "table_cell",
+      "section": "3. Methods",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 129,
+      "kind": "table_cell",
+      "section": "3. Methods",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 131,
+      "kind": "paragraph",
+      "section": "3. Methods",
+      "term": "NICE reference case",
+      "category": "agency"
+    },
+    {
+      "block": 131,
+      "kind": "paragraph",
+      "section": "3. Methods",
+      "term": "UK time trade-off value set",
+      "category": "value_set"
+    },
+    {
+      "block": 131,
+      "kind": "paragraph",
+      "section": "3. Methods",
+      "term": "UK population norms",
+      "category": "value_set"
+    },
+    {
+      "block": 155,
+      "kind": "paragraph",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 162,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 163,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 164,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 176,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 180,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 184,
+      "kind": "paragraph",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 185,
+      "kind": "caption",
+      "section": "4. Results",
+      "term": "GBP",
+      "category": "currency"
+    },
+    {
+      "block": 191,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 192,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 193,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 195,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 196,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 197,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 199,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 200,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 201,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 203,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 204,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 205,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 207,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 208,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 209,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 211,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 212,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 213,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 215,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 216,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 217,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 219,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 220,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 221,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 232,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 234,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 237,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 239,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 242,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 244,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 247,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 249,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 252,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 254,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 257,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 259,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 262,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 264,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 267,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 269,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 272,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 274,
+      "kind": "table_cell",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 275,
+      "kind": "paragraph",
+      "section": "4. Results",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 287,
+      "kind": "list_item",
+      "section": "6. Discussion",
+      "term": "NICE",
+      "category": "agency"
+    },
+    {
+      "block": 287,
+      "kind": "list_item",
+      "section": "6. Discussion",
+      "term": "DSU",
+      "category": "agency"
+    },
+    {
+      "block": 288,
+      "kind": "paragraph",
+      "section": "6. Discussion",
+      "term": "commissioning",
+      "category": "payer"
+    },
+    {
+      "block": 290,
+      "kind": "paragraph",
+      "section": "7. Conclusion",
+      "term": "NICE",
+      "category": "agency"
+    },
+    {
+      "block": 290,
+      "kind": "paragraph",
+      "section": "7. Conclusion",
+      "term": "NHS",
+      "category": "payer"
+    },
+    {
+      "block": 290,
+      "kind": "paragraph",
+      "section": "7. Conclusion",
+      "term": "PAS",
+      "category": "pricing"
+    },
+    {
+      "block": 290,
+      "kind": "paragraph",
+      "section": "7. Conclusion",
+      "term": "\u00a3",
+      "category": "currency"
+    },
+    {
+      "block": 292,
+      "kind": "reference",
+      "section": "References",
+      "term": "National Institute for Health and Care Excellence",
+      "category": "agency"
+    },
+    {
+      "block": 292,
+      "kind": "reference",
+      "section": "References",
+      "term": "NICE",
+      "category": "agency"
+    },
+    {
+      "block": 293,
+      "kind": "reference",
+      "section": "References",
+      "term": "NICE",
+      "category": "agency"
+    },
+    {
+      "block": 293,
+      "kind": "reference",
+      "section": "References",
+      "term": "DSU",
+      "category": "agency"
+    },
+    {
+      "block": 294,
+      "kind": "reference",
+      "section": "References",
+      "term": "NICE",
+      "category": "agency"
+    },
+    {
+      "block": 294,
+      "kind": "reference",
+      "section": "References",
+      "term": "DSU",
+      "category": "agency"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "input-mapper": {
+    "key_spec": "/home/user/testing/fixtures/mapping_spec_KR.json",
+    "key_register": "/home/user/testing/fixtures/gap_register_KR.yaml"
+  },
+  "model-profiler": {
+    "plants": {
+      "P1": "Trace_Int AF (PF state cost) has a hidden literal uplift",
+      "P2": "Trace_Comp C10 (Drug B RDI) links to int_rdi: Drug B cost depends on a Drug A input",
+      "P3": "conventions declare annual_step discounting; formulas are mid-cycle continuous",
+      "P4": "pasted constant at Trace_Comp!AG300"
+    }
+  },
+  "builder-runner": {
+    "expect": {
+      "approved": "blocked by GAP-001, nothing built",
+      "approved_test_resolved": "built"
+    }
+  },
+  "model-verifier": {
+    "spec_A": "approved_test_resolved/mapping_spec_resolved.json",
+    "spec_B": "approved_test_resolved/mapping_spec_resolved.json",
+    "expect": {
+      "run_A": "accept (all pass)",
+      "run_B": "reject: V02 formula Trace_Int!AD200; V03 int_os_scale"
+    }
+  },
+  "report-profiler": {
+    "key": "/home/user/testing/fixtures/global_report_UK.provenance.json"
+  },
+  "claims-analyst": {
+    "key": "/home/user/testing/fixtures/claims_register_KR.json"
+  },
+  "report-writer": {
+    "gap_register": "approved_test_resolved/gap_register_resolved.yaml",
+    "run_dir": "runs/kr_test"
+  },
+  "report-verifier": {
+    "gap_register": "approved_test_resolved/gap_register_resolved.yaml",
+    "run_dir": "runs/kr_test",
+    "expect": {
+      "report_A": "pass (draft: not acceptable as final)",
+      "report_B": "reject: R01 changed ICER, R04 NICE, R05 prop_male"
+    }
+  }
+}

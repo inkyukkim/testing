@@ -23,3 +23,10 @@ DRAFT) and the Report Verifier (`verify_report`, checks R01-R07), `tools/formats
 (currency-aware formats), agent definitions, the KR template answer key, a `slow` test
 marker with a fast lane, and CI (`.github/workflows/tests.yml`). The KR report exists only
 as a draft against a test-only build: GAP-001 and six human reviews remain open.
+
+**Gate 5** runs blind evaluations of all eight agents (`evals/`, `docs/gate5_agent_evals.md`). Rounds 1
+and 2 were exposed to fixture notes through the session's cached CLAUDE.md. Round 3 ran in a separate
+session on an orphan branch holding only the workspaces. It matched the earlier rounds within one to
+two items per agent, with no critical differences. Its open findings (`rerender` semantics, scope of
+`git_dirty`, the `int_dose_mg` label, population-characteristics guidance, a class/rationale lint) are
+listed in that file.
